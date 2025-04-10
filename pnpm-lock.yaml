@@ -161,16 +161,13 @@ importers:
         version: 7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     devDependencies:
       '@cloudflare/vite-plugin':
-        specifier: ^1.0.0
+        specifier: 'catalog:'
         version: 1.0.3(rollup@4.39.0)(vite@6.2.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.29.2))(workerd@1.20250408.0)(wrangler@4.9.1(@cloudflare/workers-types@4.20250410.0))
-      '@cloudflare/workers-types':
-        specifier: ^4.20250410.0
-        version: 4.20250410.0
       '@react-router/dev':
         specifier: ^7.5.0
         version: 7.5.0(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.29.2)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.2.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.29.2))(wrangler@4.9.1(@cloudflare/workers-types@4.20250410.0))
       '@tailwindcss/vite':
-        specifier: ^4.0.0
+        specifier: 'catalog:'
         version: 4.0.14(vite@6.2.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.29.2))
       '@types/node':
         specifier: ^20
@@ -182,19 +179,19 @@ importers:
         specifier: ^19.0.1
         version: 19.1.2(@types/react@19.1.0)
       tailwindcss:
-        specifier: ^4.0.0
+        specifier: 'catalog:'
         version: 4.0.17
       typescript:
-        specifier: ^5.7.2
+        specifier: 'catalog:'
         version: 5.8.2
       vite:
-        specifier: ^6.2.1
+        specifier: 'catalog:'
         version: 6.2.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.29.2)
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.8.2)(vite@6.2.5(@types/node@20.17.30)(jiti@2.4.2)(lightningcss@1.29.2))
       wrangler:
-        specifier: ^4.9.1
+        specifier: 'catalog:'
         version: 4.9.1(@cloudflare/workers-types@4.20250410.0)
 
   functions/shared:
@@ -3151,7 +3148,8 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20250408.0':
     optional: true
 
-  '@cloudflare/workers-types@4.20250410.0': {}
+  '@cloudflare/workers-types@4.20250410.0':
+    optional: true
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
