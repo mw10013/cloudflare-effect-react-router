@@ -1,0 +1,21 @@
+{
+	"name": "@workspace/shared",
+	"type": "module",
+	"private": true,
+	"exports": {
+		"./subjects": "./src/subjects.ts"
+	},
+	"scripts": {
+		"clean": "pnpm clean:node",
+		"clean:node": "rm -rf node_modules"
+	},
+	"devDependencies": {
+		"typescript": "catalog:"
+	},
+	"dependencies": {
+		"effect": "catalog:"
+	},
+	"peerDependencies": {
+		"@openauthjs/openauth": "catalog:"
+	}
+}
