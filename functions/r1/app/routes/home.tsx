@@ -1,5 +1,4 @@
 import type { Route } from './+types/home'
-import { Welcome } from '../welcome/welcome'
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'r1' }, { name: 'description', content: 'Welcome to r1' }]
