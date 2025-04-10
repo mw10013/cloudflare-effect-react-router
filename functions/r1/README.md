@@ -1,5 +1,8 @@
 # r1
 
+- fs-routes
+- bare app.css
+
 ## Local Dev
 
 - pnpm i
