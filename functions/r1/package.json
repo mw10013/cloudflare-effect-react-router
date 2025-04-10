@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-		"build:PRODUCTION": "CLOUDFLARE_ENV=production pnpm build",
+    "build:PRODUCTION": "CLOUDFLARE_ENV=production pnpm build",
     "deploy": "pnpm run build && wrangler deploy",
-		"deploy:PRODUCTION": "pnpm build:PRODUCTION && wrangler deploy",
+    "deploy:PRODUCTION": "pnpm build:PRODUCTION && wrangler deploy",
     "dev": "react-router dev",
     "preview": "pnpm run build && vite preview",
     "cf-typegen": "wrangler types",
@@ -25,8 +25,9 @@
   "devDependencies": {
     "@cloudflare/vite-plugin": "catalog:",
     "@react-router/dev": "catalog:",
+    "@react-router/fs-routes": "catalog:",
     "@tailwindcss/vite": "catalog:",
-		"@types/node": "catalog:",
+    "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "tailwindcss": "catalog:",

@@ -21,6 +21,9 @@ catalogs:
     '@react-router/dev':
       specifier: 7.5.0
       version: 7.5.0
+    '@react-router/fs-routes':
+      specifier: 7.5.0
+      version: 7.5.0
     '@tailwindcss/typography':
       specifier: 0.5.16
       version: 0.5.16
@@ -190,6 +193,9 @@ importers:
       '@react-router/dev':
         specifier: 'catalog:'
         version: 7.5.0(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.2.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2))(wrangler@4.10.0(@cloudflare/workers-types@4.20250410.0))
+      '@react-router/fs-routes':
+        specifier: 'catalog:'
+        version: 7.5.0(@react-router/dev@7.5.0(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.2.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2))(wrangler@4.10.0(@cloudflare/workers-types@4.20250410.0)))(typescript@5.8.2)
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.0.14(vite@6.2.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2))
@@ -1121,6 +1127,16 @@ packages:
       typescript:
         optional: true
       wrangler:
+        optional: true
+
+  '@react-router/fs-routes@7.5.0':
+    resolution: {integrity: sha512-2ymK6EVVO7SPUkpabhAvviGxHAnR6vnWOohjdW7gosArtFO7gt6GtdAeLcEsGr7nrEZJNua1uBZfGuCQlxZ5cg==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@react-router/dev': ^7.5.0
+      typescript: ^5.1.0
+    peerDependenciesMeta:
+      typescript:
         optional: true
 
   '@react-router/node@7.5.0':
@@ -3619,6 +3635,13 @@ snapshots:
       - terser
       - tsx
       - yaml
+
+  '@react-router/fs-routes@7.5.0(@react-router/dev@7.5.0(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.2.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2))(wrangler@4.10.0(@cloudflare/workers-types@4.20250410.0)))(typescript@5.8.2)':
+    dependencies:
+      '@react-router/dev': 7.5.0(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.2.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2))(wrangler@4.10.0(@cloudflare/workers-types@4.20250410.0))
+      minimatch: 9.0.5
+    optionalDependencies:
+      typescript: 5.8.2
 
   '@react-router/node@7.5.0(react-router@7.5.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)':
     dependencies:
