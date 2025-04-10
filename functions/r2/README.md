@@ -18,6 +18,10 @@
   - Build watch paths
     - Include paths: functions/r2/\*
 
+## Shadcn
+
+- pnpm -F r2 exec shadcn add button
+
 # Welcome to React Router!
 
 A modern, production-ready template for building full-stack React applications using React Router.
