@@ -1,3 +1,21 @@
+# rr
+
+## Local Dev
+
+- pnpm i
+- pnpm -F rr dev
+
+## Deploy
+
+- pnpm -F rr deploy:PRODUCTION
+- Workers & Pages Settings: cloudflare-openauth-stripe-production
+  - Git repository: connect to git repo
+  - Build configuration
+    - Build command: CLOUDFLARE_ENV=production pnpm -F rr build
+    - Deploy command: pnpm -F rr exec wrangler deploy
+  - Build watch paths
+    - Include paths: functions/rr/\*
+
 # Welcome to React Router!
 
 A modern, production-ready template for building full-stack React applications using React Router.
