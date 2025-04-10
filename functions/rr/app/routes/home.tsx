@@ -9,7 +9,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export function loader({ context }: Route.LoaderArgs) {
-  return { message: context.cloudflare.env.ENVIRONMENT };
+  return { message: `ENVIRONMENT: ${context.cloudflare.env.ENVIRONMENT}` };
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
