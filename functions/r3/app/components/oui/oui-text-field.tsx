@@ -19,7 +19,7 @@ export function TextField({ className, ...props }: Rac.TextFieldProps) {
 }
 
 export interface TextFieldExProps extends Rac.TextFieldProps {
-  label?: string
+  label?: React.ReactNode
   description?: React.ReactNode
   errorMessage?: string | ((validation: Rac.ValidationResult) => string)
   placeholder?: string
