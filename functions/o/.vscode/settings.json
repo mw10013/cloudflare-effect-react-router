@@ -1,0 +1,14 @@
+{
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "files.exclude": {
+    "node_modules/": true,
+    "*/node_modules/": true,
+    "**/node_modules/": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.ts": "explicit",
+    "source.organizeImports": "explicit"
+  }
+}
