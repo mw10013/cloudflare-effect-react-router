@@ -6,16 +6,11 @@ import { Label } from './oui-label'
 import { Text } from './oui-text'
 import { TextArea } from './oui-text-area'
 
-// TODO: textFieldStyles: space-y-2?
-export const textFieldStyles = 'group grid gap-2'
+// shadcn FormItem: grid gap-2
+export const textFieldStyles = 'grid gap-2'
 
 export function TextField({ className, ...props }: Rac.TextFieldProps) {
-  return (
-    <Rac.TextField
-      {...props}
-      className={composeTailwindRenderProps(className, textFieldStyles)}
-    />
-  )
+  return <Rac.TextField data-slot="form-item" className={composeTailwindRenderProps(className, textFieldStyles)} {...props} />
 }
 
 export interface TextFieldExProps extends Rac.TextFieldProps {
@@ -26,22 +21,11 @@ export interface TextFieldExProps extends Rac.TextFieldProps {
   textArea?: boolean
 }
 
-export function TextFieldEx({
-  label,
-  description,
-  errorMessage,
-  placeholder,
-  textArea,
-  ...props
-}: TextFieldExProps) {
+export function TextFieldEx({ label, description, errorMessage, placeholder, textArea, ...props }: TextFieldExProps) {
   return (
     <TextField {...props}>
       {label && <Label>{label}</Label>}
-      {textArea ? (
-        <TextArea placeholder={placeholder} />
-      ) : (
-        <Input placeholder={placeholder} />
-      )}
+      {textArea ? <TextArea placeholder={placeholder} /> : <Input placeholder={placeholder} />}
       {description && <Text slot="description">{description}</Text>}
       <FieldError>{errorMessage}</FieldError>
     </TextField>

@@ -1,9 +1,9 @@
 import * as Rac from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 
-// shadcn FormMessage: text-[0.8rem] font-medium text-destructive
+// shadcn FormMessage: text-destructive text-sm
 export const fieldErrorStyles = tv({
-  base: 'text-[0.8rem] font-medium text-destructive',
+  base: 'text-destructive text-sm'
 })
 
 export function FieldError({ className, ...props }: Rac.FieldErrorProps) {
@@ -11,11 +11,34 @@ export function FieldError({ className, ...props }: Rac.FieldErrorProps) {
   return (
     <Rac.TextContext.Provider value={{ elementType: 'p' }}>
       <Rac.FieldError
+        data-slot="form-message"
+        className={Rac.composeRenderProps(className, (className, renderProps) => fieldErrorStyles({ ...renderProps, className }))}
         {...props}
-        className={Rac.composeRenderProps(className, (className, renderProps) =>
-          fieldErrorStyles({ ...renderProps, className })
-        )}
       />
     </Rac.TextContext.Provider>
   )
 }
+
+/* shadcn
+
+function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
+  const { error, formMessageId } = useFormField()
+  const body = error ? String(error?.message ?? "") : props.children
+
+  if (!body) {
+    return null
+  }
+
+  return (
+    <p
+      data-slot="form-message"
+      id={formMessageId}
+      className={cn("text-destructive text-sm", className)}
+      {...props}
+    >
+      {body}
+    </p>
+  )
+}
+
+*/

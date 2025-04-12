@@ -112,7 +112,7 @@ export function FormDemo() {
             </FormItem>
           )}
         />
-        <FormField
+        {/* <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
@@ -134,8 +134,8 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        />
-        <FormField
+        /> */}
+        {/* <FormField
           control={form.control}
           name="bio"
           render={({ field }) => (
@@ -150,8 +150,8 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        />
-        <FormField
+        /> */}
+        {/* <FormField
           control={form.control}
           name="type"
           render={({ field }) => (
@@ -182,8 +182,8 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        />
-        <FormField
+        /> */}
+        {/* <FormField
           control={form.control}
           name="mobile"
           render={({ field }) => (
@@ -199,8 +199,8 @@ export function FormDemo() {
               </div>
             </FormItem>
           )}
-        />
-        <FormField
+        /> */}
+        {/* <FormField
           control={form.control}
           name="items"
           render={() => (
@@ -238,8 +238,8 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        />
-        <FormField
+        /> */}
+        {/* <FormField
           control={form.control}
           name="dob"
           render={({ field }) => (
@@ -271,8 +271,8 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        />
-        <div>
+        /> */}
+        {/* <div>
           <h3 className="mb-4 text-lg font-medium">Email Notifications</h3>
           <div className="flex flex-col gap-4">
             <FormField
@@ -306,7 +306,7 @@ export function FormDemo() {
               )}
             />
           </div>
-        </div>
+        </div> */}
         <Button type="submit">Submit</Button>
       </form>
     </Form>
