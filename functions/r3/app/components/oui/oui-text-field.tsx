@@ -6,11 +6,9 @@ import { Label } from './oui-label'
 import { Text } from './oui-text'
 import { TextArea } from './oui-text-area'
 
-// shadcn FormItem: grid gap-2
-export const textFieldStyles = 'grid gap-2'
-
 export function TextField({ className, ...props }: Rac.TextFieldProps) {
-  return <Rac.TextField data-slot="form-item" className={composeTailwindRenderProps(className, textFieldStyles)} {...props} />
+  // shadcn FormItem: grid gap-2
+  return <Rac.TextField data-slot="form-item" className={composeTailwindRenderProps(className, 'grid gap-2')} {...props} />
 }
 
 export interface TextFieldExProps extends Rac.TextFieldProps {

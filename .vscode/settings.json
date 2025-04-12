@@ -2,12 +2,6 @@
   "github.copilot.chat.codeGeneration.instructions": [
     {
       "file": "./.vscode/prompt.md"
-    },
-    {
-      "file": "./.vscode/cloudflare.md"
-    },
-   {
-      "file": "./.vscode/effect.md"
     }
   ]
 }
