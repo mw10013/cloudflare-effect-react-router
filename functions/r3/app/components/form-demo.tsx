@@ -98,7 +98,7 @@ export function FormDemo() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="grid w-full max-w-sm gap-6">
-        {/* <FormField
+        <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
@@ -111,7 +111,7 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
         <FormField
           control={form.control}
           name="email"
@@ -131,7 +131,7 @@ export function FormDemo() {
                 </SelectContent>
               </Select>
               <FormDescription>You can manage email addresses in your email settings.</FormDescription>
-              {/* <FormMessage /> */}
+              <FormMessage />
             </FormItem>
           )}
         />
