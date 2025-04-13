@@ -53,6 +53,11 @@ export function OuiFormDemo() {
           </>
         }
       />
+      <Oui.RadioGroupEx name="type" label="Notify me about...">
+        <Oui.Radio value="all">All new messages</Oui.Radio>
+        <Oui.Radio value="mentions">Direct messages and mentions</Oui.Radio>
+        <Oui.Radio value="none">Nothing</Oui.Radio>
+      </Oui.RadioGroupEx>
       <Oui.Button type="submit">Submit</Oui.Button>
     </Rac.Form>
   )

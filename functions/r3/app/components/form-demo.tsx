@@ -151,7 +151,7 @@ export function FormDemo() {
             </FormItem>
           )}
         />
-        {/* <FormField
+        <FormField
           control={form.control}
           name="type"
           render={({ field }) => (
@@ -182,7 +182,7 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
         {/* <FormField
           control={form.control}
           name="mobile"
