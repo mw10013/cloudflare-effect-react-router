@@ -135,7 +135,7 @@ export function FormDemo() {
             </FormItem>
           )}
         />
-        {/* <FormField
+        <FormField
           control={form.control}
           name="bio"
           render={({ field }) => (
@@ -150,7 +150,7 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
         {/* <FormField
           control={form.control}
           name="type"
@@ -307,7 +307,7 @@ export function FormDemo() {
             />
           </div>
         </div> */}
-        {/* <Button type="submit">Submit</Button> */}
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
   )

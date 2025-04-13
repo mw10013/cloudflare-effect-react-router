@@ -42,7 +42,18 @@ export function OuiFormDemo() {
         <Oui.ListBoxItem>me@google.com</Oui.ListBoxItem>
         <Oui.ListBoxItem>m@support.com</Oui.ListBoxItem>
       </Oui.SelectEx>
-      {/* <Oui.Button type="submit">Submit</Oui.Button> */}
+      <Oui.TextFieldEx
+        name="bio"
+        textArea
+        placeholder="Tell us a little bit about yourself"
+        label="Bio"
+        description={
+          <>
+            You can <span>@mention</span> other users and organizations.
+          </>
+        }
+      />
+      <Oui.Button type="submit">Submit</Oui.Button>
     </Rac.Form>
   )
 }
