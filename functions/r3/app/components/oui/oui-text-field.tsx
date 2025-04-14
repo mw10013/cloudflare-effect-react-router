@@ -16,14 +16,30 @@ export interface TextFieldExProps extends Rac.TextFieldProps {
   description?: React.ReactNode
   errorMessage?: string | ((validation: Rac.ValidationResult) => string)
   placeholder?: string
-  textArea?: boolean
 }
 
-export function TextFieldEx({ label, description, errorMessage, placeholder, textArea, ...props }: TextFieldExProps) {
+export function TextFieldEx({ label, description, errorMessage, placeholder, ...props }: TextFieldExProps) {
   return (
     <TextField {...props}>
       {label && <Label>{label}</Label>}
-      {textArea ? <TextArea placeholder={placeholder} /> : <Input placeholder={placeholder} />}
+      <Input placeholder={placeholder} />
+      {description && <Text slot="description">{description}</Text>}
+      <FieldError>{errorMessage}</FieldError>
+    </TextField>
+  )
+}
+export interface TextFieldEx1Props extends Omit<Rac.TextFieldProps, 'children'> {
+  label?: React.ReactNode
+  description?: React.ReactNode
+  errorMessage?: string | ((validation: Rac.ValidationResult) => string)
+  children: React.ReactNode
+}
+
+export function TextFieldEx1({ label, description, errorMessage, children, ...props }: TextFieldEx1Props) {
+  return (
+    <TextField {...props}>
+      {label && <Label>{label}</Label>}
+      {children}
       {description && <Text slot="description">{description}</Text>}
       <FieldError>{errorMessage}</FieldError>
     </TextField>

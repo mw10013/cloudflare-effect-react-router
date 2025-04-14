@@ -42,17 +42,17 @@ export function OuiFormDemo() {
         <Oui.ListBoxItem>me@google.com</Oui.ListBoxItem>
         <Oui.ListBoxItem>m@support.com</Oui.ListBoxItem>
       </Oui.SelectEx> */}
-      <Oui.TextFieldEx
+      <Oui.TextFieldEx1
         name="bio"
-        textArea
-        placeholder="Tell us a little bit about yourself"
         // label="Bio"
         // description={
         //   <>
         //     You can <span>@mention</span> other users and organizations.
         //   </>
         // }
-      />
+      >
+        <Oui.TextArea className="resize-none" placeholder="Tell us a little bit about yourself" />
+      </Oui.TextFieldEx1>
       {/* <Oui.RadioGroupEx name="type" label="Notify me about...">
         <Oui.Radio value="all">All new messages</Oui.Radio>
         <Oui.Radio value="mentions">Direct messages and mentions</Oui.Radio>
