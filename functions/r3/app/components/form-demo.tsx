@@ -98,7 +98,7 @@ export function FormDemo() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="grid w-full max-w-sm gap-6">
-        <FormField
+        {/* <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
@@ -111,8 +111,8 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        />
-        <FormField
+        /> */}
+        {/* <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
@@ -134,24 +134,24 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
           control={form.control}
           name="bio"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Bio</FormLabel>
+              {/* <FormLabel>Bio</FormLabel> */}
               <FormControl>
                 <Textarea placeholder="Tell us a little bit about yourself" className="resize-none" {...field} />
               </FormControl>
-              <FormDescription>
+              {/* <FormDescription>
                 You can <span>@mention</span> other users and organizations.
-              </FormDescription>
+              </FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
+        {/* <FormField
           control={form.control}
           name="type"
           render={({ field }) => (
@@ -182,8 +182,8 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        />
-        <FormField
+        /> */}
+        {/* <FormField
           control={form.control}
           name="mobile"
           render={({ field }) => (
@@ -199,8 +199,8 @@ export function FormDemo() {
               </div>
             </FormItem>
           )}
-        />
-        <FormField
+        /> */}
+        {/* <FormField
           control={form.control}
           name="items"
           render={() => (
@@ -238,7 +238,7 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         {/* <FormField
           control={form.control}
           name="dob"
@@ -307,7 +307,8 @@ export function FormDemo() {
             />
           </div>
         </div> */}
-        <Button type="submit">Submit</Button>
+        {/* <Button type="submit">Submit</Button> */}
+        <div className="h-4 border-2" />
       </form>
     </Form>
   )
