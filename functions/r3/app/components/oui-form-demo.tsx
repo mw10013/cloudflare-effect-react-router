@@ -58,6 +58,13 @@ export function OuiFormDemo() {
         <Oui.Radio value="mentions">Direct messages and mentions</Oui.Radio>
         <Oui.Radio value="none">Nothing</Oui.Radio>
       </Oui.RadioGroupEx>
+      <Oui.CheckboxEx
+        name="mobile"
+        description="You can manage your mobile notifications in the mobile settings page."
+        containerClassName="shadow-xs rounded-md border p-4"
+      >
+        Use different settings for my mobile devices
+      </Oui.CheckboxEx>
       <Oui.Button type="submit">Submit</Oui.Button>
     </Rac.Form>
   )

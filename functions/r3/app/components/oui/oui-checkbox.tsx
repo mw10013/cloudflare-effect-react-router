@@ -1,6 +1,7 @@
 import React from 'react'
-import { Check, Minus } from 'lucide-react'
+import { CheckIcon, MinusIcon } from 'lucide-react'
 import * as Rac from 'react-aria-components'
+import { twMerge } from 'tailwind-merge'
 import { tv } from 'tailwind-variants'
 import { baseStyles } from './oui-base'
 import { labelStyles } from './oui-label'
@@ -37,33 +38,33 @@ import { Text } from './oui-text'
 //   )
 // }
 
+// shadcn CheckboxPrimitive.Root: peer border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50
+// shadcn CheckboxPrimitive.Indicator: flex items-center justify-center text-current transition-none
 export const checkboxStyles = tv({
   slots: {
-    // shadcn checkbox form example: flex items-center space-x-2. space-x-2 does not work so gap-2
     rootStyles: [labelStyles.base, 'flex items-center gap-2'],
-    boxStyles:
-      'flex size-4 shrink-0 items-center justify-center rounded-sm border border-primary shadow',
-    iconStyles: 'size-4',
+    indicatorStyles: 'border-primary flex size-4 shrink-0 items-center justify-center rounded-sm border shadow',
+    iconStyles: 'size-3.5'
   },
   variants: {
     isSelected: {
       true: {
-        boxStyles: 'bg-primary text-primary-foreground',
-      },
+        indicatorStyles: 'bg-primary text-primary-foreground'
+      }
     },
     isFocusVisible: {
       true: {
-        boxStyles: baseStyles.variants.isFocusVisible.true,
-      },
+        indicatorStyles: baseStyles.variants.isFocusVisible.true
+      }
     },
     isDisabled: {
       true: {
         rootStyles: labelStyles.variants.isDisabled.true,
         // shadcn uses disabled:opacity-50. Use opacity-[0.714] since root (labelStyles) uses opacity-70
-        boxStyles: 'opacity-[0.714]',
-      },
-    },
-  },
+        indicatorStyles: 'opacity-[0.714]'
+      }
+    }
+  }
 })
 
 // Pattern for Reusable Button Wrapper: https://github.com/adobe/react-spectrum/discussions/7511
@@ -73,26 +74,27 @@ export interface CheckboxProps extends Omit<Rac.CheckboxProps, 'children'> {
 
 // TODO: Checkbox: indeterminate
 export function Checkbox({ className, children, ...props }: CheckboxProps) {
-  const { rootStyles, boxStyles, iconStyles } = checkboxStyles()
+  const { rootStyles, indicatorStyles, iconStyles } = checkboxStyles()
   return (
     <Rac.Checkbox
       {...props}
-      className={Rac.composeRenderProps(className, (className, renderProps) =>
-        rootStyles({ ...renderProps, className })
-      )}>
+      className={Rac.composeRenderProps(className, (className, renderProps) => rootStyles({ ...renderProps, className }))}
+    >
       {({ isSelected, isIndeterminate, ...renderProps }) => (
         <>
-          <div
-            className={boxStyles({
+          <span
+            data-slot="checkbox-indicator"
+            className={indicatorStyles({
               isSelected: isSelected || isIndeterminate,
-              ...renderProps,
-            })}>
+              ...renderProps
+            })}
+          >
             {isIndeterminate ? (
-              <Minus aria-hidden className={iconStyles()} />
+              <MinusIcon aria-hidden className={iconStyles({})} />
             ) : isSelected ? (
-              <Check aria-hidden className={iconStyles()} />
+              <CheckIcon aria-hidden className={iconStyles({})} />
             ) : null}
-          </div>
+          </span>
           {children}
         </>
       )}
@@ -103,17 +105,13 @@ export function Checkbox({ className, children, ...props }: CheckboxProps) {
 export interface CheckboxExProps extends Omit<Rac.CheckboxProps, 'children'> {
   children?: React.ReactNode
   description: React.ReactNode
+  containerClassName?: string
 }
 
-export const CheckboxEx = ({
-  children,
-  className,
-  description,
-  ...props
-}: CheckboxExProps) => {
+export const CheckboxEx = ({ children, description, containerClassName, ...props }: CheckboxExProps) => {
   const descriptionId = React.useId()
   return (
-    <div className="flex flex-col gap-1">
+    <div className={twMerge('flex flex-col gap-1', containerClassName)}>
       <Checkbox {...props} aria-describedby={descriptionId}>
         {children}
       </Checkbox>
