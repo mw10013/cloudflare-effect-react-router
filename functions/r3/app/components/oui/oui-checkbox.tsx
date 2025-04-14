@@ -3,71 +3,15 @@ import { CheckIcon, MinusIcon } from 'lucide-react'
 import * as Rac from 'react-aria-components'
 import { twMerge } from 'tailwind-merge'
 import { tv } from 'tailwind-variants'
-import { baseStyles } from './oui-base'
-import { labelStyles } from './oui-label'
+import { composeTailwindRenderProps } from './oui-base'
+import { FieldError } from './oui-field-error'
+import { Label, labelStyles } from './oui-label'
 import { Text } from './oui-text'
-
-// TODO: CheckboxGroup
-// export interface OuiCheckboxGroupProps
-//   extends Omit<Rac.CheckboxGroupProps, 'children'> {
-//   label?: string
-//   children?: ReactNode
-//   description?: string
-//   errorMessage?: string | ((validation: Rac.ValidationResult) => string)
-// }
-
-// export function OuiCheckboxGroup({
-//   label,
-//   children,
-//   description,
-//   errorMessage,
-//   ...props
-// }: OuiCheckboxGroupProps) {
-//   return (
-//     <Rac.CheckboxGroup
-//       {...props}
-//       className={composeTailwindRenderProps(
-//         props.className,
-//         'flex flex-col gap-2'
-//       )}>
-//       <OuiLabel>{label}</OuiLabel>
-//       {children}
-//       {description && <OuiDescription>{description}</OuiDescription>}
-//       <OuiFieldError>{errorMessage}</OuiFieldError>
-//     </Rac.CheckboxGroup>
-//   )
-// }
-
-// export const checkboxStyles1 = tv({
-//   slots: {
-//     rootStyles: [labelStyles.base, 'flex items-center gap-2'],
-//     indicatorStyles: 'border-primary flex size-4 shrink-0 items-center justify-center rounded-sm border shadow',
-//     iconStyles: 'size-3.5'
-//   },
-//   variants: {
-//     isSelected: {
-//       true: {
-//         indicatorStyles: 'bg-primary text-primary-foreground'
-//       }
-//     },
-//     isFocusVisible: {
-//       true: {
-//         indicatorStyles: baseStyles.variants.isFocusVisible.true
-//       }
-//     },
-//     isDisabled: {
-//       true: {
-//         rootStyles: labelStyles.variants.isDisabled.true
-//       }
-//     }
-//   }
-// })
 
 // Radix has CheckboxPrimitive.Root which is separate from label while RAC structures with a label.
 // shadcn FormDemo FormItem: shadow-xs flex flex-row items-start gap-3 rounded-md border p-4
 export const checkboxStyles = tv({
   extend: labelStyles,
-  // base: 'flex items-center gap-2'
   base: 'items-end gap-3'
 })
 
@@ -96,7 +40,6 @@ export interface CheckboxProps extends Omit<Rac.CheckboxProps, 'children'> {
   children?: React.ReactNode
 }
 
-// TODO: Checkbox: indeterminate
 export function Checkbox({ className, children, ...props }: CheckboxProps) {
   return (
     <Rac.Checkbox

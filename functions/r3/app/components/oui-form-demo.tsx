@@ -65,6 +65,18 @@ export function OuiFormDemo() {
       >
         Use different settings for my mobile devices
       </Oui.CheckboxEx>
+      <Oui.CheckboxGroupEx
+        name="items"
+        label={<span className="text-base">Sidebar</span>}
+        description="Select the items you want to display in the sidebar."
+        defaultValue={['recents', 'home']}
+      >
+        {items.map((item) => (
+          <Oui.Checkbox key={item.id} value={item.id}>
+            <span className="text-sm font-normal leading-tight">{item.label}</span>
+          </Oui.Checkbox>
+        ))}
+      </Oui.CheckboxGroupEx>
       <Oui.Button type="submit">Submit</Oui.Button>
     </Rac.Form>
   )

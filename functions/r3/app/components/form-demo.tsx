@@ -200,7 +200,7 @@ export function FormDemo() {
             </FormItem>
           )}
         />
-        {/* <FormField
+        <FormField
           control={form.control}
           name="items"
           render={() => (
@@ -238,7 +238,7 @@ export function FormDemo() {
               <FormMessage />
             </FormItem>
           )}
-        /> */}
+        />
         {/* <FormField
           control={form.control}
           name="dob"
