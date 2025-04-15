@@ -83,8 +83,21 @@ export function OuiFormDemo() {
           <Oui.SwitchEx
             name="marketing_emails"
             description={<span className="leading-snug">Receive emails about new products, features, and more.</span>}
+            indicatorPosition="end"
+            // shadcn FormDemo FormItem: shadow-xs flex flex-row items-start justify-between rounded-lg border p-4
+            containerClassName="shadow-xs rounded-lg border p-4"
           >
             <span className="leading-normal">Marketing emails</span>
+          </Oui.SwitchEx>
+          <Oui.SwitchEx
+            name="security_emails"
+            description={<span className="leading-snug">Receive emails about your account security.</span>}
+            indicatorPosition="end"
+            // shadcn FormDemo FormItem: shadow-xs flex flex-row items-start justify-between rounded-lg border p-4
+            containerClassName="shadow-xs rounded-lg border p-4"
+            isDisabled
+          >
+            <span className="leading-normal">Security emails</span>
           </Oui.SwitchEx>
         </div>
       </div>

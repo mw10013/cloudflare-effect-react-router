@@ -18,9 +18,11 @@ export const baseStyles = tv({
   },
 })
 
+type T = Parameters<typeof twMerge>[0]
+
 export function composeTailwindRenderProps<T>(
   className: string | ((v: T) => string) | undefined,
-  tw: string
+  tw: Parameters<typeof twMerge>[0]
 ): string | ((v: T) => string) {
   return composeRenderProps(className, (className) => twMerge(tw, className))
 }

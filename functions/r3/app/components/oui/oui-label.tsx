@@ -8,12 +8,13 @@ import { composeTailwindRenderProps } from './oui-base'
 // shadcn RadioGroupItem: border-input text-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 aspect-square size-4 shrink-0 rounded-full border shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50
 // shadcn FormItem: grid gap-2
 export const labelStyles = tv({
-  base: 'flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50',
+  base: 'flex select-none items-center gap-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group-data-[disabled]:pointer-events-none group-data-[disabled]:opacity-50',
   // Variants are for rac components that structure with a <label> and have render props. Eg. radio, checkbox and switch.
   variants: {
     isDisabled: {
       // TODO: labelStyles: cursor-not-allowed for disabled?
-      true: 'pointer-events-none opacity-50'
+      // No pointer-events-none to allow cursor styles; interaction is blocked by the input's disabled state.
+      true: 'opacity-50'
     }
   }
 })
