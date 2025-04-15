@@ -72,20 +72,3 @@ export const SwitchEx = ({
     </div>
   )
 }
-
-// export type SwitchEx1Props = SwitchExProps
-
-// export const SwitchEx1 = ({ description, children, ...props }: SwitchEx1Props) => {
-//   const descriptionId = React.useId()
-//   return (
-//     <div className="flex flex-col gap-1 rounded-lg border p-4">
-//       <Switch {...props} aria-describedby={descriptionId} className="flex items-center justify-between">
-//         {children}
-//         <SwitchIndicator />
-//       </Switch>
-//       <Text id={descriptionId} slot="description">
-//         {description}
-//       </Text>
-//     </div>
-//   )
-// }
