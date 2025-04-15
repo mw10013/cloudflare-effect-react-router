@@ -74,6 +74,7 @@ export interface CheckboxExProps extends Omit<Rac.CheckboxProps, 'children'> {
   containerClassName?: string
 }
 
+// TODO: CheckboxEx: height discrepency with FormDemo
 export const CheckboxEx = ({ children, description, containerClassName, ...props }: CheckboxExProps) => {
   const descriptionId = React.useId()
   return (

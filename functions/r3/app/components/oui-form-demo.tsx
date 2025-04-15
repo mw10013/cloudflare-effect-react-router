@@ -42,17 +42,17 @@ export function OuiFormDemo() {
         <Oui.ListBoxItem>me@google.com</Oui.ListBoxItem>
         <Oui.ListBoxItem>m@support.com</Oui.ListBoxItem>
       </Oui.SelectEx> */}
-      <Oui.TextFieldEx1
+      {/* <Oui.TextFieldEx1
         name="bio"
-        // label="Bio"
-        // description={
-        //   <>
-        //     You can <span>@mention</span> other users and organizations.
-        //   </>
-        // }
+        label="Bio"
+        description={
+          <>
+            You can <span>@mention</span> other users and organizations.
+          </>
+        }
       >
         <Oui.TextArea className="resize-none" placeholder="Tell us a little bit about yourself" />
-      </Oui.TextFieldEx1>
+      </Oui.TextFieldEx1> */}
       {/* <Oui.RadioGroupEx name="type" label="Notify me about...">
         <Oui.Radio value="all">All new messages</Oui.Radio>
         <Oui.Radio value="mentions">Direct messages and mentions</Oui.Radio>
@@ -60,12 +60,12 @@ export function OuiFormDemo() {
       </Oui.RadioGroupEx> */}
       {/* <Oui.CheckboxEx
         name="mobile"
-        description="You can manage your mobile notifications in the mobile settings page."
+        description={<span className="leading-snug">You can manage your mobile notifications in the mobile settings page.</span>}
         containerClassName="shadow-xs rounded-md border p-4"
       >
-        Use different settings for my mobile devices
+        <span className="leading-snug">Use different settings for my mobile devices</span>
       </Oui.CheckboxEx> */}
-      {/* <Oui.CheckboxGroupEx
+      <Oui.CheckboxGroupEx
         name="items"
         label={<span className="text-base">Sidebar</span>}
         description="Select the items you want to display in the sidebar."
@@ -76,9 +76,20 @@ export function OuiFormDemo() {
             <span className="text-sm font-normal leading-tight">{item.label}</span>
           </Oui.Checkbox>
         ))}
-      </Oui.CheckboxGroupEx> */}
-      {/* <Oui.Button type="submit">Submit</Oui.Button> */}
-      <div className="h-4 border-2" />
+      </Oui.CheckboxGroupEx>
+      <div>
+        <h3 className="mb-4 text-lg font-medium">Email Notifications</h3>
+        <div className="flex flex-col gap-4">
+          <Oui.SwitchEx
+            name="marketing_emails"
+            description={<span className="leading-snug">Receive emails about new products, features, and more.</span>}
+          >
+            <span className="leading-normal">Marketing emails</span>
+          </Oui.SwitchEx>
+        </div>
+      </div>
+      <Oui.Button type="submit">Submit</Oui.Button>
+      {/* <div className="h-4 border-2" /> */}
     </Rac.Form>
   )
 }
