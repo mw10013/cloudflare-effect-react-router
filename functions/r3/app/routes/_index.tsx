@@ -1,11 +1,9 @@
 import type { Route } from './+types/_index'
 import { FormDemo } from '~/components/form-demo'
 import { OuiFormDemo } from '~/components/oui-form-demo'
-import * as Oui from '~/components/oui/oui-index'
-import { Button } from '~/components/ui/button'
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: 'r2' }, { name: 'description', content: 'Welcome to r2' }]
+  return [{ title: 'r3' }, { name: 'description', content: 'Welcome to r3' }]
 }
 
 // export function loader({ context }: Route.LoaderArgs) {
