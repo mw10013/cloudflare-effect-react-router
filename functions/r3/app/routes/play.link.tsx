@@ -3,7 +3,12 @@ import * as Oui from '~/components/oui/oui-index'
 export default function RouteComponent() {
   return (
     <div className="container flex flex-col items-center justify-center gap-4 p-6">
-      <div className="[&_:data-[slot=navigation-menu-link]]:py-1 [&_:data-[slot=navigation-menu-link]]:font-medium flex gap-2 [&>:data-[slot=navigation-menu-item]]:h-7">
+      <div className="[&_div]:bg-accent [&_div]:text-accent-foreground [&_data-[slot=foo]]:bg-destructive flex gap-2">
+        <div className="grid size-8 place-items-center border">1</div>
+        <div className="grid size-8 place-items-center border">2</div>
+        <div data-slot="foo" className="grid size-8 place-items-center border">3</div>
+      </div>
+      <div className="flex gap-2 [&>:data-[slot=navigation-menu-item]]:h-7 [&_:data-[slot=navigation-menu-link]]:py-1 [&_:data-[slot=navigation-menu-link]]:font-medium">
         <Oui.NavigationMenuLink href="/play">Play</Oui.NavigationMenuLink>
         <Oui.NavigationMenuLink href="/play">Play1</Oui.NavigationMenuLink>
       </div>

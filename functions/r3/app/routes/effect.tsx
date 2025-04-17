@@ -1,6 +1,7 @@
 import type { Route } from './+types/effect'
 import { Effect } from 'effect'
-import { loaderFunction, SandboxService } from 'workers/app'
+import { SandboxService } from 'workers/app'
+import { loaderFunction } from '~/lib/ReactRouterEx'
 
 export const loader = loaderFunction(({ context }: Route.LoaderArgs) =>
   Effect.gen(function* () {
