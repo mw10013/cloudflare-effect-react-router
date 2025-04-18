@@ -1,5 +1,4 @@
 import * as Rac from 'react-aria-components'
-import { twMerge } from 'tailwind-merge'
 import * as Oui from '~/components/oui/oui-index'
 
 const items = [
@@ -42,15 +41,7 @@ export function OuiFormDemo() {
         <Oui.ListBoxItem>me@google.com</Oui.ListBoxItem>
         <Oui.ListBoxItem>m@support.com</Oui.ListBoxItem>
       </Oui.SelectEx>
-      <Oui.TextFieldEx1
-        name="bio"
-        label="Bio"
-        description={
-          <>
-            You can <span>@mention</span> other users and organizations.
-          </>
-        }
-      >
+      <Oui.TextFieldEx1 name="bio" label="Bio" description="You can @mention other users and organizations.">
         <Oui.TextArea className="resize-none" placeholder="Tell us a little bit about yourself" />
       </Oui.TextFieldEx1>
       <Oui.RadioGroupEx name="type" label="Notify me about...">
@@ -60,20 +51,23 @@ export function OuiFormDemo() {
       </Oui.RadioGroupEx>
       <Oui.CheckboxEx
         name="mobile"
-        description={<span className="leading-snug">You can manage your mobile notifications in the mobile settings page.</span>}
+        descriptionClassName="leading-snug"
+        description="You can manage your mobile notifications in the mobile settings page."
         containerClassName="shadow-xs rounded-md border p-4"
+        className="leading-snug"
       >
-        <span className="leading-snug">Use different settings for my mobile devices</span>
+        Use different settings for my mobile devices
       </Oui.CheckboxEx>
       <Oui.CheckboxGroupEx
         name="items"
-        label={<span className="text-base">Sidebar</span>}
+        labelClassName="text-base"
+        label="Sidebar"
         description="Select the items you want to display in the sidebar."
         defaultValue={['recents', 'home']}
       >
         {items.map((item) => (
-          <Oui.Checkbox key={item.id} value={item.id}>
-            <span className="text-sm font-normal leading-tight">{item.label}</span>
+          <Oui.Checkbox key={item.id} value={item.id} className="text-sm font-normal leading-tight">
+            {item.label}
           </Oui.Checkbox>
         ))}
       </Oui.CheckboxGroupEx>
@@ -82,22 +76,26 @@ export function OuiFormDemo() {
         <div className="flex flex-col gap-4">
           <Oui.SwitchEx
             name="marketing_emails"
-            description={<span className="leading-snug">Receive emails about new products, features, and more.</span>}
+            descriptionClassName="leading-snug"
+            description="Receive emails about new products, features, and more."
             indicatorPosition="end"
             // shadcn FormDemo FormItem: shadow-xs flex flex-row items-start justify-between rounded-lg border p-4
             containerClassName="shadow-xs rounded-lg border p-4"
+            className="leading-snug"
           >
-            <span className="leading-normal">Marketing emails</span>
+            Marketing emails
           </Oui.SwitchEx>
           <Oui.SwitchEx
             name="security_emails"
-            description={<span className="leading-snug">Receive emails about your account security.</span>}
+            descriptionClassName="leading-snug"
+            description="Receive emails about your account security."
             indicatorPosition="end"
             // shadcn FormDemo FormItem: shadow-xs flex flex-row items-start justify-between rounded-lg border p-4
             containerClassName="shadow-xs rounded-lg border p-4"
+            className="leading-normal"
             isDisabled
           >
-            <span className="leading-normal">Security emails</span>
+            Security emails
           </Oui.SwitchEx>
         </div>
       </div>

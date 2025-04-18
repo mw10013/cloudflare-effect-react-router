@@ -37,6 +37,7 @@ export const SwitchIndicator = () => (
 
 export interface SwitchExProps extends Omit<Rac.SwitchProps, 'children'> {
   indicatorPosition?: 'start' | 'end'
+  descriptionClassName?: string
   description?: React.ReactNode
   children?: React.ReactNode
   containerClassName?: string
@@ -45,6 +46,7 @@ export interface SwitchExProps extends Omit<Rac.SwitchProps, 'children'> {
 export const SwitchEx = ({
   indicatorPosition = 'start',
   className,
+  descriptionClassName,
   description,
   children,
   containerClassName,
@@ -65,7 +67,7 @@ export const SwitchEx = ({
       </Switch>
       {/* TODO: SwitchEx description spacer when indicatorPosition = end */}
       {description && (
-        <Text id={descriptionId} slot="description" className={props.isDisabled ? 'opacity-60' : undefined}>
+        <Text id={descriptionId} slot="description" className={twMerge(descriptionClassName, props.isDisabled ? 'opacity-60' : undefined)}>
           {description}
         </Text>
       )}
