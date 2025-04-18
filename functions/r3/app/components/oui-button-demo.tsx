@@ -1,6 +1,5 @@
 import { ArrowRightIcon, Loader2Icon, SendIcon } from 'lucide-react'
 import * as Oui from '~/components/oui/oui-index'
-import { Button } from '~/components/ui/button'
 
 export function OuiButtonDemo() {
   return (

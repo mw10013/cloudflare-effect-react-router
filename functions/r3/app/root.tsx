@@ -52,20 +52,16 @@ const items = [
     url: '/demo/button'
   },
   {
+    title: 'Checkbox',
+    url: '/demo/checkbox'
+  },
+  {
     title: 'Form',
     url: '/demo/form'
   },
   {
     title: 'Link',
     url: '/play/link'
-  },
-  {
-    title: 'Search',
-    url: '/'
-  },
-  {
-    title: 'Settings',
-    url: '/'
   }
 ]
 

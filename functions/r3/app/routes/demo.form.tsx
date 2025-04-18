@@ -1,4 +1,3 @@
-import type { Route } from './+types/demo.form'
 import { FormDemo } from '~/components/form-demo'
 import { OuiFormDemo } from '~/components/oui-form-demo'
 
