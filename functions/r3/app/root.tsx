@@ -3,7 +3,6 @@ import type { Route } from './+types/root'
 import { RouterProvider } from 'react-aria-components'
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router'
 import './app.css'
-import { Calendar, Home, Inbox, Search, Settings } from 'lucide-react'
 import * as Rac from 'react-aria-components'
 import {
   Sidebar,
@@ -49,29 +48,24 @@ function useHrefEx(href: string) {
 
 const items = [
   {
-    title: 'Home',
-    url: '/',
-    icon: Home
+    title: 'Button',
+    url: '/button'
   },
   {
-    title: 'Inbox',
-    url: '/play/link',
-    icon: Inbox
+    title: 'Form',
+    url: '/form'
   },
   {
-    title: 'Calendar',
-    url: '/',
-    icon: Calendar
+    title: 'Link',
+    url: '/play/link'
   },
   {
     title: 'Search',
-    url: '/',
-    icon: Search
+    url: '/'
   },
   {
     title: 'Settings',
-    url: '/',
-    icon: Settings
+    url: '/'
   }
 ]
 
@@ -80,14 +74,13 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Components</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <Rac.Link href={item.url}>
-                      <item.icon />
                       <span>{item.title}</span>
                     </Rac.Link>
                   </SidebarMenuButton>
