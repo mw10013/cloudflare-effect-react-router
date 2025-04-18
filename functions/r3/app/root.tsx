@@ -49,11 +49,11 @@ function useHrefEx(href: string) {
 const items = [
   {
     title: 'Button',
-    url: '/button'
+    url: '/demo/button'
   },
   {
     title: 'Form',
-    url: '/form'
+    url: '/demo/form'
   },
   {
     title: 'Link',
