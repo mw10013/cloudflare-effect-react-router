@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-aria-components'
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router'
 import './app.css'
 import { Calendar, Home, Inbox, Search, Settings } from 'lucide-react'
+import * as Rac from 'react-aria-components'
 import {
   Sidebar,
   SidebarContent,
@@ -49,27 +50,27 @@ function useHrefEx(href: string) {
 const items = [
   {
     title: 'Home',
-    url: '#',
+    url: '/',
     icon: Home
   },
   {
     title: 'Inbox',
-    url: '#',
+    url: '/play/link',
     icon: Inbox
   },
   {
     title: 'Calendar',
-    url: '#',
+    url: '/',
     icon: Calendar
   },
   {
     title: 'Search',
-    url: '#',
+    url: '/',
     icon: Search
   },
   {
     title: 'Settings',
-    url: '#',
+    url: '/',
     icon: Settings
   }
 ]
@@ -85,10 +86,10 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Rac.Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Rac.Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
