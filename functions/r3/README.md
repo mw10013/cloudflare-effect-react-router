@@ -27,6 +27,7 @@
 
 ## Shadcn
 
+- https://v4.shadcn.com/
 - pnpm -F r2 exec shadcn add button
 
 ## Tailwind

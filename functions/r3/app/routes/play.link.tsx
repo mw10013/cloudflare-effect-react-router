@@ -12,7 +12,7 @@ export default function RouteComponent() {
           bar
         </div>
       </div>
-      <div className="flex gap-2 [&>:data-[slot=navigation-menu-item]]:h-7 [&_:data-[slot=navigation-menu-link]]:py-1 [&_:data-[slot=navigation-menu-link]]:font-medium">
+      <div className="flex gap-2 [&_[data-slot=navigation-menu-link]]:h-7 [&_[data-slot=navigation-menu-link]]:py-1 [&_[data-slot=navigation-menu-link]]:font-medium">
         <Oui.NavigationMenuLink href="/play">Play</Oui.NavigationMenuLink>
         <Oui.NavigationMenuLink href="/play">Play1</Oui.NavigationMenuLink>
       </div>
