@@ -1,82 +1,83 @@
 import { ArrowRightIcon, Loader2Icon, SendIcon } from 'lucide-react'
+import * as Oui from '~/components/oui/oui-index'
 import { Button } from '~/components/ui/button'
 
 export function OuiButtonDemo() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center gap-2 md:flex-row">
-        <Button>Button</Button>
-        <Button variant="outline">Outline</Button>
-        <Button variant="ghost">Ghost</Button>
-        <Button variant="destructive">Destructive</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="link">Link</Button>
-        <Button variant="outline">
+        <Oui.Button>Button</Oui.Button>
+        <Oui.Button variant="outline">Outline</Oui.Button>
+        <Oui.Button variant="ghost">Ghost</Oui.Button>
+        <Oui.Button variant="destructive">Destructive</Oui.Button>
+        <Oui.Button variant="secondary">Secondary</Oui.Button>
+        <Oui.Button variant="link">Link</Oui.Button>
+        <Oui.Button variant="outline">
           <SendIcon /> Send
-        </Button>
-        <Button variant="outline">
+        </Oui.Button>
+        <Oui.Button variant="outline">
           Learn More <ArrowRightIcon />
-        </Button>
-        <Button disabled variant="outline">
+        </Oui.Button>
+        <Oui.Button isDisabled variant="outline">
           <Loader2Icon className="animate-spin" />
           Please wait
-        </Button>
+        </Oui.Button>
       </div>
       <div className="flex flex-wrap items-center gap-2 md:flex-row">
-        <Button size="sm">Small</Button>
-        <Button variant="outline" size="sm">
+        <Oui.Button size="sm">Small</Oui.Button>
+        <Oui.Button variant="outline" size="sm">
           Outline
-        </Button>
-        <Button variant="ghost" size="sm">
+        </Oui.Button>
+        <Oui.Button variant="ghost" size="sm">
           Ghost
-        </Button>
-        <Button variant="destructive" size="sm">
+        </Oui.Button>
+        <Oui.Button variant="destructive" size="sm">
           Destructive
-        </Button>
-        <Button variant="secondary" size="sm">
+        </Oui.Button>
+        <Oui.Button variant="secondary" size="sm">
           Secondary
-        </Button>
-        <Button variant="link" size="sm">
+        </Oui.Button>
+        <Oui.Button variant="link" size="sm">
           Link
-        </Button>
-        <Button variant="outline" size="sm">
+        </Oui.Button>
+        <Oui.Button variant="outline" size="sm">
           <SendIcon /> Send
-        </Button>
-        <Button variant="outline" size="sm">
+        </Oui.Button>
+        <Oui.Button variant="outline" size="sm">
           Learn More <ArrowRightIcon />
-        </Button>
-        <Button disabled size="sm" variant="outline">
+        </Oui.Button>
+        <Oui.Button isDisabled size="sm" variant="outline">
           <Loader2Icon className="animate-spin" />
           Please wait
-        </Button>
+        </Oui.Button>
       </div>
       <div className="flex flex-wrap items-center gap-2 md:flex-row">
-        <Button size="lg">Large</Button>
-        <Button variant="outline" size="lg">
+        <Oui.Button size="lg">Large</Oui.Button>
+        <Oui.Button variant="outline" size="lg">
           Outline
-        </Button>
-        <Button variant="ghost" size="lg">
+        </Oui.Button>
+        <Oui.Button variant="ghost" size="lg">
           Ghost
-        </Button>
-        <Button variant="destructive" size="lg">
+        </Oui.Button>
+        <Oui.Button variant="destructive" size="lg">
           Destructive
-        </Button>
-        <Button variant="secondary" size="lg">
+        </Oui.Button>
+        <Oui.Button variant="secondary" size="lg">
           Secondary
-        </Button>
-        <Button variant="link" size="lg">
+        </Oui.Button>
+        <Oui.Button variant="link" size="lg">
           Link
-        </Button>
-        <Button variant="outline" size="lg">
+        </Oui.Button>
+        <Oui.Button variant="outline" size="lg">
           <SendIcon /> Send
-        </Button>
-        <Button variant="outline" size="lg">
+        </Oui.Button>
+        <Oui.Button variant="outline" size="lg">
           Learn More <ArrowRightIcon />
-        </Button>
-        <Button disabled size="lg" variant="outline">
+        </Oui.Button>
+        <Oui.Button isDisabled size="lg" variant="outline">
           <Loader2Icon className="animate-spin" />
           Please wait
-        </Button>
+        </Oui.Button>
       </div>
     </div>
   )
