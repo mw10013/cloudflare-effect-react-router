@@ -60,6 +60,10 @@ const items = [
     url: '/demo/form'
   },
   {
+    title: 'Radio Group',
+    url: '/demo/radio-group'
+  },
+  {
     title: 'Link',
     url: '/play/link'
   }
