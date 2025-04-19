@@ -17,15 +17,24 @@ export const RecordFromFormData = Schema.transform(FormDataFromSelf, Schema.Reco
 }).annotations({ identifier: 'RecordFromFormData' })
 
 /**
- * Creates a Schema capable of decoding from FormData by composing
- * the `FormData -> Record<string, string>` transformation
- * with the provided `Record -> Data` schema.
+ * Creates a schema that decodes a `FormData` object into the structure
+ * defined by the provided `schema`.
+ *
+ * It handles the intermediate transformation from `FormData` to `Record<string, string>`
+ * before applying the provided schema.
+ *
+ * @param schema - The schema defining the desired output data structure.
+ * @example
+ * Effect.gen(function* () {
+ *	const FormDataSchema = SchemaFromFormData(
+ *		Schema.Struct({
+ *			username: Schema.NonEmptyString
+ *		})
+ *	)
+ *	const formData = yield* Effect.tryPromise(() => request.formData()).pipe(Effect.flatMap(Schema.decode(FormDataSchema)))
  */
 export const SchemaFromFormData = <A, I extends Record<string, string>, R>(schema: Schema.Schema<A, I, R>) =>
   Schema.compose(RecordFromFormData, schema, { strict: false })
-
-// export const FormDataSchema = <A, I extends Record<string, string>, R>(schema: Schema.Schema<A, I, R>) =>
-//   Schema.compose(RecordFromFormData, schema, { strict: false })
 
 export const DataFromResult = <A, I>(DataSchema: Schema.Schema<A, I>) =>
   Schema.transform(
