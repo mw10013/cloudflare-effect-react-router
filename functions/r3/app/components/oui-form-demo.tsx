@@ -44,10 +44,16 @@ export function OuiFormDemo() {
       <Oui.TextFieldEx1 name="bio" label="Bio" description="You can @mention other users and organizations.">
         <Oui.TextArea className="resize-none" placeholder="Tell us a little bit about yourself" />
       </Oui.TextFieldEx1>
-      <Oui.RadioGroupEx name="type" label="Notify me about...">
-        <Oui.Radio value="all">All new messages</Oui.Radio>
-        <Oui.Radio value="mentions">Direct messages and mentions</Oui.Radio>
-        <Oui.Radio value="none">Nothing</Oui.Radio>
+      <Oui.RadioGroupEx name="type" label="Notify me about..." className="flex flex-col gap-3">
+        <Oui.Radio value="all" className="font-normal">
+          All new messages
+        </Oui.Radio>
+        <Oui.Radio value="mentions" className="font-normal">
+          Direct messages and mentions
+        </Oui.Radio>
+        <Oui.Radio value="none" className="font-normal">
+          Nothing
+        </Oui.Radio>
       </Oui.RadioGroupEx>
       <Oui.CheckboxEx
         name="mobile"

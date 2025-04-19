@@ -1,8 +1,6 @@
 'use client'
 
 import * as Oui from '~/components/oui/oui-index'
-import { Checkbox } from '~/components/ui/checkbox'
-import { Label } from '~/components/ui/label'
 
 export function OuiCheckboxDemo() {
   return (
