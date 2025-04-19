@@ -5,29 +5,37 @@ export const FormDataFromSelf = Schema.instanceOf(FormData).annotations({ identi
 // https://raw.githubusercontent.com/react-hook-form/resolvers/refs/heads/dev/effect-ts/src/effect-ts.ts
 
 export const RecordFromFormData = Schema.transform(FormDataFromSelf, Schema.Record({ key: Schema.String, value: Schema.String }), {
-	strict: false,
-	decode: (formData) => Object.fromEntries(formData.entries()),
-	encode: (data) => {
-		const formData = new FormData()
-		for (const [key, value] of Object.entries(data)) {
-			formData.append(key, value)
-		}
-		return formData
-	}
+  strict: false,
+  decode: (formData) => Object.fromEntries(formData.entries()),
+  encode: (data) => {
+    const formData = new FormData()
+    for (const [key, value] of Object.entries(data)) {
+      formData.append(key, value)
+    }
+    return formData
+  }
 }).annotations({ identifier: 'RecordFromFormData' })
 
-export const FormDataSchema = <A, I extends Record<string, string>, R>(schema: Schema.Schema<A, I, R>) =>
-	Schema.compose(RecordFromFormData, schema, { strict: false }) 
+/**
+ * Creates a Schema capable of decoding from FormData by composing
+ * the `FormData -> Record<string, string>` transformation
+ * with the provided `Record -> Data` schema.
+ */
+export const SchemaFromFormData = <A, I extends Record<string, string>, R>(schema: Schema.Schema<A, I, R>) =>
+  Schema.compose(RecordFromFormData, schema, { strict: false })
+
+// export const FormDataSchema = <A, I extends Record<string, string>, R>(schema: Schema.Schema<A, I, R>) =>
+//   Schema.compose(RecordFromFormData, schema, { strict: false })
 
 export const DataFromResult = <A, I>(DataSchema: Schema.Schema<A, I>) =>
-	Schema.transform(
-		Schema.Struct({
-			data: Schema.String
-		}),
-		Schema.parseJson(DataSchema),
-		{
-			strict: true,
-			decode: (result) => result.data,
-			encode: (value) => ({ data: value })
-		}
-	)
+  Schema.transform(
+    Schema.Struct({
+      data: Schema.String
+    }),
+    Schema.parseJson(DataSchema),
+    {
+      strict: true,
+      decode: (result) => result.data,
+      encode: (value) => ({ data: value })
+    }
+  )

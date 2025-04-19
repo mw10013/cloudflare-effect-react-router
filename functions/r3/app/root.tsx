@@ -66,6 +66,14 @@ const items = [
   {
     title: 'Link',
     url: '/play/link'
+  },
+  {
+    title: 'Effect',
+    url: '/effect'
+  },
+  {
+    title: 'Sandbox',
+    url: '/sandbox'
   }
 ]
 
