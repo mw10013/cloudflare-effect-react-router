@@ -110,12 +110,19 @@ export const decodeRequestFormData = <A, I extends Record<string, string | File>
     )
   )
 
+/**
+ * Catches `ValidationError` from an Effect and transforms it into a success
+ * value `{ validationErrors: ValidationErrors }`. Other errors in the
+ * error channel `E` are preserved.
+ */
 export const catchValidationError = <A, E, R>(
   self: Effect.Effect<A, E | ValidationError, R>
 ): Effect.Effect<A | { validationErrors: ValidationErrors }, Exclude<E, ValidationError>, R> =>
   Effect.catchTag(self, 'ValidationError', (error) => {
     const validationError = error as ValidationError
     return Effect.succeed({ validationErrors: validationError.validationErrors })
-  }) as any
-
-// as Effect.Effect<A | { validationErrors: ValidationErrors }, Exclude<E, ValidationError>, R>
+    // Necessary assertion: TypeScript infers the error channel after catchTag as
+    // `Exclude<E | ValidationError, { _tag: "ValidationError" }>` (structural exclusion).
+    // This is not directly assignable to the desired `Exclude<E, ValidationError>` (nominal exclusion)
+    // when E is generic. The assertion bridges this inference gap.
+  }) as Effect.Effect<A | { validationErrors: ValidationErrors }, Exclude<E, ValidationError>, R>

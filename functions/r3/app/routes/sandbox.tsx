@@ -31,13 +31,10 @@ export const action = routeEffect(
   > =>
     Effect.gen(function* () {
       const formData = yield* SchemaEx.decodeRequestFormData({ request, schema: FormDataSchema })
-      // const formData = yield* Effect.tryPromise(() => request.formData()).pipe(
-      //   Effect.flatMap(Schema.decode(FormDataSchema, { errors: 'all' }))
-      // )
       return {
         formData
       }
-    }).pipe(Effect.catchTag('ValidationError', (error) => Effect.succeed({ validationErrors: error.validationErrors })))
+    }).pipe(SchemaEx.catchValidationError)
 )
 
 export default function RouteComponent({ actionData }: Route.ComponentProps) {
