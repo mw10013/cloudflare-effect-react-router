@@ -6,12 +6,17 @@ import * as Oui from '~/components/oui/oui-index'
 import { routeEffect } from '~/lib/ReactRouterEx'
 import * as SchemaEx from '~/lib/SchemaEx'
 
-const FormDataSchema = SchemaEx.SchemaFromFormData(
-  Schema.Struct({
-    username: Schema.NonEmptyString.annotations({ message: () => 'Required' }),
-    age: Schema.NonEmptyString.annotations({ message: () => 'Required' })
-  })
-)
+const FormDataSchema = Schema.Struct({
+  username: Schema.NonEmptyString.annotations({ message: () => 'Required' }),
+  age: Schema.NonEmptyString.annotations({ message: () => 'Required' })
+})
+
+// const FormDataSchema = SchemaEx.SchemaFromFormData(
+//   Schema.Struct({
+//     username: Schema.NonEmptyString.annotations({ message: () => 'Required' }),
+//     age: Schema.NonEmptyString.annotations({ message: () => 'Required' })
+//   })
+// )
 
 export const action = routeEffect(
   ({
@@ -25,13 +30,14 @@ export const action = routeEffect(
     UnknownException
   > =>
     Effect.gen(function* () {
-      const formData = yield* Effect.tryPromise(() => request.formData()).pipe(
-        Effect.flatMap(Schema.decode(FormDataSchema, { errors: 'all' }))
-      )
+      const formData = yield* SchemaEx.decodeRequestFormData({ request, schema: FormDataSchema })
+      // const formData = yield* Effect.tryPromise(() => request.formData()).pipe(
+      //   Effect.flatMap(Schema.decode(FormDataSchema, { errors: 'all' }))
+      // )
       return {
         formData
       }
-    }).pipe(Effect.catchTag('ParseError', (error) => Effect.succeed({ validationErrors: SchemaEx.parseErrorToValidationErrors(error) })))
+    }).pipe(Effect.catchTag('ValidationError', (error) => Effect.succeed({ validationErrors: error.validationErrors })))
 )
 
 export default function RouteComponent({ actionData }: Route.ComponentProps) {

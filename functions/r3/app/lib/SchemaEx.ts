@@ -1,4 +1,4 @@
-import { ParseResult, Schema } from 'effect'
+import { Data, Effect, ParseResult, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
 
 /*
@@ -9,6 +9,19 @@ Trimmed: A schema representing a string that must meet the trimmed requirement (
 Trim: A transform schema. It takes any String$, applies the .trim() action during decoding, and outputs a Trimmed string.
 
 */
+
+export const DataFromResult = <A, I>(DataSchema: Schema.Schema<A, I>) =>
+  Schema.transform(
+    Schema.Struct({
+      data: Schema.String
+    }),
+    Schema.parseJson(DataSchema),
+    {
+      strict: true,
+      decode: (result) => result.data,
+      encode: (value) => ({ data: value })
+    }
+  )
 
 export const FormDataFromSelf = Schema.instanceOf(FormData).annotations({ identifier: 'FormDataFromSelf' })
 // https://discord.com/channels/795981131316985866/847382157861060618/threads/1270826681505939517
@@ -49,24 +62,11 @@ export const RecordFromFormData = Schema.transform(
  *	)
  *	const formData = yield* Effect.tryPromise(() => request.formData()).pipe(Effect.flatMap(Schema.decode(FormDataSchema)))
  */
-export const SchemaFromFormData = <A, I extends Record<string, string>, R>(schema: Schema.Schema<A, I, R>) =>
+export const SchemaFromFormData = <A, I extends Record<string, string | File>, R>(schema: Schema.Schema<A, I, R>) =>
   Schema.compose(RecordFromFormData, schema, { strict: false })
 
-export const DataFromResult = <A, I>(DataSchema: Schema.Schema<A, I>) =>
-  Schema.transform(
-    Schema.Struct({
-      data: Schema.String
-    }),
-    Schema.parseJson(DataSchema),
-    {
-      strict: true,
-      decode: (result) => result.data,
-      encode: (value) => ({ data: value })
-    }
-  )
-
-  // Must be assignable to Rac.FormProps['validationErrors']
-export type ValidationErrors = Record<string, string | string[]>
+// Defined to prevent ts(2742) from inferred non-portable types.
+export type ValidationErrors = NonNullable<Rac.FormProps['validationErrors']>
 
 export const parseErrorToValidationErrors = (error: ParseResult.ParseError): ValidationErrors => {
   const validationErrors: ValidationErrors = {}
@@ -83,3 +83,39 @@ export const parseErrorToValidationErrors = (error: ParseResult.ParseError): Val
   }
   return validationErrors
 }
+
+export class ValidationError extends Data.TaggedError('ValidationError')<{
+  message: string
+  validationErrors: ValidationErrors
+  cause: ParseResult.ParseError
+}> {}
+
+export const decodeRequestFormData = <A, I extends Record<string, string | File>, R>({
+  request,
+  schema
+}: {
+  request: Request
+  schema: Schema.Schema<A, I, R>
+}) =>
+  Effect.tryPromise(() => request.formData()).pipe(
+    Effect.flatMap(Schema.decode(SchemaFromFormData(schema), { errors: 'all' })),
+    Effect.mapError((e) =>
+      ParseResult.isParseError(e)
+        ? new ValidationError({
+            message: 'Validation failed',
+            validationErrors: parseErrorToValidationErrors(e),
+            cause: e
+          })
+        : e
+    )
+  )
+
+export const catchValidationError = <A, E, R>(
+  self: Effect.Effect<A, E | ValidationError, R>
+): Effect.Effect<A | { validationErrors: ValidationErrors }, Exclude<E, ValidationError>, R> =>
+  Effect.catchTag(self, 'ValidationError', (error) => {
+    const validationError = error as ValidationError
+    return Effect.succeed({ validationErrors: validationError.validationErrors })
+  }) as any
+
+// as Effect.Effect<A | { validationErrors: ValidationErrors }, Exclude<E, ValidationError>, R>
