@@ -24,7 +24,8 @@ const parseErrorToValidationErrors = (error: ParseResult.ParseError) => {
 
 const FormDataSchema = SchemaFromFormData(
   Schema.Struct({
-    username: Schema.NonEmptyString.annotations({ message: () => 'Required' })
+    username: Schema.NonEmptyString.annotations({ message: () => 'Required' }),
+    age: Schema.NonEmptyString.annotations({ message: () => 'Required' })
   })
 )
 
@@ -40,7 +41,9 @@ export const action = routeEffect(
     UnknownException
   > =>
     Effect.gen(function* () {
-      const formData = yield* Effect.tryPromise(() => request.formData()).pipe(Effect.flatMap(Schema.decode(FormDataSchema)))
+      const formData = yield* Effect.tryPromise(() => request.formData()).pipe(
+        Effect.flatMap(Schema.decode(FormDataSchema, { errors: 'all' }))
+      )
       return {
         formData
       }

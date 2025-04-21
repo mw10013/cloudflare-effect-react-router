@@ -4,11 +4,10 @@ import { FieldError } from './oui-field-error'
 import { Input } from './oui-input'
 import { Label } from './oui-label'
 import { Text } from './oui-text'
-import { TextArea } from './oui-text-area'
 
 export function TextField({ className, ...props }: Rac.TextFieldProps) {
   // shadcn FormItem: grid gap-2
-  return <Rac.TextField data-slot="form-item" className={composeTailwindRenderProps(className, 'grid gap-2')} {...props} />
+  return <Rac.TextField data-slot="form-item" className={composeTailwindRenderProps(className, 'group grid gap-2')} {...props} />
 }
 
 export interface TextFieldExProps extends Rac.TextFieldProps {

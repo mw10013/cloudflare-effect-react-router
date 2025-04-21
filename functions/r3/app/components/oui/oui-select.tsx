@@ -2,7 +2,7 @@ import { ChevronDown } from 'lucide-react'
 import * as Rac from 'react-aria-components'
 import { composeTailwindRenderProps } from './oui-base'
 import { FieldError } from './oui-field-error'
-import { FormLabel, Label } from './oui-label'
+import { Label } from './oui-label'
 import { ListBox } from './oui-list-box'
 import { Popover } from './oui-popover'
 import { Text } from './oui-text'
@@ -61,7 +61,7 @@ export function SelectEx<T extends object>({
 }: SelectExProps<T>) {
   return (
     <Select {...props}>
-      {label && <FormLabel>{label}</FormLabel>}
+      {label && <Label>{label}</Label>}
       <SelectButton className={buttonClassName}>
         <SelectValue />
       </SelectButton>
