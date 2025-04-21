@@ -122,16 +122,12 @@ export const catchValidationError = <A, E, R>(
     onFailure: (error) =>
       Predicate.isTagged('ValidationError')(error)
         ? Effect.succeed({ validationErrors: error.validationErrors })
-        : Effect.fail(error as Exclude<E, ValidationError>),
+        : Effect.fail(error as Exclude<E, ValidationError>), // Type assertion confirms 'error' is narrowed to E excluding ValidationError.
     onSuccess: Effect.succeed
   })
 
-/**
- * Catches `ValidationError` from an Effect and transforms it into a success
- * value `{ validationErrors: ValidationErrors }`. Other errors in the
- * error channel `E` are preserved.
- */
-export const catchValidationError1 = <A, E, R>(
+/*  
+export const catchValidationError = <A, E, R>(
   self: Effect.Effect<A, E | ValidationError, R>
 ): Effect.Effect<A | { validationErrors: ValidationErrors }, Exclude<E, ValidationError>, R> =>
   Effect.catchTag(self, 'ValidationError', (error) => {
@@ -142,3 +138,4 @@ export const catchValidationError1 = <A, E, R>(
     // This is not directly assignable to the desired `Exclude<E, ValidationError>` (nominal exclusion)
     // when E is generic. The assertion bridges this inference gap.
   }) as Effect.Effect<A | { validationErrors: ValidationErrors }, Exclude<E, ValidationError>, R>
+*/
