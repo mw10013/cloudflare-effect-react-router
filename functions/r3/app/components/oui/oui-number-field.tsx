@@ -10,16 +10,17 @@ import { Text } from './oui-text'
 export function NumberField({ className, ...props }: Rac.NumberFieldProps) {
   return (
     <Rac.NumberField
-      {...props}
-      className={composeTailwindRenderProps(className, 'group space-y-2')}
+    // className={composeTailwindRenderProps(className, 'group space-y-2')}
+    className={composeTailwindRenderProps(className, 'group grid gap-2')}
+    {...props}
     />
   )
 }
 
 export interface NumberFieldExProps
   extends Omit<Rac.NumberFieldProps, 'children'> {
-  label?: string
-  description?: string
+  label?: React.ReactNode
+  description?: React.ReactNode
   errorMessage?: string | ((validation: Rac.ValidationResult) => string)
   placeholder?: string
 }

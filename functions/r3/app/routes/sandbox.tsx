@@ -52,6 +52,7 @@ export default function RouteComponent({ actionData }: Route.ComponentProps) {
     <div className="flex min-h-svh flex-col gap-2 p-6">
       <Rac.Form method="post" validationErrors={actionData?.validationErrors} className="grid w-full max-w-sm gap-6">
         <Oui.TextFieldEx name="username" placeholder="shadcn" label="Username" description="This is your public display name." />
+        <Oui.NumberFieldEx name="age" placeholder="Enter your age" label="Age" description="This is your age." />
         <Oui.Button type="submit">Submit</Oui.Button>
       </Rac.Form>
       <pre>{JSON.stringify(actionData, null, 2)}</pre>
