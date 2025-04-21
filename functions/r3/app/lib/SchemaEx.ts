@@ -1,4 +1,4 @@
-import { Data, Effect, ParseResult, Schema } from 'effect'
+import { Data, Effect, ParseResult, Predicate, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
 
 /*
@@ -116,6 +116,22 @@ export const decodeRequestFormData = <A, I extends Record<string, string | File>
  * error channel `E` are preserved.
  */
 export const catchValidationError = <A, E, R>(
+  self: Effect.Effect<A, E | ValidationError, R>
+): Effect.Effect<A | { validationErrors: ValidationErrors }, Exclude<E, ValidationError>, R> =>
+  Effect.matchEffect(self, {
+    onFailure: (error) =>
+      Predicate.isTagged('ValidationError')(error)
+        ? Effect.succeed({ validationErrors: error.validationErrors })
+        : Effect.fail(error as Exclude<E, ValidationError>),
+    onSuccess: Effect.succeed
+  })
+
+/**
+ * Catches `ValidationError` from an Effect and transforms it into a success
+ * value `{ validationErrors: ValidationErrors }`. Other errors in the
+ * error channel `E` are preserved.
+ */
+export const catchValidationError1 = <A, E, R>(
   self: Effect.Effect<A, E | ValidationError, R>
 ): Effect.Effect<A | { validationErrors: ValidationErrors }, Exclude<E, ValidationError>, R> =>
   Effect.catchTag(self, 'ValidationError', (error) => {
