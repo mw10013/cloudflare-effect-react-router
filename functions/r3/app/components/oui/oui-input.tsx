@@ -18,7 +18,7 @@ export const inputStyles = tv({
       ],
       // originui: flex-1 bg-background px-3 py-2 tabular-nums text-foreground focus:outline-none
       // jui group demo: min-w-0 flex-1 bg-background px-2 py-1.5 outline outline-0 placeholder:text-muted-foreground
-      ghost: ''
+      ghost: 'flex-1'
     }
   },
   defaultVariants: {
@@ -29,7 +29,6 @@ export const inputStyles = tv({
 export interface InputProps extends Rac.InputProps, VariantProps<typeof inputStyles> {}
 
 export function Input({ variant, className, ...props }: InputProps) {
-  console.log('Input', { className, inputStyles: inputStyles })
   return (
     <Rac.Input
       data-slot="input"
