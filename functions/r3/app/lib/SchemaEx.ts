@@ -1,4 +1,5 @@
-import { Schema } from 'effect'
+import { ParseResult, Schema } from 'effect'
+import * as Rac from 'react-aria-components'
 
 /*
 
@@ -63,3 +64,22 @@ export const DataFromResult = <A, I>(DataSchema: Schema.Schema<A, I>) =>
       encode: (value) => ({ data: value })
     }
   )
+
+  // Must be assignable to Rac.FormProps['validationErrors']
+export type ValidationErrors = Record<string, string | string[]>
+
+export const parseErrorToValidationErrors = (error: ParseResult.ParseError): ValidationErrors => {
+  const validationErrors: ValidationErrors = {}
+  const issues = ParseResult.ArrayFormatter.formatErrorSync(error)
+  for (const issue of issues) {
+    const key = issue.path.join('.')
+    if (!validationErrors[key]) {
+      validationErrors[key] = issue.message
+    } else if (typeof validationErrors[key] === 'string') {
+      validationErrors[key] = [validationErrors[key], issue.message]
+    } else {
+      validationErrors[key].push(issue.message)
+    }
+  }
+  return validationErrors
+}
