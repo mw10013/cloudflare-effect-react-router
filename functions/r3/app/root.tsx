@@ -60,8 +60,16 @@ const items = [
     url: '/demo/form'
   },
   {
+    title: 'Number Field',
+    url: '/demo/number-field'
+  },
+  {
     title: 'Radio Group',
     url: '/demo/radio-group'
+  },
+  {
+    title: 'Text Field',
+    url: '/demo/text-field'
   },
   {
     title: 'Link',

@@ -11,13 +11,6 @@ const FormDataSchema = Schema.Struct({
   age: Schema.NonEmptyString.annotations({ message: () => 'Required' })
 })
 
-// const FormDataSchema = SchemaEx.SchemaFromFormData(
-//   Schema.Struct({
-//     username: Schema.NonEmptyString.annotations({ message: () => 'Required' }),
-//     age: Schema.NonEmptyString.annotations({ message: () => 'Required' })
-//   })
-// )
-
 export const action = routeEffect(
   ({
     request
