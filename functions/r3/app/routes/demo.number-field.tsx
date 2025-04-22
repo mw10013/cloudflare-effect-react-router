@@ -1,15 +1,23 @@
 import type { UnknownException } from 'effect/Cause'
 import type { Route } from './+types/sandbox'
+import React from 'react'
 import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
+import { useSubmit } from 'react-router'
 import { DemoContainer } from '~/components/demo-container'
 import * as Oui from '~/components/oui/oui-index'
 import { routeEffect } from '~/lib/ReactRouterEx'
 import * as SchemaEx from '~/lib/SchemaEx'
 
 const FormDataSchema = Schema.Struct({
-  username: Schema.NonEmptyString.annotations({ message: () => 'Required' }),
-  email: Schema.NonEmptyString.annotations({ message: () => 'Required' })
+  age: Schema.NonEmptyString.annotations({ message: () => 'Required' }).pipe(
+    Schema.compose(Schema.NumberFromString),
+    Schema.positive({ message: () => 'Must be positive' })
+  ),
+  quantity: Schema.NonEmptyString.annotations({ message: () => 'Required' }).pipe(
+    Schema.compose(Schema.NumberFromString),
+    Schema.positive({ message: () => 'Must be positive' })
+  )
 })
 
 export const action = routeEffect(
@@ -32,14 +40,29 @@ export const action = routeEffect(
 )
 
 export default function RouteComponent({ actionData }: Route.ComponentProps) {
+  const [formData, setFormData] = React.useState<any>(null)
+  const submit = useSubmit()
+
   return (
     <DemoContainer>
-      <Rac.Form method="post" validationErrors={actionData?.validationErrors} className="grid w-full max-w-sm gap-6">
-        <Oui.TextFieldEx name="username" placeholder="shadcn" label="Username" description="This is your public display name." />
-        <Oui.TextFieldEx name="email" label="Email" description="Your best email." />
+      <Rac.Form
+        method="post"
+        validationErrors={actionData?.validationErrors}
+        className="grid w-full max-w-sm gap-6"
+        onSubmit={(e) => {
+          e.preventDefault()
+          const data = Object.fromEntries(new FormData(e.currentTarget))
+          console.log({ data })
+          setFormData(data)
+          submit(e.currentTarget)
+        }}
+      >
+        <Oui.NumberFieldEx name="age" placeholder="age" label="Age" description="This is your age." />
+        <Oui.NumberFieldEx name="quantity" label="Quantity" description="Your best quantity." />
         <Oui.Button type="submit">Submit</Oui.Button>
       </Rac.Form>
       <pre>{JSON.stringify({ actionData }, null, 2)}</pre>
+      <pre>{JSON.stringify({ formData }, null, 2)}</pre>
     </DemoContainer>
   )
 }
