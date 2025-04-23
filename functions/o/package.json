@@ -1,5 +1,5 @@
 {
-  "name": "r3",
+  "name": "o",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,10 +11,11 @@
     "preview": "pnpm run build && vite preview",
     "cf-typegen": "wrangler types",
     "typecheck": "npm run cf-typegen && react-router typegen && tsc -b",
-    "clean": "pnpm clean:node && pnpm clean:wrangler && pnpm clean:dist",
+    "clean": "pnpm clean:node && pnpm clean:wrangler && pnpm clean:dist && pnpm clean:rr",
     "clean:node": "rm -rf node_modules",
     "clean:wrangler": "rm -rf .wrangler",
-    "clean:dist": "rm -rf dist"
+    "clean:dist": "rm -rf dist",
+    "clean:rr": "rm -rf .react-router"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
