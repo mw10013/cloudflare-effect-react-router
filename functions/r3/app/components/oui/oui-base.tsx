@@ -6,19 +6,17 @@ import { tv } from 'tailwind-variants'
 export const baseStyles = tv({
   variants: {
     isFocused: {
-      true: 'outline-none', // Reset user agent styles esp on Chrome
+      true: 'outline-none' // Reset user agent styles esp on Chrome
     },
     // shadcn button: focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
     isFocusVisible: {
-      true: 'outline-none ring-1 ring-ring',
+      true: 'ring-ring outline-none ring-1'
     },
     isDisabled: {
-      true: 'pointer-events-none opacity-50',
-    },
-  },
+      true: 'pointer-events-none opacity-50'
+    }
+  }
 })
-
-type T = Parameters<typeof twMerge>[0]
 
 export function composeTailwindRenderProps<T>(
   className: string | ((v: T) => string) | undefined,
