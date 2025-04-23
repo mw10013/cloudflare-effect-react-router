@@ -1,5 +1,5 @@
+import * as Oui from '@workspace/oui'
 import * as Rac from 'react-aria-components'
-import * as Oui from '~/components/oui/oui-index'
 
 const items = [
   {

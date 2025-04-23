@@ -1,10 +1,10 @@
 import type { UnknownException } from 'effect/Cause'
 import type { Route } from './+types/sandbox'
+import * as Oui from '@workspace/oui'
 import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
 import { useSubmit } from 'react-router'
 import { DemoContainer } from '~/components/demo-container'
-import * as Oui from '~/components/oui/oui-index'
 import { routeEffect } from '~/lib/ReactRouterEx'
 import * as SchemaEx from '~/lib/SchemaEx'
 

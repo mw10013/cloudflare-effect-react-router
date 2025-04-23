@@ -1,4 +1,4 @@
-import * as Oui from '~/components/oui/oui-index'
+import * as Oui from '@workspace/oui'
 
 export default function RouteComponent() {
   return (
