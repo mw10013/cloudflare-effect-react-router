@@ -1,0 +1,15 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shared",
+  "main": "./workers/app.ts",
+  "compatibility_date": "2025-04-09",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "ENVIRONMENT": "local",
+    "LOG_LEVEL": "Debug"
+  }
+}

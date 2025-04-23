@@ -1,6 +1,6 @@
 import type { AppLoadContext } from 'react-router'
+import { CloudflareEx } from '@workspace/shared'
 import { Effect, Layer, ManagedRuntime } from 'effect'
-import * as CloudflareEx from '~/lib/CloudflareEx'
 
 export const routeEffect =
   <A, E, P extends { context: AppLoadContext }>(

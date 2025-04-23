@@ -10,6 +10,8 @@
     "clean:node": "rm -rf node_modules"
   },
   "devDependencies": {
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "typescript": "catalog:"
   },
   "dependencies": {},

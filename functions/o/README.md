@@ -1,6 +1,6 @@
-# r3
+# o
 
-- rac
+- oui-demo
 
 ## Oui
 
@@ -12,7 +12,7 @@
 ## Local Dev
 
 - pnpm i
-- pnpm -F r2 dev
+- pnpm -F o dev
 
 ## Deploy
 
@@ -20,15 +20,15 @@
 - Workers & Pages Settings: cloudflare-openauth-stripe-production
   - Git repository: connect to git repo
   - Build configuration
-    - Build command: CLOUDFLARE_ENV=production pnpm -F r3 build
-    - Deploy command: pnpm -F r3 exec wrangler deploy
+    - Build command: CLOUDFLARE_ENV=production pnpm -F o build
+    - Deploy command: pnpm -F o exec wrangler deploy
   - Build watch paths
-    - Include paths: functions/r3/\*
+    - Include paths: functions/o/\* functions/oui/\* functions/shared/\*
 
 ## Shadcn
 
 - https://v4.shadcn.com/
-- pnpm -F r2 exec shadcn add button
+- pnpm -F o exec shadcn add button
 
 ## Tailwind
 

@@ -8,6 +8,7 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "types": ["./worker-configuration.d.ts", "node"],
     "noEmit": true,
     "strict": true
   },
