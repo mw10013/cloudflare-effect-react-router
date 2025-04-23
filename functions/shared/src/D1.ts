@@ -1,4 +1,4 @@
-import { Cause, Config, ConfigError, Console, Data, Effect, Either, Predicate, Schedule } from 'effect'
+import { Cause, Config, ConfigError, Data, Effect, Either, Predicate, Schedule } from 'effect'
 import { dual } from 'effect/Function'
 import * as ConfigEx from './ConfigEx'
 

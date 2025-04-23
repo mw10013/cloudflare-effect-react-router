@@ -1,6 +1,6 @@
-import { ConfigEx } from '@workspace/shared'
 import { env } from 'cloudflare:workers'
 import { Config, Effect, Layer, Logger, LogLevel } from 'effect'
+import * as ConfigEx from './ConfigEx'
 
 export const provideLoggerAndConfig = <ROut, E, RIn>(self: Layer.Layer<ROut, E, RIn>) => {
   const ConfigLive = ConfigEx.fromObject(env)

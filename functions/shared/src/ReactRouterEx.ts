@@ -2,6 +2,18 @@ import type { AppLoadContext } from 'react-router'
 import { Effect, Layer, ManagedRuntime } from 'effect'
 import * as CloudflareEx from '~/lib/CloudflareEx'
 
+export class SandboxService extends Effect.Service<SandboxService>()('SandboxService', {
+  accessors: true,
+  effect: Effect.gen(function* () {
+    return {
+      foo: () =>
+        Effect.gen(function* () {
+          return 'bar'
+        })
+    }
+  })
+}) {}
+
 export const routeEffect =
   <A, E, P extends { context: AppLoadContext }>(
     f: (props: P) => Effect.Effect<A, E, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
@@ -10,7 +22,7 @@ export const routeEffect =
     f(props).pipe(props.context.runtime.runPromise)
 
 export const makeRuntime = () => {
-  return Layer.mergeAll(Layer.empty).pipe(CloudflareEx.provideLoggerAndConfig, ManagedRuntime.make)
+  return Layer.mergeAll(SandboxService.Default).pipe(CloudflareEx.provideLoggerAndConfig, ManagedRuntime.make)
 }
 
 /*

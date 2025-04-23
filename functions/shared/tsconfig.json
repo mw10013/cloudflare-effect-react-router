@@ -7,8 +7,10 @@
     "moduleResolution": "Bundler",
     "preserveWatchOutput": true,
     "skipLibCheck": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "noEmit": true,
     "strict": true
   },
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

@@ -276,6 +276,9 @@ importers:
       '@workspace/oui':
         specifier: workspace:*
         version: link:../oui
+      '@workspace/shared':
+        specifier: workspace:*
+        version: link:../shared
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -679,12 +682,12 @@ importers:
 
   functions/shared:
     dependencies:
-      '@openauthjs/openauth':
-        specifier: 'catalog:'
-        version: 0.4.3(arctic@2.3.4)(hono@4.7.5)
       effect:
         specifier: 'catalog:'
         version: 3.14.11
+      react-aria-components:
+        specifier: 'catalog:'
+        version: 1.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     devDependencies:
       typescript:
         specifier: 'catalog:'
