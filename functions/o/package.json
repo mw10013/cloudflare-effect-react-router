@@ -15,7 +15,8 @@
     "clean:node": "rm -rf node_modules",
     "clean:wrangler": "rm -rf .wrangler",
     "clean:dist": "rm -rf dist",
-    "clean:rr": "rm -rf .react-router"
+    "clean:rr": "rm -rf .react-router",
+    "tail:PRODUCTION": "wrangler tail oui-demo-production"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

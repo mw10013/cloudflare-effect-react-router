@@ -1,0 +1,23 @@
+{
+  "name": "@workspace/oui",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/oui-index.ts"
+  },
+  "scripts": {
+    "clean": "pnpm clean:node",
+    "clean:node": "rm -rf node_modules"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-aria-components": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:"
+  }
+}
