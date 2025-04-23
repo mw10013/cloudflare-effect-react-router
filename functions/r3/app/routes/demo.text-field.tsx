@@ -2,14 +2,15 @@ import type { UnknownException } from 'effect/Cause'
 import type { Route } from './+types/sandbox'
 import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
+import { useSubmit } from 'react-router'
 import { DemoContainer } from '~/components/demo-container'
 import * as Oui from '~/components/oui/oui-index'
 import { routeEffect } from '~/lib/ReactRouterEx'
 import * as SchemaEx from '~/lib/SchemaEx'
 
 const FormDataSchema = Schema.Struct({
-  username: Schema.NonEmptyString.annotations({ message: () => 'Required' }),
-  email: Schema.NonEmptyString.annotations({ message: () => 'Required' })
+  username: Schema.NonEmptyString.annotations({ message: () => 'Required' })
+  // email: Schema.NonEmptyString.annotations({ message: () => 'Required' })
 })
 
 export const action = routeEffect(
@@ -24,6 +25,7 @@ export const action = routeEffect(
     UnknownException
   > =>
     Effect.gen(function* () {
+      yield* Effect.log({ message: `demo.text-field: action` })
       const formData = yield* SchemaEx.decodeRequestFormData({ request, schema: FormDataSchema })
       return {
         formData
@@ -32,12 +34,32 @@ export const action = routeEffect(
 )
 
 export default function RouteComponent({ actionData }: Route.ComponentProps) {
+  const submit = useSubmit()
+
   return (
     <DemoContainer>
-      <Rac.Form method="post" validationErrors={actionData?.validationErrors} className="grid w-full max-w-sm gap-6">
-        <Oui.TextFieldEx name="username" placeholder="shadcn" label="Username" description="This is your public display name." />
-        <Oui.TextFieldEx name="email" label="Email" description="Your best email." />
-        <Oui.Button type="submit">Submit</Oui.Button>
+      <Rac.Form
+        method="post"
+        // validationBehavior="aria"
+        validationErrors={actionData?.validationErrors}
+        className="grid w-full max-w-sm gap-6"
+        onSubmit={(e) => {
+          e.preventDefault()
+          console.log(`Rac.Form.onSubmit: ${Date.now()}`)
+          submit(e.currentTarget)
+        }}
+      >
+        <Oui.TextFieldEx name="username" isRequired label="Username" />
+        {/* <Oui.TextFieldEx name="email" label="Email" description="Your best email." /> */}
+        <Oui.Button
+          type="submit"
+          onPress={(e) => {
+            console.log(`Oui.Button.onPress: ${Date.now()}`)
+            e.continuePropagation()
+          }}
+        >
+          Submit
+        </Oui.Button>
       </Rac.Form>
       <pre>{JSON.stringify({ actionData }, null, 2)}</pre>
     </DemoContainer>

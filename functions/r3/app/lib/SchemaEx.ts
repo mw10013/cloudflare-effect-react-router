@@ -107,6 +107,18 @@ export const decodeRequestFormData = <A, I extends Record<string, string | File>
             cause: e
           })
         : e
+    ),
+    Effect.tap((data) =>
+      Effect.log({
+        message: `decodeRequestFormData succeeded`,
+        data
+      })
+    ),
+    Effect.tapErrorTag('ValidationError', (error) =>
+      Effect.log({
+        message: `decodeRequestFormData failed with ValidationError`,
+        validationErrors: error.validationErrors
+      })
     )
   )
 
