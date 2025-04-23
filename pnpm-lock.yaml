@@ -273,6 +273,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.2.0
         version: 1.2.0(@types/react-dom@19.1.2(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@workspace/oui':
+        specifier: workspace:*
+        version: link:../oui
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
