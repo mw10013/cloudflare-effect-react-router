@@ -1,8 +1,16 @@
-import type { Config } from "@react-router/dev/config";
+import type { Config } from '@react-router/dev/config'
+import type { Future } from 'react-router'
+
+declare module 'react-router' {
+  interface Future {
+    // unstable_middleware: true
+  }
+}
 
 export default {
   ssr: true,
   future: {
-    unstable_viteEnvironmentApi: true,
-  },
-} satisfies Config;
+    // unstable_middleware: true,
+    unstable_viteEnvironmentApi: true
+  }
+} satisfies Config
