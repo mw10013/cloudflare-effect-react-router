@@ -19,5 +19,6 @@ export default {
       cloudflare: { env, ctx },
       runtime: makeRuntime()
     })
-  }
+  },
+  async queue() {}
 } satisfies ExportedHandler<Env>
