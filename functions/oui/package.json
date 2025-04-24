@@ -16,6 +16,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
+    "lucide-react": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-aria-components": "catalog:",
