@@ -5,23 +5,23 @@
 ## Local Dev
 
 - pnpm i
-- pnpm -F <package-name> dev
+- pnpm -F <PACKAGE-NAME> dev
 
 ## Deploy
 
-- pnpm -F <package-name> deploy:PRODUCTION
-- Workers & Pages Settings: <wrangler-name>-production
+- pnpm -F <PACKAGE-NAME> deploy:PRODUCTION
+- Workers & Pages Settings: <WRANGLER-NAME>-production
   - Git repository: connect to git repo
   - Build configuration
-    - Build command: CLOUDFLARE_ENV=production pnpm -F <package-name> build
-    - Deploy command: pnpm -F <package-name> exec wrangler deploy
+    - Build command: CLOUDFLARE_ENV=production pnpm -F <PACKAGE-NAME> build
+    - Deploy command: pnpm -F <PACKAGE-NAME> exec wrangler deploy
   - Build watch paths
-    - Include paths: functions/<package-name>/\* functions/oui/\* functions/shared/\*
+    - Include paths: functions/<PACKAGE-NAME>/\* functions/oui/\* functions/shared/\*
 
 ## Shadcn
 
 - https://v4.shadcn.com/
-- pnpm -F <package-name> exec shadcn add button
+- pnpm -F <PACKAGE-NAME> exec shadcn add button
 
 ## Tailwind
 
