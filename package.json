@@ -2,11 +2,10 @@
   "name": "cloudflare-openauth-stripe",
   "private": true,
   "scripts": {
-    "clean": "pnpm clean:node && pnpm clean:wrangler && pnpm clean:dist && pnpm clean:rr",
+    "clean": "pnpm clean:node && pnpm clean:wrangler && pnpm clean:etc",
     "clean:node": "rm -rf node_modules && pnpm -r clean:node",
     "clean:wrangler": "pnpm -r clean:wrangler",
-    "clean:dist": "pnpm -r clean:dist",
-    "clean:rr": "pnpm -r clean:rr",
+    "clean:etc": "pnpm -r clean:etc",
     "format": "prettier --write ."
   },
   "devDependencies": {
