@@ -10,7 +10,7 @@
 
 ## Deploy
 
-- pnpm -F <PACKAGE_NAME> exec wrangler kv namespace create <WRANGLER-NAME>-production
+- pnpm -F <PACKAGE_NAME> exec wrangler kv namespace create <WRANGLER-NAME>-kv-production
 - pnpm -F <PACKAGE_NAME> exec wrangler queues create <WRANGLER-NAME>-q-production
 - Update wrangler.jsonc production kv_namespaces and queues
 - pnpm -F <PACKAGE_NAME> d1:reset:PRODUCTION
