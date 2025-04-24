@@ -1,6 +1,6 @@
 import type { Route } from './+types/effect'
 import { Effect } from 'effect'
-import { routeEffect } from '~/lib/ReactRouterEx'
+import { routeEffect } from '~/lib/ReactRouter'
 
 export const loader = routeEffect(({ context }: Route.LoaderArgs) =>
   Effect.gen(function* () {

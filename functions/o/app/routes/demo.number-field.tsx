@@ -7,7 +7,7 @@ import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
 import { useSubmit } from 'react-router'
 import { DemoContainer } from '~/components/demo-container'
-import { routeEffect } from '~/lib/ReactRouterEx'
+import { routeEffect } from '~/lib/ReactRouter'
 
 const FormDataSchema = Schema.Struct({
   age: Schema.NonEmptyString.annotations({ message: () => 'Required' }).pipe(

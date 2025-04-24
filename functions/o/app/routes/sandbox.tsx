@@ -4,7 +4,7 @@ import * as Oui from '@workspace/oui'
 import { SchemaEx } from '@workspace/shared'
 import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
-import { routeEffect } from '~/lib/ReactRouterEx'
+import { routeEffect } from '~/lib/ReactRouter'
 
 const FormDataSchema = Schema.Struct({
   username: Schema.NonEmptyString.annotations({ message: () => 'Required' }),

@@ -1,5 +1,5 @@
 import { createRequestHandler } from 'react-router'
-import { makeRuntime } from '../app/lib/ReactRouterEx'
+import { makeRuntime } from '../app/lib/ReactRouter'
 
 declare module 'react-router' {
   export interface AppLoadContext {
