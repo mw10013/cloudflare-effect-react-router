@@ -98,3 +98,9 @@ To test Stripe payments, use the following test card details:
 ## Etc
 
 - https://github.com/remix-run/react-router-templates/tree/main/cloudflare
+
+## React Router Middleware
+
+- https://reactrouter.com/start/changelog#middleware-unstable
+- https://reactrouter.com/start/changelog#middleware-context-parameter
+- https://github.com/remix-run/react-router/blob/main/decisions/0014-context-middleware.md
