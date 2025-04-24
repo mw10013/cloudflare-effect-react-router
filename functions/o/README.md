@@ -2,33 +2,26 @@
 
 - oui-demo
 
-## Oui
-
-- Text Field: text area styles esp focus
-- Popover
-- Label vs FormLabel
-- Button vs SelectButton
-
 ## Local Dev
 
 - pnpm i
-- pnpm -F o dev
+- pnpm -F <package-name> dev
 
 ## Deploy
 
-- pnpm -F r3 deploy:PRODUCTION
-- Workers & Pages Settings: cloudflare-openauth-stripe-production
+- pnpm -F <package-name> deploy:PRODUCTION
+- Workers & Pages Settings: <wrangler-name>-production
   - Git repository: connect to git repo
   - Build configuration
-    - Build command: CLOUDFLARE_ENV=production pnpm -F o build
-    - Deploy command: pnpm -F o exec wrangler deploy
+    - Build command: CLOUDFLARE_ENV=production pnpm -F <package-name> build
+    - Deploy command: pnpm -F <package-name> exec wrangler deploy
   - Build watch paths
-    - Include paths: functions/o/\* functions/oui/\* functions/shared/\*
+    - Include paths: functions/<package-name>/\* functions/oui/\* functions/shared/\*
 
 ## Shadcn
 
 - https://v4.shadcn.com/
-- pnpm -F o exec shadcn add button
+- pnpm -F <package-name> exec shadcn add button
 
 ## Tailwind
 
