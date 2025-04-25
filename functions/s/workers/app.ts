@@ -1,6 +1,12 @@
 import { createRequestHandler } from 'react-router'
 import { makeRuntime } from '../app/lib/ReactRouter'
 
+// declare module "react-router" {
+//   interface Future {
+//     unstable_middleware: true;
+//   }
+// }
+
 declare module 'react-router' {
   export interface AppLoadContext {
     cloudflare: {
