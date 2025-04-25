@@ -1,6 +1,14 @@
 import type { Route } from './+types/foo'
 import { appLoadContext } from '~/lib/ReactRouter'
 
+export const logger: Route.unstable_MiddlewareFunction = async (props, next) => {
+  console.log({ message: `logger: will next`, props})
+  await next()
+  console.log({ message: `logger: did next`, props})
+}
+
+export const unstable_middleware = [logger]; 
+
 export async function loader({ context }: Route.LoaderArgs) {
   const ctx = context.get(appLoadContext)
   return { ctx }

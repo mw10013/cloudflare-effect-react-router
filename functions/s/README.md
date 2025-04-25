@@ -101,6 +101,7 @@ To test Stripe payments, use the following test card details:
 
 ## React Router Middleware
 
+- Ensure react-router.config.ts is tsconfig include for interface Future
 - https://reactrouter.com/start/changelog#middleware-unstable
 - https://reactrouter.com/start/changelog#middleware-context-parameter
 - https://github.com/remix-run/react-router/blob/main/decisions/0014-context-middleware.md
