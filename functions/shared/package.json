@@ -11,6 +11,7 @@
     "clean:node": "rm -rf node_modules"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "catalog:",
     "@types/node": "catalog:",
     "typescript": "catalog:",
     "wrangler": "catalog:"

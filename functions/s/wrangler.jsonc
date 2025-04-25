@@ -6,7 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "saas",
   "main": "./workers/app.ts",
-  "compatibility_date": "2025-04-09",
+  "compatibility_date": "2025-04-25",
   "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true,

@@ -8,7 +8,7 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "types": ["./worker-configuration.d.ts", "node"],
+    "types": ["@cloudflare/workers-types", "node"],
     "noEmit": true,
     "strict": true
   },
