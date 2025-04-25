@@ -15,7 +15,7 @@ const requestHandler = createRequestHandler(() => import('virtual:react-router/s
 
 export default {
   async fetch(request, env, ctx) {
-    const runtime = makeRuntime()
+    const runtime = makeRuntime(env)
     const initialContext = new Map([[appLoadContext, { cloudflare: { env, ctx }, runtime }]])
     ctx.waitUntil(runtime.dispose())
     return requestHandler(request, initialContext)

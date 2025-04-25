@@ -5,7 +5,6 @@ import app from 'workers/app'
 import * as ReactRouter from '~/lib/ReactRouter'
 
 export const sessionMiddleware: Route.unstable_MiddlewareFunction = async ({ request, context }, next) => {
-  console.log({ message: `sessionMiddleware: will next` })
   const appLoadContext = context.get(ReactRouter.appLoadContext)
   const { getSession, commitSession, destroySession } = createWorkersKVSessionStorage<SessionData>({
     cookie: {
@@ -21,7 +20,7 @@ export const sessionMiddleware: Route.unstable_MiddlewareFunction = async ({ req
   })
   const session = await getSession(request.headers.get('Cookie'))
   const sessionUser = session.get('sessionUser')
-  console.log({ message: `sessionMiddleware: sessionUser`, sessionUser })
+  console.log({ message: `sessionMiddleware: sessionUser`, sessionUser, ENVIRONMENT: appLoadContext.cloudflare.env.ENVIRONMENT })
 
   await next()
 }
