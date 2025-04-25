@@ -1,15 +1,23 @@
-import { unstable_createContext, type AppLoadContext } from 'react-router'
+import type { AppLoadContext, unstable_RouterContextProvider } from 'react-router'
 import { CloudflareEx } from '@workspace/shared'
 import { Effect, Layer, ManagedRuntime } from 'effect'
+import { unstable_createContext } from 'react-router'
 
-export const appLoadContext = unstable_createContext<AppLoadContext>();
+export const appLoadContext = unstable_createContext<AppLoadContext>()
 
 export const routeEffect =
-  <A, E, P extends { context: AppLoadContext }>(
+  <A, E, P extends { context: unstable_RouterContextProvider }>(
     f: (props: P) => Effect.Effect<A, E, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
   ) =>
   (props: P) =>
-    f(props).pipe(props.context.runtime.runPromise)
+    f(props).pipe(props.context.get(appLoadContext).runtime.runPromise)
+
+// export const routeEffect =
+//   <A, E, P extends { context: AppLoadContext }>(
+//     f: (props: P) => Effect.Effect<A, E, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
+//   ) =>
+//   (props: P) =>
+//     f(props).pipe(props.context.runtime.runPromise)
 
 export const makeRuntime = () => {
   return Layer.mergeAll(Layer.empty).pipe(CloudflareEx.provideLoggerAndConfig, ManagedRuntime.make)
