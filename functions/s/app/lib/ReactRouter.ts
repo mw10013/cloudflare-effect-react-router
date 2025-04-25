@@ -13,13 +13,8 @@ export const routeEffect =
     f(props).pipe(props.context.get(appLoadContext).runtime.runPromise)
 
 export const makeRuntime = (env: Env) => {
-  const layer = Cloudflare.provideLoggerAndConfig(Layer.empty, env)
-  return ManagedRuntime.make(layer)
+  return Layer.mergeAll(Layer.empty).pipe(Cloudflare.provideLoggerAndConfig(env), ManagedRuntime.make)
 }
-
-// export const makeRuntime = () => {
-//   return Layer.mergeAll(Layer.empty).pipe(Cloudflare.provideLoggerAndConfig, ManagedRuntime.make)
-// }
 
 /*
 

@@ -98,6 +98,7 @@ To test Stripe payments, use the following test card details:
 ## Etc
 
 - https://github.com/remix-run/react-router-templates/tree/main/cloudflare
+- https://github.com/kristianfreeman/react-router-hono-vite-cf-example/blob/main/workers/app.ts
 
 ## React Router Middleware
 

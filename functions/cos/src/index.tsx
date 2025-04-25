@@ -75,7 +75,7 @@ export const middleware =
 export const orErrorResponse: {
   <A, E, R, Env extends HonoEnv>(c: HonoContext<Env>): (self: Effect.Effect<A, E, R>) => Effect.Effect<A, never, R>
   <A, E, R, Env extends HonoEnv>(self: Effect.Effect<A, E, R>, c: HonoContext<Env>): Effect.Effect<A, never, R>
-} = dual(2, <a, E, R, Env extends HonoEnv>(self: Effect.Effect<a, E, R>, c: HonoContext<Env>) =>
+} = dual(2, <A, E, R, Env extends HonoEnv>(self: Effect.Effect<A, E, R>, c: HonoContext<Env>) =>
   Effect.catchAll(self, (error) => {
     if (error instanceof InvariantResponseError) {
       return Effect.succeed(error.response)

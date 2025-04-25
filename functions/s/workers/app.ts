@@ -17,7 +17,7 @@ export default {
   async fetch(request, env, ctx) {
     const runtime = makeRuntime(env)
     const initialContext = new Map([[appLoadContext, { cloudflare: { env, ctx }, runtime }]])
-    ctx.waitUntil(runtime.dispose())
+    // ctx.waitUntil(runtime.dispose())
     return requestHandler(request, initialContext)
   },
   async queue() {}
