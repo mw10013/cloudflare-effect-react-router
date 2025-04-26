@@ -19,7 +19,7 @@ catalog:
   aws4fetch: 1.0.20
   daisyui: 5.0.12
   effect: 3.14.11
-  hono: 4.7.5
+  hono: 4.7.7
   isbot: 5.1.26
   jsonc-parser: 3.3.1
   lucide: 0.485.0
