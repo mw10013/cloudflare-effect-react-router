@@ -2,6 +2,9 @@ import { Config, Effect, Layer, Logger, LogLevel } from 'effect'
 import { dual } from 'effect/Function'
 import * as ConfigEx from './ConfigEx'
 
+/**
+ * Provides standard logging and configuration layers derived from an environment object.
+ */
 export const provideLoggerAndConfig: {
   <ROut, E, RIn>(env: Record<string, string | object>): (self: Layer.Layer<ROut, E, RIn>) => Layer.Layer<ROut, E, RIn>
   <ROut, E, RIn>(self: Layer.Layer<ROut, E, RIn>, env: Record<string, string | object>): Layer.Layer<ROut, E, RIn>

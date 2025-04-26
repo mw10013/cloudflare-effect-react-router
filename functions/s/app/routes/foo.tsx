@@ -1,7 +1,6 @@
 import type { SessionData } from '~/lib/Domain'
 import type { Route } from './+types/foo'
 import { createWorkersKVSessionStorage } from '@react-router/cloudflare'
-import app from 'workers/app'
 import * as ReactRouter from '~/lib/ReactRouter'
 
 export const sessionMiddleware: Route.unstable_MiddlewareFunction = async ({ request, context }, next) => {
