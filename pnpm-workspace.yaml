@@ -10,6 +10,7 @@ catalog:
   '@react-router/cloudflare': 7.5.2
   '@react-router/dev': 7.5.2
   '@react-router/fs-routes': 7.5.2
+  '@standard-schema/spec': 1.0.0-beta.3
   '@tailwindcss/cli': 4.0.14
   '@tailwindcss/typography': 0.5.16
   '@tailwindcss/vite': 4.0.14

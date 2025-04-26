@@ -80,6 +80,7 @@
     "@cloudflare/vite-plugin": "catalog:",
     "@react-router/dev": "catalog:",
     "@react-router/fs-routes": "catalog:",
+    "@standard-schema/spec": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
