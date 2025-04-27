@@ -15,6 +15,7 @@ declare module 'react-router' {
     }
     runtime: ReturnType<typeof makeRuntime>
     session: Session<SessionData>
+    sessionAction: 'commit' | 'destroy'
     client: Client
     redirectUri: string
   }
@@ -42,6 +43,7 @@ export default {
             cloudflare: { env, ctx },
             runtime,
             session: undefined as unknown as Session<SessionData>, // middleware populates
+            sessionAction: 'commit',
             client,
             redirectUri: `${origin}/callback`
           }

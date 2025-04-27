@@ -48,10 +48,17 @@ export const sessionMiddleware: Route.unstable_MiddlewareFunction = async ({ req
   const session = await getSession(request.headers.get('Cookie'))
   context.set(ReactRouter.appLoadContext, {
     ...appLoadContext,
-    session
+    session,
+    sessionAction: 'commit'
   })
   console.log({ message: `sessionMiddleware: sessionUser`, sessionData: session.data })
   const response = await next()
+  const nextAppLoadContext = context.get(ReactRouter.appLoadContext)
+  const action = nextAppLoadContext.sessionAction
+  if (action === 'destroy') {
+    response.headers.set('Set-Cookie', await destroySession(session))
+    return response
+  }
   response.headers.set('Set-Cookie', await commitSession(session))
   return response
 }
