@@ -6,6 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "saas",
   "main": "./workers/app.ts",
+  "account_id": "1422451be59cc2401532ad67d92ae773",
   "compatibility_date": "2025-04-25",
   "compatibility_flags": ["nodejs_compat"],
   "observability": {
@@ -104,7 +105,7 @@
         {
           "binding": "D1",
           "database_name": "saas-d1-production",
-          "database_id": "<DATABASE-ID>"
+          "database_id": "5e5a9b74-f321-4135-ba6d-f4543a673279"
         }
       ],
       "kv_namespaces": [
