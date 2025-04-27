@@ -24,6 +24,27 @@
     "AWS_REGION": "us-east-1",
     "AWS_ENDPOINT": "https://email.us-east-1.amazonaws.com"
   },
+  "migrations": [
+    {
+      "new_sqlite_classes": ["StripeDurableObject"],
+      "tag": "v1"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "class_name": "StripeDurableObject",
+        "name": "STRIPE_DO"
+      }
+    ]
+  },
+  "d1_databases": [
+    {
+      "binding": "D1",
+      "database_name": "d1-local",
+      "database_id": "d1-local"
+    }
+  ],
   "kv_namespaces": [
     {
       "binding": "KV",
@@ -65,6 +86,27 @@
         "AWS_REGION": "us-east-1",
         "AWS_ENDPOINT": "https://email.us-east-1.amazonaws.com"
       },
+      "migrations": [
+        {
+          "new_sqlite_classes": ["StripeDurableObject"],
+          "tag": "v1"
+        }
+      ],
+      "durable_objects": {
+        "bindings": [
+          {
+            "class_name": "StripeDurableObject",
+            "name": "STRIPE_DO"
+          }
+        ]
+      },
+      "d1_databases": [
+        {
+          "binding": "D1",
+          "database_name": "saas-d1-production",
+          "database_id": "<DATABASE-ID>"
+        }
+      ],
       "kv_namespaces": [
         {
           "binding": "KV",

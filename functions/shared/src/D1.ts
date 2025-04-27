@@ -23,8 +23,8 @@ export class D1 extends Effect.Service<D1>()('D1', {
       Effect.tryPromise(evaluate).pipe(
         Effect.mapError((error) =>
           // https://developers.cloudflare.com/d1/observability/debug-d1/#error-list
-          Cause.isUnknownException(error) && Predicate.isError(error.cause) && error.cause.message.startsWith('D1_')
-            ? new D1Error({ message: error.cause.message, cause: error.cause })
+          Cause.isUnknownException(error) && Predicate.isError(error.error) && error.error.message.startsWith('D1_')
+            ? new D1Error({ message: error.error.message, cause: error.error })
             : error
         ),
         Effect.tapError((error) => Effect.log(error)),

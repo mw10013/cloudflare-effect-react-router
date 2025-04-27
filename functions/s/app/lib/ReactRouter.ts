@@ -2,6 +2,9 @@ import type { AppLoadContext, SessionData, unstable_RouterContextProvider } from
 import { Cloudflare } from '@workspace/shared'
 import { Effect, Layer, ManagedRuntime } from 'effect'
 import { unstable_createContext } from 'react-router'
+import { IdentityMgr } from './IdentityMgr'
+import * as Q from './Queue'
+import { Stripe } from './Stripe'
 
 export const appLoadContext = unstable_createContext<AppLoadContext>()
 
@@ -13,7 +16,11 @@ export const routeEffect =
     f(props).pipe(props.context.get(appLoadContext).runtime.runPromise)
 
 export const makeRuntime = (env: Env) => {
-  return Layer.mergeAll(Layer.empty).pipe(Cloudflare.provideLoggerAndConfig(env), ManagedRuntime.make)
+  // return Layer.mergeAll(Layer.empty).pipe(Cloudflare.provideLoggerAndConfig(env), ManagedRuntime.make)
+  return Layer.mergeAll(IdentityMgr.Default, Stripe.Default, Q.Producer.Default).pipe(
+    Cloudflare.provideLoggerAndConfig(env),
+    ManagedRuntime.make
+  )
 }
 
 /*

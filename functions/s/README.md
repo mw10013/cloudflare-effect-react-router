@@ -6,6 +6,7 @@
 
 - pnpm i
 - cp functions/app/.dev.vars.example functions/app/.dev.vars
+- pnpm -F <PACKAGE_NAME> d1:reset
 - pnpm -F <PACKAGE_NAME> dev
 
 ## Deploy
