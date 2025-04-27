@@ -1,12 +1,12 @@
 import type { Route } from './+types/effect'
 import { Effect } from 'effect'
-import { routeEffect, appLoadContext } from '~/lib/ReactRouter'
+import { appLoadContext, routeEffect } from '~/lib/ReactRouter'
 
 export const loader = routeEffect(({ context }: Route.LoaderArgs) =>
   Effect.gen(function* () {
     yield* Effect.log('loader')
-      const alc = context.get(appLoadContext)
-    
+    const alc = context.get(appLoadContext)
+
     return { message: `ENVIRONMENT: ${alc.cloudflare.env.ENVIRONMENT}` }
   })
 )

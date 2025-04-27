@@ -1,4 +1,4 @@
-import type { AppLoadContext, unstable_RouterContextProvider } from 'react-router'
+import type { AppLoadContext, SessionData, unstable_RouterContextProvider } from 'react-router'
 import { Cloudflare } from '@workspace/shared'
 import { Effect, Layer, ManagedRuntime } from 'effect'
 import { unstable_createContext } from 'react-router'

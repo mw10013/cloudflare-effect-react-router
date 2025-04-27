@@ -3,6 +3,8 @@ import type { Route } from './+types/root'
 import { RouterProvider } from 'react-aria-components'
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router'
 import './app.css'
+import type { SessionData } from './lib/Domain'
+import { createWorkersKVSessionStorage } from '@react-router/cloudflare'
 import * as Rac from 'react-aria-components'
 import {
   Sidebar,
@@ -16,12 +18,45 @@ import {
   SidebarProvider,
   SidebarTrigger
 } from '~/components/ui/sidebar'
+import * as ReactRouter from '~/lib/ReactRouter'
 
 declare module 'react-aria-components' {
   interface RouterConfig {
     routerOptions: NavigateOptions
   }
 }
+
+export const sessionMiddleware: Route.unstable_MiddlewareFunction = async ({ request, context }, next) => {
+  const appLoadContext = context.get(ReactRouter.appLoadContext)
+  if (!appLoadContext) {
+    throw new Error('AppLoadContext not found in session middleware.')
+  }
+  const { getSession, commitSession, destroySession } = createWorkersKVSessionStorage<SessionData>({
+    cookie: {
+      // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#cookie_prefixes
+      // // Relax cookie constraints for local development without https
+      name: appLoadContext.cloudflare.env.ENVIRONMENT === 'local' ? 'local-session' : '__Host-session',
+      maxAge: 60 * 60 * 24, // 1 day
+      path: '/',
+      httpOnly: true,
+      sameSite: 'lax',
+      secrets: [appLoadContext.cloudflare.env.COOKIE_SECRET],
+      secure: appLoadContext.cloudflare.env.ENVIRONMENT !== 'local'
+    },
+    kv: appLoadContext.cloudflare.env.KV
+  })
+  const session = await getSession(request.headers.get('Cookie'))
+  context.set(ReactRouter.appLoadContext, {
+    ...appLoadContext,
+    session
+  })
+  console.log({ message: `sessionMiddleware: sessionUser`, sessionData: session.data })
+  const response = await next()
+  response.headers.set('Set-Cookie', await commitSession(session))
+  return response
+}
+
+export const unstable_middleware = [sessionMiddleware]
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

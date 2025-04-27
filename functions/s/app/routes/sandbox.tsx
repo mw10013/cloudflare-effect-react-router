@@ -32,7 +32,7 @@ export const sessionMiddleware: Route.unstable_MiddlewareFunction = async ({ req
   return response
 }
 
-export const unstable_middleware = [sessionMiddleware]
+// export const unstable_middleware = [sessionMiddleware]
 
 const FormDataSchema = Schema.Struct({
   username: Schema.NonEmptyString.annotations({ message: () => 'Required' }),
