@@ -2,6 +2,7 @@ import * as Hono from 'hono'
 import { createRequestHandler } from 'react-router'
 import { appLoadContext, makeRuntime } from '../app/lib/ReactRouter'
 import { createOpenAuth } from './openauth'
+import type { Client } from '@openauthjs/openauth/client'
 
 declare module 'react-router' {
   export interface AppLoadContext {
@@ -10,6 +11,8 @@ declare module 'react-router' {
       ctx: ExecutionContext
     }
     runtime: ReturnType<typeof makeRuntime>
+    client: Client
+    redirectUri: string
   }
 }
 

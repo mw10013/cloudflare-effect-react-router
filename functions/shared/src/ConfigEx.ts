@@ -1,6 +1,7 @@
 import { Config, ConfigError, ConfigProvider, Either, Layer, pipe, Record } from 'effect'
 
-export const fromObject = (object: Record<string, string | object>) =>
+// https://github.com/Effect-TS/effect/issues/4636
+export const fromObject = <T extends { [K in keyof T]: string | object }>(object: T) =>
   pipe(
     object as unknown as Record<string, string>,
     Record.toEntries,
