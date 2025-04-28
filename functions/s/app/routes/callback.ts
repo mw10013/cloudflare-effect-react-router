@@ -14,7 +14,6 @@ export const loader = ReactRouter.routeEffect(({ request, context }: Route.Loade
     if (errorParam) {
       return yield* Effect.fail(new Error(errorDescParam || errorParam))
     }
-    
     if (!code) {
       return yield* Effect.fail(new Error('Missing authorization code'))
     }

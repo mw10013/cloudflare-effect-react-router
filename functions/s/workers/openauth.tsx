@@ -9,6 +9,7 @@ import { CodeUI } from '@openauthjs/openauth/ui/code'
 import { FormAlert } from '@openauthjs/openauth/ui/form'
 import { Config, Effect, Schema } from 'effect'
 import { UserSubject } from '~/lib/Domain'
+import { IdentityMgr } from '~/lib/IdentityMgr'
 import * as Q from '~/lib/Queue'
 import { makeRuntime } from '../app/lib/ReactRouter'
 
@@ -28,10 +29,7 @@ export function createOpenAuth({ env, runtime }: { env: Env; runtime: ReturnType
     copy: {
       code_placeholder: 'Code (check Worker logs)'
     },
-    sendCode: async (
-      claims,
-      code // console.log(`sendCode: ${claims.email} ${code}`)
-    ) =>
+    sendCode: async (claims, code) =>
       Effect.gen(function* () {
         yield* Effect.log(`sendCode: ${claims.email} ${code}`)
         if (env.ENVIRONMENT === 'local') {
@@ -120,18 +118,18 @@ export function createOpenAuth({ env, runtime }: { env: Env; runtime: ReturnType
         }
       })
     },
-    success: async (ctx, value) => ctx.subject('user', { userId: 1, email: value.claims.email, userType: 'customer' })
-    // IdentityMgr.provisionUser({ email: value.claims.email }).pipe(
-    //   Effect.flatMap((user) =>
-    //     Effect.tryPromise(() =>
-    //       ctx.subject('user', {
-    //         userId: user.userId,
-    //         email: user.email,
-    //         userType: user.userType
-    //       })
-    //     )
-    //   ),
-    //   runtime.runPromise
-    // )
+    success: async (ctx, value) =>
+      IdentityMgr.provisionUser({ email: value.claims.email }).pipe(
+        Effect.flatMap((user) =>
+          Effect.tryPromise(() =>
+            ctx.subject('user', {
+              userId: user.userId,
+              email: user.email,
+              userType: user.userType
+            })
+          )
+        ),
+        runtime.runPromise
+      )
   })
 }

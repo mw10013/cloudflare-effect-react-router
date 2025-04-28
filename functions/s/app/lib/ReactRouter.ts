@@ -1,4 +1,4 @@
-import type { AppLoadContext, SessionData, unstable_RouterContextProvider } from 'react-router'
+import type { AppLoadContext, unstable_MiddlewareFunction, unstable_RouterContextProvider } from 'react-router'
 import { Cloudflare } from '@workspace/shared'
 import { Effect, Layer, ManagedRuntime } from 'effect'
 import { unstable_createContext } from 'react-router'
@@ -15,8 +15,37 @@ export const routeEffect =
   (props: P) =>
     f(props).pipe(props.context.get(appLoadContext).runtime.runPromise)
 
+// type CreateServerMiddlewareFunction<T extends RouteInfo> = (args: ServerDataFunctionArgs<T>, next: unstable_MiddlewareNextFunction<Response>) => MaybePromise<Response | void>;
+
+/**
+ * Route middleware `next` function to call downstream handlers and then complete
+ * middlewares from the bottom-up
+ */
+// interface unstable_MiddlewareNextFunction<Result = unknown> {
+//   (): MaybePromise<Result>;
+// }
+/**
+ * Route middleware function signature.  Receives the same "data" arguments as a
+ * `loader`/`action` (`request`, `params`, `context`) as the first parameter and
+ * a `next` function as the second parameter which will call downstream handlers
+ * and then complete middlewares from the bottom-up
+ */
+// type unstable_MiddlewareFunction<Result = unknown> = (args: DataFunctionArgs<unstable_RouterContextProvider>, next: unstable_MiddlewareNextFunction<Result>) => MaybePromise<Result | void>;
+// @fetch https://reactrouter.com/changelog#middleware-unstable
+
+// type NextFunction<T = Response> = Parameters<unstable_MiddlewareFunction<T>>[1]
+
+export const middlewareEffect =
+  <A, E, P extends { context: unstable_RouterContextProvider }>(
+    f: (
+      props: P,
+      next: Parameters<unstable_MiddlewareFunction<Response>>[1]
+    ) => Effect.Effect<A, E, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
+  ) =>
+  (props: P, next: Parameters<unstable_MiddlewareFunction<Response>>[1]) =>
+    f(props, next).pipe(props.context.get(appLoadContext).runtime.runPromise)
+
 export const makeRuntime = (env: Env) => {
-  // return Layer.mergeAll(Layer.empty).pipe(Cloudflare.provideLoggerAndConfig(env), ManagedRuntime.make)
   return Layer.mergeAll(IdentityMgr.Default, Stripe.Default, Q.Producer.Default).pipe(
     Cloudflare.provideLoggerAndConfig(env),
     ManagedRuntime.make
