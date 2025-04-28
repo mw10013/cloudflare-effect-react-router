@@ -1,5 +1,3 @@
-'use client'
-
 import * as Oui from '@workspace/oui'
 
 export function OuiCheckboxDemo() {
