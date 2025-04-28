@@ -15,26 +15,6 @@ export const routeEffect =
   (props: P) =>
     f(props).pipe(props.context.get(appLoadContext).runtime.runPromise)
 
-// type CreateServerMiddlewareFunction<T extends RouteInfo> = (args: ServerDataFunctionArgs<T>, next: unstable_MiddlewareNextFunction<Response>) => MaybePromise<Response | void>;
-
-/**
- * Route middleware `next` function to call downstream handlers and then complete
- * middlewares from the bottom-up
- */
-// interface unstable_MiddlewareNextFunction<Result = unknown> {
-//   (): MaybePromise<Result>;
-// }
-/**
- * Route middleware function signature.  Receives the same "data" arguments as a
- * `loader`/`action` (`request`, `params`, `context`) as the first parameter and
- * a `next` function as the second parameter which will call downstream handlers
- * and then complete middlewares from the bottom-up
- */
-// type unstable_MiddlewareFunction<Result = unknown> = (args: DataFunctionArgs<unstable_RouterContextProvider>, next: unstable_MiddlewareNextFunction<Result>) => MaybePromise<Result | void>;
-// @fetch https://reactrouter.com/changelog#middleware-unstable
-
-// type NextFunction<T = Response> = Parameters<unstable_MiddlewareFunction<T>>[1]
-
 export const middlewareEffect =
   <A, E, P extends { context: unstable_RouterContextProvider }>(
     f: (
