@@ -4,6 +4,7 @@ import type { Session } from 'react-router'
 import { createClient } from '@openauthjs/openauth/client'
 import * as Hono from 'hono'
 import { createRequestHandler } from 'react-router'
+import * as Q from '~/lib/Queue'
 import { appLoadContext, makeRuntime } from '../app/lib/ReactRouter'
 import { createOpenAuth } from './openauth'
 
@@ -58,5 +59,6 @@ export default {
     ctx.waitUntil(runtime.dispose())
     return response
   },
-  async queue() {}
+  // async queue() {}
+  queue: Q.queue
 } satisfies ExportedHandler<Env>

@@ -1,5 +1,4 @@
 /** @jsxImportSource hono/jsx */
-import type { SubjectSchema } from '@openauthjs/openauth/subject'
 import type { v1 } from '@standard-schema/spec'
 import { issuer } from '@openauthjs/openauth'
 import { CodeProvider } from '@openauthjs/openauth/provider/code'
@@ -8,8 +7,9 @@ import { createSubjects } from '@openauthjs/openauth/subject'
 import { Layout as OpenAuthLayout } from '@openauthjs/openauth/ui/base'
 import { CodeUI } from '@openauthjs/openauth/ui/code'
 import { FormAlert } from '@openauthjs/openauth/ui/form'
-import { Schema } from 'effect'
+import { Config, Effect, Schema } from 'effect'
 import { UserSubject } from '~/lib/Domain'
+import * as Q from '~/lib/Queue'
 import { makeRuntime } from '../app/lib/ReactRouter'
 
 export type Subjects = {
@@ -28,22 +28,25 @@ export function createOpenAuth({ env, runtime }: { env: Env; runtime: ReturnType
     copy: {
       code_placeholder: 'Code (check Worker logs)'
     },
-    sendCode: async (claims, code) => console.log(`sendCode: ${claims.email} ${code}`)
-    // Effect.gen(function* () {
-    //   yield* Effect.log(`sendCode: ${claims.email} ${code}`)
-    //   if (env.ENVIRONMENT === 'local') {
-    //     yield* Effect.tryPromise(() => env.KV.put(`local:code`, code, { expirationTtl: 60 }))
-    //   }
-    //   // Body MUST contain email to help identify complaints.
-    //   yield* Q.Producer.send({
-    //     type: 'email',
-    //     to: claims.email,
-    //     from: yield* Config.nonEmptyString('COMPANY_EMAIL'),
-    //     subject: 'Your Login Verification Code',
-    //     html: `Hey ${claims.email},<br><br>Please enter the following code to complete your login: ${code}.<br><br>If the code does not work, please request a new verification code.<br><br>Thanks, Team.`,
-    //     text: `Hey ${claims.email} - Please enter the following code to complete your login: ${code}. If the code does not work, please request a new verification code. Thanks, Team.`
-    //   })
-    // }).pipe(runtime.runPromise)
+    sendCode: async (
+      claims,
+      code // console.log(`sendCode: ${claims.email} ${code}`)
+    ) =>
+      Effect.gen(function* () {
+        yield* Effect.log(`sendCode: ${claims.email} ${code}`)
+        if (env.ENVIRONMENT === 'local') {
+          yield* Effect.tryPromise(() => env.KV.put(`local:code`, code, { expirationTtl: 60 }))
+        }
+        // Body MUST contain email to help identify complaints.
+        yield* Q.Producer.send({
+          type: 'email',
+          to: claims.email,
+          from: yield* Config.nonEmptyString('COMPANY_EMAIL'),
+          subject: 'Your Login Verification Code',
+          html: `Hey ${claims.email},<br><br>Please enter the following code to complete your login: ${code}.<br><br>If the code does not work, please request a new verification code.<br><br>Thanks, Team.`,
+          text: `Hey ${claims.email} - Please enter the following code to complete your login: ${code}. If the code does not work, please request a new verification code. Thanks, Team.`
+        })
+      }).pipe(runtime.runPromise)
   })
   return issuer({
     ttl: {

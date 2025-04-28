@@ -16,7 +16,7 @@ export const Payload = Schema.Union(EmailPayload)
 export type Payload = Schema.Schema.Type<typeof Payload>
 
 export const queue = (batch: MessageBatch, env: Env, ctx: ExecutionContext): Promise<void> => {
-  const runtime = Layer.mergeAll(Ses.Default).pipe(Cloudflare.provideLoggerAndConfig, ManagedRuntime.make)
+  const runtime = Layer.mergeAll(Ses.Default).pipe(Cloudflare.provideLoggerAndConfig(env), ManagedRuntime.make)
   return Effect.gen(function* () {
     for (const message of batch.messages) {
       const payload = yield* Schema.decodeUnknown(EmailPayload)(message.body)
