@@ -3,24 +3,24 @@ packages:
 
 catalog:
   '@aws-sdk/client-sesv2': 3.777.0
-  '@cloudflare/vite-plugin': 1.0.12
+  '@cloudflare/vite-plugin': 1.0.13
   '@cloudflare/workers-types': 4.20250425.0
   '@openauthjs/openauth': 0.4.3
   '@paralleldrive/cuid2': 2.2.2
-  '@react-router/cloudflare': 7.5.2
-  '@react-router/dev': 7.5.2
-  '@react-router/fs-routes': 7.5.2
+  '@react-router/cloudflare': 7.5.3
+  '@react-router/dev': 7.5.3
+  '@react-router/fs-routes': 7.5.3
   '@standard-schema/spec': 1.0.0-beta.3
-  '@tailwindcss/cli': 4.0.14
+  '@tailwindcss/cli': 4.1.4
   '@tailwindcss/typography': 0.5.16
-  '@tailwindcss/vite': 4.0.14
+  '@tailwindcss/vite': 4.1.4
   '@types/node': 22.13.14
   '@types/react': 19.1.0
   '@types/react-dom': 19.1.2
   aws4fetch: 1.0.20
   daisyui: 5.0.12
-  effect: 3.14.11
-  hono: 4.7.7
+  effect: 3.14.15
+  hono: 4.7.8
   isbot: 5.1.26
   jsonc-parser: 3.3.1
   lucide: 0.485.0
@@ -28,15 +28,15 @@ catalog:
   react: 19.1.0
   react-aria-components: 1.8.0
   react-dom: 19.1.0
-  react-router: 7.5.2
-  shadcn: 2.4.0
+  react-router: 7.5.3
+  shadcn: 2.5.0
   stripe: 17.7.0
   tailwind-merge: 3.2.0
   tailwind-variants: 1.0.0
-  tailwindcss: 4.0.17
+  tailwindcss: 4.1.4
   tw-animate-css: 1.2.5
   typescript: 5.8.2
-  vite: 6.3.2
+  vite: 6.3.3
   vite-tsconfig-paths: 5.1.4
   wrangler: 4.13.2
   zx: 8.4.1

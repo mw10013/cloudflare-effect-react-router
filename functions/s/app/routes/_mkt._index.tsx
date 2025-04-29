@@ -1,6 +1,5 @@
 import type { Route } from './+types/_mkt._index'
 import { Effect } from 'effect'
-import { Outlet } from 'react-router'
 import * as ReactRouter from '~/lib/ReactRouter'
 
 export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
@@ -13,5 +12,5 @@ export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
 )
 
 export default function RouteComponent({}: Route.ComponentProps) {
-  return <div className="flex min-h-svh flex-row justify-center gap-2 p-6">Mkt Index</div>
+  return <div className="p-6">Mkt Index</div>
 }

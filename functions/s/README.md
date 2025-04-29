@@ -90,11 +90,13 @@ To test Stripe payments, use the following test card details:
 
 ## Tailwind
 
+- @fetch https://tailwindcss.com/docs/upgrade-guide
 - **Utility Class:** A class applying a specific, predefined style rule.
 - **Variant (Condition):** Controls when a utility applies (e.g., `hover:`, `md:`, `:dark`).
 - **Modifier (Adjustment):** Adjusts a utility's value or behavior (e.g., `/50`, `-`, `!`).
 - **Property:** The standard CSS property name targeted by utilities or used in arbitrary syntax (`[property:value]`).
 - **Theme Mapping:** Maps semantic utility names (e.g., `primary`) via `@theme` (e.g., `--color-primary`) to CSS variables (e.g., `var(--primary)`) holding the actual values.
+- Tailwind spacing unit = 0.25rem = 4px (assuming default browser font size of 16px)
 
 ## Etc
 
