@@ -80,43 +80,6 @@ export const sessionMiddleware = ReactRouter.middlewareEffect(
     })
 )
 
-export const sessionMiddleware1: Route.unstable_MiddlewareFunction = async ({ request, context }, next) => {
-  const appLoadContext = context.get(ReactRouter.appLoadContext)
-  if (!appLoadContext) {
-    throw new Error('AppLoadContext not found in session middleware.')
-  }
-  const { getSession, commitSession, destroySession } = createWorkersKVSessionStorage<SessionData>({
-    cookie: {
-      // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#cookie_prefixes
-      // // Relax cookie constraints for local development without https
-      name: appLoadContext.cloudflare.env.ENVIRONMENT === 'local' ? 'local-session' : '__Host-session',
-      maxAge: 60 * 60 * 24, // 1 day
-      path: '/',
-      httpOnly: true,
-      sameSite: 'lax',
-      secrets: [appLoadContext.cloudflare.env.COOKIE_SECRET],
-      secure: appLoadContext.cloudflare.env.ENVIRONMENT !== 'local'
-    },
-    kv: appLoadContext.cloudflare.env.KV
-  })
-  const session = await getSession(request.headers.get('Cookie'))
-  context.set(ReactRouter.appLoadContext, {
-    ...appLoadContext,
-    session,
-    sessionAction: 'commit'
-  })
-  console.log({ message: `sessionMiddleware: sessionUser`, sessionData: session.data })
-  const response = await next()
-  const nextAppLoadContext = context.get(ReactRouter.appLoadContext)
-  const action = nextAppLoadContext.sessionAction
-  if (action === 'destroy') {
-    response.headers.set('Set-Cookie', await destroySession(session))
-    return response
-  }
-  response.headers.set('Set-Cookie', await commitSession(session))
-  return response
-}
-
 export const unstable_middleware = [sessionMiddleware]
 
 export const links: Route.LinksFunction = () => [
@@ -142,70 +105,6 @@ function useHrefEx(href: string) {
   return resolvedHref
 }
 
-const items = [
-  {
-    title: 'Button',
-    url: '/demo/button'
-  },
-  {
-    title: 'Checkbox',
-    url: '/demo/checkbox'
-  },
-  {
-    title: 'Form',
-    url: '/demo/form'
-  },
-  {
-    title: 'Number Field',
-    url: '/demo/number-field'
-  },
-  {
-    title: 'Radio Group',
-    url: '/demo/radio-group'
-  },
-  {
-    title: 'Text Field',
-    url: '/demo/text-field'
-  },
-  {
-    title: 'Link',
-    url: '/play/link'
-  },
-  {
-    title: 'Effect',
-    url: '/effect'
-  },
-  {
-    title: 'Sandbox',
-    url: '/sandbox'
-  }
-]
-
-export function AppSidebar() {
-  return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Components</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Rac.Link href={item.url}>
-                      <span>{item.title}</span>
-                    </Rac.Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
-  )
-}
-
 export function Layout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate()
 
@@ -219,13 +118,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="min-h-svh font-sans antialiased">
         <RouterProvider navigate={navigate} useHref={useHrefEx}>
-          <SidebarProvider>
-            <AppSidebar />
-            <main>
-              <SidebarTrigger />
-              {children}
-            </main>
-          </SidebarProvider>
+          {children}
           <ScrollRestoration />
           <Scripts />
         </RouterProvider>

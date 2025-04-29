@@ -1,6 +1,6 @@
 import type { Route } from './+types/app._index'
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router'
 import * as Rac from 'react-aria-components'
+import { Outlet } from 'react-router'
 import {
   Sidebar,
   SidebarContent,
@@ -79,5 +79,16 @@ export function AppSidebar() {
 }
 
 export default function RouteComponent() {
-  return <div className="flex min-h-svh flex-row justify-center gap-2 p-6"></div>
+  return (
+    // <div className="flex min-h-svh flex-row justify-center gap-2 p-6">
+    <div className="">
+      <SidebarProvider>
+        <AppSidebar />
+        <main>
+          <SidebarTrigger />
+          <Outlet />
+        </main>
+      </SidebarProvider>
+    </div>
+  )
 }
