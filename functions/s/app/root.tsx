@@ -6,20 +6,8 @@ import './app.css'
 import type { SessionData } from './lib/Domain'
 import { createWorkersKVSessionStorage } from '@react-router/cloudflare'
 import { Effect } from 'effect'
-import * as Rac from 'react-aria-components'
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarProvider,
-  SidebarTrigger
-} from '~/components/ui/sidebar'
 import * as ReactRouter from '~/lib/ReactRouter'
+import { TailwindIndicator } from './components/tailwind-indicator'
 
 declare module 'react-aria-components' {
   interface RouterConfig {
@@ -119,6 +107,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body className="min-h-svh font-sans antialiased">
         <RouterProvider navigate={navigate} useHref={useHrefEx}>
           {children}
+          <TailwindIndicator />
           <ScrollRestoration />
           <Scripts />
         </RouterProvider>
