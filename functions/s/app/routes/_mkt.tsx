@@ -3,6 +3,7 @@ import * as Oui from '@workspace/oui'
 import { Effect } from 'effect'
 import * as Rac from 'react-aria-components'
 import { Outlet } from 'react-router'
+import { Container, ContainerWrapper } from '~/components/container'
 import * as ReactRouter from '~/lib/ReactRouter'
 
 export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
@@ -30,7 +31,7 @@ export function SiteHeader() {
   return (
     <header className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
       <div className="container-wrapper">
-        <div className="container mx-auto flex h-14 items-center gap-2 px-4 md:gap-4">
+        <div className="container flex h-14 items-center gap-2 md:gap-4">
           <MainNav />
           {/* <MobileNav />
           <div className="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
@@ -86,23 +87,8 @@ export function MainNav() {
         <span className="hidden font-bold lg:inline-block">SaaS</span>
       </Rac.Link>
       <nav className="flex items-center gap-4 text-sm xl:gap-6">
-        <Rac.Link href="/docs/installation" className={'text-foreground/80 hover:text-foreground/80 transition-colors'}>
-          Docs
-        </Rac.Link>
-        <Rac.Link href="/docs/components" className={'text-foreground/80 hover:text-foreground/80 transition-colors'}>
-          Components
-        </Rac.Link>
-        <Rac.Link href="/blocks" className={'text-foreground/80 hover:text-foreground/80 transition-colors'}>
-          Blocks
-        </Rac.Link>
-        <Rac.Link href="/charts" className={'text-foreground/80 hover:text-foreground/80 transition-colors'}>
-          Charts
-        </Rac.Link>
-        <Rac.Link href="/themes" className={'text-foreground/80 hover:text-foreground/80 transition-colors'}>
-          Themes
-        </Rac.Link>
-        <Rac.Link href="/colors" className={'text-foreground/80 hover:text-foreground/80 transition-colors'}>
-          Colors
+        <Rac.Link href="/pricing" className={'text-foreground/80 hover:text-foreground/80 transition-colors'}>
+          Pricing
         </Rac.Link>
       </nav>
     </div>

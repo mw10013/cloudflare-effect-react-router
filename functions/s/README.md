@@ -91,6 +91,7 @@ To test Stripe payments, use the following test card details:
 ## Tailwind
 
 - @fetch https://tailwindcss.com/docs/upgrade-guide
+- @fetch https://tailwindcss.com/docs/adding-custom-styles
 - **Utility Class:** A class applying a specific, predefined style rule.
 - **Variant (Condition):** Controls when a utility applies (e.g., `hover:`, `md:`, `:dark`).
 - **Modifier (Adjustment):** Adjusts a utility's value or behavior (e.g., `/50`, `-`, `!`).
