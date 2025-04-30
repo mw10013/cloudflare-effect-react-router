@@ -2,16 +2,15 @@ import type { Route } from './+types/_mkt'
 import * as Oui from '@workspace/oui'
 import { Effect } from 'effect'
 import * as Rac from 'react-aria-components'
-import { Outlet } from 'react-router'
-import { Container, ContainerWrapper } from '~/components/container'
+import { Outlet, useRouteLoaderData } from 'react-router'
 import * as ReactRouter from '~/lib/ReactRouter'
 
 export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
   Effect.gen(function* () {
     yield* Effect.log('_mkt loader')
     const alc = context.get(ReactRouter.appLoadContext)
-
-    return { message: `ENVIRONMENT: ${alc.cloudflare.env.ENVIRONMENT}` }
+    yield* Effect.log({ message: '_mkt loader', sessionUser: alc.session.get('sessionUser') })
+    return { sessionUser: alc.session.get('sessionUser') }
   })
 )
 
@@ -28,6 +27,7 @@ export default function RouteComponent({}: Route.ComponentProps) {
 }
 
 export function SiteHeader() {
+  const routeLoaderData = useRouteLoaderData<Route.ComponentProps['loaderData']>('_mkt')
   return (
     <header className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
       <div className="container-wrapper">
@@ -62,14 +62,16 @@ export function SiteHeader() {
               <CommandMenu />
             </div> */}
             <nav className="flex items-center gap-0.5">
-              Sign In / Up
-              {/* <Button asChild variant="ghost" size="icon" className="h-8 w-8 px-0">
-                <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
-                  <Icons.gitHub className="h-4 w-4" />
-                  <span className="sr-only">GitHub</span>
-                </Link>
-              </Button>
-              <ModeSwitcher /> */}
+              {routeLoaderData?.sessionUser ? (
+                <Rac.Form action="/signout" method="post" className="grid w-full max-w-sm gap-6">
+                  <Oui.Button type="submit">Sign Out</Oui.Button>
+                </Rac.Form>
+              ) : (
+                // Use <a> instead of Rac.Link to bypass Rac.RouterProvider and hit the Hono OpenAuth endpoint directly
+                <a href="/authenticate" className="text-foreground/80 hover:text-foreground/80 transition-colors">
+                  Sign In
+                </a>
+              )}
             </nav>
           </div>
         </div>

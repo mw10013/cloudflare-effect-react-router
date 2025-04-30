@@ -10,14 +10,14 @@ export const loader = ReactRouter.routeEffect(({ request, context }: Route.Loade
     const errorParam = url.searchParams.get('error')
     const errorDescParam = url.searchParams.get('error_description')
     const code = url.searchParams.get('code')
-    
+
     if (errorParam) {
       return yield* Effect.fail(new Error(errorDescParam || errorParam))
     }
     if (!code) {
       return yield* Effect.fail(new Error('Missing authorization code'))
     }
-    
+
     const appLoadContext = context.get(ReactRouter.appLoadContext)
     const { client, redirectUri, session } = appLoadContext
 
@@ -41,6 +41,7 @@ export const loader = ReactRouter.routeEffect(({ request, context }: Route.Loade
     }
     const { userId, email, userType } = verified.subject.properties
     session.set('sessionUser', { userId, email, userType })
+    yield* Effect.log({ message: 'Callback: verified', sessionUser: session.get('sessionUser') })
     return redirect(userType === 'staffer' ? '/admin' : '/app')
   }).pipe(
     Effect.catchAll((error) => {

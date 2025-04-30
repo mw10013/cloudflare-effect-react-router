@@ -47,6 +47,8 @@ export const sessionMiddleware = ReactRouter.middlewareEffect(
         catch: (unknown) => new Error(`sessionMiddleware: downstream middleware/handler failed: ${unknown}`)
       })
       const nextAppLoadContext = context.get(ReactRouter.appLoadContext)
+      yield* Effect.log({ message: `sessionMiddleware: next session`, sessionUser: session.get('sessionUser') })
+
       if (nextAppLoadContext.sessionAction === 'destroy') {
         response.headers.set(
           'Set-Cookie',
