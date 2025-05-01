@@ -2,7 +2,7 @@ import type { Route } from './+types/_mkt'
 import * as Oui from '@workspace/oui'
 import { Effect } from 'effect'
 import * as Rac from 'react-aria-components'
-import { Outlet, useMatches, useRouteLoaderData } from 'react-router'
+import { Outlet, useRouteLoaderData } from 'react-router'
 import * as ReactRouter from '~/lib/ReactRouter'
 
 export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>

@@ -16,8 +16,8 @@ import {
 
 const items = [
   {
-    title: 'Button',
-    url: '/demo/button'
+    title: 'SaaS',
+    url: '/'
   },
   {
     title: 'Checkbox',
