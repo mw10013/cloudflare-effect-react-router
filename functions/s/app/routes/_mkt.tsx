@@ -2,7 +2,7 @@ import type { Route } from './+types/_mkt'
 import * as Oui from '@workspace/oui'
 import { Effect } from 'effect'
 import * as Rac from 'react-aria-components'
-import { Outlet, useRouteLoaderData } from 'react-router'
+import { Outlet, useMatches, useRouteLoaderData } from 'react-router'
 import * as ReactRouter from '~/lib/ReactRouter'
 
 export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
@@ -27,7 +27,7 @@ export default function RouteComponent({}: Route.ComponentProps) {
 }
 
 export function SiteHeader() {
-  const routeLoaderData = useRouteLoaderData<Route.ComponentProps['loaderData']>('_mkt')
+  const routeLoaderData = useRouteLoaderData<Route.ComponentProps['loaderData']>('routes/_mkt')
   return (
     <header className="border-grid bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
       <div className="container-wrapper">
