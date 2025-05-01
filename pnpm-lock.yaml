@@ -55,8 +55,8 @@ catalogs:
       specifier: 5.0.12
       version: 5.0.12
     effect:
-      specifier: 3.14.15
-      version: 3.14.15
+      specifier: 3.14.17
+      version: 3.14.17
     hono:
       specifier: 4.7.8
       version: 4.7.8
@@ -154,7 +154,7 @@ importers:
         version: 1.0.20
       effect:
         specifier: 'catalog:'
-        version: 3.14.15
+        version: 3.14.17
       hono:
         specifier: 'catalog:'
         version: 4.7.8
@@ -201,6 +201,12 @@ importers:
 
   functions/env:
     dependencies:
+      '@workspace/shared':
+        specifier: workspace:*
+        version: link:../shared
+      effect:
+        specifier: 'catalog:'
+        version: 3.14.17
       isbot:
         specifier: 'catalog:'
         version: 5.1.26
@@ -354,7 +360,7 @@ importers:
         version: 4.1.0
       effect:
         specifier: 'catalog:'
-        version: 3.14.15
+        version: 3.14.17
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@19.1.0)
@@ -862,7 +868,7 @@ importers:
         version: 4.1.0
       effect:
         specifier: 'catalog:'
-        version: 3.14.15
+        version: 3.14.17
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@19.1.0)
@@ -980,7 +986,7 @@ importers:
     dependencies:
       effect:
         specifier: 'catalog:'
-        version: 3.14.15
+        version: 3.14.17
       react-aria-components:
         specifier: 'catalog:'
         version: 1.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -4382,8 +4388,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  effect@3.14.15:
-    resolution: {integrity: sha512-KzDrzu80e+NTLb9O/Vggyw5iax+LQV76jeNmK1YgNNjvfUttpY+oClu6kSeAlNAJPShHeBs6lhfW0fYo+262RQ==}
+  effect@3.14.17:
+    resolution: {integrity: sha512-lXEAYST0aYRqoGIf+rAyC7c4O4BbwFbdOudNIwoGpRIogijp/RbER1HE0GsgpP3NP+DJqCp0u2o8QNZAViOFJg==}
 
   electron-to-chromium@1.5.135:
     resolution: {integrity: sha512-8gXUdEmvb+WCaYUhA0Svr08uSeRjM2w3x5uHOc1QbaEVzJXB8rgm5eptieXzyKoVEtinLvW6MtTcurA65PeS1Q==}
@@ -10448,7 +10454,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  effect@3.14.15:
+  effect@3.14.17:
     dependencies:
       '@standard-schema/spec': 1.0.0
       fast-check: 3.23.2
@@ -12168,7 +12174,7 @@ snapshots:
       source-map: 0.8.0-beta.0
       sucrase: 3.35.0
       tinyexec: 0.3.2
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.13
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.5.3

@@ -1,4 +1,5 @@
 import type { Route } from './+types/_index'
+import { EnvEx } from '@workspace/shared'
 import { env } from 'cloudflare:workers'
 
 export function meta({}: Route.MetaArgs) {
@@ -6,9 +7,13 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export function loader({ context }: Route.LoaderArgs) {
-  return { message: `ENVIRONMENT: ${context.cloudflare.env.ENVIRONMENT}`, env }
+  return { env, e: EnvEx.e() }
 }
 
 export default function RouteComponent({ loaderData }: Route.ComponentProps) {
-  return <div className="p-6">{loaderData.message}</div>
+  return (
+    <div className="p-6">
+      <pre>{JSON.stringify(loaderData, null, 2)}</pre>
+    </div>
+  )
 }

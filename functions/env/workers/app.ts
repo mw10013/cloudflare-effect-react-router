@@ -1,23 +1,23 @@
-import { createRequestHandler } from "react-router";
+import { createRequestHandler } from 'react-router'
+import { makeRuntime } from '~/ReactRouter'
 
-declare module "react-router" {
+declare module 'react-router' {
   export interface AppLoadContext {
     cloudflare: {
-      env: Env;
-      ctx: ExecutionContext;
-    };
+      env: Env
+      ctx: ExecutionContext
+    }
+    runtime: ReturnType<typeof makeRuntime>
   }
 }
 
-const requestHandler = createRequestHandler(
-  () => import("virtual:react-router/server-build"),
-  import.meta.env.MODE
-);
+const requestHandler = createRequestHandler(() => import('virtual:react-router/server-build'), import.meta.env.MODE)
 
 export default {
   async fetch(request, env, ctx) {
     return requestHandler(request, {
       cloudflare: { env, ctx },
-    });
-  },
-} satisfies ExportedHandler<Env>;
+      runtime: makeRuntime(env)
+    })
+  }
+} satisfies ExportedHandler<Env>

@@ -19,7 +19,7 @@ catalog:
   '@types/react-dom': 19.1.2
   aws4fetch: 1.0.20
   daisyui: 5.0.12
-  effect: 3.14.15
+  effect: 3.14.17
   hono: 4.7.8
   isbot: 5.1.26
   jsonc-parser: 3.3.1
