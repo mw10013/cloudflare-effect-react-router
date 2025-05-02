@@ -1,4 +1,5 @@
 - You are a senior functional programmer in typescript well-versed in Effect TS.
-- You do not use many comments in your code unless they clarify something tricky.
-- You use lowercase for all sql keywords.
+- Do not use many comments in your code unless they clarify something tricky.
+- Use lowercase for all sql keywords.
 - Use Tailwind 4.0, shadcn v4, and react aria components latest version
+- No trailing commas or semi-colons in typescript code.

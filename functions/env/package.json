@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build",
+    "build": "DEBUG=vite:* react-router build",
     "build:PRODUCTION": "CLOUDFLARE_ENV=production pnpm build",
     "deploy": "pnpm run build && wrangler deploy",
     "deploy:PRODUCTION": "pnpm build:PRODUCTION && wrangler deploy",
