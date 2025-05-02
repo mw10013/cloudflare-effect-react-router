@@ -17,7 +17,6 @@
     "clean:etc": "rm -rf .react-router build dist"
   },
   "dependencies": {
-    "@workspace/shared": "workspace:*",
     "isbot": "catalog:",
     "effect": "catalog:",
     "react": "catalog:",
