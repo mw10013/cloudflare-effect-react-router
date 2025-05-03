@@ -110,3 +110,15 @@ To test Stripe payments, use the following test card details:
 - https://reactrouter.com/start/changelog#middleware-unstable
 - https://reactrouter.com/start/changelog#middleware-context-parameter
 - https://github.com/remix-run/react-router/blob/main/decisions/0014-context-middleware.md
+
+## Vite
+
+### Vite Build Error: "The build was canceled"
+
+- **Origin:** Likely logged by `esbuild` when it fails/cancels during Vite's dependency optimization step (client build).
+- **Trigger:** Appears correlated with processing complex dependencies like `effect` and its own dependencies (e.g., `fast-check`).
+- **Vite Handling:** Vite explicitly catches this specific error message and handles it **non-fatally**, allowing the build process to continue.
+- **Impact:** The optimization step might be incomplete, but the overall client and server builds still complete successfully according to logs.
+- **Conclusion:** If the final build artifacts are generated successfully, this specific error message is **likely safe to ignore**.
+- https://github.com/vitejs/vite/blob/main/packages/vite/src/node/optimizer/index.ts
+- https://github.com/vitejs/vite/blob/main/packages/vite/src/node/optimizer/scan.ts
