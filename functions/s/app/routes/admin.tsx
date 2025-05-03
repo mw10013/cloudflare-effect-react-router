@@ -20,8 +20,12 @@ const items = [
     url: '/'
   },
   {
-    title: 'Checkbox',
-    url: '/demo/checkbox'
+    title: 'Admin',
+    url: '/admin'
+  },
+  {
+    title: 'Stripe',
+    url: '/admin/stripe'
   },
   {
     title: 'Form',
