@@ -8,7 +8,7 @@ import * as Q from '~/lib/Queue'
 import { appLoadContext, makeRuntime } from '../app/lib/ReactRouter'
 import { createOpenAuth } from './openauth'
 
-// export { StripeDurableObject } from '~/lib/Stripe'
+export { StripeDurableObject } from '~/lib/StripeDurableObject'
 
 declare module 'react-router' {
   export interface AppLoadContext {

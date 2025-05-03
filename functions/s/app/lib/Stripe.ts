@@ -49,15 +49,15 @@ export class Stripe extends Effect.Service<Stripe>()('Stripe', {
       'payment_intent.canceled'
     ]
 
-    // const stripeDo = yield* ConfigEx.object('STRIPE_DO').pipe(
-    //   Config.mapOrFail((object) =>
-    //     Predicate.hasProperty(object, 'idFromName') && typeof object.idFromName === 'function'
-    //       ? Either.right(object as Env['STRIPE_DO'])
-    //       : Either.left(ConfigError.InvalidData([], `Expected a DurableObjectNamespace but received ${object}`))
-    //   )
-    // )
-    // const id = stripeDo.idFromName('stripe')
-    // const stub = stripeDo.get(id)
+    const stripeDo = yield* ConfigEx.object('STRIPE_DO').pipe(
+      Config.mapOrFail((object) =>
+        Predicate.hasProperty(object, 'idFromName') && typeof object.idFromName === 'function'
+          ? Either.right(object as Env['STRIPE_DO'])
+          : Either.left(ConfigError.InvalidData([], `Expected a DurableObjectNamespace but received ${object}`))
+      )
+    )
+    const id = stripeDo.idFromName('stripe')
+    const stub = stripeDo.get(id)
 
     const getSubscriptionForCustomer = (customerId: NonNullable<StripeType.SubscriptionListParams['customer']>) =>
       Effect.tryPromise(() =>
@@ -231,8 +231,8 @@ export class Stripe extends Effect.Service<Stripe>()('Stripe', {
             yield* Effect.logError(`Stripe webhook: customerId is not string for event type: ${event.type}`)
             return new Response() // Return 200 to avoid retries
           }
-          // yield* Effect.tryPromise(() => stub.handleEvent(customerId))
-          yield* syncStripeData(customerId)
+          yield* Effect.tryPromise(() => stub.handleEvent(customerId))
+          // yield* syncStripeData(customerId)
           return new Response()
         }).pipe(
           Effect.tapError((error) =>
@@ -389,15 +389,9 @@ export class Stripe extends Effect.Service<Stripe>()('Stripe', {
   })
 }) {}
 
-const makeRuntime = (env: Env) => {
-  const LogLevelLive = Config.logLevel('LOG_LEVEL').pipe(
-    Config.withDefault(LogLevel.Info),
-    Effect.map((level) => Logger.minimumLogLevel(level)),
-    Layer.unwrapEffect
-  )
-  const ConfigLive = ConfigEx.fromObject(env)
-  return Layer.mergeAll(Stripe.Default).pipe(Cloudflare.provideLoggerAndConfig(env), ManagedRuntime.make)
-}
+// const makeRuntime = (env: Env) => {
+//   return Layer.mergeAll(Stripe.Default).pipe(Cloudflare.provideLoggerAndConfig(env), ManagedRuntime.make)
+// }
 
 // export class StripeDurableObject extends DurableObject<Env> {
 //   storage: DurableObjectStorage
