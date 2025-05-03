@@ -5,6 +5,7 @@ import { SchemaEx } from '@workspace/shared'
 import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
 import * as ReactRouter from '~/lib/ReactRouter'
+import { Stripe } from '~/lib/Stripe'
 
 const FormDataSchema = Schema.Union(
   Schema.Struct({
@@ -17,19 +18,25 @@ const FormDataSchema = Schema.Union(
 )
 
 export const action = ReactRouter.routeEffect(
-  ({
-    request
-  }: Route.ActionArgs): Effect.Effect<
+  (
+    { request }: Route.ActionArgs // : Effect.Effect<
+  ) =>
     // Explicitly define A to prevent ts(2742) from inferred non-portable types.
-    {
-      formData?: Schema.Schema.Type<typeof FormDataSchema>
-      validationErrors?: SchemaEx.ValidationErrors
-    },
-    UnknownException
-  > =>
+    //   {
+    //     formData?: Schema.Schema.Type<typeof FormDataSchema>
+    //     validationErrors?: SchemaEx.ValidationErrors
+    //   },
+    //   UnknownException
+    // >
     Effect.gen(function* () {
       const formData = yield* SchemaEx.decodeRequestFormData({ request, schema: FormDataSchema })
+      let message: string | undefined
+      if (formData.intent === 'seed') {
+        yield* Stripe.seed()
+        message = 'Seeded'
+      }
       return {
+        message,
         formData
       }
     }).pipe(SchemaEx.catchValidationError)
