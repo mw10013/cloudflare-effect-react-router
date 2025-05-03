@@ -59,6 +59,5 @@ export default {
     ctx.waitUntil(runtime.dispose())
     return response
   },
-  // async queue() {}
   queue: Q.queue
 } satisfies ExportedHandler<Env>

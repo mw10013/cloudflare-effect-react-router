@@ -16,6 +16,14 @@ import {
 
 const items = [
   {
+    title: 'SaaS',
+    url: '/'
+  },
+  {
+    title: 'App',
+    url: '/app'
+  },
+  {
     title: 'Button',
     url: '/demo/button'
   },
@@ -58,7 +66,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Components</SidebarGroupLabel>
+          <SidebarGroupLabel>App Panel</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

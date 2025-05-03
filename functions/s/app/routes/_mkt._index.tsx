@@ -15,7 +15,7 @@ export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
   })
 )
 
-export default function RouteComponent({}: Route.ComponentProps) {
+export default function RouteComponent() {
   const mktRouteLoaderData = useRouteLoaderData<MktRoute.ComponentProps['loaderData']>('routes/_mkt')
   return (
     <div className="flex flex-1 flex-col items-center justify-center p-6">
