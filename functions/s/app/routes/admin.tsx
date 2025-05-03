@@ -24,28 +24,12 @@ const items = [
     url: '/admin'
   },
   {
+    title: 'Customers',
+    url: '/admin/customers'
+  },
+  {
     title: 'Stripe',
     url: '/admin/stripe'
-  },
-  {
-    title: 'Form',
-    url: '/demo/form'
-  },
-  {
-    title: 'Number Field',
-    url: '/demo/number-field'
-  },
-  {
-    title: 'Radio Group',
-    url: '/demo/radio-group'
-  },
-  {
-    title: 'Text Field',
-    url: '/demo/text-field'
-  },
-  {
-    title: 'Link',
-    url: '/play/link'
   },
   {
     title: 'Effect',
@@ -62,7 +46,7 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Components</SidebarGroupLabel>
+          <SidebarGroupLabel>Admin Panel</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
