@@ -5,18 +5,18 @@
 ## Local Dev
 
 - pnpm i
-- pnpm -F env dev
+- pnpm -F <PACKAGE-NAME> dev
 
 ## Deploy
 
-- pnpm -F env deploy:PRODUCTION
-- Workers & Pages Settings: cloudflare-openauth-stripe-production
+- pnpm -F <PACKAGE-NAME> deploy:PRODUCTION
+- Workers & Pages Settings: <WRANGLER-NAME>-production
   - Git repository: connect to git repo
   - Build configuration
-    - Build command: CLOUDFLARE_ENV=production pnpm -F env build
-    - Deploy command: pnpm -F env exec wrangler deploy
+    - Build command: CLOUDFLARE_ENV=production pnpm -F <PACKAGE-NAME> build
+    - Deploy command: pnpm -F <PACKAGE-NAME> exec wrangler deploy
   - Build watch paths
-    - Include paths: functions/env/\*
+    - Include paths: functions/<PACKAGE-NAME>/\*
 
 # Welcome to React Router!
 
