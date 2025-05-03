@@ -5,19 +5,5 @@ import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
-  // build: {
-  //   rollupOptions: {
-  //     external: [
-  //       // Treat all modules starting with "cloudflare:" as external during build
-  //       /^cloudflare:.*/
-  //     ]
-  //   }
-  // },
-  plugins: [
-    // Ensure cloudflare plugin runs early
-    cloudflare({ viteEnvironment: { name: 'ssr' } }),
-    tailwindcss(),
-    reactRouter(),
-    tsconfigPaths() // Moved tsconfigPaths later
-  ]
+  plugins: [cloudflare({ viteEnvironment: { name: 'ssr' } }), tailwindcss(), reactRouter(), tsconfigPaths()]
 })
