@@ -1,4 +1,4 @@
-import type { isResponse, NavigateOptions } from 'react-router'
+import type { NavigateOptions } from 'react-router'
 import type { Route } from './+types/root'
 import { RouterProvider } from 'react-aria-components'
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router'
