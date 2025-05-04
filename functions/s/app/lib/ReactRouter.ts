@@ -21,9 +21,9 @@ export const middlewareEffect =
     f: (
       props: P,
       next: Parameters<unstable_MiddlewareFunction<Response>>[1]
-    ) => Effect.Effect<A | undefined, E | Response, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
+    ) => Effect.Effect<A, E | Response, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
   ) =>
-  (props: P, next: Parameters<unstable_MiddlewareFunction<Response>>[1]): Promise<A | undefined> =>
+  (props: P, next: Parameters<unstable_MiddlewareFunction<Response>>[1]) =>
     props.context
       .get(appLoadContext)
       .runtime.runPromiseExit(f(props, next))
