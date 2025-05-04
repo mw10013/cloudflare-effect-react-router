@@ -16,7 +16,7 @@ declare module 'react-aria-components' {
 }
 
 export const sessionMiddleware = ReactRouter.middlewareEffect(
-  ({ request, context }: Parameters<Route.unstable_MiddlewareFunction>[0], next) =>
+  ({ request, context }, next) =>
     Effect.gen(function* () {
       const appLoadContext = context.get(ReactRouter.appLoadContext)
       const { getSession, commitSession, destroySession } = createWorkersKVSessionStorage<SessionData>({
@@ -40,7 +40,7 @@ export const sessionMiddleware = ReactRouter.middlewareEffect(
         session,
         sessionAction: 'commit'
       })
-      yield* Effect.log({ message: `sessionMiddleware: Loaded session`, sessionUser: session.get('sessionUser') })
+      // yield* Effect.log({ message: `sessionMiddleware: Loaded session`, sessionUser: session.get('sessionUser') })
 
       const response = yield* Effect.tryPromise({
         try: () => Promise.resolve(next()),
@@ -48,7 +48,6 @@ export const sessionMiddleware = ReactRouter.middlewareEffect(
           unknown instanceof Response ? unknown : new Error(`sessionMiddleware: downstream middleware/handler failed: ${unknown}`)
       })
       const nextAppLoadContext = context.get(ReactRouter.appLoadContext)
-      yield* Effect.log({ message: `sessionMiddleware: next session`, sessionUser: session.get('sessionUser') })
 
       if (nextAppLoadContext.sessionAction === 'destroy') {
         response.headers.set(

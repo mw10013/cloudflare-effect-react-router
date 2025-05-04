@@ -13,17 +13,18 @@ export const routeEffect =
     f: (props: P) => Effect.Effect<A, E, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
   ) =>
   (props: P) =>
-    // TODO: Consider applying the Exit/throw pattern here too
     f(props).pipe(props.context.get(appLoadContext).runtime.runPromise)
 
 export const middlewareEffect =
-  <A, E, P extends { context: unstable_RouterContextProvider }>(
-    f: (
-      props: P,
-      next: Parameters<unstable_MiddlewareFunction<Response>>[1]
-    ) => Effect.Effect<A, E | Response, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
+  <
+    A,
+    E,
+    P extends { request: Request; params: Params; context: unstable_RouterContextProvider },
+    N extends Parameters<unstable_MiddlewareFunction<Response>>[1]
+  >(
+    f: (props: P, next: N) => Effect.Effect<A, E, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
   ) =>
-  (props: P, next: Parameters<unstable_MiddlewareFunction<Response>>[1]) =>
+  (props: P, next: N) =>
     props.context
       .get(appLoadContext)
       .runtime.runPromiseExit(f(props, next))

@@ -1,5 +1,5 @@
-import { Effect } from 'effect'
 import type { Route } from './+types/app._index'
+import { Effect } from 'effect'
 import * as Rac from 'react-aria-components'
 import { Outlet, redirect } from 'react-router'
 import {
@@ -16,23 +16,19 @@ import {
 } from '~/components/ui/sidebar'
 import * as ReactRouter from '~/lib/ReactRouter'
 
-export const adminMiddleware = ReactRouter.middlewareEffect(({ context }: Parameters<Route.unstable_MiddlewareFunction>[0], next) =>
+export const adminMiddleware = ReactRouter.middlewareEffect(({ context }) =>
   Effect.gen(function* () {
-    const appLoadContext = context.get(ReactRouter.appLoadContext)
-    const sessionUser = appLoadContext.session.get('sessionUser')
-    yield* Effect.log({ message: 'adminMiddleware', sessionUser })
+    const sessionUser = context.get(ReactRouter.appLoadContext).session.get('sessionUser')
     if (!sessionUser) {
       return yield* Effect.fail(redirect('/authenticate'))
     }
     if (sessionUser.userType !== 'staffer') {
       return yield* Effect.fail(new Response('Forbidden', { status: 403 }))
     }
-    return yield* Effect.tryPromise(() => Promise.resolve(next()))
   })
 )
 
 export const unstable_middleware = [adminMiddleware]
-
 
 const items = [
   {

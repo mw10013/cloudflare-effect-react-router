@@ -16,18 +16,15 @@ import {
 } from '~/components/ui/sidebar'
 import * as ReactRouter from '~/lib/ReactRouter'
 
-export const appMiddleware = ReactRouter.middlewareEffect(({ context }: Parameters<Route.unstable_MiddlewareFunction>[0], next) =>
+export const appMiddleware = ReactRouter.middlewareEffect(({ context }) =>
   Effect.gen(function* () {
-    const appLoadContext = context.get(ReactRouter.appLoadContext)
-    const sessionUser = appLoadContext.session.get('sessionUser')
-    yield* Effect.log({ message: 'appMiddleware', sessionUser })
+    const sessionUser = context.get(ReactRouter.appLoadContext).session.get('sessionUser')
     if (!sessionUser) {
       return yield* Effect.fail(redirect('/authenticate'))
     }
     if (sessionUser.userType !== 'customer') {
       return yield* Effect.fail(new Response('Forbidden', { status: 403 }))
     }
-    return yield* Effect.tryPromise(() => Promise.resolve(next()))
   })
 )
 
