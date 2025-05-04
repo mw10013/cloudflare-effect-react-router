@@ -6,7 +6,8 @@ import * as Hono from 'hono'
 import { createRequestHandler } from 'react-router'
 import * as Q from '~/lib/Queue'
 import { appLoadContext, makeRuntime } from '../app/lib/ReactRouter'
-import { createOpenAuth } from './openauth'
+// import { createOpenAuth } from './OpenAuth'
+import * as OpenAuth from './OpenAuth1'
 
 export { StripeDurableObject } from '~/lib/StripeDurableObject'
 
@@ -17,6 +18,7 @@ declare module 'react-router' {
       ctx: ExecutionContext
     }
     runtime: ReturnType<typeof makeRuntime>
+    openAuth: ReturnType<typeof OpenAuth.make>
     session: Session<SessionData>
     sessionAction: 'commit' | 'destroy'
     client: Client
@@ -28,8 +30,9 @@ export default {
   async fetch(request, env, ctx) {
     const hono = new Hono.Hono()
     const runtime = makeRuntime(env)
-    const openAuth = createOpenAuth({ env, runtime })
-    hono.route('/', openAuth)
+    // const openAuth = createOpenAuth({ env, runtime })
+    const openAuth = OpenAuth.make({ env, runtime })
+    hono.route('/', openAuth.issuer)
     hono.all('*', (c) => {
       const { origin } = new URL(c.req.url)
       const client = createClient({
@@ -37,7 +40,7 @@ export default {
         // issuer: c.env.OPENAUTH_ISSUER,
         // fetch: (input, init) => c.env.WORKER.fetch(input, init)
         issuer: origin,
-        fetch: async (input, init) => openAuth.fetch(new Request(input, init), env, ctx)
+        fetch: async (input, init) => openAuth.issuer.fetch(new Request(input, init), env, ctx)
       })
       const initialContext = new Map([
         [
@@ -45,6 +48,7 @@ export default {
           {
             cloudflare: { env, ctx },
             runtime,
+            openAuth,
             session: undefined as unknown as Session<SessionData>, // middleware populates
             sessionAction: 'commit',
             client,

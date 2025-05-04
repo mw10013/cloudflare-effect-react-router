@@ -1,7 +1,6 @@
 import type { Route } from './+types/callback'
 import { Effect } from 'effect'
 import { redirect } from 'react-router'
-import { subjects } from 'workers/openauth'
 import * as ReactRouter from '~/lib/ReactRouter'
 
 export const loader = ReactRouter.routeEffect(({ request, context }: Route.LoaderArgs) =>
@@ -33,7 +32,7 @@ export const loader = ReactRouter.routeEffect(({ request, context }: Route.Loade
     // Verify the access token and get subject properties
     // The client's fetch override (set in app.ts) handles the internal fetch call
     const verified = yield* Effect.tryPromise({
-      try: () => client.verify(subjects, exchanged.tokens.access, { refresh: exchanged.tokens.refresh }),
+      try: () => client.verify(appLoadContext.openAuth.subjects, exchanged.tokens.access, { refresh: exchanged.tokens.refresh }),
       catch: (unknown) => new Error(`Token verification failed: ${unknown}`)
     })
     if (verified.err) {
