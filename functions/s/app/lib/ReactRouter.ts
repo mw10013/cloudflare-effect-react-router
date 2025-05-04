@@ -27,16 +27,20 @@ export const middlewareEffect =
   (props: P, next: N) =>
     props.context
       .get(appLoadContext)
+      // Using runPromiseExit instead of runPromise to throw error of fail type cause.
+      // Importantly, a Response error will be thrown to short-circuit the middleware chain.
       .runtime.runPromiseExit(f(props, next))
       .then((exit) => {
         if (Exit.isSuccess(exit)) {
           return exit.value
         }
         const cause = exit.cause
-        if (Cause.isFailType(cause) && cause.error instanceof Response) {
+        const message = `Middleware failed with cause: ${Cause.pretty(cause)}`
+        console.error({ message, cause })
+        if (Cause.isFailType(cause)) {
           throw cause.error
         }
-        throw new Error(`Middleware failed with unhandled cause: ${Cause.pretty(cause)}`)
+        throw new Error(message)
       })
 
 export const makeRuntime = (env: Env) => {

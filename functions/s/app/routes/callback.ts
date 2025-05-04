@@ -18,10 +18,10 @@ export const loader = ReactRouter.routeEffect(({ request, context }: Route.Loade
     }
 
     const appLoadContext = context.get(ReactRouter.appLoadContext)
-    const { client, redirectUri, session } = appLoadContext
+    // const { openAuthClient: client, openAuthRedirectUri: redirectUri, session } = appLoadContext
 
     const exchanged = yield* Effect.tryPromise({
-      try: () => client.exchange(code, redirectUri),
+      try: () => appLoadContext.openAuthClient.exchange(code, appLoadContext.openAuthRedirectUri),
       catch: (unknown) => new Error(`Token exchange failed: ${unknown}`)
     })
 
@@ -32,15 +32,18 @@ export const loader = ReactRouter.routeEffect(({ request, context }: Route.Loade
     // Verify the access token and get subject properties
     // The client's fetch override (set in app.ts) handles the internal fetch call
     const verified = yield* Effect.tryPromise({
-      try: () => client.verify(appLoadContext.openAuth.subjects, exchanged.tokens.access, { refresh: exchanged.tokens.refresh }),
+      try: () =>
+        appLoadContext.openAuthClient.verify(appLoadContext.openAuth.subjects, exchanged.tokens.access, {
+          refresh: exchanged.tokens.refresh
+        }),
       catch: (unknown) => new Error(`Token verification failed: ${unknown}`)
     })
     if (verified.err) {
       return yield* Effect.fail(verified.err)
     }
     const { userId, email, userType } = verified.subject.properties
-    session.set('sessionUser', { userId, email, userType })
-    yield* Effect.log({ message: 'Callback: verified', sessionUser: session.get('sessionUser') })
+    appLoadContext.session.set('sessionUser', { userId, email, userType })
+    yield* Effect.log({ message: 'Callback: verified', sessionUser: appLoadContext.session.get('sessionUser') })
     return redirect(userType === 'staffer' ? '/admin' : '/app')
   }).pipe(
     Effect.catchAll((error) => {
