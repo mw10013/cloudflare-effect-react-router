@@ -122,3 +122,13 @@ To test Stripe payments, use the following test card details:
 - **Conclusion:** If the final build artifacts are generated successfully, this specific error message is **likely safe to ignore**.
 - https://github.com/vitejs/vite/blob/main/packages/vite/src/node/optimizer/index.ts
 - https://github.com/vitejs/vite/blob/main/packages/vite/src/node/optimizer/scan.ts
+
+## Prompt
+
+```
+#fetch https://effect.website/docs/error-management/two-error-types/
+#fetch https://effect.website/docs/error-management/expected-errors/
+#fetch https://effect.website/docs/error-management/unexpected-errors/
+#fetch https://effect.website/docs/getting-started/running-effects/
+#fetch https://effect.website/docs/runtime/
+```

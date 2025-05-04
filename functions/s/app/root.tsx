@@ -1,4 +1,4 @@
-import type { NavigateOptions } from 'react-router'
+import type { isResponse, NavigateOptions } from 'react-router'
 import type { Route } from './+types/root'
 import { RouterProvider } from 'react-aria-components'
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router'
@@ -44,7 +44,8 @@ export const sessionMiddleware = ReactRouter.middlewareEffect(
 
       const response = yield* Effect.tryPromise({
         try: () => Promise.resolve(next()),
-        catch: (unknown) => new Error(`sessionMiddleware: downstream middleware/handler failed: ${unknown}`)
+        catch: (unknown) =>
+          unknown instanceof Response ? unknown : new Error(`sessionMiddleware: downstream middleware/handler failed: ${unknown}`)
       })
       const nextAppLoadContext = context.get(ReactRouter.appLoadContext)
       yield* Effect.log({ message: `sessionMiddleware: next session`, sessionUser: session.get('sessionUser') })

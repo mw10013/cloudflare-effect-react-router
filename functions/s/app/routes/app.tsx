@@ -1,6 +1,7 @@
 import type { Route } from './+types/app._index'
+import { Effect } from 'effect'
 import * as Rac from 'react-aria-components'
-import { Outlet } from 'react-router'
+import { Outlet, redirect } from 'react-router'
 import {
   Sidebar,
   SidebarContent,
@@ -13,6 +14,24 @@ import {
   SidebarProvider,
   SidebarTrigger
 } from '~/components/ui/sidebar'
+import * as ReactRouter from '~/lib/ReactRouter'
+
+export const appMiddleware = ReactRouter.middlewareEffect(({ context }: Parameters<Route.unstable_MiddlewareFunction>[0], next) =>
+  Effect.gen(function* () {
+    const appLoadContext = context.get(ReactRouter.appLoadContext)
+    const sessionUser = appLoadContext.session.get('sessionUser')
+    yield* Effect.log({ message: 'appMiddleware', sessionUser })
+    if (!sessionUser) {
+      return yield* Effect.fail(redirect('/authenticate'))
+    }
+    if (sessionUser.userType !== 'customer') {
+      return yield* Effect.fail(new Response('Forbidden', { status: 403 }))
+    }
+    return yield* Effect.tryPromise(() => Promise.resolve(next()))
+  })
+)
+
+export const unstable_middleware = [appMiddleware]
 
 const items = [
   {
