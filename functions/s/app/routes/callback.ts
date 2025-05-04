@@ -18,10 +18,9 @@ export const loader = ReactRouter.routeEffect(({ request, context }: Route.Loade
     }
 
     const appLoadContext = context.get(ReactRouter.appLoadContext)
-    // const { openAuthClient: client, openAuthRedirectUri: redirectUri, session } = appLoadContext
 
     const exchanged = yield* Effect.tryPromise({
-      try: () => appLoadContext.openAuthClient.exchange(code, appLoadContext.openAuthRedirectUri),
+      try: () => appLoadContext.openAuth.client.exchange(code, appLoadContext.openAuth.redirectUri),
       catch: (unknown) => new Error(`Token exchange failed: ${unknown}`)
     })
 
@@ -33,7 +32,7 @@ export const loader = ReactRouter.routeEffect(({ request, context }: Route.Loade
     // The client's fetch override (set in app.ts) handles the internal fetch call
     const verified = yield* Effect.tryPromise({
       try: () =>
-        appLoadContext.openAuthClient.verify(appLoadContext.openAuth.subjects, exchanged.tokens.access, {
+        appLoadContext.openAuth.client.verify(appLoadContext.openAuth.subjects, exchanged.tokens.access, {
           refresh: exchanged.tokens.refresh
         }),
       catch: (unknown) => new Error(`Token verification failed: ${unknown}`)

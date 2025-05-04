@@ -17,9 +17,7 @@ declare module 'react-router' {
       ctx: ExecutionContext
     }
     runtime: ReturnType<typeof makeRuntime>
-    openAuth: ReturnType<typeof OpenAuth.make>
-    openAuthClient: Client
-    openAuthRedirectUri: string
+    openAuth: ReturnType<typeof OpenAuth.make> & { client: Client; redirectUri: string }
     session: Session<SessionData>
     sessionAction: 'commit' | 'destroy'
   }
@@ -46,9 +44,7 @@ export default {
           {
             cloudflare: { env, ctx },
             runtime,
-            openAuth,
-            openAuthClient,
-            openAuthRedirectUri: `${origin}/callback`,
+            openAuth: { ...openAuth, client: openAuthClient, redirectUri: `${origin}/callback` },
             session: undefined as unknown as Session<SessionData>, // middleware populates
             sessionAction: 'commit'
           } satisfies AppLoadContext

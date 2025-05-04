@@ -11,7 +11,7 @@ export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
     if (appLoadContext.session.get('sessionUser')) {
       return redirect('/')
     }
-    const { url } = yield* Effect.tryPromise(() => appLoadContext.openAuthClient.authorize(appLoadContext.openAuthRedirectUri, 'code'))
+    const { url } = yield* Effect.tryPromise(() => appLoadContext.openAuth.client.authorize(appLoadContext.openAuth.redirectUri, 'code'))
     return redirect(url)
   })
 )
