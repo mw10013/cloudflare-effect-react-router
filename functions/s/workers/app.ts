@@ -7,7 +7,7 @@ import { createRequestHandler } from 'react-router'
 import * as Q from '~/lib/Queue'
 import { appLoadContext, makeRuntime } from '../app/lib/ReactRouter'
 // import { createOpenAuth } from './OpenAuth'
-import * as OpenAuth from './OpenAuth1'
+import * as OpenAuth from './OpenAuth'
 
 export { StripeDurableObject } from '~/lib/StripeDurableObject'
 
