@@ -8,9 +8,7 @@ import * as ReactRouter from '~/lib/ReactRouter'
 
 export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
   Effect.gen(function* () {
-    yield* Effect.log('_mkt._index loader')
     const alc = context.get(ReactRouter.appLoadContext)
-
     return { message: `ENVIRONMENT: ${alc.cloudflare.env.ENVIRONMENT}` }
   })
 )

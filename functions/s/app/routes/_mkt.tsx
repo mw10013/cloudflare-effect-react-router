@@ -7,9 +7,8 @@ import * as ReactRouter from '~/lib/ReactRouter'
 
 export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
   Effect.gen(function* () {
-    yield* Effect.log('_mkt loader')
     const alc = context.get(ReactRouter.appLoadContext)
-    yield* Effect.log({ message: '_mkt loader', sessionUser: alc.session.get('sessionUser') })
+    yield* Effect.log({ message: '_mkt: loader', sessionUser: alc.session.get('sessionUser') })
     return { sessionUser: alc.session.get('sessionUser') }
   })
 )
