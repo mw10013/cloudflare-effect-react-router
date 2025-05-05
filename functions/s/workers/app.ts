@@ -6,6 +6,7 @@ import * as Hono from 'hono'
 import { createRequestHandler } from 'react-router'
 import * as Q from '~/lib/Queue'
 import { appLoadContext, makeRuntime } from '../app/lib/ReactRouter'
+import * as Api from './Api'
 import * as OpenAuth from './OpenAuth'
 
 export { StripeDurableObject } from '~/lib/StripeDurableObject'
@@ -29,6 +30,7 @@ export default {
     const runtime = makeRuntime(env)
     const openAuth = OpenAuth.make({ env, runtime })
     hono.route('/', openAuth.issuer)
+    hono.route('/', Api.make({ runtime }))
     hono.all('*', (c) => {
       const { origin } = new URL(c.req.url)
       const openAuthClient = createClient({
