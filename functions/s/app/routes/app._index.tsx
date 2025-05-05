@@ -30,10 +30,9 @@ export default function RouteComponent({ loaderData: { invitations, accounts } }
               {invitations.map((m) => (
                 <li key={m.accountMemberId} className="flex items-center justify-between gap-4 border-b pb-4 last:border-b-0 last:pb-0">
                   <div className="flex-grow">
-                    {/* Consider using react-router's Link component here */}
-                    <Link href={`/app/${m.accountId}`} className="text-sm font-medium hover:underline">
+                    <Rac.Link href={`/app/${m.accountId}`} className="text-sm font-medium hover:underline">
                       {m.account.user.email}
-                    </Link>
+                    </Rac.Link>
                   </div>
                   <div className="flex gap-2">
                     {/* TODO: Implement form submission logic */}
