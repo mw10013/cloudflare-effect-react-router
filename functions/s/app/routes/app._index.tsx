@@ -1,83 +1,81 @@
 import type { Route } from './+types/app._index'
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router'
+import { Effect } from 'effect'
 import * as Rac from 'react-aria-components'
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarProvider,
-  SidebarTrigger
-} from '~/components/ui/sidebar'
+import { Button } from '~/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
+import { IdentityMgr } from '~/lib/IdentityMgr'
+import * as ReactRouter from '~/lib/ReactRouter'
 
-const items = [
-  {
-    title: 'Button',
-    url: '/demo/button'
-  },
-  {
-    title: 'Checkbox',
-    url: '/demo/checkbox'
-  },
-  {
-    title: 'Form',
-    url: '/demo/form'
-  },
-  {
-    title: 'Number Field',
-    url: '/demo/number-field'
-  },
-  {
-    title: 'Radio Group',
-    url: '/demo/radio-group'
-  },
-  {
-    title: 'Text Field',
-    url: '/demo/text-field'
-  },
-  {
-    title: 'Link',
-    url: '/play/link'
-  },
-  {
-    title: 'Effect',
-    url: '/effect'
-  },
-  {
-    title: 'Sandbox',
-    url: '/sandbox'
-  }
-]
+export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
+  Effect.gen(function* () {
+    const sessionUser = yield* Effect.fromNullable(context.get(ReactRouter.appLoadContext).session.get('sessionUser'))
+    return {
+      invitations: yield* IdentityMgr.getInvitations(sessionUser),
+      accounts: yield* IdentityMgr.getAccounts(sessionUser)
+    }
+  })
+)
 
-export function AppSidebar() {
+export default function RouteComponent({ loaderData: { invitations, accounts } }: Route.ComponentProps) {
   return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Components</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Rac.Link href={item.url}>
-                      <span>{item.title}</span>
-                    </Rac.Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+    <div className="flex flex-col gap-6 p-6">
+      {invitations.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Invitations</CardTitle>
+            <CardDescription>Invitations awaiting your response.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul className="flex flex-col gap-4">
+              {invitations.map((m) => (
+                <li key={m.accountMemberId} className="flex items-center justify-between gap-4 border-b pb-4 last:border-b-0 last:pb-0">
+                  <div className="flex-grow">
+                    {/* Consider using react-router's Link component here */}
+                    <Link href={`/app/${m.accountId}`} className="text-sm font-medium hover:underline">
+                      {m.account.user.email}
+                    </Link>
+                  </div>
+                  <div className="flex gap-2">
+                    {/* TODO: Implement form submission logic */}
+                    <form action="/app" method="post">
+                      <input type="hidden" name="accountMemberId" value={m.accountMemberId} />
+                      <Button type="submit" name="intent" value="accept" variant="outline" size="sm">
+                        Accept
+                      </Button>
+                    </form>
+                    <form action="/app" method="post">
+                      <input type="hidden" name="accountMemberId" value={m.accountMemberId} />
+                      <Button type="submit" name="intent" value="decline" variant="destructive" size="sm">
+                        Decline
+                      </Button>
+                    </form>
+                  </div>
+                </li>
               ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+            </ul>
+          </CardContent>
+        </Card>
+      )}
+      <Card>
+        <CardHeader>
+          <CardTitle>Accounts</CardTitle>
+          <CardDescription>Accounts you are a member of.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ul className="flex flex-col gap-4">
+            {accounts.map((a) => (
+              <li key={a.accountId} className="flex items-center justify-between gap-4 border-b pb-4 last:border-b-0 last:pb-0">
+                <div className="flex-grow">
+                  <Rac.Link href={`/app/${a.accountId}`} className="text-sm font-medium hover:underline">
+                    {a.user.email}
+                  </Rac.Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+      <pre className="text-xs">{JSON.stringify({ invitations, accounts }, null, 2)}</pre>
+    </div>
   )
-}
-
-export default function RouteComponent() {
-  return <div className="flex min-h-svh flex-row justify-center gap-2 p-6"></div>
 }
