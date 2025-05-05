@@ -5,11 +5,11 @@ import { Stripe } from '~/lib/Stripe'
 
 export const loader = ReactRouter.routeEffect(() => Stripe.getPrices().pipe(Effect.map((prices) => ({ prices }))))
 
-export default function RouteComponent({ loaderData }: Route.ComponentProps) {
+export default function RouteComponent({ loaderData: { prices } }: Route.ComponentProps) {
   return (
     <div className="p-6">
       Pricing
-      <pre>{JSON.stringify(loaderData, null, 2)}</pre>
+      <pre>{JSON.stringify(prices, null, 2)}</pre>
     </div>
   )
 }
