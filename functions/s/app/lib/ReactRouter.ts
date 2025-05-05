@@ -52,20 +52,6 @@ export const makeRuntime = (env: Env) => {
 
 /*
 
-export const handler =
-  <A, E>(
-    h: (
-      ...args: Parameters<Handler<AppEnv>>
-    ) => Effect.Effect<A | Promise<A>, E, ManagedRuntime.ManagedRuntime.Context<Parameters<Handler<AppEnv>>[0]['var']['runtime']>>
-  ) =>
-  (...args: Parameters<Handler<AppEnv>>) =>
-    h(...args).pipe(
-      Effect.flatMap((response) => (Predicate.isPromise(response) ? Effect.tryPromise(() => response) : Effect.succeed(response))),
-      orErrorResponse(args[0]),
-      args[0].var.runtime.runPromise
-    )
-
-
 export const makeRemixRuntime = <R, E>(layer: Layer.Layer<R, E, never>) => {
   const runtime = ManagedRuntime.make(layer);
 

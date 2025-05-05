@@ -1,5 +1,6 @@
 /** @jsxImportSource hono/jsx */
 import type { v1 } from '@standard-schema/spec'
+import type { AppLoadContext } from 'react-router'
 import { issuer } from '@openauthjs/openauth'
 import { CodeProvider } from '@openauthjs/openauth/provider/code'
 import { CloudflareStorage } from '@openauthjs/openauth/storage/cloudflare'
@@ -11,7 +12,6 @@ import { Config, Effect, Schema } from 'effect'
 import { UserSubject } from '~/lib/Domain'
 import { IdentityMgr } from '~/lib/IdentityMgr'
 import * as Q from '~/lib/Queue'
-import { makeRuntime } from '../app/lib/ReactRouter'
 
 export type Subjects = {
   readonly user: v1.StandardSchema<
@@ -20,7 +20,7 @@ export type Subjects = {
   >
 }
 
-export function make({ env, runtime }: { env: Env; runtime: ReturnType<typeof makeRuntime> }): {
+export function make({ env, runtime }: { env: Env; runtime: AppLoadContext['runtime'] }): {
   subjects: Subjects
   issuer: ReturnType<typeof issuer>
 } {

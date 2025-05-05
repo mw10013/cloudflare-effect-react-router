@@ -1,7 +1,7 @@
-import * as Hono from 'hono'
+import type { AppLoadContext } from 'react-router'
 import { Effect, ManagedRuntime, Predicate } from 'effect'
+import * as Hono from 'hono'
 import { Stripe } from '~/lib/Stripe'
-import type {AppLoadContext} from 'react-router'
 
 type AppEnv = {
   Bindings: Env
@@ -21,7 +21,6 @@ export const handler =
       Effect.flatMap((response) => (Predicate.isPromise(response) ? Effect.tryPromise(() => response) : Effect.succeed(response))),
       args[0].var.runtime.runPromise
     )
-
 
 export function make({ runtime }: { runtime: AppEnv['Variables']['runtime'] }) {
   const app = new Hono.Hono<AppEnv>()
@@ -47,4 +46,3 @@ export function make({ runtime }: { runtime: AppEnv['Variables']['runtime'] }) {
   )
   return app
 }
-
