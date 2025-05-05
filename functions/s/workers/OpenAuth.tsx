@@ -20,10 +20,7 @@ export type Subjects = {
   >
 }
 
-export function make({ env, runtime }: { env: Env; runtime: AppLoadContext['runtime'] }): {
-  subjects: Subjects
-  issuer: ReturnType<typeof issuer>
-} {
+export function make({ env, runtime }: { env: Env; runtime: AppLoadContext['runtime'] }) {
   const { request, ...codeUi } = CodeUI({
     copy: {
       code_placeholder: 'Code (check Worker logs)'
@@ -45,7 +42,8 @@ export function make({ env, runtime }: { env: Env; runtime: AppLoadContext['runt
         })
       }).pipe(runtime.runPromise)
   })
-  const subjects = createSubjects({
+  // Explicit type annotation to ensure a portable inferred return type for 'make' function.
+  const subjects: Subjects = createSubjects({
     user: Schema.standardSchemaV1(UserSubject)
   })
   return {
