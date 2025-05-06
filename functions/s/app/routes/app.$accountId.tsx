@@ -1,10 +1,22 @@
-import type { AppLoadContext, Params, unstable_MiddlewareFunction } from 'react-router' // Added Params
 import type { Route } from './+types/app.$accountId'
-import { Cause, Effect, Exit, ManagedRuntime, Schema } from 'effect'
-import { Outlet, redirect, unstable_RouterContextProvider } from 'react-router'
+import { Effect, Schema } from 'effect'
+import { Outlet, redirect } from 'react-router'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarTrigger
+} from '~/components/ui/sidebar'
 import { Account } from '~/lib/Domain'
 import { IdentityMgr } from '~/lib/IdentityMgr'
 import * as ReactRouter from '~/lib/ReactRouter'
+import * as Rac from 'react-aria-components'
 
 const accountMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlewareEffect(({ params, context }) =>
   Effect.gen(function* () {
@@ -33,37 +45,52 @@ const accountMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlew
 
 export const unstable_middleware = [accountMiddleware]
 
-/*
-  app.use(
-    'app/:accountId/*',
-    middleware((c, next) =>
-      Effect.gen(function* () {
-        const AccountIdFromPath = Schema.compose(Schema.NumberFromString, Account.fields.accountId)
-        const accountId = yield* Schema.decodeUnknown(AccountIdFromPath)(c.req.param('accountId'))
-        const account = yield* Effect.fromNullable(c.var.sessionData.sessionUser).pipe(
-          Effect.flatMap((sessionUser) =>
-            IdentityMgr.getAccountForMember({
-              accountId,
-              userId: sessionUser.userId
-            })
-          ),
-          Effect.tapError((e) => Effect.log(`middleware accountId error:`, e)),
-          Effect.orElseSucceed(() => null)
-        )
-        if (!account) {
-          return c.redirect('/app')
-        }
-        c.set('account', account)
-        yield* Effect.tryPromise(() => next())
-      })
-    )
+const items = [
+  {
+    title: 'SaaS',
+    url: '/'
+  },
+  {
+    title: 'Accounts',
+    url: '/app'
+  }
+]
+
+export function AppSidebar() {
+  return (
+    <Sidebar>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>App Panel</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <Rac.Link href={item.url}>
+                      <span>{item.title}</span>
+                    </Rac.Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
   )
-*/
+}
 
 export default function RouteComponent() {
   return (
-    <div className="p-6">
-      <Outlet />
+    <div className="">
+      <SidebarProvider>
+        <AppSidebar />
+        <main>
+          <SidebarTrigger />
+          <Outlet />
+        </main>
+      </SidebarProvider>
     </div>
   )
 }
