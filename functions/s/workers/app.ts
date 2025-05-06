@@ -1,5 +1,5 @@
 import type { Client } from '@openauthjs/openauth/client'
-import type { SessionData } from '~/lib/Domain'
+import type { AccountWithUser, SessionData } from '~/lib/Domain'
 import type { AppLoadContext, Session } from 'react-router'
 import { createClient } from '@openauthjs/openauth/client'
 import * as Hono from 'hono'
@@ -21,6 +21,7 @@ declare module 'react-router' {
     openAuth: ReturnType<typeof OpenAuth.make> & { client: Client; redirectUri: string }
     session: Session<SessionData>
     sessionAction: 'commit' | 'destroy'
+    account?: AccountWithUser
   }
 }
 
