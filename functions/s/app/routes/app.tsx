@@ -40,38 +40,6 @@ const items = [
     url: '/app'
   },
   {
-    title: 'Button',
-    url: '/demo/button'
-  },
-  {
-    title: 'Checkbox',
-    url: '/demo/checkbox'
-  },
-  {
-    title: 'Form',
-    url: '/demo/form'
-  },
-  {
-    title: 'Number Field',
-    url: '/demo/number-field'
-  },
-  {
-    title: 'Radio Group',
-    url: '/demo/radio-group'
-  },
-  {
-    title: 'Text Field',
-    url: '/demo/text-field'
-  },
-  {
-    title: 'Link',
-    url: '/play/link'
-  },
-  {
-    title: 'Effect',
-    url: '/effect'
-  },
-  {
     title: 'Sandbox',
     url: '/sandbox'
   }
