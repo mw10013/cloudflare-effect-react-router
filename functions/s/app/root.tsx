@@ -15,59 +15,58 @@ declare module 'react-aria-components' {
   }
 }
 
-export const sessionMiddleware = ReactRouter.middlewareEffect(
-  ({ request, context }, next) =>
-    Effect.gen(function* () {
-      const appLoadContext = context.get(ReactRouter.appLoadContext)
-      const { getSession, commitSession, destroySession } = createWorkersKVSessionStorage<SessionData>({
-        cookie: {
-          name: appLoadContext.cloudflare.env.ENVIRONMENT === 'local' ? 'local-session' : '__Host-session',
-          maxAge: 60 * 60 * 24, // 1 day
-          path: '/',
-          httpOnly: true,
-          sameSite: 'lax',
-          secrets: [appLoadContext.cloudflare.env.COOKIE_SECRET],
-          secure: appLoadContext.cloudflare.env.ENVIRONMENT !== 'local'
-        },
-        kv: appLoadContext.cloudflare.env.KV
-      })
-      const session = yield* Effect.tryPromise({
-        try: () => getSession(request.headers.get('Cookie')),
-        catch: (unknown) => new Error(`Failed to get session: ${unknown}`)
-      })
-      context.set(ReactRouter.appLoadContext, {
-        ...appLoadContext,
-        session,
-        sessionAction: 'commit'
-      })
-      // yield* Effect.log({ message: `sessionMiddleware: Loaded session`, sessionUser: session.get('sessionUser') })
+export const sessionMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlewareEffect(({ request, context }, next) =>
+  Effect.gen(function* () {
+    const appLoadContext = context.get(ReactRouter.appLoadContext)
+    const { getSession, commitSession, destroySession } = createWorkersKVSessionStorage<SessionData>({
+      cookie: {
+        name: appLoadContext.cloudflare.env.ENVIRONMENT === 'local' ? 'local-session' : '__Host-session',
+        maxAge: 60 * 60 * 24, // 1 day
+        path: '/',
+        httpOnly: true,
+        sameSite: 'lax',
+        secrets: [appLoadContext.cloudflare.env.COOKIE_SECRET],
+        secure: appLoadContext.cloudflare.env.ENVIRONMENT !== 'local'
+      },
+      kv: appLoadContext.cloudflare.env.KV
+    })
+    const session = yield* Effect.tryPromise({
+      try: () => getSession(request.headers.get('Cookie')),
+      catch: (unknown) => new Error(`Failed to get session: ${unknown}`)
+    })
+    context.set(ReactRouter.appLoadContext, {
+      ...appLoadContext,
+      session,
+      sessionAction: 'commit'
+    })
+    // yield* Effect.log({ message: `sessionMiddleware: Loaded session`, sessionUser: session.get('sessionUser') })
 
-      const response = yield* Effect.tryPromise({
-        try: () => Promise.resolve(next()),
-        catch: (unknown) =>
-          unknown instanceof Response ? unknown : new Error(`sessionMiddleware: downstream middleware/handler failed: ${unknown}`)
-      })
-      const nextAppLoadContext = context.get(ReactRouter.appLoadContext)
+    const response = yield* Effect.tryPromise({
+      try: () => Promise.resolve(next()),
+      catch: (unknown) =>
+        unknown instanceof Response ? unknown : new Error(`sessionMiddleware: downstream middleware/handler failed: ${unknown}`)
+    })
+    const nextAppLoadContext = context.get(ReactRouter.appLoadContext)
 
-      if (nextAppLoadContext.sessionAction === 'destroy') {
-        response.headers.set(
-          'Set-Cookie',
-          yield* Effect.tryPromise({
-            try: () => destroySession(session),
-            catch: (unknown) => new Error(`Failed to destroy session: ${unknown}`)
-          })
-        )
-        return response
-      }
+    if (nextAppLoadContext.sessionAction === 'destroy') {
       response.headers.set(
         'Set-Cookie',
         yield* Effect.tryPromise({
-          try: () => commitSession(session),
-          catch: (unknown) => new Error(`Failed to commit session: ${unknown}`)
+          try: () => destroySession(session),
+          catch: (unknown) => new Error(`Failed to destroy session: ${unknown}`)
         })
       )
       return response
-    })
+    }
+    response.headers.set(
+      'Set-Cookie',
+      yield* Effect.tryPromise({
+        try: () => commitSession(session),
+        catch: (unknown) => new Error(`Failed to commit session: ${unknown}`)
+      })
+    )
+    return response
+  })
 )
 
 export const unstable_middleware = [sessionMiddleware]

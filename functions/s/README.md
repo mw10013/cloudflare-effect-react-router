@@ -110,6 +110,11 @@ To test Stripe payments, use the following test card details:
 - https://reactrouter.com/start/changelog#middleware-unstable
 - https://reactrouter.com/start/changelog#middleware-context-parameter
 - https://github.com/remix-run/react-router/blob/main/decisions/0014-context-middleware.md
+- Need to provide type annotation for ReactRouter.middlewareEffect
+
+```ts
+export const appMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlewareEffect(({ context }) => Effect.succeed(undefined))
+```
 
 ## Vite
 

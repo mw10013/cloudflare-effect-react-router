@@ -16,7 +16,7 @@ import {
 } from '~/components/ui/sidebar'
 import * as ReactRouter from '~/lib/ReactRouter'
 
-export const adminMiddleware = ReactRouter.middlewareEffect(({ context }) =>
+export const adminMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlewareEffect(({ context }) =>
   Effect.gen(function* () {
     const sessionUser = context.get(ReactRouter.appLoadContext).session.get('sessionUser')
     if (!sessionUser) {

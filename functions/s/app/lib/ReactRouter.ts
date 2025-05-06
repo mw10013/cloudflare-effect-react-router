@@ -15,33 +15,42 @@ export const routeEffect =
   (props: P) =>
     f(props).pipe(props.context.get(appLoadContext).runtime.runPromise)
 
+/**
+ * Creates a React Router middleware function from an Effect.
+ * The Effect can fail with a `Response` to short-circuit the middleware chain.
+ *
+ * Note: When exporting a variable using middlewareEffect, provide an explicit type annotation
+ * using the route-specific `Route.unstable_MiddlewareFunction` to avoid TS4023 errors.
+ * @example `export const myMiddleware: Route.unstable_MiddlewareFunction = middlewareEffect(...)`
+ *
+ * @template A - Success type of the Effect (usually undefined).
+ * @template E - Error type of the Effect (excluding Response).
+ * @template Args - Middleware arguments type, inferred contextually based on usage.
+ * @param f - A function returning an Effect representing the middleware logic. It receives middleware args and the next function.
+ * @returns A standard React Router middleware function compatible promise signature.
+ */
 export const middlewareEffect =
-  <
-    A,
-    E,
-    P extends { request: Request; params: Params; context: unstable_RouterContextProvider },
-    N extends Parameters<unstable_MiddlewareFunction<Response>>[1]
-  >(
-    f: (props: P, next: N) => Effect.Effect<A, E, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
+  <A, E, Args extends Parameters<unstable_MiddlewareFunction<Response>>[0]>(
+    f: (
+      args: Args,
+      next: Parameters<unstable_MiddlewareFunction<Response>>[1]
+    ) => Effect.Effect<A | undefined, E | Response, ManagedRuntime.ManagedRuntime.Context<AppLoadContext['runtime']>>
   ) =>
-  (props: P, next: N) =>
-    props.context
+  (args: Args, next: Parameters<unstable_MiddlewareFunction<Response>>[1]): Promise<A | undefined> =>
+    args.context
       .get(appLoadContext)
-      // Using runPromiseExit instead of runPromise to throw error of fail type cause.
-      // Importantly, a Response error will be thrown to short-circuit the middleware chain.
-      .runtime.runPromiseExit(f(props, next))
-      .then((exit) => {
-        if (Exit.isSuccess(exit)) {
-          return exit.value
-        }
-        const cause = exit.cause
-        const message = `Middleware failed with cause: ${Cause.pretty(cause)}`
-        console.error({ message, cause })
-        if (Cause.isFailType(cause)) {
-          throw cause.error
-        }
-        throw new Error(message)
-      })
+      .runtime.runPromiseExit(f(args, next))
+      .then(
+        Exit.match({
+          onSuccess: (value) => value,
+          onFailure: (cause) => {
+            if (Cause.isFailType(cause) && cause.error instanceof Response) {
+              throw cause.error
+            }
+            throw new Error(`Middleware failed with unhandled cause: ${Cause.pretty(cause)}`)
+          }
+        })
+      )
 
 export const makeRuntime = (env: Env) => {
   return Layer.mergeAll(IdentityMgr.Default, Stripe.Default, Q.Producer.Default).pipe(
