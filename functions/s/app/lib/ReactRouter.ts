@@ -1,3 +1,4 @@
+import type { fn } from 'effect/Effect'
 import type { AppLoadContext, unstable_MiddlewareFunction, unstable_RouterContextProvider } from 'react-router'
 import { Cloudflare } from '@workspace/shared'
 import { Cause, Effect, Exit, Layer, ManagedRuntime } from 'effect'
@@ -19,9 +20,10 @@ export const routeEffect =
  * Creates a React Router middleware function from an Effect.
  * The Effect can fail with a `Response` to short-circuit the middleware chain.
  *
- * Note: When exporting a variable using middlewareEffect, provide an explicit type annotation
- * using the route-specific `Route.unstable_MiddlewareFunction` to avoid TS4023 errors.
- * @example `export const myMiddleware: Route.unstable_MiddlewareFunction = middlewareEffect(...)`
+ * Note: To enable precise contextual typing for middleware arguments (especially `args.params`),
+ * and to ensure the resulting middleware function has a well-defined type,
+ * annotate the variable with the route-specific`Route.unstable_MiddlewareFunction`. 
+ * @example `const myMiddleware: Route.unstable_MiddlewareFunction = middlewareEffect(...)`
  *
  * @template A - Success type of the Effect (usually undefined).
  * @template E - Error type of the Effect (excluding Response).
