@@ -101,7 +101,9 @@ export default function RouteComponent() {
         <AppSidebar />
         <main>
           <SidebarTrigger />
-          <Outlet />
+          <div className="flex flex-col gap-2 p-6">
+            <Outlet />
+          </div>
         </main>
       </SidebarProvider>
     </div>
