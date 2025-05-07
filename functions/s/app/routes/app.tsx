@@ -1,4 +1,4 @@
-import type { Route } from './+types/app._index'
+import type { Route } from './+types/app'
 import { Effect } from 'effect'
 import { Outlet, redirect } from 'react-router'
 import * as ReactRouter from '~/lib/ReactRouter'

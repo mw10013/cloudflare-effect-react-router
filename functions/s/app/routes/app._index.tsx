@@ -2,7 +2,7 @@ import type { Route } from './+types/app._index'
 import { SchemaEx } from '@workspace/shared'
 import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
-import { redirect } from 'react-router'
+import { Form, redirect } from 'react-router'
 import { Button } from '~/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
 import {
@@ -109,18 +109,18 @@ export default function RouteComponent({ loaderData: { invitations, accounts } }
                           </Rac.Link>
                         </div>
                         <div className="flex gap-2">
-                          <Rac.Form method="post">
+                          <Form method="post">
                             <input type="hidden" name="accountMemberId" value={m.accountMemberId} />
                             <Button type="submit" name="intent" value="accept" variant="outline" size="sm">
                               Accept
                             </Button>
-                          </Rac.Form>
-                          <Rac.Form method="post">
+                          </Form>
+                          <Form method="post">
                             <input type="hidden" name="accountMemberId" value={m.accountMemberId} />
                             <Button type="submit" name="intent" value="decline" variant="destructive" size="sm">
                               Decline
                             </Button>
-                          </Rac.Form>
+                          </Form>
                         </div>
                       </li>
                     ))}
