@@ -1,4 +1,4 @@
-import type { Route } from './+types/app._layout._index'
+import type { Route } from './+types/app.layout._index'
 import { SchemaEx } from '@workspace/shared'
 import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'

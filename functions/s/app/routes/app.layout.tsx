@@ -1,5 +1,5 @@
 import type { SessionUser } from '~/lib/Domain'
-import type { Route } from './+types/app._layout'
+import type { Route } from './+types/app.layout'
 import { Effect } from 'effect'
 import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react'
 import * as Rac from 'react-aria-components'
