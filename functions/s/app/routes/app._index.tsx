@@ -1,6 +1,8 @@
 import type { Route } from './+types/app._index'
-import { Effect } from 'effect'
+import { SchemaEx } from '@workspace/shared'
+import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
+import { redirect } from 'react-router'
 import { Button } from '~/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
 import {
@@ -28,14 +30,34 @@ export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
   })
 )
 
-const items = [
-  {
-    title: 'SaaS',
-    url: '/'
-  }
-]
+export const action = ReactRouter.routeEffect(({ request, context }: Route.ActionArgs) =>
+  Effect.gen(function* () {
+    const FormDataSchema = Schema.Struct({
+      accountMemberId: Schema.NumberFromString,
+      intent: Schema.Literal('accept', 'decline')
+    })
+    const formData = yield* SchemaEx.decodeRequestFormData({ request, schema: FormDataSchema })
+    switch (formData.intent) {
+      case 'accept':
+        yield* IdentityMgr.acceptInvitation({ accountMemberId: formData.accountMemberId })
+        break
+      case 'decline':
+        yield* IdentityMgr.declineInvitation({ accountMemberId: formData.accountMemberId })
+        break
+      default:
+        return yield* Effect.fail(new Error('Invalid intent'))
+    }
+    return redirect('/app')
+  })
+)
 
 export function AppSidebar() {
+  const items = [
+    {
+      title: 'SaaS',
+      url: '/'
+    }
+  ]
   return (
     <Sidebar>
       <SidebarContent>
@@ -87,19 +109,18 @@ export default function RouteComponent({ loaderData: { invitations, accounts } }
                           </Rac.Link>
                         </div>
                         <div className="flex gap-2">
-                          {/* TODO: Implement form submission logic */}
-                          <form action="/app" method="post">
+                          <Rac.Form method="post">
                             <input type="hidden" name="accountMemberId" value={m.accountMemberId} />
                             <Button type="submit" name="intent" value="accept" variant="outline" size="sm">
                               Accept
                             </Button>
-                          </form>
-                          <form action="/app" method="post">
+                          </Rac.Form>
+                          <Rac.Form method="post">
                             <input type="hidden" name="accountMemberId" value={m.accountMemberId} />
                             <Button type="submit" name="intent" value="decline" variant="destructive" size="sm">
                               Decline
                             </Button>
-                          </form>
+                          </Rac.Form>
                         </div>
                       </li>
                     ))}

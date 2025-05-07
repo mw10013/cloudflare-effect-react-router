@@ -1,6 +1,7 @@
 import type { Route } from './+types/app.$accountId.members'
 import * as Oui from '@workspace/oui'
-import { Effect } from 'effect'
+import { SchemaEx } from '@workspace/shared'
+import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '~/components/ui/card'
 import { IdentityMgr } from '~/lib/IdentityMgr'
@@ -11,6 +12,48 @@ export const loader = ReactRouter.routeEffect(({ context }) =>
     const account = yield* Effect.fromNullable(context.get(ReactRouter.appLoadContext).account)
     const members = yield* IdentityMgr.getAccountMembers(account)
     return { members, accountId: account.accountId }
+  })
+)
+
+export const action = ReactRouter.routeEffect(({ request, context }: Route.ActionArgs) =>
+  Effect.gen(function* () {
+    const FormDataSchema = Schema.Union(
+      Schema.Struct({
+        intent: Schema.Literal('invite'),
+        emails: Schema.transform(Schema.compose(Schema.NonEmptyString, Schema.split(',')), Schema.Array(Schema.String), {
+          strict: false,
+          decode: (emails) => [...new Set(emails.map((email) => email.trim()))],
+          encode: (emails) => emails
+        })
+      }),
+      Schema.Struct({
+        intent: Schema.Literal('revoke'),
+        accountMemberId: Schema.NumberFromString
+      })
+    )
+    const formData = yield* SchemaEx.decodeRequestFormData({ request, schema: FormDataSchema })
+    switch (formData.intent) {
+      case 'invite':
+        return {
+          formData,
+          invite: yield* IdentityMgr.invite({
+            emails: formData.emails,
+            ...(yield* Effect.fromNullable(context.get(ReactRouter.appLoadContext).account).pipe(
+              Effect.map((account) => ({ accountId: account.accountId, accountEmail: account.user.email }))
+            ))
+          })
+        }
+        break
+      case 'revoke':
+        yield* IdentityMgr.revokeAccountMembership({ accountMemberId: formData.accountMemberId })
+        return {
+          message: `Account membership revoked: accountMemberId: ${formData.accountMemberId}`,
+          formData
+        }
+        break
+      default:
+        return yield* Effect.fail(new Error('Invalid intent'))
+    }
   })
 )
 
@@ -27,7 +70,7 @@ export default function RouteComponent({ loaderData: { members, accountId }, act
           <CardTitle>Invite New Members</CardTitle>
           <CardDescription>Enter email addresses separated by commas to send invitations.</CardDescription>
         </CardHeader>
-        <Rac.Form method="post" action={`/app/${accountId}/members`}>
+        <Rac.Form method="post">
           <CardContent className="space-y-4">
             <Oui.TextFieldEx name="emails" label="Email Addresses" type="text" placeholder="e.g., user1@example.com, user2@example.com" />
           </CardContent>
@@ -50,7 +93,7 @@ export default function RouteComponent({ loaderData: { members, accountId }, act
               {members.map((member) => (
                 <li key={member.accountMemberId} className="flex flex-wrap items-center justify-between gap-4 py-4">
                   <span className="text-sm font-medium">{member.user.email}</span>
-                  <Rac.Form method="post" action={`/app/${accountId}/members`}>
+                  <Rac.Form method="post">
                     <input type="hidden" name="accountMemberId" value={member.accountMemberId} />
                     <Oui.Button type="submit" name="intent" value="revoke" variant="outline" size="sm">
                       Revoke Access
@@ -64,7 +107,7 @@ export default function RouteComponent({ loaderData: { members, accountId }, act
           )}
         </CardContent>
       </Card>
-      <pre>{JSON.stringify({ members, accountId, actionData }, null, 2)}</pre>
+      <pre>{JSON.stringify({ actionData, members, accountId }, null, 2)}</pre>
     </div>
   )
 }

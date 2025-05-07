@@ -1,4 +1,3 @@
-import type { UnknownException } from 'effect/Cause'
 import type { Route } from './+types/admin.stripe'
 import * as Oui from '@workspace/oui'
 import { SchemaEx } from '@workspace/shared'
@@ -7,71 +6,29 @@ import * as Rac from 'react-aria-components'
 import * as ReactRouter from '~/lib/ReactRouter'
 import { Stripe } from '~/lib/Stripe'
 
-const FormDataSchema = Schema.Union(
-  Schema.Struct({
-    intent: Schema.Literal('seed')
-  }),
-  Schema.Struct({
-    intent: Schema.Literal('sync_stripe_data', 'customer_subscription'),
-    customerId: Schema.NonEmptyString
-  })
+export const action = ReactRouter.routeEffect(({ request }: Route.ActionArgs) =>
+  Effect.gen(function* () {
+    const FormDataSchema = Schema.Union(
+      Schema.Struct({
+        intent: Schema.Literal('seed')
+      }),
+      Schema.Struct({
+        intent: Schema.Literal('sync_stripe_data', 'customer_subscription'),
+        customerId: Schema.NonEmptyString
+      })
+    )
+    const formData = yield* SchemaEx.decodeRequestFormData({ request, schema: FormDataSchema })
+    let message: string | undefined
+    if (formData.intent === 'seed') {
+      yield* Stripe.seed()
+      message = 'Seeded'
+    }
+    return {
+      message,
+      formData
+    }
+  }).pipe(SchemaEx.catchValidationError)
 )
-
-export const action = ReactRouter.routeEffect(
-  (
-    { request }: Route.ActionArgs // : Effect.Effect<
-  ) =>
-    // Explicitly define A to prevent ts(2742) from inferred non-portable types.
-    //   {
-    //     formData?: Schema.Schema.Type<typeof FormDataSchema>
-    //     validationErrors?: SchemaEx.ValidationErrors
-    //   },
-    //   UnknownException
-    // >
-    Effect.gen(function* () {
-      const formData = yield* SchemaEx.decodeRequestFormData({ request, schema: FormDataSchema })
-      let message: string | undefined
-      if (formData.intent === 'seed') {
-        yield* Stripe.seed()
-        message = 'Seeded'
-      }
-      return {
-        message,
-        formData
-      }
-    }).pipe(SchemaEx.catchValidationError)
-)
-
-// export const action = ReactRouter.routeEffect(
-//   ({
-//     request
-//   }: Route.ActionArgs): Effect.Effect<
-//     // Explicitly define A to prevent ts(2742) from inferred non-portable types.
-//     {
-//       message?: string
-//       formData?: Schema.Schema.Type<typeof FormDataSchema>
-//       validationErrors?: SchemaEx.ValidationErrors
-//     }
-//     // UnknownException
-//   > =>
-//     Effect.gen(function* () {
-//       const formData = yield* SchemaEx.decodeRequestFormData({ request, schema: FormDataSchema })
-//       let message: string | undefined
-
-//       switch (formData.intent) {
-//         case 'seed':
-//           yield* Stripe.seed()
-//           message = 'Seeded'
-//           break
-//         default:
-//           break
-//       }
-//       return {
-//         message,
-//         formData
-//       }
-//     }).pipe(SchemaEx.catchValidationError)
-// )
 
 export default function RouteComponent({ actionData }: Route.ComponentProps) {
   return (
