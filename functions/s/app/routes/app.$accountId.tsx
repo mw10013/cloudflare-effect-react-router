@@ -4,6 +4,7 @@ import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from '
 import * as Rac from 'react-aria-components'
 import { Outlet, redirect, useParams } from 'react-router'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+import * as Oui from '~/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -210,7 +211,9 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogOut />
-              Log out
+              <Rac.Form action="/signout" method="post">
+                <Oui.Button type="submit">Sign Out</Oui.Button>
+              </Rac.Form>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
