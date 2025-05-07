@@ -2,7 +2,8 @@ import type { Route } from './+types/app._index'
 import { SchemaEx } from '@workspace/shared'
 import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
-import { Form, redirect } from 'react-router'
+// Import useSubmit from react-router
+import { redirect, useSubmit } from 'react-router'
 import { Button } from '~/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
 import {
@@ -83,6 +84,24 @@ export function AppSidebar() {
 }
 
 export default function RouteComponent({ loaderData: { invitations, accounts } }: Route.ComponentProps) {
+  const submit = useSubmit()
+
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const nativeEvent = event.nativeEvent
+
+    if (nativeEvent instanceof SubmitEvent) {
+      const submitter = nativeEvent.submitter
+      if (submitter && (submitter instanceof HTMLButtonElement || submitter instanceof HTMLInputElement)) {
+        submit(submitter)
+      } else {
+        console.error('Form submission did not originate from a recognized button element (submitter was not a button).')
+      }
+    } else {
+      console.error('Form submission event was not a SubmitEvent.')
+    }
+  }
+
   return (
     <div className="">
       <SidebarProvider>
@@ -109,18 +128,18 @@ export default function RouteComponent({ loaderData: { invitations, accounts } }
                           </Rac.Link>
                         </div>
                         <div className="flex gap-2">
-                          <Form method="post">
+                          <Rac.Form onSubmit={handleFormSubmit} method="post">
                             <input type="hidden" name="accountMemberId" value={m.accountMemberId} />
                             <Button type="submit" name="intent" value="accept" variant="outline" size="sm">
                               Accept
                             </Button>
-                          </Form>
-                          <Form method="post">
+                          </Rac.Form>
+                          <Rac.Form onSubmit={handleFormSubmit} method="post">
                             <input type="hidden" name="accountMemberId" value={m.accountMemberId} />
                             <Button type="submit" name="intent" value="decline" variant="destructive" size="sm">
                               Decline
                             </Button>
-                          </Form>
+                          </Rac.Form>
                         </div>
                       </li>
                     ))}
