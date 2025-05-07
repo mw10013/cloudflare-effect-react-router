@@ -21,6 +21,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -62,15 +63,15 @@ export const unstable_middleware = [accountMiddleware]
 export const loader = ReactRouter.routeEffect(({ context }) =>
   Effect.gen(function* () {
     const sessionUser = yield* Effect.fromNullable(context.get(ReactRouter.appLoadContext).session.get('sessionUser'))
-    return { sessionUser }
+    return { sessionUser, accounts: yield* IdentityMgr.getAccounts(sessionUser) }
   })
 )
 
-export default function RouteComponent({ loaderData: { sessionUser } }: Route.ComponentProps) {
+export default function RouteComponent({ loaderData: { sessionUser, accounts } }: Route.ComponentProps) {
   return (
     <div className="">
       <SidebarProvider>
-        <AppSidebar sessionUser={sessionUser} />
+        <AppSidebar sessionUser={sessionUser} accounts={accounts} />
         <main>
           <SidebarTrigger />
           <div className="flex flex-col gap-2 p-6">
@@ -82,7 +83,7 @@ export default function RouteComponent({ loaderData: { sessionUser } }: Route.Co
   )
 }
 
-export function AppSidebar({ sessionUser }: { sessionUser: SessionUser }) {
+export function AppSidebar({ sessionUser, accounts }: { sessionUser: SessionUser; accounts: Account[] }) {
   const { accountId } = useParams()
   const items = [
     {
@@ -109,6 +110,7 @@ export function AppSidebar({ sessionUser }: { sessionUser: SessionUser }) {
 
   return (
     <Sidebar>
+      <SidebarHeader>Header</SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           {/* <SidebarGroupLabel>App Panel</SidebarGroupLabel> */}
