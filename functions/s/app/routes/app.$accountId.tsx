@@ -1,6 +1,7 @@
 import type { Route } from './+types/app.$accountId'
 import { Effect, Schema } from 'effect'
-import { Outlet, redirect } from 'react-router'
+import * as Rac from 'react-aria-components'
+import { Outlet, redirect, useParams } from 'react-router'
 import {
   Sidebar,
   SidebarContent,
@@ -16,7 +17,6 @@ import {
 import { Account } from '~/lib/Domain'
 import { IdentityMgr } from '~/lib/IdentityMgr'
 import * as ReactRouter from '~/lib/ReactRouter'
-import * as Rac from 'react-aria-components'
 
 const accountMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlewareEffect(({ params, context }) =>
   Effect.gen(function* () {
@@ -45,23 +45,36 @@ const accountMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlew
 
 export const unstable_middleware = [accountMiddleware]
 
-const items = [
-  {
-    title: 'SaaS',
-    url: '/'
-  },
-  {
-    title: 'Accounts',
-    url: '/app'
-  }
-]
-
 export function AppSidebar() {
+  const { accountId } = useParams()
+  const items = [
+    {
+      title: 'SaaS',
+      url: '/'
+    },
+    {
+      title: 'Accounts',
+      url: '/app'
+    },
+    {
+      title: 'Account Home',
+      url: `/app/${accountId}`
+    },
+    {
+      title: 'Members',
+      url: `/app/${accountId}/members`
+    },
+    {
+      title: 'Billing',
+      url: `/app/${accountId}/billing`
+    }
+  ]
+
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>App Panel</SidebarGroupLabel>
+          {/* <SidebarGroupLabel>App Panel</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
