@@ -1,8 +1,8 @@
-import type { Route } from './+types/app.$accountId'
-import { Effect, Schema } from 'effect'
+import type { SessionUser } from '~/lib/Domain'
+import type { Route } from './+types/app._layout'
+import { Effect } from 'effect'
 import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react'
 import * as Rac from 'react-aria-components'
-import { Outlet, redirect, useParams } from 'react-router'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import {
   DropdownMenu,
@@ -19,7 +19,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -27,38 +26,10 @@ import {
   SidebarTrigger,
   useSidebar
 } from '~/components/ui/sidebar'
-import { Account, SessionUser } from '~/lib/Domain'
-import { IdentityMgr } from '~/lib/IdentityMgr'
 import * as ReactRouter from '~/lib/ReactRouter'
+import { Outlet } from 'react-router'
 
-const accountMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlewareEffect(({ params, context }) =>
-  Effect.gen(function* () {
-    const appLoadContext = context.get(ReactRouter.appLoadContext)
-    const AccountIdFromPath = Schema.compose(Schema.NumberFromString, Account.fields.accountId)
-    const accountId = yield* Schema.decodeUnknown(AccountIdFromPath)(params.accountId)
-    const account = yield* Effect.fromNullable(appLoadContext.session.get('sessionUser')).pipe(
-      Effect.flatMap((sessionUser) =>
-        IdentityMgr.getAccountForMember({
-          accountId,
-          userId: sessionUser.userId
-        })
-      ),
-      Effect.tapError((e) => Effect.log(`accountMiddleware accountId error:`, e)),
-      Effect.orElseSucceed(() => null)
-    )
-    if (!account) {
-      return yield* Effect.fail(redirect('/app'))
-    }
-    context.set(ReactRouter.appLoadContext, {
-      ...appLoadContext,
-      account
-    })
-  })
-)
-
-export const unstable_middleware = [accountMiddleware]
-
-export const loader = ReactRouter.routeEffect(({ context }) =>
+export const loader = ReactRouter.routeEffect(({ context }: Route.LoaderArgs) =>
   Effect.gen(function* () {
     const sessionUser = yield* Effect.fromNullable(context.get(ReactRouter.appLoadContext).session.get('sessionUser'))
     return { sessionUser }
@@ -82,30 +53,12 @@ export default function RouteComponent({ loaderData: { sessionUser } }: Route.Co
 }
 
 export function AppSidebar({ sessionUser }: { sessionUser: SessionUser }) {
-  const { accountId } = useParams()
   const items = [
     {
       title: 'SaaS',
       url: '/'
-    },
-    {
-      title: 'Accounts',
-      url: '/app'
-    },
-    {
-      title: 'Account Home',
-      url: `/app/${accountId}`
-    },
-    {
-      title: 'Members',
-      url: `/app/${accountId}/members`
-    },
-    {
-      title: 'Billing',
-      url: `/app/${accountId}/billing`
     }
   ]
-
   return (
     <Sidebar>
       <SidebarContent>

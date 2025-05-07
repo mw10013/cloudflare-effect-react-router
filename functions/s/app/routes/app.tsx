@@ -18,9 +18,5 @@ export const appMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.midd
 export const unstable_middleware = [appMiddleware]
 
 export default function RouteComponent() {
-  return (
-    <div className="">
-      <Outlet />
-    </div>
-  )
+  return <Outlet />
 }
