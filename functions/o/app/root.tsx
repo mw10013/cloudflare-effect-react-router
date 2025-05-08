@@ -56,6 +56,10 @@ const items = [
     url: '/demo/checkbox'
   },
   {
+    title: 'Drop Down Menu',
+    url: '/demo/dropdown-menu'
+  },
+  {
     title: 'Form',
     url: '/demo/form'
   },
@@ -74,10 +78,6 @@ const items = [
   {
     title: 'Link',
     url: '/play/link'
-  },
-  {
-    title: 'Effect',
-    url: '/effect'
   },
   {
     title: 'Sandbox',
