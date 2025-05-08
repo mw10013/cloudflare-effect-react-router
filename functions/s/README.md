@@ -137,3 +137,5 @@ export const appMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.midd
 #fetch https://effect.website/docs/getting-started/running-effects/
 #fetch https://effect.website/docs/runtime/
 ```
+
+- https://deepwiki.com/Effect-TS/effect

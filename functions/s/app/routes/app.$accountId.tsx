@@ -1,6 +1,18 @@
 import type { Route } from './+types/app.$accountId'
+import React from 'react'
 import { Effect, Schema } from 'effect'
-import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react'
+import {
+  AudioWaveform,
+  BadgeCheck,
+  Bell,
+  ChevronsUpDown,
+  Command,
+  CreditCard,
+  GalleryVerticalEnd,
+  LogOut,
+  Plus,
+  Sparkles
+} from 'lucide-react'
 import * as Rac from 'react-aria-components'
 import { Outlet, redirect, useParams } from 'react-router'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
@@ -12,6 +24,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
   DropdownMenuTrigger
 } from '~/components/ui/dropdown-menu'
 import {
@@ -110,7 +123,42 @@ export function AppSidebar({ sessionUser, accounts }: { sessionUser: SessionUser
 
   return (
     <Sidebar>
-      <SidebarHeader>Header</SidebarHeader>
+      <SidebarHeader>
+        <TeamSwitcher
+          teams={[
+            {
+              name: 'Acme Inc',
+              logo: GalleryVerticalEnd,
+              plan: 'Enterprise'
+            },
+            {
+              name: 'Acme Corp.',
+              logo: AudioWaveform,
+              plan: 'Startup'
+            },
+            {
+              name: 'Evil Corp.',
+              logo: Command,
+              plan: 'Free'
+            }
+          ]}
+        />
+        {/* <SidebarGroup className="py-0 group-data-[collapsible=icon]:hidden">
+          <SidebarGroupContent>
+            <form className="relative">
+              <Label htmlFor="search" className="sr-only">
+                Search
+              </Label>
+              <SidebarInput
+                id="search"
+                placeholder="Search the docs..."
+                className="pl-8"
+              />
+              <Search className="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 opacity-50 select-none" />
+            </form>
+          </SidebarGroupContent>
+        </SidebarGroup> */}
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           {/* <SidebarGroupLabel>App Panel</SidebarGroupLabel> */}
@@ -139,6 +187,68 @@ export function AppSidebar({ sessionUser, accounts }: { sessionUser: SessionUser
         />
       </SidebarFooter>
     </Sidebar>
+  )
+}
+
+export function TeamSwitcher({
+  teams
+}: {
+  teams: {
+    name: string
+    logo: React.ElementType
+    plan: string
+  }[]
+}) {
+  const { isMobile } = useSidebar()
+  const [activeTeam, setActiveTeam] = React.useState(teams[0])
+
+  if (!activeTeam) {
+    return null
+  }
+
+  return (
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <SidebarMenuButton size="lg" className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                <activeTeam.logo className="size-4" />
+              </div>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-medium">{activeTeam.name}</span>
+                <span className="truncate text-xs">{activeTeam.plan}</span>
+              </div>
+              <ChevronsUpDown className="ml-auto" />
+            </SidebarMenuButton>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+            align="start"
+            side={isMobile ? 'bottom' : 'right'}
+            sideOffset={4}
+          >
+            <DropdownMenuLabel className="text-muted-foreground text-xs">Teams</DropdownMenuLabel>
+            {teams.map((team, index) => (
+              <DropdownMenuItem key={team.name} onClick={() => setActiveTeam(team)} className="gap-2 p-2">
+                <div className="flex size-6 items-center justify-center rounded-md border">
+                  <team.logo className="size-3.5 shrink-0" />
+                </div>
+                {team.name}
+                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            ))}
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="gap-2 p-2">
+              <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
+                <Plus className="size-4" />
+              </div>
+              <div className="text-muted-foreground font-medium">Add team</div>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </SidebarMenuItem>
+    </SidebarMenu>
   )
 }
 
