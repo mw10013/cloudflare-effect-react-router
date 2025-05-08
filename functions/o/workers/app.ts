@@ -1,5 +1,6 @@
+import type { AppLoadContext } from 'react-router'
 import { createRequestHandler } from 'react-router'
-import { makeRuntime } from '../app/lib/ReactRouter'
+import { appLoadContext, makeRuntime } from '../app/lib/ReactRouter'
 
 declare module 'react-router' {
   export interface AppLoadContext {
@@ -11,13 +12,22 @@ declare module 'react-router' {
   }
 }
 
-const requestHandler = createRequestHandler(() => import('virtual:react-router/server-build'), import.meta.env.MODE)
-
 export default {
   async fetch(request, env, ctx) {
-    return requestHandler(request, {
-      cloudflare: { env, ctx },
-      runtime: makeRuntime()
-    })
+    const runtime = makeRuntime(env)
+    const initialContext = new Map([
+      [
+        appLoadContext,
+        {
+          cloudflare: { env, ctx },
+          runtime
+        } satisfies AppLoadContext
+      ]
+    ])
+
+    const requestHandler = createRequestHandler(() => import('virtual:react-router/server-build'), import.meta.env.MODE)
+    const response = await requestHandler(request, initialContext)
+    ctx.waitUntil(runtime.dispose())
+    return response
   }
 } satisfies ExportedHandler<Env>
