@@ -34,15 +34,3 @@
 ## Etc
 
 - https://github.com/remix-run/react-router-templates/tree/main/cloudflare
-
-## Prompt
-
-```
-#fetch https://react-spectrum.adobe.com/react-aria/Menu.html
-#fetch https://react-spectrum.adobe.com/react-aria/ListBox.html
-#fetch https://react-spectrum.adobe.com/react-aria/Popover.html
-#fetch https://ui.shadcn.com/docs/components/dropdown-menu
-#fetch https://react-spectrum.adobe.com/react-aria/Dialog.html
-#fetch https://react-spectrum.adobe.com/react-aria/Modal.html
-#codebase
-```

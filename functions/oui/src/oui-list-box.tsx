@@ -18,16 +18,8 @@ import { Text } from './oui-text'
 position === "popper" &&
   "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
 */
-export function ListBox<T extends object>({
-  className,
-  ...props
-}: Rac.ListBoxProps<T>) {
-  return (
-    <Rac.ListBox
-      {...props}
-      className={composeTailwindRenderProps(className, 'p-1')}
-    />
-  )
+export function ListBox<T extends object>({ className, ...props }: Rac.ListBoxProps<T>) {
+  return <Rac.ListBox {...props} className={composeTailwindRenderProps(className, 'p-1')} />
 }
 
 // https://github.com/adobe/react-spectrum/issues/7601
@@ -36,26 +28,19 @@ export const listBoxItemStyles = tv({
   base: 'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none',
   variants: {
     isHovered: {
-      true: 'bg-accent text-accent-foreground',
-    },
-  },
+      true: 'bg-accent text-accent-foreground'
+    }
+  }
 })
 
 // shadcn SelectItem: relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50
-export const ListBoxItem = <T extends object>({
-  className,
-  children,
-  ...props
-}: Rac.ListBoxItemProps) => (
+export const ListBoxItem = <T extends object>({ className, children, ...props }: Rac.ListBoxItemProps<T>) => (
   <Rac.ListBoxItem
     {...props}
-    textValue={
-      props.textValue || (typeof children === 'string' ? children : undefined)
-    }
-    className={Rac.composeRenderProps(className, (className, renderProps) =>
-      listBoxItemStyles({ ...renderProps, className })
-    )}>
-    {Rac.composeRenderProps(children, (children, renderProps) => (
+    textValue={props.textValue || (typeof children === 'string' ? children : undefined)}
+    className={Rac.composeRenderProps(className, (className, renderProps) => listBoxItemStyles({ ...renderProps, className }))}
+  >
+    {Rac.composeRenderProps(children, (children, renderProps: Rac.ListBoxItemRenderProps & { defaultChildren: React.ReactNode }) => (
       <>
         {renderProps.isSelected && (
           <span className="absolute right-2 flex size-3.5 items-center justify-center">
@@ -73,28 +58,20 @@ export const ListBoxItem = <T extends object>({
 // https://github.com/adobe/react-spectrum/issues/7601
 export const listBoxItemExStyles = tv({
   extend: listBoxItemStyles,
-  base: 'relative flex w-full cursor-default select-none flex-col items-start gap-2 rounded-sm px-4 py-2 outline-none',
+  base: 'relative flex w-full cursor-default select-none flex-col items-start gap-2 rounded-sm px-4 py-2 outline-none'
 })
 
-export interface ListBoxItemExProps
-  extends Omit<Rac.ListBoxItemProps, 'children'> {
+export interface ListBoxItemExProps extends Omit<Rac.ListBoxItemProps, 'children'> {
   label: string
   description: string
 }
 
-export const ListBoxItemEx = <T extends object>({
-  textValue,
-  className,
-  label,
-  description,
-  ...props
-}: ListBoxItemExProps) => (
+export const ListBoxItemEx = <T extends object>({ textValue, className, label, description, ...props }: ListBoxItemExProps) => (
   <Rac.ListBoxItem
     {...props}
     textValue={textValue || label}
-    className={Rac.composeRenderProps(className, (className, renderProps) =>
-      listBoxItemExStyles({ ...renderProps, className })
-    )}>
+    className={Rac.composeRenderProps(className, (className, renderProps) => listBoxItemExStyles({ ...renderProps, className }))}
+  >
     <Text slot="label">{label}</Text>
     <Text slot="description">{description}</Text>
   </Rac.ListBoxItem>

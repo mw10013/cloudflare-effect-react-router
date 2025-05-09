@@ -7,7 +7,6 @@ import { tv } from 'tailwind-variants'
 "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 */
 // TODO: popoverStyles: SubmenuTrigger
-// TODO: popoverStyles: outline-none
 export const popoverStyles = tv({
   base: 'bg-popover text-popover-foreground data-[entering]:animate-in data-[exiting]:animate-out data-[entering]:fade-in-0 data-[exiting]:fade-out-0 data-[entering]:zoom-in-95 data-[exiting]:zoom-out-95 data-[placement=bottom]:slide-in-from-top-2 data-[placement=left]:slide-in-from-right-2 data-[placement=right]:slide-in-from-left-2 data-[placement=top]:slide-in-from-bottom-2 rounded-md border shadow-md',
   variants: {
@@ -27,7 +26,6 @@ function isPopoverStylesTriggerKey(value: unknown): value is PopoverStylesTrigge
   return typeof value === 'string' && Object.keys(popoverStyles.variants.trigger).includes(value)
 }
 
-// TODO: Popover menu: align center
 export const Popover = ({ className, offset = 4, ...props }: Rac.PopoverProps) => (
   <Rac.Popover
     offset={offset}
