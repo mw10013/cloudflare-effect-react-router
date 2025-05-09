@@ -8,8 +8,6 @@ import {
   CreditCardIcon,
   LogOut,
   LogOutIcon,
-  CheckIcon as LucideCheckIcon, // Renamed to avoid conflict if oui.CheckIcon exists
-  CircleIcon as LucideCircleIcon, // Renamed
   MoreHorizontalIcon,
   PencilIcon,
   Settings2Icon,
@@ -18,10 +16,10 @@ import {
   TrashIcon,
   UserIcon
 } from 'lucide-react'
-import * as Rac from 'react-aria-components' // Ensured import for Rac.Header
-import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar' // Assuming this is a generic Avatar or replace with oui.Avatar if available
+import * as Rac from 'react-aria-components'
+import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 
-export function DropdownMenuDemo() {
+export function OuiDropdownMenuDemo() {
   return (
     <div className="flex flex-wrap items-start gap-4">
       <DropdownMenuSimple />
@@ -40,7 +38,7 @@ function DropdownMenuSimple() {
       <Oui.Button variant="outline">Open</Oui.Button>
       <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4} className="w-56">
         <Oui.Menu>
-          <Rac.Section>
+          <Rac.MenuSection>
             <Oui.Header variant="menu">My Account</Oui.Header>
             <Oui.MenuItem id="profile">
               Profile
@@ -58,9 +56,9 @@ function DropdownMenuSimple() {
               Keyboard shortcuts
               <Oui.Keyboard>⌘K</Oui.Keyboard>
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
-          <Rac.Section>
+          <Rac.MenuSection>
             <Oui.MenuItem id="team">Team</Oui.MenuItem>
             <Rac.SubmenuTrigger>
               <Oui.MenuItem id="invite">Invite users</Oui.MenuItem>
@@ -77,15 +75,15 @@ function DropdownMenuSimple() {
               New Team
               <Oui.Keyboard>⌘+T</Oui.Keyboard>
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
-          <Rac.Section>
+          <Rac.MenuSection>
             <Oui.MenuItem id="github">GitHub</Oui.MenuItem>
             <Oui.MenuItem id="support">Support</Oui.MenuItem>
             <Oui.MenuItem id="api" isDisabled>
               API
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
           <Oui.MenuItem id="logout">
             Log out
@@ -105,7 +103,7 @@ function DropdownMenuCheckboxes() {
       <Oui.Button variant="outline">Checkboxes</Oui.Button>
       <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4} className="w-56">
         <Oui.Menu selectionMode="multiple" selectedKeys={selectedKeys} onSelectionChange={setSelectedKeys}>
-          <Rac.Section>
+          <Rac.MenuSection>
             <Oui.Header variant="menu">Account</Oui.Header>
             <Oui.MenuItem id="profile" textValue="Profile">
               <UserIcon className="mr-2 size-4" /> Profile
@@ -116,9 +114,9 @@ function DropdownMenuCheckboxes() {
             <Oui.MenuItem id="settingsCb" textValue="Settings">
               <Settings2Icon className="mr-2 size-4" /> Settings
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
-          <Rac.Section>
+          <Rac.MenuSection>
             <Oui.Header variant="menu">Appearance</Oui.Header>
             <Oui.MenuItem id="statusBar" textValue="Status Bar">
               Status Bar
@@ -129,13 +127,13 @@ function DropdownMenuCheckboxes() {
             <Oui.MenuItem id="panel" textValue="Panel">
               Panel
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
-          <Rac.Section>
+          <Rac.MenuSection>
             <Oui.MenuItem id="signOutCb" textValue="Sign Out">
               <LogOutIcon className="mr-2 size-4" /> Sign Out
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
         </Oui.Menu>
       </Oui.Popover>
     </Rac.MenuTrigger>
@@ -150,8 +148,7 @@ function DropdownMenuRadioGroupDemo() {
       <Oui.Button variant="outline">Radio Group</Oui.Button>
       <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4} className="w-56">
         <Oui.Menu selectionMode="single" selectedKeys={selectedKey} onSelectionChange={setSelectedKey}>
-          <Rac.Section>
-            {/* Removed inset from Oui.Header as per user feedback */}
+          <Rac.MenuSection>
             <Oui.Header variant="menu">Panel Position</Oui.Header>
             <Oui.MenuItem id="top" textValue="Top">
               Top
@@ -162,7 +159,7 @@ function DropdownMenuRadioGroupDemo() {
             <Oui.MenuItem id="right" isDisabled textValue="Right">
               Right
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
         </Oui.Menu>
       </Oui.Popover>
     </Rac.MenuTrigger>
@@ -185,7 +182,7 @@ function DropdownMenuWithAvatar() {
       </Oui.Button>
       <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4} className="min-w-[var(--trigger-width)]">
         <Oui.Menu>
-          <Rac.Section>
+          <Rac.MenuSection>
             <Rac.Header className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar>
@@ -198,16 +195,16 @@ function DropdownMenuWithAvatar() {
                 </div>
               </div>
             </Rac.Header>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
-          <Rac.Section>
+          <Rac.MenuSection>
             <Oui.MenuItem id="upgradeAvatar" textValue="Upgrade to Pro">
               <SparklesIcon className="mr-2 size-4" />
               Upgrade to Pro
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
-          <Rac.Section>
+          <Rac.MenuSection>
             <Oui.MenuItem id="accountAvatar" textValue="Account">
               <BadgeCheckIcon className="mr-2 size-4" />
               Account
@@ -220,7 +217,7 @@ function DropdownMenuWithAvatar() {
               <BellIcon className="mr-2 size-4" />
               Notifications
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
           <Oui.MenuItem id="signOutAvatar" textValue="Sign Out">
             <LogOut className="mr-2 size-4" />
@@ -243,7 +240,7 @@ function DropdownMenuAvatarOnly() {
       </Oui.Button>
       <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4} className="min-w-[var(--trigger-width)]">
         <Oui.Menu>
-          <Rac.Section>
+          <Rac.MenuSection>
             <Rac.Header className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar>
@@ -256,16 +253,16 @@ function DropdownMenuAvatarOnly() {
                 </div>
               </div>
             </Rac.Header>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
-          <Rac.Section>
+          <Rac.MenuSection>
             <Oui.MenuItem id="upgradeAvatarOnly" textValue="Upgrade to Pro">
               <SparklesIcon className="mr-2 size-4" />
               Upgrade to Pro
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
-          <Rac.Section>
+          <Rac.MenuSection>
             <Oui.MenuItem id="accountAvatarOnly" textValue="Account">
               <BadgeCheckIcon className="mr-2 size-4" />
               Account
@@ -278,7 +275,7 @@ function DropdownMenuAvatarOnly() {
               <BellIcon className="mr-2 size-4" />
               Notifications
             </Oui.MenuItem>
-          </Rac.Section>
+          </Rac.MenuSection>
           <Oui.Separator variant="menu" />
           <Oui.MenuItem id="signOutAvatarOnly" textValue="Sign Out">
             <LogOut className="mr-2 size-4" />
