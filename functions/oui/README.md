@@ -17,6 +17,9 @@
 
 ## Prompt
 
+- https://code.visualstudio.com/updates/v1_100#_prompt-and-instructions-files
+- https://copilot-instructions.md/
+
 ```
 #fetch https://react-spectrum.adobe.com/react-aria/Menu.html
 #fetch https://react-spectrum.adobe.com/react-aria/ListBox.html
@@ -24,5 +27,6 @@
 #fetch https://ui.shadcn.com/docs/components/dropdown-menu
 #fetch https://react-spectrum.adobe.com/react-aria/Dialog.html
 #fetch https://react-spectrum.adobe.com/react-aria/Modal.html
+#fetch https://react-spectrum.adobe.com/react-aria/collections.html
 #codebase
 ```
