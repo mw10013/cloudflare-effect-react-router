@@ -1,0 +1,39 @@
+# Oui Requirements
+
+Oui is React Aria Components (RAC) with Shadcn characteristics. It is the little ui with the big O in it.
+
+## Core Philosophy
+
+**`oui` is React Aria Components (RAC) styled with the Shadcn design system.** The primary goal is to provide a set of accessible, unstyled primitive components from RAC, and apply the visual characteristics of the Shadcn design system to them.
+
+## 1. Design System & Styling
+
+- **Strict Requirement: Shadcn Design System for Tailwind v4.**
+  - All styling must adhere to the principles and tokens defined in the Shadcn design system specifically for Tailwind v4.
+  - Reference for Tailwind v4 setup: [Shadcn UI Docs - Tailwind v4](https://ui.shadcn.com/docs/tailwind-v4)
+  - Reference for v4 components: [v4.shadcn.com](https://v4.shadcn.com/)
+- **Styling Implementation:**
+  - Styling will be achieved using `tailwind-variants` (tv) and Tailwind CSS.
+  - Leverage RAC's data attributes (e.g., `data-focused`, `data-selected`, `data-disabled`, `data-entering`, `data-exiting`, `data-placement`) for stateful and contextual styling, as per RAC conventions.
+  - Reference: [RAC Styling](https://react-spectrum.adobe.com/react-aria/styling.html)
+- **Strict Prohibition: `tailwindcss-react-aria-components` Plugin.**
+  - The `tailwindcss-react-aria-components` plugin (or similar automated class-mapping plugins) **must not** be used. Styling should be explicit and align with the `oui` system's direct application of Shadcn v4 design principles.
+
+## 2. Component Structure & API
+
+- **Leverage RAC's Native Structure.**
+  - `oui` components **must not** attempt a 1-to-1 mapping of Shadcn/Radix component APIs or internal structures.
+  - The composition and API of `oui` components should primarily follow the patterns and primitives provided by React Aria Components.
+  - For example, components like RAC `Checkbox` or `RadioGroup` inherently manage their labels, which differs from Shadcn's separate `Label` component. `oui` should follow the RAC approach.
+- **Component Granularity and Composition:**
+  - `oui` components will primarily serve as styled, thin wrappers around individual React Aria Components primitives.
+  - Complex UI patterns (e.g., a full DropdownMenu) will be composed by the consumer using these `oui` primitives, rather than `oui` providing large, monolithic compound components.
+- **Customization and Advanced Features:**
+  - Any advanced customization, composition, or extension of components should follow React Aria Components' patterns and best practices.
+  - Avoid introducing Radix-specific patterns or abstractions if a RAC-idiomatic way exists.
+  - Reference: [RAC Advanced Customization](https://react-spectrum.adobe.com/react-aria/advanced.html)
+
+## 3. Accessibility
+
+- Preserve and enhance the inherent accessibility features provided by React Aria Components.
+- Ensure all styling choices and structural decisions maintain or improve accessibility.
