@@ -72,6 +72,10 @@ const items = [
     url: '/demo/radio-group'
   },
   {
+    title: 'Separator',
+    url: '/demo/separator'
+  },
+  {
     title: 'Text Field',
     url: '/demo/text-field'
   },
