@@ -13,26 +13,30 @@ import { tv } from 'tailwind-variants'
 export const separator = tv({
   base: 'shrink-0 bg-border',
   variants: {
-    variant: {
-      default: '',
-      menu: '',
-    },
     orientation: {
       horizontal: 'h-px w-full',
-      vertical: 'h-full w-px',
+      vertical: 'h-full w-px'
     },
+    variant: {
+      default: '',
+      menu: ''
+    }
   },
   compoundVariants: [
     {
       variant: 'menu',
       orientation: 'horizontal',
-      class: '-mx-1 my-1 h-px bg-muted',
-    },
+      // For menu variant, horizontal orientation adds specific margins.
+      // It inherits 'shrink-0 bg-border h-px w-full' from base and orientation.
+      class: '-mx-1 my-1'
+    }
+    // No special compound needed for variant: 'menu', orientation: 'vertical'
+    // as it should be styled identically to variant: 'default', orientation: 'vertical'.
   ],
   defaultVariants: {
     variant: 'default',
-    orientation: 'horizontal',
-  },
+    orientation: 'horizontal'
+  }
 })
 
 export interface SeparatorProps
