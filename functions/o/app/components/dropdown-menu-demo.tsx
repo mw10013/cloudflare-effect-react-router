@@ -38,11 +38,11 @@ export function DropdownMenuDemo() {
   return (
     <div className="flex flex-wrap items-start gap-4">
       <DropdownMenuSimple />
-      <DropdownMenuCheckboxes />
+      {/* <DropdownMenuCheckboxes />
       <DropdownMenuRadioGroupDemo />
       <DropdownMenuWithAvatar />
       <DropdownMenuAvatarOnly />
-      <DropdownMenuIconColor />
+      <DropdownMenuIconColor /> */}
     </div>
   )
 }

@@ -3,10 +3,10 @@ import { tv } from 'tailwind-variants'
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Popover.html
-#fetch https://www.radix-ui.com/primitives/docs/components/popover
-#fetch https://ui.shadcn.com/docs/components/popover
 #fetch https://react-spectrum.adobe.com/react-aria/Menu.html
+#fetch https://www.radix-ui.com/primitives/docs/components/popover
 #fetch https://www.radix-ui.com/primitives/docs/components/dropdown-menu
+#fetch https://ui.shadcn.com/docs/components/popover
 #fetch https://ui.shadcn.com/docs/components/dropdown-menu
 */
 
