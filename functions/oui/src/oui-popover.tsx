@@ -15,8 +15,8 @@ export const popoverStyles = tv({
   variants: {
     trigger: {
       DialogTrigger: 'min-w-72 p-4',
-      MenuTrigger: 'min-w-[8rem] overflow-hidden p-1',
-      SubmenuTrigger: '', // Submenu popovers often have minimal direct styling, inheriting from MenuTrigger or having specific needs
+      MenuTrigger: 'min-w-[8rem]', // Removed p-1 and overflow-hidden
+      SubmenuTrigger: '',
       Select: 'min-w-(--trigger-width)',
       ComboBox: 'min-w-(--trigger-width)'
     }

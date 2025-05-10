@@ -12,8 +12,7 @@ import { tv } from 'tailwind-variants'
 
 // shadcn DropdownMenuContent: bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md
 export const menu = tv({
-  // No background, border, shadow, or animation classes here as they are on the Popover
-  base: 'min-w-[8rem] overflow-y-auto overflow-x-hidden p-1'
+  base: 'w-full min-w-[8rem] overflow-y-auto overflow-x-hidden p-1'
 })
 
 export const Menu = <T extends object>({ className, ...props }: Rac.MenuProps<T>) => (

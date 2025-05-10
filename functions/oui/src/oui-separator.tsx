@@ -11,48 +11,52 @@ import { tv } from 'tailwind-variants'
 
 // shadcn Separator and DropdownMenuSeparator
 export const separator = tv({
-  base: 'shrink-0 bg-border',
+  base: 'bg-border shrink-0',
   variants: {
     orientation: {
-      horizontal: 'h-px w-full',
+      horizontal: 'h-px', // Default height for horizontal
       vertical: 'h-full w-px'
     },
-    variant: {
-      default: '',
-      menu: ''
+    // Use a more descriptive variant name if 'variant' is the public prop name
+    // to avoid confusion in tv's variant system.
+    // Let's assume the public prop is 'variant' and can be 'menu'.
+    stylingMode: {
+      default: 'w-full', // Applies w-full for standard horizontal separators
+      menu: '-mx-1 my-1' // For menu, uses negative margins and NO w-full
     }
   },
-  compoundVariants: [
-    {
-      variant: 'menu',
-      orientation: 'horizontal',
-      // For menu variant, horizontal orientation adds specific margins.
-      // It inherits 'shrink-0 bg-border h-px w-full' from base and orientation.
-      class: '-mx-1 my-1'
-    }
-    // No special compound needed for variant: 'menu', orientation: 'vertical'
-    // as it should be styled identically to variant: 'default', orientation: 'vertical'.
-  ],
   defaultVariants: {
-    variant: 'default',
-    orientation: 'horizontal'
+    orientation: 'horizontal',
+    stylingMode: 'default'
   }
 })
 
 export interface SeparatorProps
-  extends Rac.SeparatorProps,
-    VariantProps<typeof separator> {}
+  extends Omit<Rac.SeparatorProps, 'orientation'>, // Omit RAC's orientation
+    VariantProps<typeof separator> {
+  variant?: 'menu'
+  // Re-introduce orientation as our own prop to control tv variants
+  orientation?: 'horizontal' | 'vertical'
+}
 
 export const Separator = ({
-  variant,
-  orientation,
   className,
+  variant,
+  orientation: propOrientation, // User-provided orientation
   ...props
 }: SeparatorProps) => {
+  const isMenuVariant = variant === 'menu'
+  // In 'menu' variant, orientation is effectively horizontal for styling purposes here
+  const finalOrientation = isMenuVariant ? 'horizontal' : (propOrientation ?? 'horizontal')
+
   return (
     <Rac.Separator
-      elementType="div"
-      className={separator({ variant, orientation, className })}
+      orientation={finalOrientation} // Pass resolved orientation to RAC
+      className={separator({
+        orientation: finalOrientation,
+        stylingMode: isMenuVariant ? 'menu' : 'default',
+        className
+      })}
       {...props}
     />
   )
