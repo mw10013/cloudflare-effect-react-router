@@ -2,11 +2,14 @@ import type { VariantProps } from 'tailwind-variants'
 import * as Rac from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 
-/* shadcn Separator
-"shrink-0 bg-border",
-orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
-shadcn DropdownMenuSeparator: -mx-1 my-1 h-px bg-muted
+/*
+#fetch https://react-spectrum.adobe.com/react-aria/Menu.html#separator
+#fetch https://react-spectrum.adobe.com/react-aria/Toolbar.html#separator
+#fetch https://www.radix-ui.com/primitives/docs/components/separator
+#fetch https://www.radix-ui.com/primitives/docs/components/dropdown-menu#separator
 */
+
+// shadcn Separator and DropdownMenuSeparator
 export const separator = tv({
   base: 'shrink-0 bg-border',
   variants: {
@@ -36,7 +39,6 @@ export interface SeparatorProps
   extends Rac.SeparatorProps,
     VariantProps<typeof separator> {}
 
-// TODO: Separator use <hr>?
 export const Separator = ({
   variant,
   orientation,
