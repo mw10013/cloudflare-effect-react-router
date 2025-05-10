@@ -17,23 +17,65 @@ export const menu = tv({
 
 export const Menu = <T extends object>({ className, ...props }: Rac.MenuProps<T>) => (
   <Rac.Menu
-    data-slot="dropdown-menu-content"
+    // data-slot="dropdown-menu-content" // Not used in oui per requirements
     className={Rac.composeRenderProps(className, (className, renderProps) => menu({ ...renderProps, className }))}
     {...props}
   />
 )
 
-/* shadcn DropdownMenuItem
-"relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0",
-inset && "pl-8",
-*/
 export const menuItem = tv({
-  base: 'data-[focused]:bg-accent data-[focused]:text-accent-foreground relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0'
+  base: [
+    'relative flex cursor-default select-none items-center gap-x-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
+    // Default icon styling
+    '[&_svg:not([class*="size-"])]:size-4',
+    '[&_svg]:shrink-0',
+    '[&_svg]:pointer-events-none',
+    '[&_svg:not([class*="text-"])]:text-muted-foreground'
+  ],
+  variants: {
+    isFocused: {
+      true: 'bg-accent text-accent-foreground'
+    },
+    isDisabled: {
+      true: 'pointer-events-none opacity-50'
+    },
+    inset: {
+      true: 'pl-8'
+    },
+    variant: {
+      default: '', // Relies on base and isFocused for its states
+      destructive: 'text-destructive [&_svg]:text-destructive'
+    }
+  },
+  compoundVariants: [
+    {
+      variant: 'destructive',
+      isFocused: true,
+      // Overrides default focus for destructive items
+      className: 'bg-destructive/10 text-destructive dark:bg-destructive/20'
+    }
+  ],
+  defaultVariants: {
+    variant: 'default',
+    inset: false
+  }
 })
 
-export const MenuItem = <T extends object>({ className, ...props }: Rac.MenuItemProps<T>) => (
+export interface MenuItemProps<T extends object> extends Rac.MenuItemProps<T> {
+  inset?: boolean
+  variant?: 'default' | 'destructive'
+}
+
+export const MenuItem = <T extends object>({ className, inset, variant, ...props }: MenuItemProps<T>) => (
   <Rac.MenuItem
-    className={Rac.composeRenderProps(className, (className, renderProps) => menuItem({ ...renderProps, className }))}
     {...props}
+    className={Rac.composeRenderProps(className, (className, renderProps) =>
+      menuItem({
+        ...renderProps, // Includes isFocused, isDisabled from RAC
+        inset,
+        variant,
+        className
+      })
+    )}
   />
 )
