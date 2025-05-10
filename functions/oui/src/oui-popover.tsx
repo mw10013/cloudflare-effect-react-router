@@ -1,12 +1,15 @@
 import * as Rac from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 
-/* shadcn PopoverContent: z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2
- shadcn DropdownMenuContent
-"z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
-"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+/*
+#fetch https://react-spectrum.adobe.com/react-aria/Popover.html
+#fetch https://www.radix-ui.com/primitives/docs/components/popover
+#fetch https://ui.shadcn.com/docs/components/popover
+#fetch https://react-spectrum.adobe.com/react-aria/Menu.html
+#fetch https://www.radix-ui.com/primitives/docs/components/dropdown-menu
+#fetch https://ui.shadcn.com/docs/components/dropdown-menu
 */
-// TODO: popoverStyles: SubmenuTrigger
+
 export const popoverStyles = tv({
   base: 'bg-popover text-popover-foreground data-[entering]:animate-in data-[exiting]:animate-out data-[entering]:fade-in-0 data-[exiting]:fade-out-0 data-[entering]:zoom-in-95 data-[exiting]:zoom-out-95 data-[placement=bottom]:slide-in-from-top-2 data-[placement=left]:slide-in-from-right-2 data-[placement=right]:slide-in-from-left-2 data-[placement=top]:slide-in-from-bottom-2 rounded-md border shadow-md',
   variants: {
