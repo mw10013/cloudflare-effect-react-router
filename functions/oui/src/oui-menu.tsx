@@ -4,6 +4,8 @@ import { tv } from 'tailwind-variants'
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Menu.html
+#fetch https://react-spectrum.adobe.com/react-aria/Checkbox.html
+#fetch https://react-spectrum.adobe.com/react-aria/CheckboxGroup.html
 #fetch https://react-spectrum.adobe.com/react-aria/Popover.html
 #fetch https://ui.shadcn.com/docs/components/dropdown-menu
 #fetch https://react-spectrum.adobe.com/react-aria/collections.html

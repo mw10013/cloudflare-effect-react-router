@@ -4,7 +4,9 @@ import * as Oui from '@workspace/oui'
 import {
   BadgeCheckIcon,
   BellIcon,
+  CheckIcon, // Added
   ChevronsUpDownIcon,
+  CircleIcon, // Added
   CreditCardIcon,
   LogOut,
   LogOutIcon,
@@ -22,12 +24,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 export function OuiDropdownMenuDemo() {
   return (
     <div className="flex flex-wrap items-start gap-4">
-      <DropdownMenuSimple />
-      {/* <DropdownMenuCheckboxes />
+      {/* <DropdownMenuSimple /> */}
+      <DropdownMenuCheckboxes />
       <DropdownMenuRadioGroupDemo />
-      <DropdownMenuWithAvatar />
-      <DropdownMenuAvatarOnly />
-      <DropdownMenuIconColor /> */}
+      {/* <DropdownMenuWithAvatar /> */}
+      {/* <DropdownMenuAvatarOnly /> */}
+      {/* <DropdownMenuIconColor /> */}
     </div>
   )
 }
@@ -96,41 +98,68 @@ function DropdownMenuSimple() {
 }
 
 function DropdownMenuCheckboxes() {
-  const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set(['statusBar']))
+  const [appearanceSelectedKeys, setAppearanceSelectedKeys] = React.useState<Selection>(
+    new Set(['statusBar'])
+  )
 
   return (
     <Rac.MenuTrigger>
       <Oui.Button variant="outline">Checkboxes</Oui.Button>
       <Oui.Popover className="w-56">
-        <Oui.Menu selectionMode="multiple" selectedKeys={selectedKeys} onSelectionChange={setSelectedKeys}>
+        <Oui.Menu>
           <Rac.MenuSection>
             <Oui.Header variant="menu">Account</Oui.Header>
             <Oui.MenuItem id="profile" textValue="Profile">
               <UserIcon className="mr-2 size-4" /> Profile
             </Oui.MenuItem>
-            <Oui.MenuItem id="billingCb" textValue="Billing">
+            <Oui.MenuItem id="billing" textValue="Billing">
               <CreditCardIcon className="mr-2 size-4" /> Billing
             </Oui.MenuItem>
-            <Oui.MenuItem id="settingsCb" textValue="Settings">
+            <Oui.MenuItem id="settings" textValue="Settings">
               <Settings2Icon className="mr-2 size-4" /> Settings
             </Oui.MenuItem>
           </Rac.MenuSection>
           <Oui.Separator variant="menu" />
-          <Rac.MenuSection>
+          <Rac.MenuSection
+            selectionMode="multiple"
+            selectedKeys={appearanceSelectedKeys}
+            onSelectionChange={setAppearanceSelectedKeys}
+          >
             <Oui.Header variant="menu">Appearance</Oui.Header>
-            <Oui.MenuItem id="statusBar" textValue="Status Bar">
-              Status Bar
+            <Oui.MenuItem id="statusBar" textValue="Status Bar" inset>
+              {({ isSelected }) => (
+                <>
+                  <span className="absolute left-2 flex size-3.5 items-center justify-center">
+                    {isSelected && <CheckIcon className="size-4" />}
+                  </span>
+                  Status Bar
+                </>
+              )}
             </Oui.MenuItem>
-            <Oui.MenuItem id="activityBar" isDisabled textValue="Activity Bar">
-              Activity Bar
+            <Oui.MenuItem id="activityBar" textValue="Activity Bar" isDisabled inset>
+              {({ isSelected }) => (
+                <>
+                  <span className="absolute left-2 flex size-3.5 items-center justify-center">
+                    {isSelected && <CheckIcon className="size-4" />}
+                  </span>
+                  Activity Bar
+                </>
+              )}
             </Oui.MenuItem>
-            <Oui.MenuItem id="panel" textValue="Panel">
-              Panel
+            <Oui.MenuItem id="panel" textValue="Panel" inset>
+              {({ isSelected }) => (
+                <>
+                  <span className="absolute left-2 flex size-3.5 items-center justify-center">
+                    {isSelected && <CheckIcon className="size-4" />}
+                  </span>
+                  Panel
+                </>
+              )}
             </Oui.MenuItem>
           </Rac.MenuSection>
           <Oui.Separator variant="menu" />
           <Rac.MenuSection>
-            <Oui.MenuItem id="signOutCb" textValue="Sign Out">
+            <Oui.MenuItem id="signOut" textValue="Sign Out">
               <LogOutIcon className="mr-2 size-4" /> Sign Out
             </Oui.MenuItem>
           </Rac.MenuSection>
@@ -141,23 +170,48 @@ function DropdownMenuCheckboxes() {
 }
 
 function DropdownMenuRadioGroupDemo() {
-  const [selectedKey, setSelectedKey] = React.useState<Selection>(new Set(['bottom']))
+  const [panelPositionKey, setPanelPositionKey] = React.useState<Selection>(new Set(['bottom']))
 
   return (
     <Rac.MenuTrigger>
       <Oui.Button variant="outline">Radio Group</Oui.Button>
       <Oui.Popover className="w-56">
-        <Oui.Menu selectionMode="single" selectedKeys={selectedKey} onSelectionChange={setSelectedKey}>
-          <Rac.MenuSection>
-            <Oui.Header variant="menu">Panel Position</Oui.Header>
-            <Oui.MenuItem id="top" textValue="Top">
-              Top
+        <Oui.Menu>
+          <Rac.MenuSection
+            selectionMode="single"
+            selectedKeys={panelPositionKey}
+            onSelectionChange={setPanelPositionKey}
+          >
+            <Oui.Header variant="menu" className="pl-8">Panel Position</Oui.Header>
+            <Oui.MenuItem id="top" textValue="Top" inset>
+              {({ isSelected }) => (
+                <>
+                  <span className="absolute left-2 flex size-3.5 items-center justify-center">
+                    {isSelected && <CircleIcon className="size-2 fill-current" />}
+                  </span>
+                  Top
+                </>
+              )}
             </Oui.MenuItem>
-            <Oui.MenuItem id="bottom" textValue="Bottom">
-              Bottom
+            <Oui.MenuItem id="bottom" textValue="Bottom" inset>
+              {({ isSelected }) => (
+                <>
+                  <span className="absolute left-2 flex size-3.5 items-center justify-center">
+                    {isSelected && <CircleIcon className="size-2 fill-current" />}
+                  </span>
+                  Bottom
+                </>
+              )}
             </Oui.MenuItem>
-            <Oui.MenuItem id="right" isDisabled textValue="Right">
-              Right
+            <Oui.MenuItem id="right" textValue="Right" isDisabled inset>
+              {({ isSelected }) => (
+                <>
+                  <span className="absolute left-2 flex size-3.5 items-center justify-center">
+                    {isSelected && <CircleIcon className="size-2 fill-current" />}
+                  </span>
+                  Right
+                </>
+              )}
             </Oui.MenuItem>
           </Rac.MenuSection>
         </Oui.Menu>
