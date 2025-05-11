@@ -2,23 +2,23 @@ import type { VariantProps } from 'tailwind-variants'
 import * as Rac from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 
-/* shadcn DropdownMenuLabel
-      "px-2 py-1.5 text-sm font-semibold",
-      inset && "pl-8",
-*/
-// TODO: header inset
-export const header = tv({
+export const headerStyles = tv({
+  base: '',
   variants: {
     variant: {
-      menu: 'px-2 py-1.5 text-sm font-semibold',
+      menu: 'px-2 py-1.5 text-sm font-medium'
     },
+    inset: {
+      true: 'pl-8'
+    }
   },
+  defaultVariants: {
+    inset: false
+  }
 })
 
-export interface HeaderProps
-  extends React.ComponentProps<typeof Rac.Header>,
-    VariantProps<typeof header> {}
+export interface HeaderProps extends React.ComponentProps<typeof Rac.Header>, VariantProps<typeof headerStyles> {}
 
-export const Header = ({ variant, className, ...props }: HeaderProps) => (
-  <Rac.Header className={header({ variant, className })} {...props} />
+export const Header = ({ variant, inset, className, ...rest }: HeaderProps) => (
+  <Rac.Header className={headerStyles({ variant, inset, className })} {...rest} />
 )

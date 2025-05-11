@@ -25,6 +25,8 @@ Oui is React Aria Components (RAC) with Shadcn characteristics. It is the little
   - `oui` components **must not** attempt a 1-to-1 mapping of Shadcn/Radix component APIs or internal structures.
   - The composition and API of `oui` components should primarily follow the patterns and primitives provided by React Aria Components.
   - `oui` components, as thin wrappers, should directly utilize the contextual information (e.g., `selectionMode`, `triggerType`) and state (e.g., `isSelected`, `isFocused`) that RAC primitives make available through their render props or internal context.
+    - When using `Rac.composeRenderProps` or similar patterns, it is acceptable to shadow `className` (i.e., `(className, renderProps) => menuStyles({ ...renderProps, className })`).
+    - Prefer simple and concise variable names (e.g., `renderProps` over `renderPropsFromRac`) where context makes the meaning clear.
   - Avoid creating `oui-specific` context or prop-drilling mechanisms if RAC already provides the necessary data for a component to adapt its behavior or styling.
   - For example, components like RAC `Checkbox` or `RadioGroup` inherently manage their labels, which differs from Shadcn's separate `Label` component. `oui` should follow the RAC approach.
 - **Component Granularity and Composition:**
