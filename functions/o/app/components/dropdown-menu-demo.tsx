@@ -37,12 +37,12 @@ import {
 export function DropdownMenuDemo() {
   return (
     <div className="flex flex-wrap items-start gap-4">
-      {/* <DropdownMenuSimple /> */}
+      <DropdownMenuSimple />
       <DropdownMenuCheckboxes />
       <DropdownMenuRadioGroupDemo />
-      {/* <DropdownMenuWithAvatar /> */}
-      {/* <DropdownMenuAvatarOnly /> */}
-      {/* <DropdownMenuIconColor /> */}
+      <DropdownMenuWithAvatar />
+      <DropdownMenuAvatarOnly />
+      <DropdownMenuIconColor />
     </div>
   )
 }

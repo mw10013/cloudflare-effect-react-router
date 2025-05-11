@@ -25,9 +25,9 @@ export function OuiDropdownMenuDemo() {
       <DropdownMenuSimple />
       <DropdownMenuCheckboxes />
       <DropdownMenuRadioGroupDemo />
-      {/* <DropdownMenuWithAvatar /> */}
-      {/* <DropdownMenuAvatarOnly /> */}
-      {/* <DropdownMenuIconColor /> */}
+      <DropdownMenuWithAvatar />
+      <DropdownMenuAvatarOnly />
+      <DropdownMenuIconColor />
     </div>
   )
 }
