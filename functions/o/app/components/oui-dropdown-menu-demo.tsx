@@ -34,7 +34,7 @@ export function OuiDropdownMenuDemo() {
 
 function DropdownMenuSimple() {
   return (
-    <Oui.MenuEx buttonProps={{ variant: 'outline' }} label="Open" className="w-56">
+    <Oui.MenuEx triggerElement={<Oui.Button variant="outline">Open</Oui.Button>} className="w-56">
       <Rac.MenuSection>
         <Oui.Header variant="menu">My Account</Oui.Header>
         <Oui.MenuItem id="profile">
@@ -94,7 +94,7 @@ function DropdownMenuCheckboxes() {
   const [appearanceSelectedKeys, setAppearanceSelectedKeys] = React.useState<Selection>(new Set(['statusBar']))
 
   return (
-    <Oui.MenuEx buttonProps={{ variant: 'outline' }} label="Checkboxes" className="w-56">
+    <Oui.MenuEx triggerElement={<Oui.Button variant="outline">Checkboxes</Oui.Button>} className="w-56">
       <Rac.MenuSection>
         <Oui.Header variant="menu">Account</Oui.Header>
         <Oui.MenuItem id="profile" textValue="Profile">
@@ -130,7 +130,7 @@ function DropdownMenuRadioGroupDemo() {
   const [panelPositionKey, setPanelPositionKey] = React.useState<Selection>(new Set(['bottom']))
 
   return (
-    <Oui.MenuEx buttonProps={{ variant: 'outline' }} label="Radio Group" className="w-56">
+    <Oui.MenuEx triggerElement={<Oui.Button variant="outline">Radio Group</Oui.Button>} className="w-56">
       <Rac.MenuSection selectionMode="single" selectedKeys={panelPositionKey} onSelectionChange={setPanelPositionKey}>
         <Oui.Header variant="menu" inset>
           Panel Position
@@ -148,9 +148,9 @@ function DropdownMenuRadioGroupDemo() {
 function DropdownMenuWithAvatar() {
   return (
     <Oui.MenuEx
-      buttonProps={{ variant: 'outline', className: 'h-12 justify-start px-2 md:max-w-[200px]' }}
-      label={
-        <>
+      className="w-56"
+      triggerElement={
+        <Oui.Button variant="outline" className="h-12 justify-start px-2 md:max-w-[200px]">
           <Avatar className="mr-2">
             <AvatarImage src="https://github.com/shadcn.png" alt="Shadcn" />
             <AvatarFallback className="rounded-lg">CN</AvatarFallback>
@@ -160,7 +160,7 @@ function DropdownMenuWithAvatar() {
             <span className="text-muted-foreground truncate text-xs">shadcn@example.com</span>
           </div>
           <ChevronsUpDownIcon className="text-muted-foreground ml-auto size-4" />
-        </>
+        </Oui.Button>
       }
     >
       <Rac.MenuSection>
@@ -211,12 +211,13 @@ function DropdownMenuWithAvatar() {
 function DropdownMenuAvatarOnly() {
   return (
     <Oui.MenuEx
-      buttonProps={{ variant: 'outline', className: 'size-8 rounded-full border-none p-0' }}
-      label={
-        <Avatar>
-          <AvatarImage src="https://github.com/leerob.png" alt="leerob" />
-          <AvatarFallback className="rounded-lg">LR</AvatarFallback>
-        </Avatar>
+      triggerElement={
+        <Oui.Button variant="outline" className="size-8 rounded-full border-none p-0">
+          <Avatar>
+            <AvatarImage src="https://github.com/leerob.png" alt="leerob" />
+            <AvatarFallback className="rounded-lg">LR</AvatarFallback>
+          </Avatar>
+        </Oui.Button>
       }
     >
       <Rac.MenuSection>
@@ -267,12 +268,11 @@ function DropdownMenuAvatarOnly() {
 function DropdownMenuIconColor() {
   return (
     <Oui.MenuEx
-      buttonProps={{ size: 'icon' }}
-      label={
-        <>
+      triggerElement={
+        <Oui.Button variant="ghost" size="icon">
           <MoreHorizontalIcon />
           <span className="sr-only">Toggle menu</span>
-        </>
+        </Oui.Button>
       }
     >
       <Oui.MenuItem id="editIconColor" textValue="Edit">
