@@ -33,6 +33,11 @@ Oui is React Aria Components (RAC) with Shadcn characteristics. It is the little
   - `oui` components will primarily serve as styled, thin wrappers around individual React Aria Components primitives.
   - These wrappers can intelligently adapt their presentation (e.g., conditionally rendering an icon, applying specific styles like an inset) based on the props and contextual information received from their underlying RAC primitive.
   - Complex UI patterns (e.g., a full DropdownMenu) will be composed by the consumer using these `oui` primitives, rather than `oui` providing large, monolithic compound components.
+- **Reusable Wrapper Components (`Ex` Suffix):**
+  - `oui` may provide components with an `Ex` suffix (e.g., `MenuEx`) to serve as reusable wrappers, extensions, or examples for common UI patterns.
+  - These `Ex` components compose multiple `oui` primitives and/or React Aria Components, drawing inspiration from RAC's "Reusable wrappers" concept (e.g., #fetch https://react-spectrum.adobe.com/react-aria/Menu.html#reusable-wrappers).
+  - They offer convenience for common use cases. If multiple such extensions exist for a base component, they follow a sequential naming convention (e.g., `ComponentNameEx`, `ComponentNameEx1`).
+  - While providing a higher level of abstraction, `Ex` components should still primarily leverage RAC's native structure and context.
 - **Customization and Advanced Features:**
   - Any advanced customization, composition, or extension of components should follow React Aria Components' patterns and best practices, including the use of its rich render props and context system.
   - `oui` components should facilitate this by transparently passing through RAC props and exposing RAC's inherent flexibility.

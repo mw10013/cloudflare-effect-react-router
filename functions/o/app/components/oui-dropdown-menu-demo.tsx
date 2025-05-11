@@ -34,64 +34,59 @@ export function OuiDropdownMenuDemo() {
 
 function DropdownMenuSimple() {
   return (
-    <Rac.MenuTrigger>
-      <Oui.Button variant="outline">Open</Oui.Button>
-      <Oui.Popover className="w-56">
-        <Oui.Menu>
-          <Rac.MenuSection>
-            <Oui.Header variant="menu">My Account</Oui.Header>
-            <Oui.MenuItem id="profile">
-              Profile
-              <Oui.Keyboard>⇧⌘P</Oui.Keyboard>
-            </Oui.MenuItem>
-            <Oui.MenuItem id="billing">
-              Billing
-              <Oui.Keyboard>⌘B</Oui.Keyboard>
-            </Oui.MenuItem>
-            <Oui.MenuItem id="settings">
-              Settings
-              <Oui.Keyboard>⌘S</Oui.Keyboard>
-            </Oui.MenuItem>
-            <Oui.MenuItem id="shortcuts">
-              Keyboard shortcuts
-              <Oui.Keyboard>⌘K</Oui.Keyboard>
-            </Oui.MenuItem>
-          </Rac.MenuSection>
-          <Oui.Separator variant="menu" />
-          <Rac.MenuSection>
-            <Oui.MenuItem id="team">Team</Oui.MenuItem>
-            <Rac.SubmenuTrigger>
-              <Oui.MenuItem id="invite">Invite users</Oui.MenuItem>
-              <Oui.Popover>
-                <Oui.Menu>
-                  <Oui.MenuItem id="email">Email</Oui.MenuItem>
-                  <Oui.MenuItem id="message">Message</Oui.MenuItem>
-                  <Oui.Separator variant="menu" />
-                  <Oui.MenuItem id="more">More...</Oui.MenuItem>
-                </Oui.Menu>
-              </Oui.Popover>
-            </Rac.SubmenuTrigger>
-            <Oui.MenuItem id="newTeam">
-              New Team
-              <Oui.Keyboard>⌘+T</Oui.Keyboard>
-            </Oui.MenuItem>
-          </Rac.MenuSection>
-          <Oui.Separator variant="menu" />
-          <Rac.MenuSection>
-            <Oui.MenuItem id="github">GitHub</Oui.MenuItem>
-            <Oui.MenuItem id="support">Support</Oui.MenuItem>
-            <Oui.MenuItem id="api" isDisabled>
-              API
-            </Oui.MenuItem>
-          </Rac.MenuSection>
-          <Oui.Separator variant="menu" />
-          <Oui.MenuItem id="logout">
-            Log out
-            <Oui.Keyboard>⇧⌘Q</Oui.Keyboard>
-          </Oui.MenuItem>
-        </Oui.Menu>
-      </Oui.Popover>
-    </Rac.MenuTrigger>
+    <Oui.MenuEx buttonProps={{ variant: 'outline' }} label="Open" className="w-56">
+      <Rac.MenuSection>
+        <Oui.Header variant="menu">My Account</Oui.Header>
+        <Oui.MenuItem id="profile">
+          Profile
+          <Oui.Keyboard>⇧⌘P</Oui.Keyboard>
+        </Oui.MenuItem>
+        <Oui.MenuItem id="billing">
+          Billing
+          <Oui.Keyboard>⌘B</Oui.Keyboard>
+        </Oui.MenuItem>
+        <Oui.MenuItem id="settings">
+          Settings
+          <Oui.Keyboard>⌘S</Oui.Keyboard>
+        </Oui.MenuItem>
+        <Oui.MenuItem id="shortcuts">
+          Keyboard shortcuts
+          <Oui.Keyboard>⌘K</Oui.Keyboard>
+        </Oui.MenuItem>
+      </Rac.MenuSection>
+      <Oui.Separator variant="menu" />
+      <Rac.MenuSection>
+        <Oui.MenuItem id="team">Team</Oui.MenuItem>
+        <Rac.SubmenuTrigger>
+          <Oui.MenuItem id="invite">Invite users</Oui.MenuItem>
+          <Oui.Popover>
+            <Oui.Menu>
+              <Oui.MenuItem id="email">Email</Oui.MenuItem>
+              <Oui.MenuItem id="message">Message</Oui.MenuItem>
+              <Oui.Separator variant="menu" />
+              <Oui.MenuItem id="more">More...</Oui.MenuItem>
+            </Oui.Menu>
+          </Oui.Popover>
+        </Rac.SubmenuTrigger>
+        <Oui.MenuItem id="newTeam">
+          New Team
+          <Oui.Keyboard>⌘+T</Oui.Keyboard>
+        </Oui.MenuItem>
+      </Rac.MenuSection>
+      <Oui.Separator variant="menu" />
+      <Rac.MenuSection>
+        <Oui.MenuItem id="github">GitHub</Oui.MenuItem>
+        <Oui.MenuItem id="support">Support</Oui.MenuItem>
+        <Oui.MenuItem id="api" isDisabled>
+          API
+        </Oui.MenuItem>
+      </Rac.MenuSection>
+      <Oui.Separator variant="menu" />
+      <Oui.MenuItem id="logout">
+        Log out
+        <Oui.Keyboard>⇧⌘Q</Oui.Keyboard>
+      </Oui.MenuItem>
+    </Oui.MenuEx>
   )
 }
 
@@ -101,7 +96,7 @@ function DropdownMenuCheckboxes() {
   return (
     <Rac.MenuTrigger>
       <Oui.Button variant="outline">Checkboxes</Oui.Button>
-      <Oui.Popover className="w-56">
+      <Oui.Popover>
         <Oui.Menu>
           <Rac.MenuSection>
             <Oui.Header variant="menu">Account</Oui.Header>
@@ -142,7 +137,7 @@ function DropdownMenuRadioGroupDemo() {
   return (
     <Rac.MenuTrigger>
       <Oui.Button variant="outline">Radio Group</Oui.Button>
-      <Oui.Popover className="w-56">
+      <Oui.Popover>
         <Oui.Menu>
           <Rac.MenuSection selectionMode="single" selectedKeys={panelPositionKey} onSelectionChange={setPanelPositionKey}>
             <Oui.Header variant="menu" inset>
@@ -174,7 +169,7 @@ function DropdownMenuWithAvatar() {
         </div>
         <ChevronsUpDownIcon className="text-muted-foreground ml-auto size-4" />
       </Oui.Button>
-      <Oui.Popover className="min-w-[var(--trigger-width)]">
+      <Oui.Popover>
         <Oui.Menu>
           <Rac.MenuSection>
             <Rac.Header className="p-0 font-normal">
@@ -232,7 +227,7 @@ function DropdownMenuAvatarOnly() {
           <AvatarFallback className="rounded-lg">LR</AvatarFallback>
         </Avatar>
       </Oui.Button>
-      <Oui.Popover className="min-w-[var(--trigger-width)]">
+      <Oui.Popover>
         <Oui.Menu>
           <Rac.MenuSection>
             <Rac.Header className="p-0 font-normal">
@@ -288,7 +283,7 @@ function DropdownMenuIconColor() {
         <MoreHorizontalIcon />
         <span className="sr-only">Toggle menu</span>
       </Oui.Button>
-      <Oui.Popover placement="bottom start">
+      <Oui.Popover>
         <Oui.Menu>
           <Oui.MenuItem id="editIconColor" textValue="Edit">
             <PencilIcon className="text-muted-foreground mr-2 size-4" />

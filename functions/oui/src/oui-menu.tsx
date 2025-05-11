@@ -1,6 +1,8 @@
 import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react'
 import * as Rac from 'react-aria-components'
 import { tv } from 'tailwind-variants'
+import { Button, ButtonProps } from './oui-button'
+import { Popover } from './oui-popover'
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Menu.html
@@ -103,3 +105,21 @@ export const MenuItem = <T extends object>({ className: initialClassName, varian
     }}
   </Rac.MenuItem>
 )
+
+interface MenuExProps<T> extends Rac.MenuProps<T>, Omit<Rac.MenuTriggerProps, 'children'> {
+  buttonProps?: ButtonProps
+  label?: React.ReactNode
+}
+
+export function MenuEx<T extends object>({ buttonProps, label, children, ...rest }: MenuExProps<T>) {
+  return (
+    <Rac.MenuTrigger {...rest}>
+      <Button variant="ghost" {...buttonProps}>
+        {label}
+      </Button>
+      <Popover>
+        <Menu {...rest}>{children}</Menu>
+      </Popover>
+    </Rac.MenuTrigger>
+  )
+}
