@@ -14,8 +14,13 @@ export const separator = tv({
   base: 'bg-border shrink-0',
   variants: {
     variant: {
-      default: 'w-full', // Applies w-full for standard horizontal separators
-      menu: '-mx-1 my-1' // For menu, use negative margins and NO w-full
+      default: 'w-full',
+      // For the 'menu' variant, 'w-full' is omitted. This results in an implicit
+      // 'width: auto', allowing negative horizontal margins (-mx-1) to expand the
+      // separator's actual content-box width to fill the parent's padding area.
+      // An explicit width (like 'w-full') would fix the content-box size first,
+      // and negative margins would only shift this fixed-size box.
+      menu: '-mx-1 my-1'
     },
     orientation: {
       horizontal: 'h-px',
