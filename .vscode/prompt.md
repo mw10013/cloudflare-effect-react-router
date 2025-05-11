@@ -4,3 +4,4 @@
 - Use Tailwind 4.0, shadcn v4, and react aria components latest version
 - No trailing commas or semi-colons in typescript code.
 - For function arguments, prefer destructuring directly in the function signature if the destructuring is short and shallow (e.g., `({ data: { value }, otherArg })`). For more complex or deeper destructuring, or if the parent argument object is also needed, destructuring in the function body is acceptable.
+- Focus exclusively on the code provided in the current attachments, especially the 'current visible code' or 'active selection'. Disregard any similar but older code versions from previous turns.
