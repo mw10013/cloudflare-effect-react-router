@@ -1,5 +1,6 @@
 import type { Route } from './+types/app.$accountId'
 import React from 'react'
+import * as Oui from '@workspace/oui'
 import { Effect, Schema } from 'effect'
 import {
   AudioWaveform,
@@ -16,7 +17,6 @@ import {
 import * as Rac from 'react-aria-components'
 import { Outlet, redirect, useParams } from 'react-router'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
-import * as Oui from '~/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -252,7 +252,7 @@ export function TeamSwitcher({
   )
 }
 
-export function NavUser({
+export function NavUser0({
   user
 }: {
   user: {
@@ -329,6 +329,93 @@ export function NavUser({
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+      </SidebarMenuItem>
+    </SidebarMenu>
+  )
+}
+export function NavUser({
+  user
+}: {
+  user: {
+    name: string
+    email: string
+    avatar: string
+  }
+}) {
+  const { isMobile } = useSidebar()
+
+  return (
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <Oui.MenuEx
+          className="min-w-56 rounded-lg"
+          triggerElement={
+            <Oui.Button
+              variant="ghost"
+              className="data-[hovered]:bg-sidebar-accent data-[hovered]:text-sidebar-accent-foreground data-[pressed]:bg-sidebar-accent data-[pressed]:text-sidebar-accent-foreground h-12 w-full justify-start overflow-hidden rounded-md p-2 text-left text-sm font-normal"
+            >
+              <Avatar className="h-8 w-8 rounded-lg">
+                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              </Avatar>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-medium">{user.name}</span>
+                <span className="truncate text-xs">{user.email}</span>
+              </div>
+              <ChevronsUpDown className="ml-auto size-4" />
+            </Oui.Button>
+          }
+        >
+          <Rac.MenuSection>
+            <Rac.Header className="p-0 font-normal">
+              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                <Avatar className="h-8 w-8 rounded-lg">
+                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                </Avatar>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-medium">{user.name}</span>
+                  <span className="truncate text-xs">{user.email}</span>
+                </div>
+              </div>
+            </Rac.Header>
+          </Rac.MenuSection>
+          <Oui.Separator variant="menu" />
+          <Rac.MenuSection>
+            <Oui.MenuItem id="upgradeToPro" textValue="Upgrade to Pro">
+              <Sparkles className="mr-2 size-4" />
+              Upgrade to Pro
+            </Oui.MenuItem>
+          </Rac.MenuSection>
+          <Oui.Separator variant="menu" />
+          <Rac.MenuSection>
+            <Oui.MenuItem id="account" textValue="Account">
+              <BadgeCheck className="mr-2 size-4" />
+              Account
+            </Oui.MenuItem>
+            <Oui.MenuItem id="billing" textValue="Billing">
+              <CreditCard className="mr-2 size-4" />
+              Billing
+            </Oui.MenuItem>
+            <Oui.MenuItem id="notifications" textValue="Notifications">
+              <Bell className="mr-2 size-4" />
+              Notifications
+            </Oui.MenuItem>
+          </Rac.MenuSection>
+          <Oui.Separator variant="menu" />
+          <Oui.MenuItem id="signOut" textValue="Sign Out">
+            <LogOut className="mr-2 size-4" />
+            <Rac.Form action="/signout" method="post" className="contents">
+              <Oui.Button
+                type="submit"
+                variant="ghost"
+                // className="h-auto p-0 text-sm font-normal hover:bg-transparent hover:text-current focus-visible:ring-0 focus-visible:ring-offset-0"
+              >
+                Sign Out
+              </Oui.Button>
+            </Rac.Form>
+          </Oui.MenuItem>
+        </Oui.MenuEx>
       </SidebarMenuItem>
     </SidebarMenu>
   )
