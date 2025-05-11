@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from 'lucide-react'
+import { ChevronRightIcon, CheckIcon, CircleIcon } from 'lucide-react'
 import * as Rac from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 
@@ -65,23 +65,43 @@ export interface MenuItemProps<T extends object> extends Rac.MenuItemProps<T> {
   variant?: 'default' | 'destructive'
 }
 
-export const MenuItem = <T extends object>({ className, inset, variant, children, ...props }: MenuItemProps<T>) => (
+export const MenuItem = <T extends object>({ className, inset: propsInset, variant, children, ...props }: MenuItemProps<T>) => (
   <Rac.MenuItem
     {...props}
-    className={Rac.composeRenderProps(className, (className, renderProps) =>
-      menuItem({
-        ...renderProps,
-        inset,
+    className={Rac.composeRenderProps(className, (cn, renderPropsFromRac) => {
+      const { selectionMode } = renderPropsFromRac
+      const isSelectionItem = selectionMode === 'single' || selectionMode === 'multiple'
+      const finalInset = isSelectionItem || propsInset
+
+      return menuItem({
+        ...renderPropsFromRac,
+        inset: finalInset,
         variant,
-        className
+        className: cn
       })
-    )}
+    })}
   >
-    {(renderProps) => (
-      <>
-        {typeof children === 'function' ? children(renderProps) : children}
-        {renderProps.hasSubmenu && <ChevronRightIcon className="ml-auto size-4" />}
-      </>
-    )}
+    {(renderPropsFromRac) => {
+      const { isSelected, selectionMode, hasSubmenu } = renderPropsFromRac
+      const isCheckboxItem = isSelected && selectionMode === 'multiple'
+      const isRadioItem = isSelected && selectionMode === 'single'
+
+      return (
+        <>
+          {isCheckboxItem && (
+            <span className="absolute left-2 flex size-3.5 items-center justify-center">
+              <CheckIcon className="size-4" />
+            </span>
+          )}
+          {isRadioItem && (
+            <span className="absolute left-2 flex size-3.5 items-center justify-center">
+              <CircleIcon className="size-2 fill-current" />
+            </span>
+          )}
+          {typeof children === 'function' ? children(renderPropsFromRac) : children}
+          {hasSubmenu && <ChevronRightIcon className="ml-auto size-4" />}
+        </>
+      )
+    }}
   </Rac.MenuItem>
 )
