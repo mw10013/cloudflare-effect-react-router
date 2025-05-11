@@ -1,4 +1,4 @@
-import { ChevronRightIcon, CheckIcon, CircleIcon } from 'lucide-react'
+import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react'
 import * as Rac from 'react-aria-components'
 import { tv } from 'tailwind-variants'
 
@@ -65,24 +65,28 @@ export interface MenuItemProps<T extends object> extends Rac.MenuItemProps<T> {
   variant?: 'default' | 'destructive'
 }
 
-export const MenuItem = <T extends object>({ className, inset: propsInset, variant, children, ...props }: MenuItemProps<T>) => (
+export const MenuItem = <T extends object>({
+  className: initialClassName,
+  inset: propsInset,
+  variant,
+  children,
+  ...props
+}: MenuItemProps<T>) => (
   <Rac.MenuItem
     {...props}
-    className={Rac.composeRenderProps(className, (cn, renderPropsFromRac) => {
-      const { selectionMode } = renderPropsFromRac
+    className={Rac.composeRenderProps(initialClassName, (className, { selectionMode, ...renderProps }) => {
       const isSelectionItem = selectionMode === 'single' || selectionMode === 'multiple'
       const finalInset = isSelectionItem || propsInset
 
       return menuItem({
-        ...renderPropsFromRac,
+        ...renderProps,
         inset: finalInset,
         variant,
-        className: cn
+        className
       })
     })}
   >
-    {(renderPropsFromRac) => {
-      const { isSelected, selectionMode, hasSubmenu } = renderPropsFromRac
+    {({ isSelected, selectionMode, hasSubmenu, ...renderProps }) => {
       const isCheckboxItem = isSelected && selectionMode === 'multiple'
       const isRadioItem = isSelected && selectionMode === 'single'
 
@@ -98,7 +102,7 @@ export const MenuItem = <T extends object>({ className, inset: propsInset, varia
               <CircleIcon className="size-2 fill-current" />
             </span>
           )}
-          {typeof children === 'function' ? children(renderPropsFromRac) : children}
+          {typeof children === 'function' ? children({ isSelected, selectionMode, hasSubmenu, ...renderProps }) : children}
           {hasSubmenu && <ChevronRightIcon className="ml-auto size-4" />}
         </>
       )
