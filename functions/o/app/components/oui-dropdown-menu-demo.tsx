@@ -36,7 +36,7 @@ function DropdownMenuSimple() {
   return (
     <Oui.MenuEx triggerElement={<Oui.Button variant="outline">Open</Oui.Button>} className="w-56">
       <Rac.MenuSection>
-        <Oui.Header variant="menu">My Account</Oui.Header>
+        <Oui.Header>My Account</Oui.Header>
         <Oui.MenuItem id="profile">
           Profile
           <Oui.Keyboard>⇧⌘P</Oui.Keyboard>
@@ -96,7 +96,7 @@ function DropdownMenuCheckboxes() {
   return (
     <Oui.MenuEx triggerElement={<Oui.Button variant="outline">Checkboxes</Oui.Button>} className="w-56">
       <Rac.MenuSection>
-        <Oui.Header variant="menu">Account</Oui.Header>
+        <Oui.Header>Account</Oui.Header>
         <Oui.MenuItem id="profile" textValue="Profile">
           <UserIcon className="mr-2 size-4" /> Profile
         </Oui.MenuItem>
@@ -109,7 +109,7 @@ function DropdownMenuCheckboxes() {
       </Rac.MenuSection>
       <Oui.Separator variant="menu" />
       <Rac.MenuSection selectionMode="multiple" selectedKeys={appearanceSelectedKeys} onSelectionChange={setAppearanceSelectedKeys}>
-        <Oui.Header variant="menu">Appearance</Oui.Header>
+        <Oui.Header>Appearance</Oui.Header>
         <Oui.MenuItem id="statusBar">Status Bar</Oui.MenuItem>
         <Oui.MenuItem id="activityBar" isDisabled>
           Activity Bar
@@ -132,9 +132,7 @@ function DropdownMenuRadioGroupDemo() {
   return (
     <Oui.MenuEx triggerElement={<Oui.Button variant="outline">Radio Group</Oui.Button>} className="w-56">
       <Rac.MenuSection selectionMode="single" selectedKeys={panelPositionKey} onSelectionChange={setPanelPositionKey}>
-        <Oui.Header variant="menu" inset>
-          Panel Position
-        </Oui.Header>
+        <Oui.Header inset>Panel Position</Oui.Header>
         <Oui.MenuItem id="top">Top</Oui.MenuItem>
         <Oui.MenuItem id="bottom">Bottom</Oui.MenuItem>
         <Oui.MenuItem id="right" isDisabled>
@@ -164,7 +162,7 @@ function DropdownMenuWithAvatar() {
       }
     >
       <Rac.MenuSection>
-        <Rac.Header className="p-0 font-normal">
+        <Rac.Header>
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" alt="Shadcn" />
@@ -221,7 +219,7 @@ function DropdownMenuAvatarOnly() {
       }
     >
       <Rac.MenuSection>
-        <Rac.Header className="p-0 font-normal">
+        <Rac.Header>
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar>
               <AvatarImage src="https://github.com/leerob.png" alt="leerob" />

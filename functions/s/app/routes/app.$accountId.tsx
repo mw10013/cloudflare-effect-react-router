@@ -367,7 +367,7 @@ export function NavUser({
           }
         >
           <Rac.MenuSection>
-            <Rac.Header className="p-0 font-normal">
+            <Rac.Header>
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={user.avatar} alt={user.name} />
@@ -406,11 +406,7 @@ export function NavUser({
           <Oui.MenuItem id="signOut" textValue="Sign Out">
             <LogOut className="mr-2 size-4" />
             <Rac.Form action="/signout" method="post" className="contents">
-              <Oui.Button
-                type="submit"
-                variant="ghost"
-                // className="h-auto p-0 text-sm font-normal hover:bg-transparent hover:text-current focus-visible:ring-0 focus-visible:ring-offset-0"
-              >
+              <Oui.Button type="submit" variant="ghost">
                 Sign Out
               </Oui.Button>
             </Rac.Form>
