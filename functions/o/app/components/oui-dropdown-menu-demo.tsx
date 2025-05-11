@@ -4,7 +4,6 @@ import * as Oui from '@workspace/oui'
 import {
   BadgeCheckIcon,
   BellIcon,
-  // CheckIcon and CircleIcon are no longer needed here for direct use
   ChevronsUpDownIcon,
   CreditCardIcon,
   LogOut,
@@ -117,17 +116,19 @@ function DropdownMenuCheckboxes() {
             </Oui.MenuItem>
           </Rac.MenuSection>
           <Oui.Separator variant="menu" />
-          <Rac.MenuSection selectionMode="multiple" selectedKeys={appearanceSelectedKeys} onSelectionChange={setAppearanceSelectedKeys}>
-            <Oui.Header variant="menu" className="pl-8">
-              Appearance
-            </Oui.Header>
-            <Oui.MenuItem id="statusBar" textValue="Status Bar">
+          <Rac.MenuSection
+            selectionMode="multiple"
+            selectedKeys={appearanceSelectedKeys}
+            onSelectionChange={setAppearanceSelectedKeys}
+          >
+            <Oui.Header variant="menu" className="pl-8">Appearance</Oui.Header>
+            <Oui.MenuItem id="statusBar">
               Status Bar
             </Oui.MenuItem>
-            <Oui.MenuItem id="activityBar" textValue="Activity Bar" isDisabled>
+            <Oui.MenuItem id="activityBar" isDisabled>
               Activity Bar
             </Oui.MenuItem>
-            <Oui.MenuItem id="panel" textValue="Panel">
+            <Oui.MenuItem id="panel">
               Panel
             </Oui.MenuItem>
           </Rac.MenuSection>
@@ -151,17 +152,19 @@ function DropdownMenuRadioGroupDemo() {
       <Oui.Button variant="outline">Radio Group</Oui.Button>
       <Oui.Popover className="w-56">
         <Oui.Menu>
-          <Rac.MenuSection selectionMode="single" selectedKeys={panelPositionKey} onSelectionChange={setPanelPositionKey}>
-            <Oui.Header variant="menu" className="pl-8">
-              Panel Position
-            </Oui.Header>
-            <Oui.MenuItem id="top" textValue="Top">
+          <Rac.MenuSection
+            selectionMode="single"
+            selectedKeys={panelPositionKey}
+            onSelectionChange={setPanelPositionKey}
+          >
+            <Oui.Header variant="menu" className="pl-8">Panel Position</Oui.Header>
+            <Oui.MenuItem id="top">
               Top
             </Oui.MenuItem>
-            <Oui.MenuItem id="bottom" textValue="Bottom">
+            <Oui.MenuItem id="bottom">
               Bottom
             </Oui.MenuItem>
-            <Oui.MenuItem id="right" textValue="Right" isDisabled>
+            <Oui.MenuItem id="right" isDisabled>
               Right
             </Oui.MenuItem>
           </Rac.MenuSection>
