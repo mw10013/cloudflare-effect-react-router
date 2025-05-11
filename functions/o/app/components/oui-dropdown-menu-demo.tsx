@@ -36,7 +36,7 @@ function DropdownMenuSimple() {
   return (
     <Rac.MenuTrigger>
       <Oui.Button variant="outline">Open</Oui.Button>
-      <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4} className="w-56">
+      <Oui.Popover trigger="MenuTrigger" className="w-56">
         <Oui.Menu>
           <Rac.MenuSection>
             <Oui.Header variant="menu">My Account</Oui.Header>
@@ -62,7 +62,7 @@ function DropdownMenuSimple() {
             <Oui.MenuItem id="team">Team</Oui.MenuItem>
             <Rac.SubmenuTrigger>
               <Oui.MenuItem id="invite">Invite users</Oui.MenuItem>
-              <Oui.Popover trigger="SubmenuTrigger" placement="right top" offset={-2}>
+              <Oui.Popover trigger="SubmenuTrigger" placement="right top">
                 <Oui.Menu>
                   <Oui.MenuItem id="email">Email</Oui.MenuItem>
                   <Oui.MenuItem id="message">Message</Oui.MenuItem>
@@ -101,7 +101,7 @@ function DropdownMenuCheckboxes() {
   return (
     <Rac.MenuTrigger>
       <Oui.Button variant="outline">Checkboxes</Oui.Button>
-      <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4} className="w-56">
+      <Oui.Popover trigger="MenuTrigger" className="w-56">
         <Oui.Menu selectionMode="multiple" selectedKeys={selectedKeys} onSelectionChange={setSelectedKeys}>
           <Rac.MenuSection>
             <Oui.Header variant="menu">Account</Oui.Header>
@@ -146,7 +146,7 @@ function DropdownMenuRadioGroupDemo() {
   return (
     <Rac.MenuTrigger>
       <Oui.Button variant="outline">Radio Group</Oui.Button>
-      <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4} className="w-56">
+      <Oui.Popover trigger="MenuTrigger" className="w-56">
         <Oui.Menu selectionMode="single" selectedKeys={selectedKey} onSelectionChange={setSelectedKey}>
           <Rac.MenuSection>
             <Oui.Header variant="menu">Panel Position</Oui.Header>
@@ -180,7 +180,7 @@ function DropdownMenuWithAvatar() {
         </div>
         <ChevronsUpDownIcon className="text-muted-foreground ml-auto size-4" />
       </Oui.Button>
-      <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4} className="min-w-[var(--trigger-width)]">
+      <Oui.Popover trigger="MenuTrigger" className="min-w-[var(--trigger-width)]">
         <Oui.Menu>
           <Rac.MenuSection>
             <Rac.Header className="p-0 font-normal">
@@ -238,7 +238,7 @@ function DropdownMenuAvatarOnly() {
           <AvatarFallback className="rounded-lg">LR</AvatarFallback>
         </Avatar>
       </Oui.Button>
-      <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4} className="min-w-[var(--trigger-width)]">
+      <Oui.Popover trigger="MenuTrigger" className="min-w-[var(--trigger-width)]">
         <Oui.Menu>
           <Rac.MenuSection>
             <Rac.Header className="p-0 font-normal">
@@ -294,7 +294,7 @@ function DropdownMenuIconColor() {
         <MoreHorizontalIcon />
         <span className="sr-only">Toggle menu</span>
       </Oui.Button>
-      <Oui.Popover trigger="MenuTrigger" placement="bottom start" offset={4}>
+      <Oui.Popover trigger="MenuTrigger" placement="bottom start">
         <Oui.Menu>
           <Oui.MenuItem id="editIconColor" textValue="Edit">
             <PencilIcon className="text-muted-foreground mr-2 size-4" />
