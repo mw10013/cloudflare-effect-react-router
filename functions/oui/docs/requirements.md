@@ -4,7 +4,7 @@ Oui is React Aria Components (RAC) with Shadcn characteristics. It is the little
 
 ## Core Philosophy
 
-**`oui` is React Aria Components (RAC) styled with the Shadcn design system.** The primary goal is to provide a set of accessible, unstyled primitive components from RAC, and apply the visual characteristics of the Shadcn design system to them.
+**`oui` is React Aria Components (RAC) styled with the Shadcn design system.** The primary goal is to provide a set of accessible, unstyled primitive components from RAC, and apply the visual characteristics of the Shadcn design system to them, while fully leveraging RAC's inherent capabilities.
 
 ## 1. Design System & Styling
 
@@ -21,15 +21,19 @@ Oui is React Aria Components (RAC) with Shadcn characteristics. It is the little
 
 ## 2. Component Structure & API
 
-- **Leverage RAC's Native Structure.**
+- **Leverage RAC's Native Structure and Context System.**
   - `oui` components **must not** attempt a 1-to-1 mapping of Shadcn/Radix component APIs or internal structures.
   - The composition and API of `oui` components should primarily follow the patterns and primitives provided by React Aria Components.
+  - `oui` components, as thin wrappers, should directly utilize the contextual information (e.g., `selectionMode`, `triggerType`) and state (e.g., `isSelected`, `isFocused`) that RAC primitives make available through their render props or internal context.
+  - Avoid creating `oui-specific` context or prop-drilling mechanisms if RAC already provides the necessary data for a component to adapt its behavior or styling.
   - For example, components like RAC `Checkbox` or `RadioGroup` inherently manage their labels, which differs from Shadcn's separate `Label` component. `oui` should follow the RAC approach.
 - **Component Granularity and Composition:**
   - `oui` components will primarily serve as styled, thin wrappers around individual React Aria Components primitives.
+  - These wrappers can intelligently adapt their presentation (e.g., conditionally rendering an icon, applying specific styles like an inset) based on the props and contextual information received from their underlying RAC primitive.
   - Complex UI patterns (e.g., a full DropdownMenu) will be composed by the consumer using these `oui` primitives, rather than `oui` providing large, monolithic compound components.
 - **Customization and Advanced Features:**
-  - Any advanced customization, composition, or extension of components should follow React Aria Components' patterns and best practices.
+  - Any advanced customization, composition, or extension of components should follow React Aria Components' patterns and best practices, including the use of its rich render props and context system.
+  - `oui` components should facilitate this by transparently passing through RAC props and exposing RAC's inherent flexibility.
   - Avoid introducing Radix-specific patterns or abstractions if a RAC-idiomatic way exists.
   - Reference: [RAC Advanced Customization](https://react-spectrum.adobe.com/react-aria/advanced.html)
 
