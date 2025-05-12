@@ -1,9 +1,11 @@
 ---
-applyTo: "**/*.ts,**/*.tsx"
+applyTo: "functions/**"
 ---
-# Project coding standards for TypeScript 
+
+# Project coding standards for TypeScript
 
 ## TypeScript Guidelines
+
 - Always follow functional programming principles
 - Use interfaces for data structures and type definitions
 - Prefer immutable data (const, readonly)

@@ -3,68 +3,75 @@
  * @type {import("prettier").Config}
  */
 const config = {
-  // bracketSameLine: true,
-  printWidth: 140,
-  semi: false,
-  singleQuote: true,
-  trailingComma: 'none', // None needed for .jsonc
-  // useTabs: true,
-
   // https://github.com/IanVS/prettier-plugin-sort-imports
-  importOrder: ['<TYPES>^(node:)', '<TYPES>', '<TYPES>^[.]', '^(react/(.*)$)|^(react$)', '<THIRD_PARTY_MODULES>', '^~/(.*)$', '^[./]'],
-  importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
-  importOrderTypeScriptVersion: '5.8.2',
+  importOrder: [
+    "<TYPES>^(node:)",
+    "<TYPES>",
+    "<TYPES>^[.]",
+    "^(react/(.*)$)|^(react$)",
+    "<THIRD_PARTY_MODULES>",
+    "^~/(.*)$",
+    "^[./]",
+  ],
+  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
+  importOrderTypeScriptVersion: "5.8.2",
 
   // Default tailwindFunctions, can be overridden per project if needed
-  tailwindFunctions: ['tv', 'composeTailwindRenderProps'],
+  tailwindFunctions: ["tv", "composeTailwindRenderProps"],
 
   plugins: [
-    'prettier-plugin-sql',
-    '@ianvs/prettier-plugin-sort-imports',
+    "prettier-plugin-sql",
+    "@ianvs/prettier-plugin-sort-imports",
     // https://github.com/tailwindlabs/prettier-plugin-tailwindcss?tab=readme-ov-file#compatibility-with-other-prettier-plugins
-    'prettier-plugin-tailwindcss' // MUST come last
+    "prettier-plugin-tailwindcss", // MUST come last
   ],
   overrides: [
     {
-      files: ['*.sql'],
+      files: ["*.sql"],
       // https://github.com/un-ts/prettier/tree/master/packages/sql#parser-options
       options: {
-        language: 'sqlite',
-        keywordCase: 'lower'
-      }
+        language: "sqlite",
+        keywordCase: "lower",
+      },
     },
     // https://github.com/tailwindlabs/prettier-plugin-tailwindcss/issues/281
     {
-      files: ['./functions/o/**'], // Files within project 'o'
+      files: ["./functions/o/**"], // Files within project 'o'
       options: {
         // For Tailwind v4, specify the stylesheet
-        tailwindStylesheet: './functions/o/app/app.css'
-      }
+        tailwindStylesheet: "./functions/o/app/app.css",
+      },
     },
     {
-      files: ['./functions/s/**'], // Files within project 's'
+      files: ["./functions/s/**"], // Files within project 's'
       options: {
         // For Tailwind v4, specify the stylesheet
-        tailwindStylesheet: './functions/s/app/app.css'
-      }
+        tailwindStylesheet: "./functions/s/app/app.css",
+      },
     },
     {
-      files: ['./functions/p/**'], // Files within project 'p'
+      files: ["./functions/p/**"], // Files within project 'p'
       options: {
         // For Tailwind v3, specify the config file
         // The plugin might auto-detect this, but explicit is often better.
-        tailwindConfig: './functions/p/tailwind.config.ts'
-      }
+        tailwindConfig: "./functions/p/tailwind.config.ts",
+      },
     },
     {
-      files: ['./functions/oui/**'], // Files within the oui library project
+      files: ["./functions/oui/**"], // Files within the oui library project
       options: {
         // For Tailwind v4, specify a representative stylesheet
         // Using project 'o's stylesheet as context for oui's own source files
-        tailwindStylesheet: './functions/o/app/app.css'
-      }
-    }
-  ]
-}
+        tailwindStylesheet: "./functions/o/app/app.css",
+      },
+    },
+    {
+      files: ["*.jsonc"],
+      options: {
+        trailingComma: "none",
+      },
+    },
+  ],
+};
 
-export default config
+export default config;
