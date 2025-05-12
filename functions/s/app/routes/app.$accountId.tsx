@@ -195,11 +195,10 @@ export function TeamSwitcher({
 }: {
   teams: {
     name: string
-    logo: React.ElementType
+    logo: React.ElementType // logo is no longer used in the rendered output
     plan: string
   }[]
 }) {
-  // const { isMobile } = useSidebar() // isMobile not used for side/align/offset as per instructions
   const [activeTeam, setActiveTeam] = React.useState(teams[0])
 
   if (!activeTeam) {
@@ -217,13 +216,11 @@ export function TeamSwitcher({
     <SidebarMenu>
       <SidebarMenuItem>
         <Oui.MenuEx
-          className="min-w-56 rounded-lg" // from DropdownMenuContent
+          className="min-w-56 rounded-lg"
           onAction={handleTeamSelection}
           triggerElement={
             <Oui.Button
-              variant="ghost" // SidebarMenuButton is often ghost-like or subtly styled
-              // Replicating SidebarMenuButton size="lg" and open state styling
-              // Default Oui.Button is medium, h-10, px-4. SidebarMenuButton lg is h-12, px-3.
+              variant="ghost"
               className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[open=true]:bg-sidebar-accent data-[open=true]:text-sidebar-accent-foreground h-12 w-full justify-start overflow-hidden rounded-md p-3 text-left text-sm font-medium"
             >
               <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
@@ -239,27 +236,13 @@ export function TeamSwitcher({
         >
           <Rac.MenuSection>
             <Oui.Header>Teams</Oui.Header>
-            {teams.map((team, index) => (
-              <Oui.MenuItem key={team.name} id={team.name} textValue={team.name} className="gap-2 p-2">
-                <div className="flex size-6 items-center justify-center rounded-md border">
-                  <team.logo className="size-3.5 shrink-0" />
-                </div>
+            {teams.map((team) => (
+              <Oui.MenuItem key={team.name} id={team.name} textValue={team.name} className="p-2">
                 {team.name}
-                <Rac.Keyboard slot="shortcut">⌘{index + 1}</Rac.Keyboard>
               </Oui.MenuItem>
             ))}
           </Rac.MenuSection>
-          <Oui.Separator variant="menu" />
-          <Rac.MenuSection>
-            {/* Assuming "Add team" might navigate or open a dialog, not directly set activeTeam */}
-            {/* If it needs an action, add an id and handle in onAction or give it its own onAction prop if MenuItem supports it */}
-            <Oui.MenuItem id="addTeam" textValue="Add team" className="gap-2 p-2">
-              <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
-                <Plus className="size-4" />
-              </div>
-              <div className="text-muted-foreground font-medium">Add team</div>
-            </Oui.MenuItem>
-          </Rac.MenuSection>
+          {/* The "Add team" section and its preceding separator are removed */}
         </Oui.MenuEx>
       </SidebarMenuItem>
     </SidebarMenu>
