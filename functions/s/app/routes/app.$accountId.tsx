@@ -96,7 +96,7 @@ export default function RouteComponent({ loaderData: { sessionUser, accounts } }
   )
 }
 
-export function AppSidebar({ sessionUser, accounts }: { sessionUser: SessionUser; accounts: Account[] }) {
+export function AppSidebar({ sessionUser, accounts: allAccountsData }: { sessionUser: SessionUser; accounts: Account[] }) {
   const { accountId } = useParams()
   const items = [
     {
@@ -121,47 +121,29 @@ export function AppSidebar({ sessionUser, accounts }: { sessionUser: SessionUser
     }
   ]
 
+  const YourAppLogoIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg viewBox="0 0 100 100" {...props}>
+      <circle cx="50" cy="50" r="40" fill="currentColor" />
+    </svg>
+  )
+
+  const switcherAccounts = allAccountsData.map((acc) => ({
+    name: `Account ${acc.accountId}` // Use accountId to generate a display name
+    // logo and plan can be added here if available on 'acc' and needed by AccountSwitcher
+  }))
+
   return (
     <Sidebar>
       <SidebarHeader>
-        <TeamSwitcher
-          teams={[
-            {
-              name: 'Acme Inc',
-              logo: GalleryVerticalEnd,
-              plan: 'Enterprise'
-            },
-            {
-              name: 'Acme Corp.',
-              logo: AudioWaveform,
-              plan: 'Startup'
-            },
-            {
-              name: 'Evil Corp.',
-              logo: Command,
-              plan: 'Free'
-            }
-          ]}
-        />
-        {/* <SidebarGroup className="py-0 group-data-[collapsible=icon]:hidden">
-          <SidebarGroupContent>
-            <form className="relative">
-              <Label htmlFor="search" className="sr-only">
-                Search
-              </Label>
-              <SidebarInput
-                id="search"
-                placeholder="Search the docs..."
-                className="pl-8"
-              />
-              <Search className="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 opacity-50 select-none" />
-            </form>
-          </SidebarGroupContent>
-        </SidebarGroup> */}
+        <div className="flex w-full items-center gap-2 p-2">
+          <Rac.Link href="/" aria-label="Home">
+            <YourAppLogoIcon className="text-primary size-7" />
+          </Rac.Link>
+          {switcherAccounts.length > 0 && <AccountSwitcher accounts={switcherAccounts} />}
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          {/* <SidebarGroupLabel>App Panel</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -190,62 +172,59 @@ export function AppSidebar({ sessionUser, accounts }: { sessionUser: SessionUser
   )
 }
 
-export function TeamSwitcher({
-  teams
+export function AccountSwitcher({
+  accounts
 }: {
-  teams: {
+  accounts: {
     name: string
-    logo: React.ElementType // logo is no longer used in the rendered output
-    plan: string
+    logo?: React.ElementType
+    plan?: string
   }[]
 }) {
-  const [activeTeam, setActiveTeam] = React.useState(teams[0])
+  const [activeAccount, setActiveAccount] = React.useState(accounts[0])
 
-  if (!activeTeam) {
+  if (!activeAccount) {
     return null
   }
 
-  const handleTeamSelection = (key: React.Key) => {
-    const selectedTeam = teams.find((team) => team.name === key)
-    if (selectedTeam) {
-      setActiveTeam(selectedTeam)
+  const handleAccountSelection = (key: React.Key) => {
+    const selectedAccount = accounts.find((acc) => acc.name === key)
+    if (selectedAccount) {
+      setActiveAccount(selectedAccount)
     }
   }
 
   return (
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <Oui.MenuEx
-          className="min-w-56 rounded-lg"
-          onAction={handleTeamSelection}
-          triggerElement={
-            <Oui.Button
-              variant="ghost"
-              className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[open=true]:bg-sidebar-accent data-[open=true]:text-sidebar-accent-foreground h-12 w-full justify-start overflow-hidden rounded-md p-3 text-left text-sm font-medium"
-            >
-              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                <activeTeam.logo className="size-4" />
-              </div>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{activeTeam.name}</span>
-                <span className="truncate text-xs">{activeTeam.plan}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto size-4" />
-            </Oui.Button>
-          }
+    <Oui.MenuEx
+      className="min-w-56 rounded-lg"
+      onAction={handleAccountSelection}
+      triggerElement={
+        <Oui.Button
+          variant="ghost"
+          // Corrected classes:
+          // - Removed data-[open=true] styles as they don't apply directly to Rac.Button from MenuTrigger.
+          // - Changed hover: to data-[hovered]:
+          // - Kept layout/sizing overrides.
+          // - The data-[hovered]:bg-transparent will override the default hover background of the ghost variant.
+          className="h-auto flex-1 items-center justify-between p-0 text-left font-medium data-[hovered]:bg-transparent"
         >
-          <Rac.MenuSection>
-            <Oui.Header>Teams</Oui.Header>
-            {teams.map((team) => (
-              <Oui.MenuItem key={team.name} id={team.name} textValue={team.name} className="p-2">
-                {team.name}
-              </Oui.MenuItem>
-            ))}
-          </Rac.MenuSection>
-          {/* The "Add team" section and its preceding separator are removed */}
-        </Oui.MenuEx>
-      </SidebarMenuItem>
-    </SidebarMenu>
+          <div className="grid leading-tight">
+            <span className="truncate font-medium">{activeAccount.name}</span>
+            {activeAccount.plan && <span className="text-muted-foreground truncate text-xs">{activeAccount.plan}</span>}
+          </div>
+          <ChevronsUpDown className="text-muted-foreground ml-2 size-4" />
+        </Oui.Button>
+      }
+    >
+      <Rac.MenuSection>
+        <Oui.Header>Switch Account</Oui.Header>
+        {accounts.map((account) => (
+          <Oui.MenuItem key={account.name} id={account.name} textValue={account.name} className="p-2">
+            {account.name}
+          </Oui.MenuItem>
+        ))}
+      </Rac.MenuSection>
+    </Oui.MenuEx>
   )
 }
 

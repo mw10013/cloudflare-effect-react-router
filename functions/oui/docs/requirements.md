@@ -15,6 +15,7 @@ Oui is React Aria Components (RAC) with Shadcn characteristics. It is the little
 - **Styling Implementation:**
   - Styling will be achieved using `tailwind-variants` (tv) and Tailwind CSS.
   - Leverage RAC's data attributes (e.g., `data-focused`, `data-selected`, `data-disabled`, `data-entering`, `data-exiting`, `data-placement`) for stateful and contextual styling, as per RAC conventions.
+  - **When translating Shadcn styling that utilizes CSS pseudo-classes (e.g., `hover:`, `focus:`), these must be mapped to the equivalent React Aria Components data attributes (e.g., `data-[hovered]`, `data-[focused]`) for applying styles via `tailwind-variants`.**
   - Reference: [RAC Styling](https://react-spectrum.adobe.com/react-aria/styling.html)
 - **Strict Prohibition: `tailwindcss-react-aria-components` Plugin.**
   - The `tailwindcss-react-aria-components` plugin (or similar automated class-mapping plugins) **must not** be used. Styling should be explicit and align with the `oui` system's direct application of Shadcn v4 design principles.
