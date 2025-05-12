@@ -1,7 +1,7 @@
 ---
-applyTo: "functions/oui/**/*.tsx"
+applyTo: "**/oui/**/*.tsx"
 ---
-applyTo: "functions/oui/**/*.tsx,functions/o/**/*.tsx,functions/s/**/*.tsx"
+
 # Oui Instructions
 
 - Oui is React Aria Components (RAC) with Shadcn design system (Tailwind v4 version).
