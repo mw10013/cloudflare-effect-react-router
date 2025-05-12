@@ -2,38 +2,16 @@ import type { Route } from './+types/app.$accountId'
 import React from 'react'
 import * as Oui from '@workspace/oui'
 import { Effect, Schema } from 'effect'
-import {
-  AudioWaveform,
-  BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  Command,
-  CreditCard,
-  GalleryVerticalEnd,
-  LogOut,
-  Plus,
-  Sparkles
-} from 'lucide-react'
+import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react'
 import * as Rac from 'react-aria-components'
-import { Outlet, redirect, useParams } from 'react-router'
+import { Outlet, redirect, useNavigate } from 'react-router'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger
-} from '~/components/ui/dropdown-menu'
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -42,7 +20,7 @@ import {
   SidebarTrigger,
   useSidebar
 } from '~/components/ui/sidebar'
-import { Account, SessionUser } from '~/lib/Domain'
+import { Account, AccountWithUser } from '~/lib/Domain'
 import { IdentityMgr } from '~/lib/IdentityMgr'
 import * as ReactRouter from '~/lib/ReactRouter'
 
@@ -75,16 +53,20 @@ export const unstable_middleware = [accountMiddleware]
 
 export const loader = ReactRouter.routeEffect(({ context }) =>
   Effect.gen(function* () {
-    const sessionUser = yield* Effect.fromNullable(context.get(ReactRouter.appLoadContext).session.get('sessionUser'))
-    return { sessionUser, accounts: yield* IdentityMgr.getAccounts(sessionUser) }
+    const appLoadContext = context.get(ReactRouter.appLoadContext)
+    const sessionUser = yield* Effect.fromNullable(appLoadContext.session.get('sessionUser'))
+    return {
+      account: yield* Effect.fromNullable(appLoadContext.account),
+      accounts: yield* IdentityMgr.getAccounts(sessionUser)
+    }
   })
 )
 
-export default function RouteComponent({ loaderData: { sessionUser, accounts } }: Route.ComponentProps) {
+export default function RouteComponent({ loaderData: { account, accounts } }: Route.ComponentProps) {
   return (
     <div className="">
       <SidebarProvider>
-        <AppSidebar sessionUser={sessionUser} accounts={accounts} />
+        <AppSidebar account={account} accounts={accounts} />
         <main>
           <SidebarTrigger />
           <div className="flex flex-col gap-2 p-6">
@@ -96,28 +78,19 @@ export default function RouteComponent({ loaderData: { sessionUser, accounts } }
   )
 }
 
-export function AppSidebar({ sessionUser, accounts: allAccountsData }: { sessionUser: SessionUser; accounts: Account[] }) {
-  const { accountId } = useParams()
-  const items = [
-    {
-      title: 'SaaS',
-      url: '/'
-    },
-    {
-      title: 'Accounts',
-      url: '/app'
-    },
+export function AppSidebar({ account, accounts }: { account: AccountWithUser; accounts: AccountWithUser[] }) {
+  const navItems = [
     {
       title: 'Account Home',
-      url: `/app/${accountId}`
+      url: `/app/${account.accountId}`
     },
     {
       title: 'Members',
-      url: `/app/${accountId}/members`
+      url: `/app/${account.accountId}/members`
     },
     {
       title: 'Billing',
-      url: `/app/${accountId}/billing`
+      url: `/app/${account.accountId}/billing`
     }
   ]
 
@@ -127,11 +100,6 @@ export function AppSidebar({ sessionUser, accounts: allAccountsData }: { session
     </svg>
   )
 
-  const switcherAccounts = allAccountsData.map((acc) => ({
-    name: `Account ${acc.accountId}` // Use accountId to generate a display name
-    // logo and plan can be added here if available on 'acc' and needed by AccountSwitcher
-  }))
-
   return (
     <Sidebar>
       <SidebarHeader>
@@ -139,14 +107,14 @@ export function AppSidebar({ sessionUser, accounts: allAccountsData }: { session
           <Rac.Link href="/" aria-label="Home">
             <YourAppLogoIcon className="text-primary size-7" />
           </Rac.Link>
-          {switcherAccounts.length > 0 && <AccountSwitcher accounts={switcherAccounts} />}
+          {accounts.length > 0 && <AccountSwitcher accounts={accounts} currentAccountId={account.accountId} />}
         </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {navItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <Rac.Link href={item.url}>
@@ -162,8 +130,9 @@ export function AppSidebar({ sessionUser, accounts: allAccountsData }: { session
       <SidebarFooter>
         <NavUser
           user={{
-            name: 'shadcn',
-            email: sessionUser.email,
+            // NavUser now uses the user from the current account
+            name: account.user.name ?? account.user.email,
+            email: account.user.email,
             avatar: '/avatars/shadcn.jpg'
           }}
         />
@@ -173,25 +142,24 @@ export function AppSidebar({ sessionUser, accounts: allAccountsData }: { session
 }
 
 export function AccountSwitcher({
-  accounts
+  accounts,
+  currentAccountId
 }: {
-  accounts: {
-    name: string
-    logo?: React.ElementType
-    plan?: string
-  }[]
+  accounts: AccountWithUser[] // Updated prop type
+  currentAccountId: number
 }) {
-  const [activeAccount, setActiveAccount] = React.useState(accounts[0])
+  const navigate = useNavigate()
+  const activeAccount = accounts.find((acc) => acc.accountId === currentAccountId)
 
   if (!activeAccount) {
+    // This case should ideally be handled by the check in AppSidebar
+    // or if accounts list is empty.
     return null
   }
 
   const handleAccountSelection = (key: React.Key) => {
-    const selectedAccount = accounts.find((acc) => acc.name === key)
-    if (selectedAccount) {
-      setActiveAccount(selectedAccount)
-    }
+    // key will be accountId as a string
+    navigate(`/app/${key}`)
   }
 
   return (
@@ -201,16 +169,13 @@ export function AccountSwitcher({
       triggerElement={
         <Oui.Button
           variant="ghost"
-          // Corrected classes:
-          // - Removed data-[open=true] styles as they don't apply directly to Rac.Button from MenuTrigger.
-          // - Changed hover: to data-[hovered]:
-          // - Kept layout/sizing overrides.
-          // - The data-[hovered]:bg-transparent will override the default hover background of the ghost variant.
           className="h-auto flex-1 items-center justify-between p-0 text-left font-medium data-[hovered]:bg-transparent"
         >
           <div className="grid leading-tight">
-            <span className="truncate font-medium">{activeAccount.name}</span>
-            {activeAccount.plan && <span className="text-muted-foreground truncate text-xs">{activeAccount.plan}</span>}
+            {/* Display user's email as the account name */}
+            <span className="truncate font-medium">{activeAccount.user.email}</span>
+            {/* Optionally display planName if needed and available */}
+            {/* activeAccount.planName && <span className="text-muted-foreground truncate text-xs">{activeAccount.planName}</span> */}
           </div>
           <ChevronsUpDown className="text-muted-foreground ml-2 size-4" />
         </Oui.Button>
@@ -219,8 +184,13 @@ export function AccountSwitcher({
       <Rac.MenuSection>
         <Oui.Header>Switch Account</Oui.Header>
         {accounts.map((account) => (
-          <Oui.MenuItem key={account.name} id={account.name} textValue={account.name} className="p-2">
-            {account.name}
+          <Oui.MenuItem
+            key={account.accountId}
+            id={account.accountId.toString()} // id should be a string
+            textValue={account.user.email}
+            className="p-2"
+          >
+            {account.user.email}
           </Oui.MenuItem>
         ))}
       </Rac.MenuSection>

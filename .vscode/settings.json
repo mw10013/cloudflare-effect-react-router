@@ -5,13 +5,4 @@
     "./functions/o/app/app.css": ["./functions/o/app/**", "./functions/oui/src/**"],
     "./functions/s/app/app.css": ["./functions/s/app/**", "./functions/oui/src/**"]
   },
-
-  "github.copilot.chat.codeGeneration.instructions": [
-    {
-      "file": "./.vscode/prompt.md"
-    },
-    {
-      "file": "./functions/oui/docs/requirements.md"
-    }
-  ]
 }
