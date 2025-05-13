@@ -2,22 +2,9 @@ import type { Route } from './+types/app.layout._index'
 import { SchemaEx } from '@workspace/shared'
 import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
-// Import useSubmit from react-router
 import { redirect, useSubmit } from 'react-router'
 import { Button } from '~/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarProvider,
-  SidebarTrigger
-} from '~/components/ui/sidebar'
 import { IdentityMgr } from '~/lib/IdentityMgr'
 import * as ReactRouter from '~/lib/ReactRouter'
 
