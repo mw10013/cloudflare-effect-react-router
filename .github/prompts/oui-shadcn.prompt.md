@@ -3,14 +3,15 @@ mode: "ask"
 description: "Ensure the Oui component styles match the Shadcn design system for Tailwind v4"
 ---
 
-Ensure the Oui component styles match the Shadcn design system for Tailwind v4.
+# Align Oui with Shadcn Design System for Tailwind v4
 
-The code should be a thin wrapper around React Aria Components (RAC) and should not attempt to replicate Shadcn/Radix component APIs or internal structures. The styling should be achieved using `tailwind-variants` (tv) and Tailwind CSS v4, leveraging RAC's data attributes for stateful and contextual styling. Avoid using the `tailwindcss-react-aria-components` plugin or similar automated class-mapping plugins. The component structure should primarily follow the patterns and primitives provided by React Aria Components.
+- Ensure the Oui component styles match the Shadcn design system for Tailwind v4 verbatim.
+- Add and remove any Oui component styles to match the Shadcn design system for Tailwind v4 verbatim.
+- Refer to the [Implementing Oui Prompt](oui-implementing.prompt.md) for details on implementing Oui components with Shadcn design system for Tailwind v4.
+- Ask for the Shadcn ui component files if not provided.
+- Ask for react aria component documentation if not provided.
 
-Ask for the Shadcn ui component files if not provided.
-Ask for react aria component documentation if not provided.
-
-Requirements:
+## Requirements
 
 - The styles must be from shadcn ui component file verbatim.
 - Do not use styles from memory or any other source.

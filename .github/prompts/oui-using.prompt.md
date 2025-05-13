@@ -1,8 +1,9 @@
 ---
-applyTo: "**/{routes,components}/**/*.tsx"
+mode: "ask"
+description: "Using Oui"
 ---
 
-# Oui Using Instructions
+# Using Oui
 
 - Oui is React Aria Components (RAC) with Shadcn design system (Tailwind v4 version).
 - Oui provides a thin wrapper around React Aria Components (RAC) to apply the Shadcn design system's visual characteristics.

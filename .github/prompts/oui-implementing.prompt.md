@@ -1,8 +1,9 @@
 ---
-applyTo: "**/oui/**/*.tsx"
+mode: "ask"
+description: "Implement Oui with Shadcn design system for Tailwind v4"
 ---
 
-# Oui Implementing Instructions
+# Implementing Oui
 
 - Oui is React Aria Components (RAC) with Shadcn design system (Tailwind v4 version).
 - The primary goal is to provide a set of components from RAC, and apply the visual characteristics of the Shadcn design system to them, while fully leveraging RAC's inherent capabilities.
