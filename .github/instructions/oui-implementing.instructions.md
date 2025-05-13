@@ -2,12 +2,11 @@
 applyTo: "**/oui/**/*.tsx"
 ---
 
-# Oui Instructions
+# Oui Implementing Instructions
 
 - Oui is React Aria Components (RAC) with Shadcn design system (Tailwind v4 version).
 - The primary goal is to provide a set of components from RAC, and apply the visual characteristics of the Shadcn design system to them, while fully leveraging RAC's inherent capabilities.
 - In the monorepo, oui is located in functions/oui.
-- Import oui with `import * as Oui from '@workspace/oui'`
 
 ## Design System & Styling
 

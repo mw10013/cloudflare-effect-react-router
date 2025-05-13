@@ -38,19 +38,20 @@ export function OuiSelectDemo() {
   return (
     <div className="flex flex-wrap items-start gap-4">
       <Oui.SelectEx buttonClassName="w-[180px]" placeholder="Select a fruit">
-        <Rac.Section id="fruits-section">
+        <Rac.ListBoxSection id="fruits-section">
           <Rac.Header>Fruits</Rac.Header>
-          {fruitItemsForSection.map((item) => (
-            <Oui.ListBoxItem
-              key={item.id}
-              id={item.id}
-              textValue={item.name}
-              isDisabled={item.isDisabled}
-            >
-              {item.name}
-            </Oui.ListBoxItem>
-          ))}
-        </Rac.Section>
+          <Rac.Collection items={fruitItemsForSection}>
+            {(item) => (
+              <Oui.ListBoxItem
+                id={item.id}
+                textValue={item.name}
+                isDisabled={item.isDisabled}
+              >
+                {item.name}
+              </Oui.ListBoxItem>
+            )}
+          </Rac.Collection>
+        </Rac.ListBoxSection>
       </Oui.SelectEx>
 
       <Oui.SelectEx
