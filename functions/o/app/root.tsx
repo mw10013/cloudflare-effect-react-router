@@ -1,9 +1,18 @@
-import type { NavigateOptions } from 'react-router'
-import type { Route } from './+types/root'
-import { RouterProvider } from 'react-aria-components'
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useHref, useNavigate } from 'react-router'
-import './app.css'
-import * as Rac from 'react-aria-components'
+import type { NavigateOptions } from "react-router";
+import type { Route } from "./+types/root";
+import { RouterProvider } from "react-aria-components";
+import {
+  isRouteErrorResponse,
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useHref,
+  useNavigate,
+} from "react-router";
+import "./app.css";
+import * as Rac from "react-aria-components";
 import {
   Sidebar,
   SidebarContent,
@@ -14,80 +23,88 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-  SidebarTrigger
-} from '~/components/ui/sidebar'
+  SidebarTrigger,
+} from "~/components/ui/sidebar";
 
-declare module 'react-aria-components' {
+declare module "react-aria-components" {
   interface RouterConfig {
-    routerOptions: NavigateOptions
+    routerOptions: NavigateOptions;
   }
 }
 
 export const links: Route.LinksFunction = () => [
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+  { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
-    rel: 'preconnect',
-    href: 'https://fonts.gstatic.com',
-    crossOrigin: 'anonymous'
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossOrigin: "anonymous",
   },
   {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap'
-  }
-]
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+  },
+];
 
 // https://github.com/adobe/react-spectrum/issues/6397
 // https://github.com/argos-ci/argos/blob/4822931b05c78e1b4a79e15cf4437fb0297369a6/apps/frontend/src/router.tsx#L21-L31
 function useHrefEx(href: string) {
-  const resolvedHref = useHref(href)
-  if (href.startsWith('https://') || href.startsWith('http://') || href.startsWith('mailto:')) {
-    return href
+  const resolvedHref = useHref(href);
+  if (
+    href.startsWith("https://") ||
+    href.startsWith("http://") ||
+    href.startsWith("mailto:")
+  ) {
+    return href;
   }
-  return resolvedHref
+  return resolvedHref;
 }
 
 const items = [
   {
-    title: 'Button',
-    url: '/demo/button'
+    title: "Button",
+    url: "/demo/button",
   },
   {
-    title: 'Checkbox',
-    url: '/demo/checkbox'
+    title: "Checkbox",
+    url: "/demo/checkbox",
   },
   {
-    title: 'Drop Down Menu',
-    url: '/demo/dropdown-menu'
+    title: "Drop Down Menu",
+    url: "/demo/dropdown-menu",
   },
   {
-    title: 'Form',
-    url: '/demo/form'
+    title: "Form",
+    url: "/demo/form",
   },
   {
-    title: 'Number Field',
-    url: '/demo/number-field'
+    title: "Number Field",
+    url: "/demo/number-field",
   },
   {
-    title: 'Radio Group',
-    url: '/demo/radio-group'
+    title: "Radio Group",
+    url: "/demo/radio-group",
   },
   {
-    title: 'Separator',
-    url: '/demo/separator'
+    title: "Select",
+    url: "/demo/select",
   },
   {
-    title: 'Text Field',
-    url: '/demo/text-field'
+    title: "Separator",
+    url: "/demo/separator",
   },
   {
-    title: 'Link',
-    url: '/play/link'
+    title: "Text Field",
+    url: "/demo/text-field",
   },
   {
-    title: 'Sandbox',
-    url: '/sandbox'
-  }
-]
+    title: "Link",
+    url: "/play/link",
+  },
+  {
+    title: "Sandbox",
+    url: "/sandbox",
+  },
+];
 
 export function AppSidebar() {
   return (
@@ -111,11 +128,11 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <html lang="en">
@@ -139,24 +156,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </RouterProvider>
       </body>
     </html>
-  )
+  );
 }
 
 export default function App() {
-  return <Outlet />
+  return <Outlet />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = 'Oops!'
-  let details = 'An unexpected error occurred.'
-  let stack: string | undefined
+  let message = "Oops!";
+  let details = "An unexpected error occurred.";
+  let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error'
-    details = error.status === 404 ? 'The requested page could not be found.' : error.statusText || details
+    message = error.status === 404 ? "404" : "Error";
+    details =
+      error.status === 404
+        ? "The requested page could not be found."
+        : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message
-    stack = error.stack
+    details = error.message;
+    stack = error.stack;
   }
 
   return (
@@ -169,5 +189,5 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
         </pre>
       )}
     </main>
-  )
+  );
 }
