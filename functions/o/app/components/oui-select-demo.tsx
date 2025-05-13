@@ -39,7 +39,7 @@ export function OuiSelectDemo() {
     <div className="flex flex-wrap items-start gap-4">
       <Oui.SelectEx buttonClassName="w-[180px]" placeholder="Select a fruit">
         <Rac.ListBoxSection id="fruits-section">
-          <Rac.Header>Fruits</Rac.Header>
+          <Oui.Header variant="select">Fruits</Oui.Header>
           <Rac.Collection items={fruitItemsForSection}>
             {(item) => (
               <Oui.ListBoxItem

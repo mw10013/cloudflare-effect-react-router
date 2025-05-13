@@ -42,3 +42,36 @@ applyTo: "**/{routes,components}/**/*.tsx"
       {(item) => <Oui.ListBoxItem id={item.id}>{item.name}</Oui.ListBoxItem>}
     </Oui.SelectEx>
     ```
+
+## Headers (`Oui.Header` vs `Rac.Header`)
+
+- Use `Oui.Header` when you need a styled text header within components like `Oui.MenuEx` or `Oui.SelectEx`. `Oui.Header` accepts a `variant` prop (`menu` or `select`) to apply appropriate Shadcn typography directly to its text children.
+
+  ```tsx
+  // Example in a Menu
+  <Rac.MenuSection>
+    <Oui.Header variant="menu">My Account</Oui.Header>
+    {/* Menu items... */}
+  </Rac.MenuSection>
+
+  // Example in a Select
+  <Rac.ListBoxSection>
+    <Oui.Header variant="select">Fruits</Oui.Header>
+    {/* ListBox items... */}
+  </Rac.ListBoxSection>
+  ```
+
+- If a header requires complex children (e.g., an avatar, multiple text elements with different styles, or a custom layout structure), use the unstyled `Rac.Header`. This component acts as a semantic container (`role="group"`), and the complex children within it should manage their own styling and layout. Applying `Oui.Header`'s direct text styling would be inappropriate in these cases.
+  ```tsx
+  <Rac.MenuSection>
+    <Rac.Header>
+      {/* Complex children manage their own styling */}
+      <div className="flex items-center gap-2 p-2">
+        <YourAvatarComponent />
+        <span className="font-semibold">User Name</span>
+        <span className="text-muted-foreground text-sm">user@example.com</span>
+      </div>
+    </Rac.Header>
+    {/* Menu items... */}
+  </Rac.MenuSection>
+  ```

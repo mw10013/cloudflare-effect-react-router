@@ -1,6 +1,6 @@
-import type { Selection } from 'react-aria-components'
-import * as React from 'react'
-import * as Oui from '@workspace/oui'
+import type { Selection } from "react-aria-components";
+import * as React from "react";
+import * as Oui from "@workspace/oui";
 import {
   BadgeCheckIcon,
   BellIcon,
@@ -14,10 +14,10 @@ import {
   ShareIcon,
   SparklesIcon,
   TrashIcon,
-  UserIcon
-} from 'lucide-react'
-import * as Rac from 'react-aria-components'
-import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+  UserIcon,
+} from "lucide-react";
+import * as Rac from "react-aria-components";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 export function OuiDropdownMenuDemo() {
   return (
@@ -29,14 +29,17 @@ export function OuiDropdownMenuDemo() {
       <DropdownMenuAvatarOnly />
       <DropdownMenuIconColor />
     </div>
-  )
+  );
 }
 
 function DropdownMenuSimple() {
   return (
-    <Oui.MenuEx triggerElement={<Oui.Button variant="outline">Open</Oui.Button>} className="w-56">
+    <Oui.MenuEx
+      triggerElement={<Oui.Button variant="outline">Open</Oui.Button>}
+      className="w-56"
+    >
       <Rac.MenuSection>
-        <Oui.Header>My Account</Oui.Header>
+        <Oui.Header variant="menu">My Account</Oui.Header>
         <Oui.MenuItem id="profile">
           Profile
           <Oui.Keyboard>⇧⌘P</Oui.Keyboard>
@@ -87,16 +90,20 @@ function DropdownMenuSimple() {
         <Oui.Keyboard>⇧⌘Q</Oui.Keyboard>
       </Oui.MenuItem>
     </Oui.MenuEx>
-  )
+  );
 }
 
 function DropdownMenuCheckboxes() {
-  const [appearanceSelectedKeys, setAppearanceSelectedKeys] = React.useState<Selection>(new Set(['statusBar']))
+  const [appearanceSelectedKeys, setAppearanceSelectedKeys] =
+    React.useState<Selection>(new Set(["statusBar"]));
 
   return (
-    <Oui.MenuEx triggerElement={<Oui.Button variant="outline">Checkboxes</Oui.Button>} className="w-56">
+    <Oui.MenuEx
+      triggerElement={<Oui.Button variant="outline">Checkboxes</Oui.Button>}
+      className="w-56"
+    >
       <Rac.MenuSection>
-        <Oui.Header>Account</Oui.Header>
+        <Oui.Header variant="menu">Account</Oui.Header>
         <Oui.MenuItem id="profile" textValue="Profile">
           <UserIcon className="mr-2 size-4" /> Profile
         </Oui.MenuItem>
@@ -108,8 +115,12 @@ function DropdownMenuCheckboxes() {
         </Oui.MenuItem>
       </Rac.MenuSection>
       <Oui.Separator variant="menu" />
-      <Rac.MenuSection selectionMode="multiple" selectedKeys={appearanceSelectedKeys} onSelectionChange={setAppearanceSelectedKeys}>
-        <Oui.Header>Appearance</Oui.Header>
+      <Rac.MenuSection
+        selectionMode="multiple"
+        selectedKeys={appearanceSelectedKeys}
+        onSelectionChange={setAppearanceSelectedKeys}
+      >
+        <Oui.Header variant="menu">Appearance</Oui.Header>
         <Oui.MenuItem id="statusBar">Status Bar</Oui.MenuItem>
         <Oui.MenuItem id="activityBar" isDisabled>
           Activity Bar
@@ -123,16 +134,27 @@ function DropdownMenuCheckboxes() {
         </Oui.MenuItem>
       </Rac.MenuSection>
     </Oui.MenuEx>
-  )
+  );
 }
 
 function DropdownMenuRadioGroupDemo() {
-  const [panelPositionKey, setPanelPositionKey] = React.useState<Selection>(new Set(['bottom']))
+  const [panelPositionKey, setPanelPositionKey] = React.useState<Selection>(
+    new Set(["bottom"]),
+  );
 
   return (
-    <Oui.MenuEx triggerElement={<Oui.Button variant="outline">Radio Group</Oui.Button>} className="w-56">
-      <Rac.MenuSection selectionMode="single" selectedKeys={panelPositionKey} onSelectionChange={setPanelPositionKey}>
-        <Oui.Header inset>Panel Position</Oui.Header>
+    <Oui.MenuEx
+      triggerElement={<Oui.Button variant="outline">Radio Group</Oui.Button>}
+      className="w-56"
+    >
+      <Rac.MenuSection
+        selectionMode="single"
+        selectedKeys={panelPositionKey}
+        onSelectionChange={setPanelPositionKey}
+      >
+        <Oui.Header variant="menu" inset>
+          Panel Position
+        </Oui.Header>
         <Oui.MenuItem id="top">Top</Oui.MenuItem>
         <Oui.MenuItem id="bottom">Bottom</Oui.MenuItem>
         <Oui.MenuItem id="right" isDisabled>
@@ -140,7 +162,7 @@ function DropdownMenuRadioGroupDemo() {
         </Oui.MenuItem>
       </Rac.MenuSection>
     </Oui.MenuEx>
-  )
+  );
 }
 
 function DropdownMenuWithAvatar() {
@@ -148,14 +170,19 @@ function DropdownMenuWithAvatar() {
     <Oui.MenuEx
       className="w-56"
       triggerElement={
-        <Oui.Button variant="outline" className="h-12 justify-start px-2 md:max-w-[200px]">
+        <Oui.Button
+          variant="outline"
+          className="h-12 justify-start px-2 md:max-w-[200px]"
+        >
           <Avatar className="mr-2">
             <AvatarImage src="https://github.com/shadcn.png" alt="Shadcn" />
             <AvatarFallback className="rounded-lg">CN</AvatarFallback>
           </Avatar>
           <div className="grid flex-1 text-left text-sm leading-tight">
             <span className="truncate font-semibold">shadcn</span>
-            <span className="text-muted-foreground truncate text-xs">shadcn@example.com</span>
+            <span className="text-muted-foreground truncate text-xs">
+              shadcn@example.com
+            </span>
           </div>
           <ChevronsUpDownIcon className="text-muted-foreground ml-auto size-4" />
         </Oui.Button>
@@ -170,7 +197,9 @@ function DropdownMenuWithAvatar() {
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-semibold">shadcn</span>
-              <span className="text-muted-foreground truncate text-xs">shadcn@example.com</span>
+              <span className="text-muted-foreground truncate text-xs">
+                shadcn@example.com
+              </span>
             </div>
           </div>
         </Rac.Header>
@@ -203,14 +232,17 @@ function DropdownMenuWithAvatar() {
         Sign Out
       </Oui.MenuItem>
     </Oui.MenuEx>
-  )
+  );
 }
 
 function DropdownMenuAvatarOnly() {
   return (
     <Oui.MenuEx
       triggerElement={
-        <Oui.Button variant="outline" className="size-8 rounded-full border-none p-0">
+        <Oui.Button
+          variant="outline"
+          className="size-8 rounded-full border-none p-0"
+        >
           <Avatar>
             <AvatarImage src="https://github.com/leerob.png" alt="leerob" />
             <AvatarFallback className="rounded-lg">LR</AvatarFallback>
@@ -227,7 +259,9 @@ function DropdownMenuAvatarOnly() {
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-semibold">leerob</span>
-              <span className="text-muted-foreground truncate text-xs">leerob@example.com</span>
+              <span className="text-muted-foreground truncate text-xs">
+                leerob@example.com
+              </span>
             </div>
           </div>
         </Rac.Header>
@@ -260,7 +294,7 @@ function DropdownMenuAvatarOnly() {
         Sign Out
       </Oui.MenuItem>
     </Oui.MenuEx>
-  )
+  );
 }
 
 function DropdownMenuIconColor() {
@@ -291,5 +325,5 @@ function DropdownMenuIconColor() {
         Delete
       </Oui.MenuItem>
     </Oui.MenuEx>
-  )
+  );
 }
