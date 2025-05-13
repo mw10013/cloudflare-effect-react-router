@@ -18,6 +18,7 @@ description: "Implement Oui with Shadcn design system for Tailwind v4"
 - **Styling Implementation:**
   - Styling will be achieved using `tailwind-variants` (tv) and Tailwind CSS v4.
   - Leverage RAC's data attributes (e.g., `data-focused`, `data-selected`, `data-disabled`, `data-entering`, `data-exiting`, `data-placement`) for stateful and contextual styling, as per RAC conventions.
+  - **Be mindful of inline styles applied by React Aria Components themselves (e.g., `Popover` managing `z-index` and positioning). Oui styles should complement these, avoiding redundancy or conflict where RAC handles fundamental CSS properties directly.**
   - **When translating Shadcn styling that utilizes CSS pseudo-classes (e.g., `hover:`, `focus:`), these must be mapped to the equivalent React Aria Components data attributes (e.g., `data-[hovered]`, `data-[focused]`) for applying styles via `tailwind-variants`.**
   - Reference: [RAC Styling](https://react-spectrum.adobe.com/react-aria/styling.html)
 - **Strict Prohibition: `tailwindcss-react-aria-components` Plugin.**
