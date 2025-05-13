@@ -20,3 +20,8 @@ Requirements:
 - The only transformation allowed on styles
   - shadcn uses pseudo selectors like `hover:`, `focus:` and you need to use the equivalent React Aria Components data attributes like `data-[hovered]`, `data-[focused]` for applying styles via `tailwind-variants`.
   - shadcn may use data attributes that don't exist in React Aria Components, so you need consult the react aria components documentation to convert to approapriate data attributes.
+
+#fetch https://react-spectrum.adobe.com/react-aria/styling.html
+#fetch https://react-spectrum.adobe.com/react-aria/Select.html
+#fetch https://react-spectrum.adobe.com/react-aria/ListBox.html
+#fetch https://react-spectrum.adobe.com/react-aria/Popover.html
