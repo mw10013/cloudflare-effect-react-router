@@ -4,6 +4,11 @@ import { tv } from "tailwind-variants";
 import { baseStyles, composeTailwindRenderProps } from "./oui-base";
 import { Text } from "./oui-text";
 
+/*
+#fetch https://react-spectrum.adobe.com/react-aria/ListBox.html
+#fetch https://react-spectrum.adobe.com/react-aria/Select.html
+*/
+
 /* shadcn SelectContent
   className={cn(
     "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative z-50 max-h-(--radix-select-content-available-height) min-w-[8rem] origin-(--radix-select-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border shadow-md",
@@ -20,6 +25,8 @@ import { Text } from "./oui-text";
       "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1"
   )}
 */
+
+
 export function ListBox<T extends object>({
   className,
   ...props
@@ -32,7 +39,10 @@ export function ListBox<T extends object>({
   );
 }
 
+// shadcn SelectItem: relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50
 // https://github.com/adobe/react-spectrum/issues/7601
+
+
 export const listBoxItemStyles = tv({
   extend: baseStyles,
   base: "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none",
@@ -43,7 +53,6 @@ export const listBoxItemStyles = tv({
   },
 });
 
-// shadcn SelectItem: relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-2 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50
 export const ListBoxItem = <T extends object>({
   className,
   children,
