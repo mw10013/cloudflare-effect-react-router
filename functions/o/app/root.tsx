@@ -81,8 +81,32 @@ const items = [
     url: "/demo/form",
   },
   {
+    title: "Input",
+    url: "/demo/input",
+  },
+  {
+    title: "Label",
+    url: "/demo/label",
+  },
+    {
+    title: "Link",
+    url: "/demo/link",
+  },
+  {
     title: "Number Field",
     url: "/demo/number-field",
+  },
+  {
+    title: "Pagination",
+    url: "/demo/pagination",
+  },
+  {
+    title: "Popover",
+    url: "/demo/popover",
+  },
+  {
+    title: "Progress",
+    url: "/demo/progress",
   },
   {
     title: "Radio Group",
@@ -97,12 +121,20 @@ const items = [
     url: "/demo/separator",
   },
   {
+    title: "Slider",
+    url: "/demo/slider",
+  },
+  {
+    title: "Switch",
+    url: "/demo/switch",
+  },
+  {
     title: "Text Field",
     url: "/demo/text-field",
   },
   {
-    title: "Link",
-    url: "/play/link",
+    title: "Toast",
+    url: "/demo/toast",
   },
   {
     title: "Sandbox",
