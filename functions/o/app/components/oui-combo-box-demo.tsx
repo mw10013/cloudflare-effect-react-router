@@ -91,7 +91,7 @@ const timezones = [
 type TimezoneGroup = (typeof timezones)[number];
 type Timezone = TimezoneGroup["timezones"][number];
 
-export function OuiComboboxDemo() {
+export function OuiComboBoxDemo() {
   return (
     <div className="flex w-full flex-wrap items-start gap-4">
       <FrameworkCombobox frameworksData={[...frameworks]} />
