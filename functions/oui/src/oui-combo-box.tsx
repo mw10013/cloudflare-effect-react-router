@@ -49,7 +49,7 @@ export const ComboBoxEx = <T extends object>({
     <Group>
       <Input variant="ghost" placeholder={placeholder} />
       <Button variant="ghost" size="icon">
-        <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
+        <ChevronsUpDown className="size-4 shrink-0 opacity-50" />
       </Button>
     </Group>
     {description && <Text slot="description">{description}</Text>}
