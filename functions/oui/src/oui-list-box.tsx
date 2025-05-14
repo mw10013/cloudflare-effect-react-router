@@ -22,7 +22,7 @@ export function ListBox<T extends object>({
   );
 }
 
-/** Styles derived from shadcn SelectItem. 
+/** Styles derived from shadcn SelectItem.
  * https://github.com/adobe/react-spectrum/issues/7601
  */
 export const listBoxItemStyles = tv({
@@ -73,13 +73,21 @@ export const ListBoxItem = <T extends object>({
   </Rac.ListBoxItem>
 );
 
-// shadcn CommandItem: data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4
-// shadcn team-members: <CommandItem className="teamaspace-y-1 flex flex-col items-start px-4 py-2">
-
-
+/** Styles derived from shadcn CommandItem, adapted for a multi-line layout. */
 export const listBoxItemExStyles = tv({
-  extend: listBoxItemStyles,
-  base: "relative flex w-full cursor-default select-none flex-col items-start gap-2 rounded-sm px-4 py-2 outline-none",
+  extend: baseStyles,
+  base: "outline-hidden [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-default select-none flex-col items-start gap-2 rounded-sm px-4 py-2 text-sm [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  variants: {
+    isSelected: {
+      true: "bg-accent text-accent-foreground",
+    },
+    isFocused: {
+      true: "bg-accent text-accent-foreground",
+    },
+    isHovered: {
+      true: "bg-accent text-accent-foreground",
+    },
+  },
 });
 
 export interface ListBoxItemExProps
