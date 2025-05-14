@@ -69,6 +69,10 @@ const items = [
     url: "/demo/checkbox",
   },
   {
+    title: "ComboBox",
+    url: "/demo/combobox",
+  },
+  {
     title: "Drop Down Menu",
     url: "/demo/dropdown-menu",
   },
