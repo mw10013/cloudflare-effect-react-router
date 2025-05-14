@@ -86,13 +86,17 @@ export function OuiSelectDemo() {
       <Oui.SelectEx
         buttonClassName="w-[180px]"
         placeholder="With Icon"
-        // placeholder={
-        //   <>
-        //     <CircleDashed className="text-muted-foreground mr-2 size-4" />
-        //     With Icon
-        //   </>
-        // }
         items={iconItems}
+        renderSelectValue={({ isPlaceholder, defaultChildren }) =>
+          isPlaceholder ? (
+            <>
+              <CircleDashed className="mr-2 size-4" />
+              {defaultChildren}
+            </>
+          ) : (
+            defaultChildren
+          )
+        }
       >
         {(item) => {
           const IconComponent = item.icon;

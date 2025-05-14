@@ -17,7 +17,6 @@ import { Text } from "./oui-text";
 #fetch https://react-spectrum.adobe.com/react-aria/styling.html
 */
 
-/** Styles derived from shadcn SelectPrimitive.Root. */
 export const Select = <T extends object>({
   className,
   ...props
@@ -29,7 +28,6 @@ export const Select = <T extends object>({
   />
 );
 
-/** Styles derived from shadcn SelectTrigger. */
 export const SelectButton = ({
   className,
   size = "default",
@@ -81,6 +79,15 @@ interface SelectExProps<T extends object>
   items?: Iterable<T>;
   children: React.ReactNode | ((item: T) => React.ReactNode);
   buttonClassName?: string;
+  /**
+   * A render function to customize the display of the selected value or placeholder.
+   * Receives `isPlaceholder` and `defaultChildren` (the placeholder string or default rendered item).
+   */
+  renderSelectValue?: (
+    props: Rac.SelectValueRenderProps<T> & {
+      defaultChildren: React.ReactNode | undefined;
+    },
+  ) => React.ReactNode;
 }
 
 export function SelectEx<T extends object>({
@@ -90,13 +97,14 @@ export function SelectEx<T extends object>({
   children,
   items,
   buttonClassName,
+  renderSelectValue,
   ...props
 }: SelectExProps<T>) {
   return (
     <Select {...props}>
       {label && <Label>{label}</Label>}
       <SelectButton className={buttonClassName}>
-        <SelectValue />
+        <SelectValue>{renderSelectValue}</SelectValue>
       </SelectButton>
       {description && <Text slot="description">{description}</Text>}
       <FieldError>{errorMessage}</FieldError>
