@@ -104,10 +104,10 @@ const items = [
     title: "Popover",
     url: "/demo/popover",
   },
-  {
-    title: "Progress",
-    url: "/demo/progress",
-  },
+  // {
+  //   title: "Progress",
+  //   url: "/demo/progress",
+  // },
   {
     title: "Radio Group",
     url: "/demo/radio-group",
