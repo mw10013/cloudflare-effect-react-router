@@ -125,6 +125,9 @@ importers:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.4.1
         version: 4.4.1(prettier@3.4.2)
+      oxlint:
+        specifier: 0.16.10
+        version: 0.16.10
       prettier:
         specifier: 3.4.2
         version: 3.4.2
@@ -167,7 +170,7 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: 'catalog:'
-        version: 1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4)
+        version: 1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))
       '@tailwindcss/typography':
         specifier: 'catalog:'
         version: 0.5.16(tailwindcss@4.1.4)
@@ -219,13 +222,13 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: 'catalog:'
-        version: 1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4)
+        version: 1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))
       '@react-router/dev':
         specifier: 'catalog:'
-        version: 7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4)
+        version: 7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))
       '@react-router/fs-routes':
         specifier: 'catalog:'
-        version: 7.6.0(@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4))(typescript@5.8.2)
+        version: 7.6.0(@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0)))(typescript@5.8.2)
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.1.4(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))
@@ -415,13 +418,13 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: 'catalog:'
-        version: 1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4)
+        version: 1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))
       '@react-router/dev':
         specifier: 'catalog:'
-        version: 7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4)
+        version: 7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))
       '@react-router/fs-routes':
         specifier: 'catalog:'
-        version: 7.6.0(@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4))(typescript@5.8.2)
+        version: 7.6.0(@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0)))(typescript@5.8.2)
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.1.4(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))
@@ -718,13 +721,13 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: 'catalog:'
-        version: 1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4)
+        version: 1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))
       '@react-router/dev':
         specifier: 'catalog:'
-        version: 7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4)
+        version: 7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))
       '@react-router/fs-routes':
         specifier: 'catalog:'
-        version: 7.6.0(@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4))(typescript@5.8.2)
+        version: 7.6.0(@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0)))(typescript@5.8.2)
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.1.4(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))
@@ -929,13 +932,13 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: 'catalog:'
-        version: 1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4)
+        version: 1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))
       '@react-router/dev':
         specifier: 'catalog:'
-        version: 7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4)
+        version: 7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))
       '@react-router/fs-routes':
         specifier: 'catalog:'
-        version: 7.6.0(@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4))(typescript@5.8.2)
+        version: 7.6.0(@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0)))(typescript@5.8.2)
       '@standard-schema/spec':
         specifier: 'catalog:'
         version: 1.0.0-beta.3
@@ -2085,6 +2088,46 @@ packages:
 
   '@oslojs/jwt@0.2.0':
     resolution: {integrity: sha512-bLE7BtHrURedCn4Mco3ma9L4Y1GR2SMBuIvjWr7rmQ4/W/4Jy70TIAgZ+0nIlk0xHz1vNP8x8DCns45Sb2XRbg==}
+
+  '@oxlint/darwin-arm64@0.16.10':
+    resolution: {integrity: sha512-lNnkf7/auNXXD7gU3IbWMyuYiKj4Va+hhoe6+NwGfAjpKm5L4Uvc93o7tay163WVzQePVUOz/IwsJPLQs3hcjQ==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@oxlint/darwin-x64@0.16.10':
+    resolution: {integrity: sha512-axqbGX//v+AF/73OZUfUGG5pZidnZf9T+wc+1Jf19O0DViPpcmbVH7l0aLImFQuRn6Nl9LAbfBbKAgO1BS+OSg==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@oxlint/linux-arm64-gnu@0.16.10':
+    resolution: {integrity: sha512-CoFYLjmttdBRw6k3waRuSoW+36ojY8WspOkr5KzNM6GytrKKIRSLUNkaLLSSnXQK6MN13jemJa32U1DRn8/V1Q==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxlint/linux-arm64-musl@0.16.10':
+    resolution: {integrity: sha512-jidO59qo6RZ1HRk7a27noIgUeJmzju13NcKm7+5zZObPPGuXXO1OT3ZYabyO4Zz3eU+wqMTgjM4yphbJerkxPQ==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxlint/linux-x64-gnu@0.16.10':
+    resolution: {integrity: sha512-RWbkaDIX4fD+OaE+XfNG8nOxh+qLA90KhuejlTFbAApn7lZtyhr/UTIPuJsjmzMUW145C0NJTugOB6Q6XtKGNA==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxlint/linux-x64-musl@0.16.10':
+    resolution: {integrity: sha512-V7oXFLCowIEOnYBph4J2KSiHYtBIrx00xmwzKzSvwMzVOxDkw1LmPUYLCz/AEU6MctE6S2ZR947IXJY7ch4HeQ==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxlint/win32-arm64@0.16.10':
+    resolution: {integrity: sha512-QrWe71tjRKSDLejklPoU7gySq16nrJMOrqcSaw+ERQtJpnJBruF0RWQEVFEev6TvzwRnxrdTqDucYcFmoFqGeg==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@oxlint/win32-x64@0.16.10':
+    resolution: {integrity: sha512-V5LHfgB5uiiKNpOFOAfygsL36pN6qSuQ0moiuEyZFfWL2Iyx5026ksefiD9nXcygQsLYU7f6xQbOINAY3uIvcw==}
+    cpu: [x64]
+    os: [win32]
 
   '@paralleldrive/cuid2@2.2.2':
     resolution: {integrity: sha512-ZOBkgDwEdoYVlSeRbYYXs0S9MejQofiVYoTbKzy/6GQa39/q5tQU2IX46+shYnUkpEl3wc+J6wRlar7r2EK2xA==}
@@ -5305,6 +5348,11 @@ packages:
   outvariant@1.4.3:
     resolution: {integrity: sha512-+Sl2UErvtsoajRDKCE5/dBz4DIvHXQQnAxtQTF04OJxY0+DyZXSo5P5Bb7XYWOh81syohlYL24hbDwxedPUJCA==}
 
+  oxlint@0.16.10:
+    resolution: {integrity: sha512-xSHmXzQ8cuoeUFoHsc0NIab81KsXNNUKJbK7ZaoCcSWcWSDc4oyc9giPnaVOnVCye5XR7FfX2x4OXqJ9nQdKHw==}
+    engines: {node: '>=8.*'}
+    hasBin: true
+
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
 
@@ -7018,7 +7066,7 @@ snapshots:
     optionalDependencies:
       workerd: 1.20250507.0
 
-  '@cloudflare/vite-plugin@1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4)':
+  '@cloudflare/vite-plugin@1.1.1(rollup@4.39.0)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(workerd@1.20250507.0)(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))':
     dependencies:
       '@cloudflare/unenv-preset': 2.3.1(unenv@2.0.0-rc.15)(workerd@1.20250507.0)
       '@hattip/adapter-node': 0.0.49
@@ -7611,6 +7659,30 @@ snapshots:
   '@oslojs/jwt@0.2.0':
     dependencies:
       '@oslojs/encoding': 0.4.1
+
+  '@oxlint/darwin-arm64@0.16.10':
+    optional: true
+
+  '@oxlint/darwin-x64@0.16.10':
+    optional: true
+
+  '@oxlint/linux-arm64-gnu@0.16.10':
+    optional: true
+
+  '@oxlint/linux-arm64-musl@0.16.10':
+    optional: true
+
+  '@oxlint/linux-x64-gnu@0.16.10':
+    optional: true
+
+  '@oxlint/linux-x64-musl@0.16.10':
+    optional: true
+
+  '@oxlint/win32-arm64@0.16.10':
+    optional: true
+
+  '@oxlint/win32-x64@0.16.10':
+    optional: true
 
   '@paralleldrive/cuid2@2.2.2':
     dependencies:
@@ -9153,7 +9225,7 @@ snapshots:
       - supports-color
       - terser
 
-  '@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4)':
+  '@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/generator': 7.27.0
@@ -9215,9 +9287,9 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.2
 
-  '@react-router/fs-routes@7.6.0(@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4))(typescript@5.8.2)':
+  '@react-router/fs-routes@7.6.0(@react-router/dev@7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0)))(typescript@5.8.2)':
     dependencies:
-      '@react-router/dev': 7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4)
+      '@react-router/dev': 7.6.0(@types/node@22.13.14)(lightningcss@1.29.2)(react-router@7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.2)(vite@6.3.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))(wrangler@4.14.4(@cloudflare/workers-types@4.20250425.0))
       minimatch: 9.0.5
     optionalDependencies:
       typescript: 5.8.2
@@ -11390,6 +11462,17 @@ snapshots:
       wcwidth: 1.0.1
 
   outvariant@1.4.3: {}
+
+  oxlint@0.16.10:
+    optionalDependencies:
+      '@oxlint/darwin-arm64': 0.16.10
+      '@oxlint/darwin-x64': 0.16.10
+      '@oxlint/linux-arm64-gnu': 0.16.10
+      '@oxlint/linux-arm64-musl': 0.16.10
+      '@oxlint/linux-x64-gnu': 0.16.10
+      '@oxlint/linux-x64-musl': 0.16.10
+      '@oxlint/win32-arm64': 0.16.10
+      '@oxlint/win32-x64': 0.16.10
 
   package-json-from-dist@1.0.1: {}
 

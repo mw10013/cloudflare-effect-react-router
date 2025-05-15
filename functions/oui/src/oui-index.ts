@@ -1,3 +1,4 @@
+export * from './oui-autocomplete'
 export * from './oui-base'
 export * from './oui-button'
 export * from './oui-checkbox'
