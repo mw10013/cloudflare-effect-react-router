@@ -37,7 +37,11 @@ export function OuiSelectDemo() {
 
   return (
     <div className="flex flex-wrap items-start gap-4">
-      <Oui.SelectEx buttonClassName="w-[180px]" placeholder="Select a fruit">
+      <Oui.SelectEx
+        aria-label="Fruit"
+        buttonClassName="w-[180px]"
+        placeholder="Select a fruit"
+      >
         <Rac.ListBoxSection id="fruits-section">
           <Oui.Header variant="select">Fruits</Oui.Header>
           <Rac.Collection items={fruitItemsForSection}>
@@ -55,6 +59,7 @@ export function OuiSelectDemo() {
       </Oui.SelectEx>
 
       <Oui.SelectEx
+        aria-label="Large List"
         buttonClassName="w-[180px]"
         placeholder="Large List"
         items={largeListItems}
@@ -67,6 +72,7 @@ export function OuiSelectDemo() {
       </Oui.SelectEx>
 
       <Oui.SelectEx
+        aria-label="Disabled"
         isDisabled
         buttonClassName="w-[180px]"
         placeholder="Disabled"
@@ -84,6 +90,7 @@ export function OuiSelectDemo() {
       </Oui.SelectEx>
 
       <Oui.SelectEx
+        aria-label="With Icon"
         buttonClassName="w-[180px]"
         placeholder="With Icon"
         items={iconItems}

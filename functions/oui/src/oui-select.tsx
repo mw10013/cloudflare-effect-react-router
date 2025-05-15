@@ -114,3 +114,43 @@ export function SelectEx<T extends object>({
     </Select>
   );
 }
+
+interface SelectEx1Props<T extends object>
+  extends Omit<Rac.SelectProps<T>, "children"> {
+  label?: React.ReactNode;
+  description?: React.ReactNode;
+  errorMessage?: string | ((validation: Rac.ValidationResult) => string);
+  children: React.ReactNode;
+  buttonClassName?: string;
+  /**
+   * A render function to customize the display of the selected value or placeholder.
+   * Receives `isPlaceholder` and `defaultChildren` (the placeholder string or default rendered item).
+   */
+  renderSelectValue?: (
+    props: Rac.SelectValueRenderProps<T> & {
+      defaultChildren: React.ReactNode | undefined;
+    },
+  ) => React.ReactNode;
+}
+
+export function SelectEx1<T extends object>({
+  label,
+  description,
+  errorMessage,
+  children,
+  buttonClassName,
+  renderSelectValue,
+  ...props
+}: SelectEx1Props<T>) {
+  return (
+    <Select {...props}>
+      {label && <Label>{label}</Label>}
+      <SelectButton className={buttonClassName}>
+        <SelectValue>{renderSelectValue}</SelectValue>
+      </SelectButton>
+      {description && <Text slot="description">{description}</Text>}
+      <FieldError>{errorMessage}</FieldError>
+      <Popover>{children}</Popover>
+    </Select>
+  );
+}
