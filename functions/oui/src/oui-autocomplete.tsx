@@ -27,16 +27,14 @@ export function AutocompleteEx<T extends object>({
   const { contains: defaultFilter } = Rac.useFilter({ sensitivity: "base" });
 
   return (
-    <div className="my-autocomplete">
-      <Rac.Autocomplete {...rest} filter={filter ?? defaultFilter}>
-        <SearchFieldEx
-          label={label}
-          description={description}
-          errorMessage={errorMessage}
-          placeholder={placeholder}
-        />
-        {children}
-      </Rac.Autocomplete>
-    </div>
+    <Rac.Autocomplete {...rest} filter={filter ?? defaultFilter}>
+      <SearchFieldEx
+        label={label}
+        description={description}
+        errorMessage={errorMessage}
+        placeholder={placeholder}
+      />
+      {children}
+    </Rac.Autocomplete>
   );
 }
