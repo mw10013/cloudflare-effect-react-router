@@ -118,9 +118,7 @@ function FrameworkCombobox({
       className="md:max-w-[200px]"
     >
       {(item) => (
-        <Oui.ListBoxItem id={item.value} textValue={item.label}>
-          {item.label}
-        </Oui.ListBoxItem>
+        <Oui.ListBoxItem id={item.value}>{item.label}</Oui.ListBoxItem>
       )}
     </Oui.ComboBoxEx>
   );
@@ -174,13 +172,11 @@ function TimezoneCombobox({
       className="md:max-w-[200px]"
     >
       {timezonesData.map((group) => (
-        <Rac.ListBoxSection id={group.label} key={group.label}>
+        <Rac.ListBoxSection key={group.label}>
           <Oui.Header variant="select">{group.label}</Oui.Header>
           <Rac.Collection items={group.timezones}>
             {(item) => (
-              <Oui.ListBoxItem id={item.value} textValue={item.label}>
-                {item.label}
-              </Oui.ListBoxItem>
+              <Oui.ListBoxItem id={item.value}>{item.label}</Oui.ListBoxItem>
             )}
           </Rac.Collection>
         </Rac.ListBoxSection>
@@ -202,9 +198,7 @@ function SimplifiedFrameworkCombobox({
       className="w-fit min-w-[280px]"
     >
       {(item) => (
-        <Oui.ListBoxItem id={item.value} textValue={item.label}>
-          {item.label}
-        </Oui.ListBoxItem>
+        <Oui.ListBoxItem id={item.value}>{item.label}</Oui.ListBoxItem>
       )}
     </Oui.ComboBoxEx>
   );
