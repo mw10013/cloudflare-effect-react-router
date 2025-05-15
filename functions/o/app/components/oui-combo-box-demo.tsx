@@ -86,7 +86,7 @@ const timezones = [
       { value: "Asia/Seoul", label: "(GMT+9) Seoul" },
     ],
   },
-] as const;
+];
 
 type TimezoneGroup = (typeof timezones)[number];
 type Timezone = TimezoneGroup["timezones"][number];
@@ -142,7 +142,7 @@ function UserCombobox({
       className="md:max-w-[200px]"
     >
       {(item) => (
-        <Oui.ListBoxItemEx id={item.id} textValue={item.username}>
+        <Oui.ListBoxItem id={item.id} textValue={item.username}>
           <div className="flex items-center gap-2">
             <Avatar className="size-5">
               <AvatarImage
@@ -153,7 +153,7 @@ function UserCombobox({
             </Avatar>
             {item.username}
           </div>
-        </Oui.ListBoxItemEx>
+        </Oui.ListBoxItem>
       )}
     </Oui.ComboBoxEx>
   );
