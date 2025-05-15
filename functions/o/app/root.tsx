@@ -88,7 +88,7 @@ const items = [
     title: "Label",
     url: "/demo/label",
   },
-    {
+  {
     title: "Link",
     url: "/demo/link",
   },
@@ -111,6 +111,10 @@ const items = [
   {
     title: "Radio Group",
     url: "/demo/radio-group",
+  },
+  {
+    title: "Search Field",
+    url: "/demo/search-field",
   },
   {
     title: "Select",

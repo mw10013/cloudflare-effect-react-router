@@ -5,8 +5,10 @@ import { Input } from './oui-input'
 import { Label } from './oui-label'
 import { Text } from './oui-text'
 
+/**
+ * Derived styles from shadcn FormItem
+ */
 export function TextField({ className, ...props }: Rac.TextFieldProps) {
-  // shadcn FormItem: grid gap-2
   return <Rac.TextField data-slot="form-item" className={composeTailwindRenderProps(className, 'group grid gap-2')} {...props} />
 }
 
@@ -27,6 +29,7 @@ export function TextFieldEx({ label, description, errorMessage, placeholder, ...
     </TextField>
   )
 }
+
 export interface TextFieldEx1Props extends Omit<Rac.TextFieldProps, 'children'> {
   label?: React.ReactNode
   description?: React.ReactNode
