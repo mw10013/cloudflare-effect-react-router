@@ -5,6 +5,7 @@
 ## React Aria Components
 
 - Modals are Massive (block everything), Popovers are Petite (just pop up), both make Dialog Content (happy, accessible contents)
+- Menus mean Motion (action), Dialogs deliver Depth (details), keep them separate and do not Nest.
 
 ## Shadcn
 
