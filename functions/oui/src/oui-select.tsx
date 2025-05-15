@@ -133,6 +133,10 @@ interface SelectEx1Props<T extends object>
   ) => React.ReactNode;
 }
 
+/**
+ * Children are rendered as the contents of Popover and not in a ListBox.
+ * Userful for Autocomplete.
+ */
 export function SelectEx1<T extends object>({
   label,
   description,
