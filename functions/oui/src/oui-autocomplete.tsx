@@ -12,6 +12,7 @@ export interface AutocompleteExProps
   description?: React.ReactNode;
   errorMessage?: string | ((validation: Rac.ValidationResult) => string);
   placeholder?: string;
+  searchFieldProps?: Rac.SearchFieldProps;
   children: React.ReactNode;
 }
 
@@ -20,6 +21,7 @@ export function AutocompleteEx<T extends object>({
   description,
   errorMessage,
   placeholder,
+  searchFieldProps,
   children,
   filter,
   ...rest
@@ -29,6 +31,7 @@ export function AutocompleteEx<T extends object>({
   return (
     <Rac.Autocomplete {...rest} filter={filter ?? defaultFilter}>
       <SearchFieldEx
+        {...searchFieldProps}
         label={label}
         description={description}
         errorMessage={errorMessage}

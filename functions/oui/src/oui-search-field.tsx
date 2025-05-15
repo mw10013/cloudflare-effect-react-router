@@ -29,10 +29,10 @@ export function SearchFieldEx({
   description,
   errorMessage,
   placeholder,
-  ...props
+  ...rest
 }: SearchFieldExProps) {
   return (
-    <SearchField {...props}>
+    <SearchField {...rest}>
       {label && <Label>{label}</Label>}
       <Input
         placeholder={placeholder}

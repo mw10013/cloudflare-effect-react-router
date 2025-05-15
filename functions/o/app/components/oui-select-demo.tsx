@@ -46,11 +46,7 @@ export function OuiSelectDemo() {
           <Oui.Header variant="select">Fruits</Oui.Header>
           <Rac.Collection items={fruitItemsForSection}>
             {(item) => (
-              <Oui.ListBoxItem
-                id={item.id}
-                textValue={item.name}
-                isDisabled={item.isDisabled}
-              >
+              <Oui.ListBoxItem isDisabled={item.isDisabled}>
                 {item.name}
               </Oui.ListBoxItem>
             )}
@@ -64,11 +60,7 @@ export function OuiSelectDemo() {
         placeholder="Large List"
         items={largeListItems}
       >
-        {(item) => (
-          <Oui.ListBoxItem id={item.id} textValue={item.name}>
-            {item.name}
-          </Oui.ListBoxItem>
-        )}
+        {(item) => <Oui.ListBoxItem>{item.name}</Oui.ListBoxItem>}
       </Oui.SelectEx>
 
       <Oui.SelectEx
@@ -79,11 +71,7 @@ export function OuiSelectDemo() {
         items={simpleItems}
       >
         {(item) => (
-          <Oui.ListBoxItem
-            id={item.id}
-            textValue={item.name}
-            isDisabled={item.isDisabled}
-          >
+          <Oui.ListBoxItem isDisabled={item.isDisabled}>
             {item.name}
           </Oui.ListBoxItem>
         )}
@@ -109,7 +97,6 @@ export function OuiSelectDemo() {
           const IconComponent = item.icon;
           return (
             <Oui.ListBoxItem
-              id={item.id}
               textValue={item.name}
               className="flex items-center gap-2"
             >
