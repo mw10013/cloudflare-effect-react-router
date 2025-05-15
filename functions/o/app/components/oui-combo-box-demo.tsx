@@ -35,23 +35,6 @@ const frameworks = [
 
 type Framework = (typeof frameworks)[number];
 
-const users = [
-  {
-    id: "1",
-    username: "shadcn",
-  },
-  {
-    id: "2",
-    username: "leerob",
-  },
-  {
-    id: "3",
-    username: "evilrabbit",
-  },
-] as const;
-
-type User = (typeof users)[number];
-
 const timezones = [
   {
     label: "Americas",
@@ -95,7 +78,7 @@ export function OuiComboBoxDemo() {
   return (
     <div className="flex w-full flex-wrap items-start gap-4">
       <FrameworkCombobox frameworksData={[...frameworks]} />
-      <UserCombobox usersData={[...users]} selectedUserId={users[0].id} />
+      <UserCombobox />
       <TimezoneCombobox
         timezonesData={[...timezones]}
         selectedTimezoneValue={timezones[0].timezones[0].value}
@@ -124,19 +107,27 @@ function FrameworkCombobox({
   );
 }
 
-function UserCombobox({
-  usersData,
-  selectedUserId,
-}: {
-  usersData: User[];
-  selectedUserId: string;
-}) {
+function UserCombobox() {
+  const users = [
+    {
+      id: "1",
+      username: "shadcn",
+    },
+    {
+      id: "2",
+      username: "leerob",
+    },
+    {
+      id: "3",
+      username: "evilrabbit",
+    },
+  ];
   return (
     <Oui.ComboBoxEx
       aria-label="User"
       placeholder="Select user..."
-      defaultSelectedKey={selectedUserId}
-      items={usersData}
+      defaultSelectedKey={users[0].id}
+      items={users}
       className="md:max-w-[200px]"
     >
       {(item) => (

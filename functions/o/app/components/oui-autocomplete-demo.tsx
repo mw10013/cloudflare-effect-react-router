@@ -1,12 +1,79 @@
 import * as Oui from "@workspace/oui";
-import { CheckIcon, ChevronsUpDownIcon, SearchIcon } from "lucide-react";
-import * as Rac from "react-aria-components";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export function OuiAutocompleteDemo() {
   return (
-    <div className="flex flex-col flex-wrap gap-4 md:flex-row">
+    <div className="flex flex-col gap-4">
+      <UserCombobox />
       <SearchableSelectDemo />
     </div>
+  );
+}
+
+function UserCombobox() {
+  const users = [
+    {
+      id: "1",
+      username: "shadcn",
+    },
+    {
+      id: "2",
+      username: "leerob",
+    },
+    {
+      id: "3",
+      username: "evilrabbit",
+    },
+  ];
+  return (
+    <Oui.SelectEx1 label="Users">
+      <Oui.AutocompleteEx
+        placeholder="Select user..."
+        searchFieldProps={{ "aria-label": "User", autoFocus: true }}
+      >
+        <Oui.ListBox items={users}>
+          {(item) => (
+            <Oui.ListBoxItem id={item.id} textValue={item.username}>
+              <div className="flex items-center gap-2">
+                <Avatar className="size-5">
+                  <AvatarImage
+                    src={`https://github.com/${item.username}.png`}
+                    alt={item.username}
+                  />
+                  <AvatarFallback>
+                    {item.username[0]?.toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                {item.username}
+              </div>
+            </Oui.ListBoxItem>
+          )}
+        </Oui.ListBox>
+      </Oui.AutocompleteEx>
+    </Oui.SelectEx1>
+
+    // <Oui.ComboBoxEx
+    //   aria-label="User"
+    //   placeholder="Select user..."
+    //   defaultSelectedKey={users[0].id}
+    //   items={users}
+    //   className="md:max-w-[200px]"
+    // >
+    //   {(item) => (
+    //     <Oui.ListBoxItem id={item.id} textValue={item.username}>
+    //       <div className="flex items-center gap-2">
+    //         <Avatar className="size-5">
+    //           <AvatarImage
+    //             src={`https://github.com/${item.username}.png`}
+    //             alt={item.username}
+    //           />
+    //           <AvatarFallback>{item.username[0]?.toUpperCase()}</AvatarFallback>
+    //         </Avatar>
+    //         {item.username}
+    //       </div>
+    //     </Oui.ListBoxItem>
+    //   )}
+    // </Oui.ComboBoxEx>
   );
 }
 
