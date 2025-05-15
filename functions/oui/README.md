@@ -2,6 +2,10 @@
 
 - React Aria Components with Shadcn characteristics
 
+## React Aria Components
+
+- Modals are Massive (block everything), Popovers are Petite (just pop up), both make Dialog Content (happy, accessible contents)
+
 ## Shadcn
 
 - https://v4.shadcn.com/
