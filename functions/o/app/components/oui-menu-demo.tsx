@@ -19,20 +19,20 @@ import {
 import * as Rac from "react-aria-components";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
-export function OuiDropdownMenuDemo() {
+export function OuiMenuDemo() {
   return (
     <div className="flex flex-wrap items-start gap-4">
-      <DropdownMenuSimple />
-      <DropdownMenuCheckboxes />
-      <DropdownMenuRadioGroupDemo />
-      <DropdownMenuWithAvatar />
+      <MenuSimple />
+      <MenuCheckboxes />
+      <MenuRadioGroupDemo />
+      <MenuWithAvatar />
       <DropdownMenuAvatarOnly />
       <DropdownMenuIconColor />
     </div>
   );
 }
 
-function DropdownMenuSimple() {
+function MenuSimple() {
   return (
     <Oui.MenuEx
       triggerElement={<Oui.Button variant="outline">Open</Oui.Button>}
@@ -93,7 +93,7 @@ function DropdownMenuSimple() {
   );
 }
 
-function DropdownMenuCheckboxes() {
+function MenuCheckboxes() {
   const [appearanceSelectedKeys, setAppearanceSelectedKeys] =
     React.useState<Selection>(new Set(["statusBar"]));
 
@@ -137,7 +137,7 @@ function DropdownMenuCheckboxes() {
   );
 }
 
-function DropdownMenuRadioGroupDemo() {
+function MenuRadioGroupDemo() {
   const [panelPositionKey, setPanelPositionKey] = React.useState<Selection>(
     new Set(["bottom"]),
   );
@@ -165,7 +165,7 @@ function DropdownMenuRadioGroupDemo() {
   );
 }
 
-function DropdownMenuWithAvatar() {
+function MenuWithAvatar() {
   return (
     <Oui.MenuEx
       className="w-56"

@@ -77,8 +77,8 @@ const items = [
     url: "/demo/combo-box",
   },
   {
-    title: "Drop Down Menu",
-    url: "/demo/dropdown-menu",
+    title: "Dialog",
+    url: "/demo/dialog",
   },
   {
     title: "Form",
@@ -95,6 +95,14 @@ const items = [
   {
     title: "Link",
     url: "/demo/link",
+  },
+  {
+    title: "Menu",
+    url: "/demo/menu",
+  },
+  {
+    title: "Modal",
+    url: "/demo/modal",
   },
   {
     title: "Number Field",
@@ -135,6 +143,10 @@ const items = [
   {
     title: "Switch",
     url: "/demo/switch",
+  },
+  {
+    title: "Table",
+    url: "/demo/table",
   },
   {
     title: "Text Field",
