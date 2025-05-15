@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export function OuiAutocompleteDemo() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-8">
       <UserCombobox />
       <SearchableSelectDemo />
     </div>
@@ -26,7 +26,7 @@ function UserCombobox() {
     },
   ];
   return (
-    <Oui.SelectEx1 label="Users">
+    <Oui.SelectEx1 label="Users" defaultSelectedKey={users[0].id}>
       <Oui.AutocompleteEx
         placeholder="Select user..."
         searchFieldProps={{ "aria-label": "User", autoFocus: true }}
