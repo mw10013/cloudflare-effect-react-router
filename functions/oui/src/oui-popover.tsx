@@ -1,5 +1,7 @@
 import * as Rac from "react-aria-components";
 import { tv } from "tailwind-variants";
+import { Button } from "./oui-button";
+import { Dialog } from "./oui-dialog";
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Popover.html
@@ -62,3 +64,34 @@ export const Popover = ({
     {...props}
   />
 );
+
+export interface PopoverExProps extends Omit<Rac.PopoverProps, "children"> {
+  triggerElement: string | React.ReactElement;
+  dialogClassName?: string;
+  children?: React.ReactNode;
+}
+
+/**
+ * A modal dialog.
+ * If `triggerElement` is a string, it's rendered as a ghost `Button`.
+ * The dialog is dismissable via an outside press if `role` is not "alertdialog".
+ */
+export function PopoverEx({
+  triggerElement,
+  dialogClassName,
+  children,
+  ...rest
+}: PopoverExProps) {
+  return (
+    <Rac.DialogTrigger>
+      {typeof triggerElement === "string" ? (
+        <Button variant="ghost">{triggerElement}</Button>
+      ) : (
+        triggerElement
+      )}
+      <Popover className={dialogClassName} {...rest}>
+        <Dialog className={dialogClassName}>{children}</Dialog>
+      </Popover>
+    </Rac.DialogTrigger>
+  );
+}

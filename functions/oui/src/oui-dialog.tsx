@@ -100,7 +100,7 @@ export interface DialogExProps extends DialogProps {
 }
 
 /**
- * A Dialog component with a trigger.
+ * A modal dialog.
  * If `triggerElement` is a string, it's rendered as a ghost `Button`.
  * The dialog is dismissable via an outside press if `role` is not "alertdialog".
  */
