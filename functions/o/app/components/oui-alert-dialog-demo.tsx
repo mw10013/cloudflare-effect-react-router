@@ -1,0 +1,23 @@
+// ...existing code...
+import * as Oui from "@workspace/oui";
+import * as Rac from "react-aria-components";
+
+export function OuiAlertDialogDemo() {
+  return (
+    <Oui.DialogEx triggerElement={<Oui.Button variant="outline">Show Dialog</Oui.Button>} role="alertdialog">
+      <Oui.DialogHeader>
+        <Rac.Heading slot="title">Are you absolutely sure?</Rac.Heading>
+        <Oui.DialogDescription>
+          This action cannot be undone. This will permanently delete your
+          account and remove your data from our servers.
+        </Oui.DialogDescription>
+      </Oui.DialogHeader>
+      <Oui.DialogFooter>
+        <Oui.Button variant="outline" slot="close" autoFocus>
+          Cancel
+        </Oui.Button>
+        <Oui.Button slot="close">Continue</Oui.Button>
+      </Oui.DialogFooter>
+    </Oui.DialogEx>
+  );
+}

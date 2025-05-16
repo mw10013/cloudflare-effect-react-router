@@ -17,29 +17,32 @@ export interface DialogProps extends Omit<Rac.DialogProps, "children"> {
 
 /**
  * Derived from shadcn DialogContent
+ * If `role` is "alertdialog", the visual close button (X) is omitted.
  */
-export function Dialog({ className, children, ...props }: DialogProps) {
+export function Dialog({ role, className, children, ...rest }: DialogProps) {
   return (
     <Rac.Dialog
-      {...props}
+      {...rest}
       className={twMerge("grid gap-4 outline-none", className)}
     >
       {({ close }) => (
         <>
           {children}
-          <Rac.Button
-            slot="close"
-            onPress={close}
-            className={twMerge(
-              "absolute right-4 top-4 rounded-sm p-1 opacity-70 transition-opacity",
-              "data-[hovered]:bg-accent data-[hovered]:text-muted-foreground data-[hovered]:opacity-100",
-              "data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-background data-[focus-visible]:outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-offset-2",
-              "data-[disabled]:pointer-events-none",
-            )}
-          >
-            <XIcon className="size-4" />
-            <span className="sr-only">Close</span>
-          </Rac.Button>
+          {role !== "alertdialog" && (
+            <Rac.Button
+              slot="close"
+              onPress={close}
+              className={twMerge(
+                "absolute right-4 top-4 rounded-sm p-1 opacity-70 transition-opacity",
+                "data-[hovered]:bg-accent data-[hovered]:text-muted-foreground data-[hovered]:opacity-100",
+                "data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-background data-[focus-visible]:outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-offset-2",
+                "data-[disabled]:pointer-events-none",
+              )}
+            >
+              <XIcon className="size-4" />
+              <span className="sr-only">Close</span>
+            </Rac.Button>
+          )}
         </>
       )}
     </Rac.Dialog>
@@ -96,6 +99,9 @@ export interface DialogExProps extends DialogProps {
   modalClassName?: string;
 }
 
+/**
+ * If `triggerElement` is a string, it's rendered as a ghost `Button`.
+ */
 export function DialogEx({
   triggerElement,
   modalClassName,
