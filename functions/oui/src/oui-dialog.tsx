@@ -1,4 +1,5 @@
 import type { ReactElement, ReactNode } from "react";
+import React from "react";
 import { XIcon } from "lucide-react";
 import * as Rac from "react-aria-components";
 import { twMerge } from "tailwind-merge";
@@ -16,10 +17,13 @@ export interface DialogProps extends Omit<Rac.DialogProps, "children"> {
 }
 
 /**
- * Derived from shadcn DialogContent
- * If `role` is "alertdialog", the visual close button (X) is omitted.
+ * Derived from shadcn DialogContent.
+ * The visual close button (X) is displayed if within a modal and `role` is not "alertdialog".
  */
 export function Dialog({ role, className, children, ...rest }: DialogProps) {
+  const modalContext = React.useContext(Rac.ModalContext);
+  const popoverContext = React.useContext(Rac.PopoverContext);
+  console.log("Dialog", { role, modalContext, popoverContext });
   return (
     <Rac.Dialog
       {...rest}
@@ -28,7 +32,7 @@ export function Dialog({ role, className, children, ...rest }: DialogProps) {
       {({ close }) => (
         <>
           {children}
-          {role !== "alertdialog" && (
+          {modalContext && role !== "alertdialog" && (
             <Rac.Button
               slot="close"
               onPress={close}
