@@ -15,46 +15,44 @@ function DialogWithForm() {
   return (
     <Rac.DialogTrigger>
       <Oui.Button variant="outline">Edit Profile</Oui.Button>
-      <Oui.ModalOverlay>
-        <Oui.Modal className="sm:max-w-[425px]">
-          <Oui.Dialog>
-            <form>
-              <Oui.DialogHeader>
-                <Rac.Heading
-                  slot="title"
-                  className="text-lg font-semibold leading-none"
-                >
-                  Edit profile
-                </Rac.Heading>
-                <Oui.DialogDescription>
-                  Make changes to your profile here. Click save when you&apos;re
-                  done.
-                </Oui.DialogDescription>
-              </Oui.DialogHeader>
-              <div className="grid gap-4 py-4">
-                <Oui.TextFieldEx
-                  name="name"
-                  label="Name"
-                  defaultValue="Pedro Duarte"
-                />
-                <Oui.TextFieldEx
-                  name="username"
-                  label="Username"
-                  defaultValue="@peduarte"
-                />
-              </div>
-              <Oui.DialogFooter>
-                <Oui.Button variant="outline" slot="close">
-                  Cancel
-                </Oui.Button>
-                <Oui.Button type="submit" slot="close">
-                  Save changes
-                </Oui.Button>
-              </Oui.DialogFooter>
-            </form>
-          </Oui.Dialog>
-        </Oui.Modal>
-      </Oui.ModalOverlay>
+      <Oui.ModalEx className="sm:max-w-[425px]">
+        <Oui.Dialog>
+          <form>
+            <Oui.DialogHeader>
+              <Rac.Heading
+                slot="title"
+                className="text-lg font-semibold leading-none"
+              >
+                Edit profile
+              </Rac.Heading>
+              <Oui.DialogDescription>
+                Make changes to your profile here. Click save when you&apos;re
+                done.
+              </Oui.DialogDescription>
+            </Oui.DialogHeader>
+            <div className="grid gap-4 py-4">
+              <Oui.TextFieldEx
+                name="name"
+                label="Name"
+                defaultValue="Pedro Duarte"
+              />
+              <Oui.TextFieldEx
+                name="username"
+                label="Username"
+                defaultValue="@peduarte"
+              />
+            </div>
+            <Oui.DialogFooter>
+              <Oui.Button variant="outline" slot="close">
+                Cancel
+              </Oui.Button>
+              <Oui.Button type="submit" slot="close">
+                Save changes
+              </Oui.Button>
+            </Oui.DialogFooter>
+          </form>
+        </Oui.Dialog>
+      </Oui.ModalEx>
     </Rac.DialogTrigger>
   );
 }
@@ -63,7 +61,7 @@ function DialogScrollableContent() {
   return (
     <Rac.DialogTrigger>
       <Oui.Button variant="outline">Scrollable Content</Oui.Button>
-      <Oui.Modal className="sm:max-w-[425px]">
+      <Oui.ModalEx className="sm:max-w-[425px]">
         <Oui.Dialog>
           <Oui.DialogHeader>
             <Rac.Heading
@@ -92,9 +90,8 @@ function DialogScrollableContent() {
               </p>
             ))}
           </div>
-          {/* Assuming a close button might be desired here eventually, or handled by Modal's default dismiss */}
         </Oui.Dialog>
-      </Oui.Modal>
+      </Oui.ModalEx>
     </Rac.DialogTrigger>
   );
 }
@@ -103,9 +100,8 @@ function DialogWithStickyFooter() {
   return (
     <Rac.DialogTrigger>
       <Oui.Button variant="outline">Sticky Footer</Oui.Button>
-      <Oui.Modal className="sm:max-w-lg">
+      <Oui.ModalEx className="sm:max-w-lg">
         <Oui.Dialog>
-          <>
             <Oui.DialogHeader>
               <Rac.Heading
                 slot="title"
@@ -139,9 +135,8 @@ function DialogWithStickyFooter() {
                 Close
               </Oui.Button>
             </Oui.DialogFooter>
-          </>
         </Oui.Dialog>
-      </Oui.Modal>
+      </Oui.ModalEx>
     </Rac.DialogTrigger>
   );
 }

@@ -63,3 +63,27 @@ export function Modal({ className, ...rest }: Rac.ModalOverlayProps) {
     />
   );
 }
+
+export interface ModalExProps
+  extends Omit<Rac.ModalOverlayProps, "className" | "children"> {
+  className?: Rac.ModalOverlayProps["className"];
+  overlayClassName?: Rac.ModalOverlayProps["className"];
+  children?: React.ReactNode;
+}
+
+/**
+ * Composes ModalOverlay and Modal.
+ * `className` is applied to Modal, `overlayClassName` and other props are applied to ModalOverlay.
+ */
+export function ModalEx({
+  className,
+  overlayClassName,
+  children,
+  ...rest
+}: ModalExProps) {
+  return (
+    <ModalOverlay {...rest} className={overlayClassName}>
+      <Modal className={className}>{children}</Modal>
+    </ModalOverlay>
+  );
+}
