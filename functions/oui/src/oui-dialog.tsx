@@ -100,7 +100,9 @@ export interface DialogExProps extends DialogProps {
 }
 
 /**
+ * A Dialog component with a trigger.
  * If `triggerElement` is a string, it's rendered as a ghost `Button`.
+ * The dialog is dismissable via an outside press if `role` is not "alertdialog".
  */
 export function DialogEx({
   triggerElement,
@@ -115,7 +117,10 @@ export function DialogEx({
       ) : (
         triggerElement
       )}
-      <ModalEx className={modalClassName}>
+      <ModalEx
+        className={modalClassName}
+        isDismissable={props.role !== "alertdialog"}
+      >
         <Dialog {...props}>{children}</Dialog>
       </ModalEx>
     </Rac.DialogTrigger>
