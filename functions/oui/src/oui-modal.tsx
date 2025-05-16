@@ -49,13 +49,14 @@ export const modalStyles = tv({
   },
 });
 
-export function Modal({ className, ...props }: Rac.ModalOverlayProps) {
+export function Modal({ className, ...rest }: Rac.ModalOverlayProps) {
   return (
     <Rac.Modal
-      {...props}
+      data-slot="modal"
       className={Rac.composeRenderProps(className, (className, renderProps) =>
         modalStyles({ ...renderProps, className }),
       )}
+      {...rest}
     />
   );
 }
