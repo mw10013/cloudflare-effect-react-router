@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { X } from "lucide-react";
+import { XIcon } from "lucide-react";
 import * as Rac from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 
@@ -13,7 +13,9 @@ export interface DialogProps extends Omit<Rac.DialogProps, "children"> {
   children?: ReactNode;
 }
 
-// shadcn DialogContent: fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg
+/**
+ * Derived from shadcn DialogContent
+ */
 export function Dialog({ className, children, ...props }: DialogProps) {
   return (
     <Rac.Dialog {...props} className={twMerge("grid gap-4", className)}>
@@ -25,7 +27,7 @@ export function Dialog({ className, children, ...props }: DialogProps) {
             onPress={close}
             className="ring-offset-background data-[state=open]:bg-accent data-[state=open]:text-muted-foreground data-[focused]:ring-ring absolute right-4 top-4 rounded-sm opacity-70 transition-opacity data-[disabled]:pointer-events-none data-[hovered]:opacity-100 data-[focused]:outline-none data-[focused]:ring-2 data-[focused]:ring-offset-2"
           >
-            <X className="size-4" />
+            <XIcon />
             <span className="sr-only">Close</span>
           </Rac.Button>
         </>
@@ -34,7 +36,9 @@ export function Dialog({ className, children, ...props }: DialogProps) {
   );
 }
 
-// shadcn DialogHeader: flex flex-col space-y-1.5 text-center sm:text-left
+/**
+ * Derived from shadcn DialogHeader
+ */
 export const DialogHeader = ({
   className,
   ...props
@@ -48,7 +52,9 @@ export const DialogHeader = ({
   />
 );
 
-// shadcn DialogFooter: flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2
+/**
+ * Derived from shadcn DialogFooter
+ */
 export const DialogFooter = ({
   className,
   ...props
@@ -62,8 +68,9 @@ export const DialogFooter = ({
   />
 );
 
-// shadcn DialogDescription: text-sm text-muted-foreground
-// TODO: DialogDescription: move into Text?
+/**
+ * Derived from shadcn DialogDescription
+ */
 export const DialogDescription = ({
   className,
   ...props
