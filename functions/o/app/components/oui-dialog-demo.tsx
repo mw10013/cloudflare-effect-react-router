@@ -15,44 +15,46 @@ function DialogWithForm() {
   return (
     <Rac.DialogTrigger>
       <Oui.Button variant="outline">Edit Profile</Oui.Button>
-      <Oui.Modal className="sm:max-w-[425px]">
-        <Oui.Dialog>
-          <form>
-            <Oui.DialogHeader>
-              <Rac.Heading
-                slot="title"
-                className="text-lg font-semibold leading-none"
-              >
-                Edit profile
-              </Rac.Heading>
-              <Oui.DialogDescription>
-                Make changes to your profile here. Click save when you&apos;re
-                done.
-              </Oui.DialogDescription>
-            </Oui.DialogHeader>
-            <div className="grid gap-4 py-4">
-              <Oui.TextFieldEx
-                name="name"
-                label="Name"
-                defaultValue="Pedro Duarte"
-              />
-              <Oui.TextFieldEx
-                name="username"
-                label="Username"
-                defaultValue="@peduarte"
-              />
-            </div>
-            <Oui.DialogFooter>
-              <Oui.Button variant="outline" slot="close">
-                Cancel
-              </Oui.Button>
-              <Oui.Button type="submit" slot="close">
-                Save changes
-              </Oui.Button>
-            </Oui.DialogFooter>
-          </form>
-        </Oui.Dialog>
-      </Oui.Modal>
+      <Oui.ModalOverlay>
+        <Oui.Modal className="sm:max-w-[425px]">
+          <Oui.Dialog>
+            <form>
+              <Oui.DialogHeader>
+                <Rac.Heading
+                  slot="title"
+                  className="text-lg font-semibold leading-none"
+                >
+                  Edit profile
+                </Rac.Heading>
+                <Oui.DialogDescription>
+                  Make changes to your profile here. Click save when you&apos;re
+                  done.
+                </Oui.DialogDescription>
+              </Oui.DialogHeader>
+              <div className="grid gap-4 py-4">
+                <Oui.TextFieldEx
+                  name="name"
+                  label="Name"
+                  defaultValue="Pedro Duarte"
+                />
+                <Oui.TextFieldEx
+                  name="username"
+                  label="Username"
+                  defaultValue="@peduarte"
+                />
+              </div>
+              <Oui.DialogFooter>
+                <Oui.Button variant="outline" slot="close">
+                  Cancel
+                </Oui.Button>
+                <Oui.Button type="submit" slot="close">
+                  Save changes
+                </Oui.Button>
+              </Oui.DialogFooter>
+            </form>
+          </Oui.Dialog>
+        </Oui.Modal>
+      </Oui.ModalOverlay>
     </Rac.DialogTrigger>
   );
 }

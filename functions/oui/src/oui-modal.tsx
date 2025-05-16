@@ -8,31 +8,31 @@ import { tv } from "tailwind-variants";
 #fetch https://ui.shadcn.com/docs/components/dialog
 */
 
-/*
-// shadcn DialogOverlay: fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0
+/**
+ * Derived from shadcn DialogOverlay
+ */
 export const modalOverlayStyles = tv({
-  base: 'fixed inset-0 z-50 bg-black/80',
+  base: "fixed inset-0 z-50 bg-black/50",
   variants: {
-    // isEntering: {
-    //   true: 'animate-in fade-in-0',
-    // },
-    // isExiting: {
-    //   true: 'animate-out fade-out-0',
-    // },
+    isEntering: {
+      true: "animate-in fade-in-0",
+    },
+    isExiting: {
+      true: "animate-out fade-out-0",
+    },
   },
-})
+});
 
 export function ModalOverlay({ className, ...props }: Rac.ModalOverlayProps) {
   return (
     <Rac.ModalOverlay
       className={Rac.composeRenderProps(className, (className, renderProps) =>
-        modalOverlayStyles({ ...renderProps, className })
+        modalOverlayStyles({ ...renderProps, className }),
       )}
       {...props}
     />
-  )
+  );
 }
-*/
 
 /**
  * Derived from shadcn DialogContent
