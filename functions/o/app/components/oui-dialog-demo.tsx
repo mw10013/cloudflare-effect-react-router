@@ -17,7 +17,7 @@ function DialogWithForm() {
       <Oui.Button variant="outline">Edit Profile</Oui.Button>
       <Oui.ModalEx className="sm:max-w-[425px]">
         <Oui.Dialog>
-          <form>
+          <Rac.Form>
             <Oui.DialogHeader>
               <Oui.Heading slot="title">Edit profile</Oui.Heading>
               <Oui.DialogDescription>
@@ -30,6 +30,7 @@ function DialogWithForm() {
                 name="name"
                 label="Name"
                 defaultValue="Pedro Duarte"
+                autoFocus
               />
               <Oui.TextFieldEx
                 name="username"
@@ -45,7 +46,7 @@ function DialogWithForm() {
                 Save changes
               </Oui.Button>
             </Oui.DialogFooter>
-          </form>
+          </Rac.Form>
         </Oui.Dialog>
       </Oui.ModalEx>
     </Rac.DialogTrigger>
