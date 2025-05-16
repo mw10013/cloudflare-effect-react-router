@@ -19,12 +19,7 @@ function DialogWithForm() {
         <Oui.Dialog>
           <form>
             <Oui.DialogHeader>
-              <Rac.Heading
-                slot="title"
-                className="text-lg font-semibold leading-none"
-              >
-                Edit profile
-              </Rac.Heading>
+              <Oui.Heading slot="title">Edit profile</Oui.Heading>
               <Oui.DialogDescription>
                 Make changes to your profile here. Click save when you&apos;re
                 done.
@@ -64,12 +59,7 @@ function DialogScrollableContent() {
       <Oui.ModalEx className="sm:max-w-[425px]">
         <Oui.Dialog>
           <Oui.DialogHeader>
-            <Rac.Heading
-              slot="title"
-              className="text-lg font-semibold leading-none"
-            >
-              Scrollable Content
-            </Rac.Heading>
+            <Oui.Heading slot="title">Scrollable Content</Oui.Heading>
             <Oui.DialogDescription>
               This is a dialog with scrollable content.
             </Oui.DialogDescription>
@@ -102,39 +92,33 @@ function DialogWithStickyFooter() {
       <Oui.Button variant="outline">Sticky Footer</Oui.Button>
       <Oui.ModalEx className="sm:max-w-lg">
         <Oui.Dialog>
-            <Oui.DialogHeader>
-              <Rac.Heading
-                slot="title"
-                className="text-lg font-semibold leading-none"
-              >
-                Scrollable Content
-              </Rac.Heading>
-              <Oui.DialogDescription>
-                This is a dialog with scrollable content.
-              </Oui.DialogDescription>
-            </Oui.DialogHeader>
-            <div className="-mx-6 max-h-[500px] overflow-y-auto px-6 py-4 text-sm">
-              <h4 className="mb-4 text-lg font-medium leading-none">
-                Lorem Ipsum
-              </h4>
-              {Array.from({ length: 10 }).map((_, index) => (
-                <p key={index} className="mb-4 leading-normal">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </p>
-              ))}
-            </div>
-            <Oui.DialogFooter>
-              <Oui.Button variant="outline" slot="close">
-                Close
-              </Oui.Button>
-            </Oui.DialogFooter>
+          <Oui.DialogHeader>
+            <Oui.Heading slot="title">Scrollable Content</Oui.Heading>
+            <Oui.DialogDescription>
+              This is a dialog with scrollable content.
+            </Oui.DialogDescription>
+          </Oui.DialogHeader>
+          <div className="-mx-6 max-h-[500px] overflow-y-auto px-6 py-4 text-sm">
+            <h4 className="mb-4 text-lg font-medium leading-none">
+              Lorem Ipsum
+            </h4>
+            {Array.from({ length: 10 }).map((_, index) => (
+              <p key={index} className="mb-4 leading-normal">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            ))}
+          </div>
+          <Oui.DialogFooter>
+            <Oui.Button variant="outline" slot="close">
+              Close
+            </Oui.Button>
+          </Oui.DialogFooter>
         </Oui.Dialog>
       </Oui.ModalEx>
     </Rac.DialogTrigger>

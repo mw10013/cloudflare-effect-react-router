@@ -18,7 +18,10 @@ export interface DialogProps extends Omit<Rac.DialogProps, "children"> {
  */
 export function Dialog({ className, children, ...props }: DialogProps) {
   return (
-    <Rac.Dialog {...props} className={twMerge("grid gap-4", className)}>
+    <Rac.Dialog
+      {...props}
+      className={twMerge("grid gap-4 outline-none", className)}
+    >
       {({ close }) => (
         <>
           {children}
