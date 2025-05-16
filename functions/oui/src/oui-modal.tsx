@@ -38,13 +38,13 @@ export function ModalOverlay({ className, ...props }: Rac.ModalOverlayProps) {
  * Derived from shadcn DialogContent
  */
 export const modalStyles = tv({
-  base: "bg-background fixed left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%] border p-6 shadow-lg duration-200 sm:rounded-lg",
+  base: "bg-background fixed left-[50%] top-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
   variants: {
     isEntering: {
-      true: "animate-in fade-in-0 zoom-in-95 slide-in-from-left-1/2 slide-in-from-top-[48%]",
+      true: "animate-in fade-in-0 zoom-in-95",
     },
     isExiting: {
-      true: "animate-out zoom-out-95 slide-out-to-left-1/2 slide-out-to-top-[48%]",
+      true: "animate-out fade-out-0 zoom-out-95",
     },
   },
 });
