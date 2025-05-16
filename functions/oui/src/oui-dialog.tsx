@@ -25,9 +25,14 @@ export function Dialog({ className, children, ...props }: DialogProps) {
           <Rac.Button
             slot="close"
             onPress={close}
-            className="ring-offset-background data-[state=open]:bg-accent data-[state=open]:text-muted-foreground data-[focused]:ring-ring absolute right-4 top-4 rounded-sm opacity-70 transition-opacity data-[disabled]:pointer-events-none data-[hovered]:opacity-100 data-[focused]:outline-none data-[focused]:ring-2 data-[focused]:ring-offset-2"
+            className={twMerge(
+              "absolute right-4 top-4 rounded-sm p-1 opacity-70 transition-opacity",
+              "data-[hovered]:bg-accent data-[hovered]:text-muted-foreground data-[hovered]:opacity-100",
+              "data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-background data-[focus-visible]:outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-offset-2",
+              "data-[disabled]:pointer-events-none",
+            )}
           >
-            <XIcon />
+            <XIcon className="size-4" />
             <span className="sr-only">Close</span>
           </Rac.Button>
         </>
@@ -46,7 +51,7 @@ export const DialogHeader = ({
   <div
     {...props}
     className={twMerge(
-      "flex flex-col space-y-1.5 text-center sm:text-left",
+      "flex flex-col gap-2 text-center sm:text-left",
       className,
     )}
   />
@@ -62,7 +67,7 @@ export const DialogFooter = ({
   <div
     {...props}
     className={twMerge(
-      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
       className,
     )}
   />
