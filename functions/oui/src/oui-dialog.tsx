@@ -1,7 +1,9 @@
-import type { ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import { XIcon } from "lucide-react";
 import * as Rac from "react-aria-components";
 import { twMerge } from "tailwind-merge";
+import { Button } from "./oui-button";
+import { ModalEx } from "./oui-modal";
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Dialog.html
@@ -88,3 +90,28 @@ export const DialogDescription = ({
     className={twMerge("text-muted-foreground text-sm", className)}
   />
 );
+
+export interface DialogExProps extends DialogProps {
+  triggerElement: string | ReactElement;
+  modalClassName?: string;
+}
+
+export function DialogEx({
+  triggerElement,
+  modalClassName,
+  children,
+  ...props
+}: DialogExProps) {
+  return (
+    <Rac.DialogTrigger>
+      {typeof triggerElement === "string" ? (
+        <Button variant="outline">{triggerElement}</Button>
+      ) : (
+        triggerElement
+      )}
+      <ModalEx className={modalClassName}>
+        <Dialog {...props}>{children}</Dialog>
+      </ModalEx>
+    </Rac.DialogTrigger>
+  );
+}
