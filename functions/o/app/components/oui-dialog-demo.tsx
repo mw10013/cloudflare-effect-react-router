@@ -14,7 +14,7 @@ export function OuiDialogDemo() {
 function DialogWithForm() {
   return (
     <Oui.DialogEx
-      triggerElement="Edit Profile"
+      triggerElement={<Oui.Button variant="outline">Edit Profile</Oui.Button>}
       modalClassName="sm:max-w-[425px]"
     >
       <Rac.Form>
@@ -53,7 +53,9 @@ function DialogWithForm() {
 function DialogScrollableContent() {
   return (
     <Oui.DialogEx
-      triggerElement="Scrollable Content"
+      triggerElement={
+        <Oui.Button variant="outline">Scrollable Content</Oui.Button>
+      }
       modalClassName="sm:max-w-[425px]"
     >
       <Oui.DialogHeader>
@@ -82,7 +84,10 @@ function DialogScrollableContent() {
 
 function DialogWithStickyFooter() {
   return (
-    <Oui.DialogEx triggerElement="Sticky Footer" modalClassName="sm:max-w-lg">
+    <Oui.DialogEx
+      triggerElement={<Oui.Button variant="outline">Sticky Footer</Oui.Button>}
+      modalClassName="sm:max-w-lg"
+    >
       <Oui.DialogHeader>
         <Oui.Heading slot="title">Scrollable Content</Oui.Heading>
         <Oui.DialogDescription>

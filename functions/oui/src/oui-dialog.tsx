@@ -105,7 +105,7 @@ export function DialogEx({
   return (
     <Rac.DialogTrigger>
       {typeof triggerElement === "string" ? (
-        <Button variant="outline">{triggerElement}</Button>
+        <Button variant="ghost">{triggerElement}</Button>
       ) : (
         triggerElement
       )}
