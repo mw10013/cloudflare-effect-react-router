@@ -89,7 +89,7 @@ export function PopoverEx({
       ) : (
         triggerElement
       )}
-      <Popover className={dialogClassName} {...rest}>
+      <Popover {...rest}>
         <Dialog className={dialogClassName} hideCloseButtonForNonAlert>
           {children}
         </Dialog>

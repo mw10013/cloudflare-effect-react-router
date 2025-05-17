@@ -7,7 +7,9 @@ export function OuiPopoverDemo() {
       dialogClassName="w-80"
     >
       <Oui.DialogHeader>
-        <Oui.Heading slot="title">Dimensions</Oui.Heading>
+        <Oui.Heading variant="popover" slot="title">
+          Dimensions
+        </Oui.Heading>
         <Oui.DialogDescription>
           Set the dimensions for the layer.
         </Oui.DialogDescription>

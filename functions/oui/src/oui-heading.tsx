@@ -12,6 +12,7 @@ export const headingStyles = tv({
     variant: {
       default: "leading-none",
       alert: "",
+      popover: "text-base font-medium leading-none",
     },
   },
   defaultVariants: {

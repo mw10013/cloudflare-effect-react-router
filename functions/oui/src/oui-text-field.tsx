@@ -1,25 +1,37 @@
-import * as Rac from 'react-aria-components'
-import { composeTailwindRenderProps } from './oui-base'
-import { FieldError } from './oui-field-error'
-import { Input } from './oui-input'
-import { Label } from './oui-label'
-import { Text } from './oui-text'
+import * as Rac from "react-aria-components";
+import { composeTailwindRenderProps } from "./oui-base";
+import { FieldError } from "./oui-field-error";
+import { Input } from "./oui-input";
+import { Label } from "./oui-label";
+import { Text } from "./oui-text";
 
 /**
  * Derived styles from shadcn FormItem
  */
 export function TextField({ className, ...props }: Rac.TextFieldProps) {
-  return <Rac.TextField data-slot="form-item" className={composeTailwindRenderProps(className, 'group grid gap-2')} {...props} />
+  return (
+    <Rac.TextField
+      data-slot="form-item"
+      className={composeTailwindRenderProps(className, "group grid gap-2")}
+      {...props}
+    />
+  );
 }
 
 export interface TextFieldExProps extends Rac.TextFieldProps {
-  label?: React.ReactNode
-  description?: React.ReactNode
-  errorMessage?: string | ((validation: Rac.ValidationResult) => string)
-  placeholder?: string
+  label?: React.ReactNode;
+  description?: React.ReactNode;
+  errorMessage?: string | ((validation: Rac.ValidationResult) => string);
+  placeholder?: string;
 }
 
-export function TextFieldEx({ label, description, errorMessage, placeholder, ...props }: TextFieldExProps) {
+export function TextFieldEx({
+  label,
+  description,
+  errorMessage,
+  placeholder,
+  ...props
+}: TextFieldExProps) {
   return (
     <TextField {...props}>
       {label && <Label>{label}</Label>}
@@ -27,17 +39,34 @@ export function TextFieldEx({ label, description, errorMessage, placeholder, ...
       {description && <Text slot="description">{description}</Text>}
       <FieldError>{errorMessage}</FieldError>
     </TextField>
-  )
+  );
 }
 
-export interface TextFieldEx1Props extends Omit<Rac.TextFieldProps, 'children'> {
-  label?: React.ReactNode
-  description?: React.ReactNode
-  errorMessage?: string | ((validation: Rac.ValidationResult) => string)
-  children: React.ReactNode
+export interface TextFieldEx1Props
+  extends Omit<Rac.TextFieldProps, "children"> {
+  label?: React.ReactNode;
+  description?: React.ReactNode;
+  errorMessage?: string | ((validation: Rac.ValidationResult) => string);
+  children: React.ReactNode;
 }
 
-export function TextFieldEx1({ label, description, errorMessage, children, ...props }: TextFieldEx1Props) {
+/**
+ * A TextField component that allows for custom child input components.
+ *
+ * @example
+ * ```tsx
+ * <Oui.TextFieldEx1 name="bio" label="Bio" description="You can @mention other users and organizations.">
+ *   <Oui.TextArea className="resize-none" placeholder="Tell us a little bit about yourself" />
+ * </Oui.TextFieldEx1>
+ * ```
+ */
+export function TextFieldEx1({
+  label,
+  description,
+  errorMessage,
+  children,
+  ...props
+}: TextFieldEx1Props) {
   return (
     <TextField {...props}>
       {label && <Label>{label}</Label>}
@@ -45,5 +74,5 @@ export function TextFieldEx1({ label, description, errorMessage, children, ...pr
       {description && <Text slot="description">{description}</Text>}
       <FieldError>{errorMessage}</FieldError>
     </TextField>
-  )
+  );
 }
