@@ -1,27 +1,30 @@
 import type { VariantProps } from "tailwind-variants";
+import React from "react";
 import * as Rac from "react-aria-components";
 import { tv } from "tailwind-variants";
 
 /**
- * Derived from shadcn DialogTitle
+ * Derived from shadcn DialogTitle and AlertDialogTitle
  */
 export const headingStyles = tv({
-  base: "",
+  base: "text-lg font-semibold",
   variants: {
-    slot: {
-      title: "text-lg font-semibold leading-none tracking-tight",
+    variant: {
+      default: "leading-none",
+      alert: "",
     },
+  },
+  defaultVariants: {
+    variant: "default",
   },
 });
 
 export interface HeadingProps
-  extends Omit<Rac.HeadingProps, "slot">,
+  extends Rac.HeadingProps,
     VariantProps<typeof headingStyles> {}
 
-export const Heading = ({ className, slot, ...rest }: HeadingProps) => (
-  <Rac.Heading
-    slot={slot}
-    className={headingStyles({ slot, className })}
-    {...rest}
-  />
-);
+export function Heading({ className, variant, ...rest }: HeadingProps) {
+  return (
+    <Rac.Heading className={headingStyles({ className, variant })} {...rest} />
+  );
+}
