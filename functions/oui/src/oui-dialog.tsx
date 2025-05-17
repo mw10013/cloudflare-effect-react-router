@@ -16,7 +16,7 @@ export interface DialogProps extends Omit<Rac.DialogProps, "children"> {
   children?: ReactNode;
   /**
    * If `true`, hides the close button for non-'alertdialog' role.
-   * 'alertdialog' role never show a close button.
+   * 'alertdialog' role never shows a close button.
    * @default false
    */
   hideCloseButtonForNonAlert?: boolean;
@@ -37,25 +37,20 @@ export function Dialog({
       {...rest}
       className={twMerge("grid gap-4 outline-none", className)}
     >
-      {({ close }) => (
-        <>
-          {children}
-          {!hideCloseButtonForNonAlert && role !== "alertdialog" && (
-            <Rac.Button
-              slot="close"
-              onPress={close}
-              className={twMerge(
-                "absolute right-4 top-4 rounded-sm p-1 opacity-70 transition-opacity",
-                "data-[hovered]:bg-accent data-[hovered]:text-muted-foreground data-[hovered]:opacity-100",
-                "data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-background data-[focus-visible]:outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-offset-2",
-                "data-[disabled]:pointer-events-none",
-              )}
-            >
-              <XIcon className="size-4" />
-              <span className="sr-only">Close</span>
-            </Rac.Button>
+      {children}
+      {!hideCloseButtonForNonAlert && role !== "alertdialog" && (
+        <Rac.Button
+          slot="close"
+          className={twMerge(
+            "absolute right-4 top-4 rounded-sm p-1 opacity-70 transition-opacity",
+            "data-[hovered]:bg-accent data-[hovered]:text-muted-foreground data-[hovered]:opacity-100",
+            "data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-background data-[focus-visible]:outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-offset-2",
+            "data-[disabled]:pointer-events-none",
           )}
-        </>
+        >
+          <XIcon className="size-4" />
+          <span className="sr-only">Close</span>
+        </Rac.Button>
       )}
     </Rac.Dialog>
   );
@@ -114,7 +109,7 @@ export interface DialogExProps extends DialogProps {
 /**
  * A modal dialog.
  * If `triggerElement` is a string, it's rendered as a ghost `Button`.
- * The dialog is dismissable via an outside press if `role` is not "alertdialog".
+ * The modal is dismissable via an outside press if `role` is not "alertdialog".
  */
 export function DialogEx({
   triggerElement,

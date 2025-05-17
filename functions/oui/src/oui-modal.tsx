@@ -81,7 +81,6 @@ export function ModalEx({
   children,
   ...rest
 }: ModalExProps) {
-  console.log("ModalEx", { rest });
   return (
     <ModalOverlay {...rest} className={overlayClassName}>
       <Modal className={className}>{children}</Modal>
