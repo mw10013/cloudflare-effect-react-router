@@ -84,6 +84,9 @@ export interface TextFieldEx2Props extends Rac.TextFieldProps {
   placeholder?: string;
 }
 
+/**
+ * A TextField component where the label and input are arranged side-by-side.
+ */
 export function TextFieldEx2({
   label,
   description,
