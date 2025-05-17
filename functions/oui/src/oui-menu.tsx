@@ -22,17 +22,19 @@ export const menuStyles = tv({
   base: "w-full min-w-[8rem] overflow-y-auto overflow-x-hidden p-1",
 });
 
-export const Menu = <T extends object>({
+export function Menu<T extends object>({
   className,
   ...props
-}: Rac.MenuProps<T>) => (
-  <Rac.Menu
-    className={Rac.composeRenderProps(className, (className, renderProps) =>
-      menuStyles({ ...renderProps, className }),
-    )}
-    {...props}
-  />
-);
+}: Rac.MenuProps<T>) {
+  return (
+    <Rac.Menu
+      className={Rac.composeRenderProps(className, (className, renderProps) =>
+        menuStyles({ ...renderProps, className }),
+      )}
+      {...props}
+    />
+  );
+}
 
 /**
  * Derived from shadcn DropdownMenuItem
@@ -80,56 +82,56 @@ export interface MenuItemProps<T extends object> extends Rac.MenuItemProps<T> {
 }
 
 /**
- * Derived from shadcn DropdownMenuCheckboxItem and DropdownMenuRadioGroup 
+ * Derived from shadcn DropdownMenuCheckboxItem and DropdownMenuRadioGroup
  */
-export const MenuItem = <T extends object>({
+export function MenuItem<T extends object>({
   className,
   variant,
   children,
   ...props
-}: MenuItemProps<T>) => (
-  <Rac.MenuItem
-    {...props}
-    className={Rac.composeRenderProps(
-      className,
-      (className, renderProps) =>
+}: MenuItemProps<T>) {
+  return (
+    <Rac.MenuItem
+      {...props}
+      className={Rac.composeRenderProps(className, (className, renderProps) =>
         menuItemStyles({
           ...renderProps,
           variant,
           className,
         }),
-    )}
-  >
-    {({ isSelected, selectionMode, hasSubmenu, ...renderProps }) => {
-      const isCheckboxItem = isSelected && selectionMode === "multiple";
-      const isRadioItem = isSelected && selectionMode === "single";
+      )}
+    >
+      {({ isSelected, selectionMode, hasSubmenu, ...renderProps }) => {
+        const isCheckboxItem = isSelected && selectionMode === "multiple";
+        const isRadioItem = isSelected && selectionMode === "single";
 
-      return (
-        <>
-          {isCheckboxItem && (
-            <span className="absolute left-2 flex size-3.5 items-center justify-center">
-              <CheckIcon className="size-4" />
-            </span>
-          )}
-          {isRadioItem && (
-            <span className="absolute left-2 flex size-3.5 items-center justify-center">
-              <CircleIcon className="size-2 fill-current" />
-            </span>
-          )}
-          {typeof children === "function"
-            ? children({
-                isSelected,
-                selectionMode,
-                hasSubmenu,
-                ...renderProps,
-              })
-            : children}
-          {hasSubmenu && <ChevronRightIcon className="ml-auto size-4" />}
-        </>
-      );
-    }}
-  </Rac.MenuItem>
-);
+        return (
+          <>
+            {isCheckboxItem && (
+              <span className="absolute left-2 flex size-3.5 items-center justify-center">
+                <CheckIcon className="size-4" />
+              </span>
+            )}
+            {isRadioItem && (
+              <span className="absolute left-2 flex size-3.5 items-center justify-center">
+                <CircleIcon className="size-2 fill-current" />
+              </span>
+            )}
+            {typeof children === "function"
+              ? children({
+                  isSelected,
+                  selectionMode,
+                  hasSubmenu,
+                  ...renderProps,
+                })
+              : children}
+            {hasSubmenu && <ChevronRightIcon className="ml-auto size-4" />}
+          </>
+        );
+      }}
+    </Rac.MenuItem>
+  );
+}
 
 interface MenuExProps<T> extends Rac.MenuProps<T> {
   triggerElement: string | React.ReactElement;
