@@ -4,7 +4,7 @@ import * as Rac from "react-aria-components";
 import { tv } from "tailwind-variants";
 
 /**
- * Derived from shadcn DialogTitle and AlertDialogTitle
+ * Derived from shadcn DialogTitle, AlertDialogTitle, and PopoverDemo
  */
 export const headingStyles = tv({
   base: "text-lg font-semibold",

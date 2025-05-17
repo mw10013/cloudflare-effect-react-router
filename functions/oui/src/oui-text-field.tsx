@@ -52,6 +52,7 @@ export interface TextFieldEx1Props
 
 /**
  * A TextField component that allows for custom child input components.
+ * Derived from shadn PopoverDemo
  *
  * @example
  * ```tsx
