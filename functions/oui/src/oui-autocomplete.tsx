@@ -16,7 +16,7 @@ export interface AutocompleteExProps
   children: React.ReactNode;
 }
 
-export function AutocompleteEx<T extends object>({
+export function AutocompleteEx({
   label,
   description,
   errorMessage,

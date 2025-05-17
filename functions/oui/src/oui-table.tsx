@@ -1,4 +1,5 @@
-import * as Rac from 'react-aria-components'
+import * as Rac from "react-aria-components";
 
-// TODO: Table
-export const Table = Rac.Table
+/*
+#fetch https://react-spectrum.adobe.com/react-aria/Table.html
+*/
