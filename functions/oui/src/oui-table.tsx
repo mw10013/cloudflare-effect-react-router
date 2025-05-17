@@ -5,14 +5,7 @@ import { tv } from "tailwind-variants";
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Table.html
-
-Using oui-menu.tsx as a guide, show me oui-table as RAC table components wrappers with shadcn design styles verbatim from table.tsx
-
-- Keep things simple and basic. We just want it to be able to handle shadcn TableDemo() in table-demo.tsx converted to Oui version.
-- No checkboxes, sorting, filtering, drag and drop, resizing. Anything advanced will be looked at in a later turn.
-- No TableEx. We'll look at that in a later turn.
 */
-
 
 const tableContainerStyles = tv({
   base: "relative w-full overflow-x-auto",
@@ -99,9 +92,10 @@ export function TableFooter({ className, ...props }: TableFooterProps) {
   return <tfoot className={tableFooterStyles({ className })} {...props} />;
 }
 
-const tableRowStyles = tv({
+const rowStyles = tv({
   base: "border-b transition-colors",
   variants: {
+    // [data-hovered] does not work for <Row/>: https://github.com/adobe/react-spectrum/issues/4411
     isHovered: {
       true: "bg-muted/50",
     },
@@ -114,56 +108,53 @@ const tableRowStyles = tv({
   },
 });
 
-export interface TableRowProps<T extends object>
+export interface RowProps<T extends object>
   extends Rac.RowProps<T>,
-    VariantProps<typeof tableRowStyles> {}
+    VariantProps<typeof rowStyles> {}
 
-export function TableRow<T extends object>({
-  className,
-  ...props
-}: TableRowProps<T>) {
+export function Row<T extends object>({ className, ...props }: RowProps<T>) {
   return (
     <Rac.Row
       className={Rac.composeRenderProps(className, (className, renderProps) =>
-        tableRowStyles({ ...renderProps, className }),
+        rowStyles({ ...renderProps, className }),
       )}
       {...props}
     />
   );
 }
 
-const tableHeadStyles = tv({
+const columnStyles = tv({
   base: "text-foreground h-10 whitespace-nowrap px-2 text-left align-middle font-medium",
 });
 
-export interface TableHeadProps
+export interface ColumnProps
   extends Rac.ColumnProps,
-    VariantProps<typeof tableHeadStyles> {}
+    VariantProps<typeof columnStyles> {}
 
-export function TableHead({ className, ...props }: TableHeadProps) {
+export function Column({ className, ...props }: ColumnProps) {
   return (
     <Rac.Column
       className={Rac.composeRenderProps(className, (className, renderProps) =>
-        tableHeadStyles({ ...renderProps, className }),
+        columnStyles({ ...renderProps, className }),
       )}
       {...props}
     />
   );
 }
 
-const tableCellStyles = tv({
+const cellStyles = tv({
   base: "whitespace-nowrap p-2 align-middle",
 });
 
-export interface TableCellProps
+export interface CellProps
   extends Rac.CellProps,
-    VariantProps<typeof tableCellStyles> {}
+    VariantProps<typeof cellStyles> {}
 
-export function TableCell({ className, ...props }: TableCellProps) {
+export function Cell({ className, ...props }: CellProps) {
   return (
     <Rac.Cell
       className={Rac.composeRenderProps(className, (className, renderProps) =>
-        tableCellStyles({ ...renderProps, className }),
+        cellStyles({ ...renderProps, className }),
       )}
       {...props}
     />

@@ -49,33 +49,31 @@ const invoices = [
 export function OuiTableDemo() {
   return (
     <Oui.Table aria-label="Invoices">
-      <Oui.TableCaption>A list of your recent invoices.</Oui.TableCaption>
+      {/* <Oui.TableCaption>A list of your recent invoices.</Oui.TableCaption> */}
       <Oui.TableHeader>
-        <Oui.TableHead className="w-[100px]">Invoice</Oui.TableHead>
-        <Oui.TableHead>Status</Oui.TableHead>
-        <Oui.TableHead>Method</Oui.TableHead>
-        <Oui.TableHead className="text-right">Amount</Oui.TableHead>
+        <Oui.Column isRowHeader className="w-[100px]">
+          Invoice
+        </Oui.Column>
+        <Oui.Column>Status</Oui.Column>
+        <Oui.Column>Method</Oui.Column>
+        <Oui.Column className="text-right">Amount</Oui.Column>
       </Oui.TableHeader>
       <Oui.TableBody items={invoices}>
         {(invoice) => (
-          <Oui.TableRow id={invoice.invoice}>
-            <Oui.TableCell className="font-medium">
-              {invoice.invoice}
-            </Oui.TableCell>
-            <Oui.TableCell>{invoice.paymentStatus}</Oui.TableCell>
-            <Oui.TableCell>{invoice.paymentMethod}</Oui.TableCell>
-            <Oui.TableCell className="text-right">
-              {invoice.totalAmount}
-            </Oui.TableCell>
-          </Oui.TableRow>
+          <Oui.Row id={invoice.invoice}>
+            <Oui.Cell className="font-medium">{invoice.invoice}</Oui.Cell>
+            <Oui.Cell>{invoice.paymentStatus}</Oui.Cell>
+            <Oui.Cell>{invoice.paymentMethod}</Oui.Cell>
+            <Oui.Cell className="text-right">{invoice.totalAmount}</Oui.Cell>
+          </Oui.Row>
         )}
       </Oui.TableBody>
-      <Oui.TableFooter>
+      {/* <Oui.TableFooter>
         <Oui.TableRow id="footer-total-row">
           <Oui.TableCell colSpan={3}>Total</Oui.TableCell>
           <Oui.TableCell className="text-right">$2,500.00</Oui.TableCell>
         </Oui.TableRow>
-      </Oui.TableFooter>
+      </Oui.TableFooter> */}
     </Oui.Table>
   );
 }
