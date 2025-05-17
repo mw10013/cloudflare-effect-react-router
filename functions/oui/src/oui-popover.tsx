@@ -90,7 +90,9 @@ export function PopoverEx({
         triggerElement
       )}
       <Popover className={dialogClassName} {...rest}>
-        <Dialog className={dialogClassName}>{children}</Dialog>
+        <Dialog className={dialogClassName} hideCloseButtonForNonAlert>
+          {children}
+        </Dialog>
       </Popover>
     </Rac.DialogTrigger>
   );

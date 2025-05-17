@@ -14,16 +14,24 @@ import { ModalEx } from "./oui-modal";
 
 export interface DialogProps extends Omit<Rac.DialogProps, "children"> {
   children?: ReactNode;
+  /**
+   * If `true`, hides the close button for non-'alertdialog' role.
+   * 'alertdialog' role never show a close button.
+   * @default false
+   */
+  hideCloseButtonForNonAlert?: boolean;
 }
 
 /**
  * Derived from shadcn DialogContent.
- * The visual close button (X) is displayed if within a modal and `role` is not "alertdialog".
  */
-export function Dialog({ role, className, children, ...rest }: DialogProps) {
-  const modalContext = React.useContext(Rac.ModalContext);
-  const popoverContext = React.useContext(Rac.PopoverContext);
-  console.log("Dialog", { role, modalContext, popoverContext });
+export function Dialog({
+  role,
+  hideCloseButtonForNonAlert = false,
+  className,
+  children,
+  ...rest
+}: DialogProps) {
   return (
     <Rac.Dialog
       {...rest}
@@ -32,7 +40,7 @@ export function Dialog({ role, className, children, ...rest }: DialogProps) {
       {({ close }) => (
         <>
           {children}
-          {modalContext && role !== "alertdialog" && (
+          {!hideCloseButtonForNonAlert && role !== "alertdialog" && (
             <Rac.Button
               slot="close"
               onPress={close}
