@@ -20,6 +20,7 @@
     "@intentui/icons": "^1.11.0",
     "isbot": "catalog:",
     "react": "catalog:",
+    "react-aria": "^3.39.0",
     "react-aria-components": "catalog:",
     "react-dom": "catalog:",
     "react-router": "catalog:"
@@ -36,9 +37,9 @@
     "clsx": "^2.1.1",
     "shadcn": "catalog:",
     "tailwind-merge": "catalog:",
-    "tailwindcss-react-aria-components": "^2.0.0",
     "tailwind-variants": "catalog:",
     "tailwindcss": "catalog:",
+    "tailwindcss-react-aria-components": "^2.0.0",
     "tw-animate-css": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
