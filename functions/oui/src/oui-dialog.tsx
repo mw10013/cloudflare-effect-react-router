@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 import React from "react";
 import { XIcon } from "lucide-react";
 import * as Rac from "react-aria-components";
-import { twMerge } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 import { Button } from "./oui-button";
 import { ModalEx } from "./oui-modal";
 
@@ -41,7 +41,7 @@ export function Dialog({
       {!hideCloseButtonForNonAlert && role !== "alertdialog" && (
         <Rac.Button
           slot="close"
-          className={twMerge(
+          className={twJoin(
             "absolute right-4 top-4 rounded-sm p-1 opacity-70 transition-opacity",
             "data-[hovered]:bg-accent data-[hovered]:text-muted-foreground data-[hovered]:opacity-100",
             "data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-background data-[focus-visible]:outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-offset-2",

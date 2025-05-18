@@ -5,6 +5,7 @@ import { tv } from "tailwind-variants";
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Table.html
+https://github.com/irsyadadl/intentui/blob/2.x/components/ui/table.tsx
 */
 
 const tableContainerStyles = tv({
