@@ -1,0 +1,37 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "intentui-sandbox",
+  "main": "./workers/app.ts",
+  "compatibility_date": "2025-04-09",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "invocation_logs": true,
+      "head_sampling_rate": 1
+    }
+  },
+  "vars": {
+    "ENVIRONMENT": "local",
+    "LOG_LEVEL": "Debug"
+  },
+  "env": {
+    "production": {
+      "observability": {
+        "enabled": true,
+        "logs": {
+          "invocation_logs": true,
+          "head_sampling_rate": 1
+        }
+      },
+      "vars": {
+        "ENVIRONMENT": "production",
+        "LOG_LEVEL": "Info"
+      }
+    }
+  }
+}
