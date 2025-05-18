@@ -18,7 +18,16 @@ IntentUI sandbox
   - Build watch paths
     - Include paths: functions/<PACKGE-NAME>/\*
 
-## Etc
+## Intent UI
 
-- https://github.com/remix-run/react-router-templates/tree/main/cloudflare
+- https://intentui.com/docs/2.x/getting-started/introduction
+- cli
 
+  - https://github.com/intentuilabs/cli
+  - pnpm -F i exec intentui init
+  - pnpm -F i exec intentui add
+  - pnpm -F i exec intentui help
+
+- shadcn
+  - pnpm -F i exec shadcn init https://intentui.com/r/style/default
+  - pnpm -F i exec shadcn add https://intentui.com/r/ui/card
