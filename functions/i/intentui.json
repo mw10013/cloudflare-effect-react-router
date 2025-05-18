@@ -1,0 +1,10 @@
+{
+  "ui": "app/components/ui",
+  "lib": "app/lib",
+  "hooks": "app/hooks",
+  "gray": "neutral",
+  "css": "app/app.css",
+  "alias": "~",
+  "language": "typescript",
+  "$schema": "https://intentui.com/schema.json"
+}

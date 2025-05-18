@@ -204,24 +204,24 @@ importers:
 
   functions/i:
     dependencies:
+      '@intentui/icons':
+        specifier: ^1.11.0
+        version: 1.11.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       isbot:
         specifier: 'catalog:'
         version: 5.1.26
       react:
         specifier: 'catalog:'
         version: 19.1.0
+      react-aria-components:
+        specifier: 'catalog:'
+        version: 1.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-dom:
         specifier: 'catalog:'
         version: 19.1.0(react@19.1.0)
       react-router:
         specifier: 'catalog:'
         version: 7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      tailwind-merge:
-        specifier: 'catalog:'
-        version: 3.2.0
-      tailwind-variants:
-        specifier: 'catalog:'
-        version: 1.0.0(tailwindcss@4.1.4)
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: 'catalog:'
@@ -247,12 +247,24 @@ importers:
       '@types/react-dom':
         specifier: 'catalog:'
         version: 19.1.2(@types/react@19.1.0)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       shadcn:
         specifier: 'catalog:'
         version: 2.5.0(@types/node@22.13.14)(typescript@5.8.2)
+      tailwind-merge:
+        specifier: 'catalog:'
+        version: 3.2.0
+      tailwind-variants:
+        specifier: 'catalog:'
+        version: 1.0.0(tailwindcss@4.1.4)
       tailwindcss:
         specifier: 'catalog:'
         version: 4.1.4
+      tailwindcss-react-aria-components:
+        specifier: ^2.0.0
+        version: 2.0.0(tailwindcss@4.1.4)
       tw-animate-css:
         specifier: 'catalog:'
         version: 1.2.5
@@ -1749,6 +1761,12 @@ packages:
   '@intentui/cli@2.9.6':
     resolution: {integrity: sha512-lp0SB5jDoqQCM12WcL4RLB5FZq23R7t51zfMd2v2QQxUnYCIin+9GJ2s1MExzfZ9jZcfiV7x5IbLj6jze2FYqg==}
     hasBin: true
+
+  '@intentui/icons@1.11.0':
+    resolution: {integrity: sha512-5Bh1HTvzAdLSDDLPauDRlZBdXkhJ6J1yFrSuktHC1ISHK9cjB8Kox40g102MC1H+NHj4UhlWFH9SohDVnGueyw==}
+    peerDependencies:
+      react: ^19.1.0
+      react-dom: ^19.1.0
 
   '@internationalized/date@3.8.0':
     resolution: {integrity: sha512-J51AJ0fEL68hE4CwGPa6E0PO6JDaVLd8aln48xFCSy7CZkZc96dGEGmLs2OEEbBxcsVZtfrqkXJwI2/MSG8yKw==}
@@ -5309,6 +5327,11 @@ packages:
     peerDependencies:
       tailwindcss: '*'
 
+  tailwindcss-react-aria-components@2.0.0:
+    resolution: {integrity: sha512-l8YdpXX//qx0Mz2bW3YKLjboTQxR3zLrFhlHniAIn+mTwVM1yvT0Jp7Pn3eFrqi+qtOMmcJzXaF2rsKezSr0SQ==}
+    peerDependencies:
+      tailwindcss: ^4.0.0
+
   tailwindcss@4.1.4:
     resolution: {integrity: sha512-1ZIUqtPITFbv/DxRmDr5/agPqJwF69d24m9qmM1939TJehgY539CtzeZRjbLt5G6fSy/7YqqYsfvoTEw9xUI2A==}
 
@@ -6773,6 +6796,12 @@ snapshots:
       ts-morph: 25.0.1
     transitivePeerDependencies:
       - '@types/node'
+
+  '@intentui/icons@1.11.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@babel/runtime': 7.27.0
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   '@internationalized/date@3.8.0':
     dependencies:
@@ -10889,6 +10918,10 @@ snapshots:
   tailwind-variants@1.0.0(tailwindcss@4.1.4):
     dependencies:
       tailwind-merge: 3.0.2
+      tailwindcss: 4.1.4
+
+  tailwindcss-react-aria-components@2.0.0(tailwindcss@4.1.4):
+    dependencies:
       tailwindcss: 4.1.4
 
   tailwindcss@4.1.4: {}
