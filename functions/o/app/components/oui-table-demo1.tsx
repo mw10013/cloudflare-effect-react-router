@@ -1,4 +1,7 @@
 import * as Oui from "@workspace/oui";
+import * as Rac from "react-aria-components";
+
+// Custom styled checkbox not working correctly when rendered as a selection checkbox in a table : https://github.com/adobe/react-spectrum/issues/2383
 
 const invoices = [
   {
@@ -45,11 +48,13 @@ const invoices = [
   },
 ];
 
-export function OuiTableDemo() {
+export function OuiTableDemo1() {
   return (
-    <Oui.Table aria-label="Invoices">
-      {/* <Oui.TableCaption>A list of your recent invoices.</Oui.TableCaption> */}
+    <Oui.Table aria-label="Invoices" selectionMode="multiple">
       <Oui.TableHeader>
+        <Oui.Column>
+          <Checkbox slot="selection" />
+        </Oui.Column>
         <Oui.Column isRowHeader className="w-[100px]">
           Invoice
         </Oui.Column>
@@ -60,6 +65,9 @@ export function OuiTableDemo() {
       <Oui.TableBody items={invoices}>
         {(invoice) => (
           <Oui.Row id={invoice.invoice}>
+            <Oui.Column>
+              <Checkbox slot="selection" />
+            </Oui.Column>
             <Oui.Cell className="font-medium">{invoice.invoice}</Oui.Cell>
             <Oui.Cell>{invoice.paymentStatus}</Oui.Cell>
             <Oui.Cell>{invoice.paymentMethod}</Oui.Cell>
@@ -67,12 +75,19 @@ export function OuiTableDemo() {
           </Oui.Row>
         )}
       </Oui.TableBody>
-      {/* <Oui.TableFooter>
-        <Oui.TableRow id="footer-total-row">
-          <Oui.TableCell colSpan={3}>Total</Oui.TableCell>
-          <Oui.TableCell className="text-right">$2,500.00</Oui.TableCell>
-        </Oui.TableRow>
-      </Oui.TableFooter> */}
     </Oui.Table>
+  );
+}
+
+function Checkbox(props: Rac.CheckboxProps) {
+  return (
+    <Rac.Checkbox {...props}>
+      <div className="checkbox">
+        <svg viewBox="0 0 18 18" aria-hidden="true">
+          <polyline points="1 9 7 14 15 4" />
+        </svg>
+      </div>
+      C
+    </Rac.Checkbox>
   );
 }
