@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import type { FieldProps } from "@/components/ui/field"
+import type { FieldProps } from "~/components/ui/field"
 import { Description, FieldError, FieldGroup, Input, Label } from "~/components/ui/field"
 import { Loader } from "~/components/ui/loader"
 import { composeTailwindRenderProps } from "~/lib/primitive"
