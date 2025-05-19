@@ -1,5 +1,6 @@
 import type { VariantProps } from "tailwind-variants";
 import * as React from "react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import * as Rac from "react-aria-components";
 import { tv } from "tailwind-variants";
 
