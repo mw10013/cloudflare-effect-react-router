@@ -1,3 +1,4 @@
+import * as React from "react";
 import * as Oui from "@workspace/oui";
 import { CheckIcon, MinusIcon } from "lucide-react";
 import * as Rac from "react-aria-components";
@@ -57,20 +58,58 @@ const invoices = [
 ];
 
 export function OuiTableDemo1() {
+  const [sortDescriptor, setSortDescriptor] = React.useState<
+    Rac.SortDescriptor | undefined
+  >(undefined);
+
+  const sortedInvoices = React.useMemo(() => {
+    if (!sortDescriptor?.column) {
+      return invoices;
+    }
+    const items = [...invoices];
+    items.sort((a, b) => {
+      const first = a[sortDescriptor.column as keyof typeof a];
+      const second = b[sortDescriptor.column as keyof typeof b];
+      let cmp = 0;
+      if (typeof first === "string" && typeof second === "string") {
+        cmp = first.localeCompare(second);
+      } else if (typeof first === "number" && typeof second === "number") {
+        cmp = first < second ? -1 : first > second ? 1 : 0;
+      }
+
+      if (sortDescriptor.direction === "descending") {
+        cmp *= -1;
+      }
+      return cmp;
+    });
+    return items;
+  }, [sortDescriptor]);
+
   return (
-    <Oui.Table aria-label="Invoices" selectionMode="multiple">
+    <Oui.Table
+      aria-label="Invoices"
+      selectionMode="multiple"
+      sortDescriptor={sortDescriptor}
+      onSortChange={setSortDescriptor}
+    >
       <Oui.TableHeader>
         <Oui.Column>
           <Oui.Checkbox slot="selection" />
         </Oui.Column>
-        <Oui.Column isRowHeader className="w-[100px]">
+        <Oui.Column id="invoice" isRowHeader className="w-[100px]">
           Invoice
         </Oui.Column>
-        <Oui.Column>Status</Oui.Column>
-        <Oui.Column>Method</Oui.Column>
-        <Oui.Column className="text-right">Amount</Oui.Column>
+        <Oui.Column id="paymentStatus" allowsSorting>
+          Status
+        </Oui.Column>
+        <Oui.Column id="paymentMethod" allowsSorting>
+          Method
+        </Oui.Column>
+        <Oui.Column id="totalAmount" className="text-right">
+          Amount
+        </Oui.Column>
       </Oui.TableHeader>
-      <Oui.TableBody items={invoices}>
+      <Oui.TableBody items={sortedInvoices}>
         {(invoice) => (
           <Oui.Row id={invoice.invoice}>
             <Oui.Cell>

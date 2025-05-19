@@ -136,14 +136,32 @@ export interface ColumnProps
   extends Rac.ColumnProps,
     VariantProps<typeof columnStyles> {}
 
-export function Column({ className, ...props }: ColumnProps) {
+export function Column({ className, children, ...props }: ColumnProps) {
   return (
     <Rac.Column
       className={Rac.composeRenderProps(className, (className, renderProps) =>
         columnStyles({ ...renderProps, className }),
       )}
       {...props}
-    />
+    >
+      {(renderProps) => {
+        const { allowsSorting, sortDirection } = renderProps;
+        const content =
+          typeof children === "function" ? children(renderProps) : children;
+        return (
+          <div className="flex items-center gap-2">
+            {content}
+            {allowsSorting &&
+              sortDirection &&
+              (sortDirection === "ascending" ? (
+                <ArrowUp className="size-4" />
+              ) : (
+                <ArrowDown className="size-4" />
+              ))}
+          </div>
+        );
+      }}
+    </Rac.Column>
   );
 }
 
