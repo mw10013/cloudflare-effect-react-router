@@ -9,6 +9,8 @@ import { ModalEx } from "./oui-modal";
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Dialog.html
 #fetch https://react-spectrum.adobe.com/react-aria/Modal.html
+#fetch https://intentui.com/docs/2.x/components/overlays/dialog
+#fetch https://intentui.com/docs/2.x/components/overlays/modal
 #fetch https://react-spectrum.adobe.com/react-aria/Popover.html
 #fetch https://ui.shadcn.com/docs/components/alert-dialog
 #fetch https://ui.shadcn.com/docs/components/dialog

@@ -108,10 +108,10 @@ const items = [
     title: "Number Field",
     url: "/demo/number-field",
   },
-  {
-    title: "Pagination",
-    url: "/demo/pagination",
-  },
+  // {
+  //   title: "Pagination",
+  //   url: "/demo/pagination",
+  // },
   {
     title: "Popover",
     url: "/demo/popover",
