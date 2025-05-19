@@ -68,7 +68,7 @@ export const Popover = ({
 export interface PopoverExProps extends Omit<Rac.PopoverProps, "children"> {
   triggerElement: string | React.ReactElement;
   dialogClassName?: string;
-  children?: React.ReactNode;
+  children?: Rac.DialogProps["children"];
 }
 
 /**
@@ -80,7 +80,7 @@ export function PopoverEx({
   triggerElement,
   dialogClassName,
   children,
-  ...rest
+  ...props
 }: PopoverExProps) {
   return (
     <Rac.DialogTrigger>
@@ -89,7 +89,7 @@ export function PopoverEx({
       ) : (
         triggerElement
       )}
-      <Popover {...rest}>
+      <Popover {...props}>
         <Dialog className={dialogClassName} hideCloseButtonForNonAlert>
           {children}
         </Dialog>
