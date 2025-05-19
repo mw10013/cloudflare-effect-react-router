@@ -9,6 +9,8 @@ https://github.com/irsyadadl/intentui/blob/2.x/components/ui/table.tsx
 https://intentui.com/docs/2.x/components/collections/table
 */
 
+// Table is not interactive on first click in SSR : https://github.com/adobe/react-spectrum/issues/8239
+
 const tableContainerStyles = tv({
   base: "relative w-full overflow-x-auto",
 });
