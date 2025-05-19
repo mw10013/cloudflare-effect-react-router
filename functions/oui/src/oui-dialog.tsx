@@ -36,27 +36,26 @@ export function Dialog({
 }: DialogProps) {
   return (
     <Rac.Dialog
-    className={twMerge("grid gap-4 outline-none", className)}
-    {...props}
+      className={twMerge("grid gap-4 outline-none", className)}
+      {...props}
     >
       {(renderProps) => (
         <>
           {typeof children === "function" ? children(renderProps) : children}
-          {!hideCloseButtonForNonAlert &&
-            props.role !== "alertdialog" && (
-              <Rac.Button
-                slot="close"
-                className={twJoin(
-                  "absolute right-4 top-4 rounded-sm p-1 opacity-70 transition-opacity",
-                  "data-[hovered]:bg-accent data-[hovered]:text-muted-foreground data-[hovered]:opacity-100",
-                  "data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-background data-[focus-visible]:outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-offset-2",
-                  "data-[disabled]:pointer-events-none",
-                )}
-              >
-                <XIcon className="size-4" />
-                <span className="sr-only">Close</span>
-              </Rac.Button>
-            )}
+          {!hideCloseButtonForNonAlert && props.role !== "alertdialog" && (
+            <Rac.Button
+              slot="close"
+              className={twJoin(
+                "absolute right-4 top-4 rounded-sm p-1 opacity-70 transition-opacity",
+                "data-[hovered]:bg-accent data-[hovered]:text-muted-foreground data-[hovered]:opacity-100",
+                "data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-background data-[focus-visible]:outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-offset-2",
+                "data-[disabled]:pointer-events-none",
+              )}
+            >
+              <XIcon className="size-4" />
+              <span className="sr-only">Close</span>
+            </Rac.Button>
+          )}
         </>
       )}
     </Rac.Dialog>
@@ -121,7 +120,6 @@ export interface DialogExProps extends DialogProps {
 export function DialogEx({
   triggerElement,
   modalClassName,
-  children,
   ...props
 }: DialogExProps) {
   return (
@@ -135,7 +133,7 @@ export function DialogEx({
         className={modalClassName}
         isDismissable={props.role !== "alertdialog"}
       >
-        <Dialog {...props}>{children}</Dialog>
+        <Dialog {...props} />
       </ModalEx>
     </Rac.DialogTrigger>
   );
