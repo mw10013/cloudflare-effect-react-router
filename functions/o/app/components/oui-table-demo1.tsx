@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as Oui from "@workspace/oui";
-import { CheckIcon, MinusIcon } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 import * as Rac from "react-aria-components";
-import { tv } from "tailwind-variants";
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Table.html
@@ -108,6 +107,13 @@ export function OuiTableDemo1() {
         <Oui.Column id="totalAmount" className="text-right">
           Amount
         </Oui.Column>
+        <Oui.Column
+          id="actions"
+          aria-label="Actions"
+          className="w-10 text-right"
+        >
+          <span className="sr-only">Actions</span>
+        </Oui.Column>
       </Oui.TableHeader>
       <Oui.TableBody items={sortedInvoices}>
         {(invoice) => (
@@ -119,6 +125,29 @@ export function OuiTableDemo1() {
             <Oui.Cell>{invoice.paymentStatus}</Oui.Cell>
             <Oui.Cell>{invoice.paymentMethod}</Oui.Cell>
             <Oui.Cell className="text-right">{invoice.totalAmount}</Oui.Cell>
+            <Oui.Cell className="text-right">
+              <Oui.MenuEx
+                triggerElement={
+                  <Oui.Button variant="ghost" className="size-8 p-0">
+                    <span className="sr-only">
+                      Open menu for {invoice.invoice}
+                    </span>
+                    <MoreHorizontal className="size-4" />
+                  </Oui.Button>
+                }
+                onAction={(key) => {
+                  // Placeholder for future action handling
+                  console.log(`Action: ${key} for invoice ${invoice.invoice}`);
+                }}
+              >
+                <Oui.MenuItem id="copyId">Copy payment ID</Oui.MenuItem>
+                <Oui.Separator variant="menu"/>
+                <Oui.MenuItem id="viewCustomer">View customer</Oui.MenuItem>
+                <Oui.MenuItem id="viewDetails">
+                  View payment details
+                </Oui.MenuItem>
+              </Oui.MenuEx>
+            </Oui.Cell>
           </Oui.Row>
         )}
       </Oui.TableBody>
