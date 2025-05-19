@@ -16,8 +16,7 @@ import { ModalEx } from "./oui-modal";
 #fetch https://ui.shadcn.com/docs/components/dialog
 */
 
-export interface DialogProps extends Omit<Rac.DialogProps, "children"> {
-  children?: ReactNode;
+export interface DialogProps extends Rac.DialogProps {
   /**
    * If `true`, hides the close button for non-'alertdialog' role.
    * 'alertdialog' role never shows a close button.
@@ -30,31 +29,35 @@ export interface DialogProps extends Omit<Rac.DialogProps, "children"> {
  * Derived from shadcn DialogContent.
  */
 export function Dialog({
-  role,
   hideCloseButtonForNonAlert = false,
   className,
   children,
-  ...rest
+  ...props
 }: DialogProps) {
   return (
     <Rac.Dialog
-      {...rest}
-      className={twMerge("grid gap-4 outline-none", className)}
+    className={twMerge("grid gap-4 outline-none", className)}
+    {...props}
     >
-      {children}
-      {!hideCloseButtonForNonAlert && role !== "alertdialog" && (
-        <Rac.Button
-          slot="close"
-          className={twJoin(
-            "absolute right-4 top-4 rounded-sm p-1 opacity-70 transition-opacity",
-            "data-[hovered]:bg-accent data-[hovered]:text-muted-foreground data-[hovered]:opacity-100",
-            "data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-background data-[focus-visible]:outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-offset-2",
-            "data-[disabled]:pointer-events-none",
-          )}
-        >
-          <XIcon className="size-4" />
-          <span className="sr-only">Close</span>
-        </Rac.Button>
+      {(renderProps) => (
+        <>
+          {typeof children === "function" ? children(renderProps) : children}
+          {!hideCloseButtonForNonAlert &&
+            props.role !== "alertdialog" && (
+              <Rac.Button
+                slot="close"
+                className={twJoin(
+                  "absolute right-4 top-4 rounded-sm p-1 opacity-70 transition-opacity",
+                  "data-[hovered]:bg-accent data-[hovered]:text-muted-foreground data-[hovered]:opacity-100",
+                  "data-[focus-visible]:ring-ring data-[focus-visible]:ring-offset-background data-[focus-visible]:outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-offset-2",
+                  "data-[disabled]:pointer-events-none",
+                )}
+              >
+                <XIcon className="size-4" />
+                <span className="sr-only">Close</span>
+              </Rac.Button>
+            )}
+        </>
       )}
     </Rac.Dialog>
   );
