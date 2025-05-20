@@ -26,11 +26,8 @@ export function DisclosureHeading({ className, ...props }: Rac.HeadingProps) {
   return <Rac.Heading className={twMerge("flex", className)} {...props} />;
 }
 
-// TODO: disclosureButtonStyles: isFocusVisible, rounded? ring-2?
 export const disclosureButtonStyes = tv({
   slots: {
-    // shadcn AccordianTrigger: flex flex-1 items-center justify-between py-4 text-sm font-medium transition-all hover:underline text-left [&[data-state=open]>svg]:rotate-180
-    // focus-visible:outline-none to reset browser
     rootStyles:
       "flex flex-1 items-center justify-between py-4 text-left text-sm font-medium transition-all focus-visible:outline-none",
     iconStyles:
@@ -55,37 +52,33 @@ export const disclosureButtonStyes = tv({
   },
 });
 
-export interface DisclosureButtonProps
-  extends Omit<Rac.ButtonProps, "children"> {
-  children?: React.ReactNode;
-}
-
 export function DisclosureButton({
-  slot = "trigger",
   className,
   children,
   ...props
-}: DisclosureButtonProps) {
+}: Rac.ButtonProps) {
   const { isExpanded } = React.useContext(Rac.DisclosureStateContext)!;
   const { rootStyles, iconStyles } = disclosureButtonStyes({ isExpanded });
   return (
     <Rac.Button
-      slot={slot}
+      slot="trigger"
       className={Rac.composeRenderProps(className, (className, renderProps) =>
         rootStyles({ ...renderProps, className }),
       )}
       {...props}
     >
-      {children}
-      <ChevronDown className={iconStyles()} />
+      {(renderProps) => (
+        <>
+          {typeof children === "function" ? children(renderProps) : children}
+          <ChevronDown className={iconStyles()} />
+        </>
+      )}
     </Rac.Button>
   );
 }
 
-// TODO: disclosurePanelStyles: smooth animation in disclosure group
 export const disclosurePanelStyles = tv({
   slots: {
-    // shadcn AccordionContent: overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down
     rootStyles: "overflow-hidden text-sm",
     contentStyles: "pb-4 pt-0",
   },
@@ -124,7 +117,7 @@ export function DisclosurePanel({
 export interface DisclosureExProps
   extends Omit<Rac.DisclosureProps, "children"> {
   title?: string;
-  children?: React.ReactNode;
+  children?: Rac.DisclosurePanelProps["children"];
 }
 
 export function DisclosureEx({ title, children, ...props }: DisclosureExProps) {
