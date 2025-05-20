@@ -61,6 +61,10 @@ function useHrefEx(href: string) {
 
 const items = [
   {
+    title: "Accordion",
+    url: "/demo/accordion",
+  },
+  {
     title: "Autocomplete",
     url: "/demo/autocomplete",
   },
