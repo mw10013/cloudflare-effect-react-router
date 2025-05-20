@@ -41,7 +41,8 @@ export function ModalOverlay({ className, ...props }: Rac.ModalOverlayProps) {
  * Includes `fill-mode-forwards` in `isExiting` to prevent animation snapback.
  */
 export const modalStyles = tv({
-  base: "bg-background fixed left-[50%] top-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
+  // base: "bg-background fixed left-[50%] top-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
+  base: "bg-background sm:max-w-lg- fixed left-[50%] top-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200",
   variants: {
     isEntering: {
       true: "animate-in fade-in-0 zoom-in-95",
@@ -49,6 +50,28 @@ export const modalStyles = tv({
     isExiting: {
       true: "animate-out fade-out-0 zoom-out-95 fill-mode-forwards",
     },
+  },
+});
+
+export const sheetModalStyles = tv({
+  // base: "bg-background fixed z-50 flex flex-col gap-4 rounded-none p-6 shadow-lg transition ease-in-out",
+  base: "inset-x-0 top-0 h-auto max-w-none translate-x-0 translate-y-0 sm:max-w-none",
+  variants: {
+    isEntering: {
+      true: "",
+    },
+    isExiting: {
+      true: "",
+    },
+    side: {
+      right: "",
+      left: "",
+      top: "",
+      bottom: "",
+    },
+  },
+  defaultVariants: {
+    side: "right",
   },
 });
 
@@ -85,7 +108,7 @@ export function ModalEx({
   );
 }
 
-export const sheetModalStyles = tv({
+export const sheetModalStyles1 = tv({
   base: "bg-background fixed z-50 flex flex-col gap-4 rounded-none p-6 shadow-lg transition ease-in-out",
   variants: {
     isEntering: {

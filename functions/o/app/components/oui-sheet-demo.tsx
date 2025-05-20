@@ -8,8 +8,7 @@ export function OuiSheetDemo() {
     <div className="flex flex-col gap-6 md:flex-row">
       <Oui.DialogEx1
         triggerElement={<Oui.Button variant="outline">Open</Oui.Button>}
-        modalClassName="sm:max-w-sm" // Example width, adjust as needed
-        side="right" // Default side for the first example
+        side="right"
       >
         <Rac.Form>
           <Oui.DialogHeader>
@@ -53,7 +52,6 @@ export function OuiSheetDemo() {
               </Oui.Button>
             }
             side={side}
-            modalClassName="sm:max-w-sm" // Example width
           >
             <Oui.DialogHeader>
               <Oui.Heading slot="title">Edit profile</Oui.Heading>
