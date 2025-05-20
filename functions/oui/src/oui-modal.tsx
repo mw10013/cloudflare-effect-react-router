@@ -1,5 +1,5 @@
 import * as Rac from "react-aria-components";
-import { tv } from "tailwind-variants";
+import { tv, VariantProps } from "tailwind-variants";
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Modal.html
@@ -52,20 +52,19 @@ export const modalStyles = tv({
   },
 });
 
-export function Modal({ className, ...rest }: Rac.ModalOverlayProps) {
+export function Modal({ className, ...props }: Rac.ModalOverlayProps) {
   return (
     <Rac.Modal
       data-slot="modal"
       className={Rac.composeRenderProps(className, (className, renderProps) =>
         modalStyles({ ...renderProps, className }),
       )}
-      {...rest}
+      {...props}
     />
   );
 }
 
-export interface ModalExProps extends Omit<Rac.ModalOverlayProps, "className"> {
-  className?: Rac.ModalOverlayProps["className"];
+export interface ModalExProps extends Rac.ModalOverlayProps {
   overlayClassName?: Rac.ModalOverlayProps["className"];
 }
 
@@ -82,6 +81,59 @@ export function ModalEx({
   return (
     <ModalOverlay className={overlayClassName} {...props}>
       <Modal className={className}>{children}</Modal>
+    </ModalOverlay>
+  );
+}
+
+export const sheetModalStyles = tv({
+  base: "bg-background fixed z-50 shadow-lg",
+  variants: {
+    isEntering: {
+      true: "animate-in duration-500",
+    },
+    isExiting: {
+      true: "animate-out fill-mode-forwards duration-300",
+    },
+    side: {
+      right:
+        "data-[entering]:slide-in-from-right data-[exiting]:slide-out-to-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
+      left: "data-[entering]:slide-in-from-left data-[exiting]:slide-out-to-left inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm",
+      top: "data-[entering]:slide-in-from-top data-[exiting]:slide-out-to-top inset-x-0 top-0 border-b",
+      bottom:
+        "data-[entering]:slide-in-from-bottom data-[exiting]:slide-out-to-bottom inset-x-0 bottom-0 border-t",
+    },
+  },
+  defaultVariants: {
+    side: "right",
+  },
+});
+
+export interface ModalEx1Props
+  extends Rac.ModalOverlayProps,
+    VariantProps<typeof sheetModalStyles> {
+  overlayClassName?: Rac.ModalOverlayProps["className"];
+}
+
+/**
+ * A modal that slides in from an edge of the screen, suitable for a "Sheet" component.
+ * @param side - The side of the screen from which the modal will enter.
+ */
+export function ModalEx1({
+  className,
+  overlayClassName,
+  children,
+  side,
+  ...props
+}: ModalEx1Props) {
+  return (
+    <ModalOverlay className={overlayClassName} {...props}>
+      <Modal
+        className={Rac.composeRenderProps(className, (className, renderProps) =>
+          sheetModalStyles({ ...renderProps, side, className }),
+        )}
+      >
+        {children}
+      </Modal>
     </ModalOverlay>
   );
 }

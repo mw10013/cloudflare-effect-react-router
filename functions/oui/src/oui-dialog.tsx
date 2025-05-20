@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from "react";
+import type { ReactElement } from "react";
 import React from "react";
 import { XIcon } from "lucide-react";
 import * as Rac from "react-aria-components";
@@ -14,6 +14,8 @@ import { ModalEx } from "./oui-modal";
 #fetch https://react-spectrum.adobe.com/react-aria/Popover.html
 #fetch https://ui.shadcn.com/docs/components/alert-dialog
 #fetch https://ui.shadcn.com/docs/components/dialog
+#fetch https://intentui.com/docs/2.x/components/overlays/sheet
+#fetch https://ui.shadcn.com/docs/components/sheet
 */
 
 export interface DialogProps extends Rac.DialogProps {
