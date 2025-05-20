@@ -143,8 +143,8 @@ export function DialogEx({
 }
 
 export interface DialogEx1Props
-  extends DialogProps,
-    VariantProps<typeof sheetModalStyles> {
+  extends Omit<DialogProps, "role">, // Prevent 'alertdialog' role
+    Pick<VariantProps<typeof sheetModalStyles>, "side"> {
   triggerElement: string | ReactElement;
   modalClassName?: string;
   overlayClassName?: string;
@@ -168,7 +168,7 @@ export function DialogEx1({
         className={modalClassName}
         overlayClassName={overlayClassName}
         side={side}
-        isDismissable={props.role !== "alertdialog"}
+        isDismissable
       >
         <Dialog {...props} />
       </ModalEx1>
