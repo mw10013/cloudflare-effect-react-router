@@ -6,7 +6,6 @@ export * from "./oui-checkbox-group";
 export * from "./oui-combo-box";
 export * from "./oui-dialog";
 export * from "./oui-disclosure";
-export * from "./oui-disclosure-group";
 export * from "./oui-field-error";
 export * from "./oui-group";
 export * from "./oui-header";

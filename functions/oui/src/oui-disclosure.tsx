@@ -14,7 +14,7 @@ import { baseStyles, composeTailwindRenderProps } from "./oui-base";
 */
 
 /**
- * Derived from shadcn AccordionItem 
+ * Derived from shadcn AccordionItem
  */
 export function Disclosure({ className, ...props }: Rac.DisclosureProps) {
   return (
@@ -25,6 +25,9 @@ export function Disclosure({ className, ...props }: Rac.DisclosureProps) {
   );
 }
 
+/**
+ * Derived from shadcn AccordionHeader
+ */
 export function DisclosureHeading({ className, ...props }: Rac.HeadingProps) {
   return <Rac.Heading className={twMerge("flex", className)} {...props} />;
 }
@@ -49,12 +52,16 @@ export const disclosureButtonStyes = tv({
     },
     isFocusVisible: {
       true: {
-        rootStyles: baseStyles.variants.isFocusVisible.true,
+        // rootStyles: baseStyles.variants.isFocusVisible.true,
+        rootStyles: "",
       },
     },
   },
 });
 
+/**
+ * Derived from shadcn AccordionTrigger
+ */
 export function DisclosureButton({
   className,
   children,
@@ -97,6 +104,9 @@ export const disclosurePanelStyles = tv({
   },
 });
 
+/**
+ * Derived from shadcn AccordionContent
+ */
 export function DisclosurePanel({
   className,
   children,
