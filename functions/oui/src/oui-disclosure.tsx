@@ -29,13 +29,6 @@ export function Disclosure({ className, ...props }: Rac.DisclosureProps) {
   );
 }
 
-/**
- * Derived from shadcn AccordionHeader
- */
-export function DisclosureHeading({ className, ...props }: Rac.HeadingProps) {
-  return <Rac.Heading className={twMerge("flex", className)} {...props} />;
-}
-
 export const disclosureButtonStyes = tv({
   slots: {
     rootStyles:
@@ -144,11 +137,9 @@ export interface DisclosureExProps
 export function DisclosureEx({ title, children, ...props }: DisclosureExProps) {
   return (
     <Disclosure {...props}>
-      {/* <DisclosureHeading> */}
       <Heading variant="disclosure">
         <DisclosureButton>{title}</DisclosureButton>
       </Heading>
-      {/* </DisclosureHeading> */}
       <DisclosurePanel>{children}</DisclosurePanel>
     </Disclosure>
   );
