@@ -1,9 +1,10 @@
 import * as Oui from "@workspace/oui";
+import * as Rac from "react-aria-components";
 
 export function OuiAccordionDemo() {
   return (
     <div className="grid w-full max-w-xl gap-4">
-      <Oui.DisclosureGroup className="w-full">
+      <Rac.DisclosureGroup className="w-full">
         <Oui.DisclosureEx id="item-1" title="Is it accessible?">
           Yes. It adheres to the WAI-ARIA design pattern.
         </Oui.DisclosureEx>
@@ -15,8 +16,8 @@ export function OuiAccordionDemo() {
           Yes. It&apos;s animated by default, but you can disable it if you
           prefer.
         </Oui.DisclosureEx>
-      </Oui.DisclosureGroup>
-      <Oui.DisclosureGroup className="w-full">
+      </Rac.DisclosureGroup>
+      <Rac.DisclosureGroup className="w-full">
         <Oui.DisclosureEx
           id="item-1-enterprise"
           title="What are the key considerations when implementing a comprehensive enterprise-level authentication system?"
@@ -44,7 +45,7 @@ export function OuiAccordionDemo() {
           solving these challenges, balancing between consistency, availability,
           and partition tolerance as described in the CAP theorem.
         </Oui.DisclosureEx>
-      </Oui.DisclosureGroup>
+      </Rac.DisclosureGroup>
     </div>
   );
 }

@@ -13,6 +13,9 @@ import { baseStyles, composeTailwindRenderProps } from "./oui-base";
 #fetch https://ui.shadcn.com/docs/components/accordion
 */
 
+/**
+ * Derived from shadcn AccordionItem 
+ */
 export function Disclosure({ className, ...props }: Rac.DisclosureProps) {
   return (
     <Rac.Disclosure
