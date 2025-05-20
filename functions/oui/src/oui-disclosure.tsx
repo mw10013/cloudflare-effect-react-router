@@ -4,6 +4,7 @@ import * as Rac from "react-aria-components";
 import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 import { baseStyles, composeTailwindRenderProps } from "./oui-base";
+import { Heading } from "./oui-heading";
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Disclosure.html
@@ -143,9 +144,11 @@ export interface DisclosureExProps
 export function DisclosureEx({ title, children, ...props }: DisclosureExProps) {
   return (
     <Disclosure {...props}>
-      <DisclosureHeading>
+      {/* <DisclosureHeading> */}
+      <Heading variant="disclosure">
         <DisclosureButton>{title}</DisclosureButton>
-      </DisclosureHeading>
+      </Heading>
+      {/* </DisclosureHeading> */}
       <DisclosurePanel>{children}</DisclosurePanel>
     </Disclosure>
   );

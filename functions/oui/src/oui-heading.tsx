@@ -4,15 +4,16 @@ import * as Rac from "react-aria-components";
 import { tv } from "tailwind-variants";
 
 /**
- * Derived from shadcn DialogTitle, AlertDialogTitle, and PopoverDemo
+ * Derived from shadcn DialogTitle, AlertDialogTitle, PopoverDemo, AccordionHeader
  */
 export const headingStyles = tv({
-  base: "text-lg font-semibold",
+  base: "",
   variants: {
     variant: {
-      default: "leading-none",
-      alert: "",
+      default: "text-lg font-semibold leading-none",
+      alert: "text-lg font-semibold",
       popover: "text-base font-medium leading-none",
+      disclosure: "flex",
     },
   },
   defaultVariants: {
