@@ -86,7 +86,7 @@ export function ModalEx({
 }
 
 export const sheetModalStyles = tv({
-  base: "bg-background fixed z-50 shadow-lg",
+  base: "bg-background fixed z-50 border p-6 shadow-lg transition ease-in-out",
   variants: {
     isEntering: {
       true: "animate-in duration-500",
@@ -98,9 +98,9 @@ export const sheetModalStyles = tv({
       right:
         "data-[entering]:slide-in-from-right data-[exiting]:slide-out-to-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
       left: "data-[entering]:slide-in-from-left data-[exiting]:slide-out-to-left inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm",
-      top: "data-[entering]:slide-in-from-top data-[exiting]:slide-out-to-top inset-x-0 top-0 border-b",
+      top: "data-[entering]:slide-in-from-top data-[exiting]:slide-out-to-top inset-x-0 top-0 h-auto border-b",
       bottom:
-        "data-[entering]:slide-in-from-bottom data-[exiting]:slide-out-to-bottom inset-x-0 bottom-0 border-t",
+        "data-[entering]:slide-in-from-bottom data-[exiting]:slide-out-to-bottom inset-x-0 bottom-0 h-auto border-t",
     },
   },
   defaultVariants: {
