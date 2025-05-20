@@ -1,10 +1,11 @@
 import type { ReactElement } from "react";
+import type { VariantProps } from "tailwind-variants";
 import React from "react";
 import { XIcon } from "lucide-react";
 import * as Rac from "react-aria-components";
 import { twJoin, twMerge } from "tailwind-merge";
 import { Button } from "./oui-button";
-import { ModalEx } from "./oui-modal";
+import { ModalEx, ModalEx1, sheetModalStyles } from "./oui-modal";
 
 /*
 #fetch https://react-spectrum.adobe.com/react-aria/Dialog.html
@@ -137,6 +138,40 @@ export function DialogEx({
       >
         <Dialog {...props} />
       </ModalEx>
+    </Rac.DialogTrigger>
+  );
+}
+
+export interface DialogEx1Props
+  extends DialogProps,
+    VariantProps<typeof sheetModalStyles> {
+  triggerElement: string | ReactElement;
+  modalClassName?: string;
+  overlayClassName?: string;
+}
+
+export function DialogEx1({
+  triggerElement,
+  modalClassName,
+  overlayClassName,
+  side,
+  ...props
+}: DialogEx1Props) {
+  return (
+    <Rac.DialogTrigger>
+      {typeof triggerElement === "string" ? (
+        <Button variant="ghost">{triggerElement}</Button>
+      ) : (
+        triggerElement
+      )}
+      <ModalEx1
+        className={modalClassName}
+        overlayClassName={overlayClassName}
+        side={side}
+        isDismissable={props.role !== "alertdialog"}
+      >
+        <Dialog {...props} />
+      </ModalEx1>
     </Rac.DialogTrigger>
   );
 }
