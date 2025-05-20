@@ -19,7 +19,10 @@ import { baseStyles, composeTailwindRenderProps } from "./oui-base";
 export function Disclosure({ className, ...props }: Rac.DisclosureProps) {
   return (
     <Rac.Disclosure
-      className={composeTailwindRenderProps(className, "w-full border-b")}
+      className={composeTailwindRenderProps(
+        className,
+        "border-b last:border-b-0",
+      )}
       {...props}
     />
   );
@@ -35,9 +38,9 @@ export function DisclosureHeading({ className, ...props }: Rac.HeadingProps) {
 export const disclosureButtonStyes = tv({
   slots: {
     rootStyles:
-      "flex flex-1 items-center justify-between py-4 text-left text-sm font-medium transition-all focus-visible:outline-none",
+      "flex flex-1 items-start justify-between gap-4 py-4 text-left text-sm font-medium outline-none transition-all",
     iconStyles:
-      "text-muted-foreground size-4 shrink-0 transition-transform duration-200",
+      "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200",
   },
   variants: {
     isExpanded: {
@@ -52,8 +55,12 @@ export const disclosureButtonStyes = tv({
     },
     isFocusVisible: {
       true: {
-        // rootStyles: baseStyles.variants.isFocusVisible.true,
-        rootStyles: "",
+        rootStyles: "ring-ring/50 ring-[3px]",
+      },
+    },
+    isDisabled: {
+      true: {
+        rootStyles: "pointer-events-none opacity-50",
       },
     },
   },
