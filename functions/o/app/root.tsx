@@ -141,6 +141,10 @@ const items = [
     url: "/demo/separator",
   },
   {
+    title: "Sheet",
+    url: "/demo/sheet",
+  },
+  {
     title: "Slider",
     url: "/demo/slider",
   },
