@@ -85,14 +85,18 @@ export function ModalEx({
   );
 }
 
+/**
+ * Derived from shadcn SheetContent.
+ * Merges with modalStyles so resets zoom and positioning.
+ */
 export const sheetModalStyles = tv({
   base: "bg-background fixed left-auto top-auto z-50 flex max-w-none translate-x-0 translate-y-0 flex-col gap-4 rounded-none shadow-lg transition ease-in-out sm:max-w-none",
   variants: {
     isEntering: {
-      true: "animate-in duration-500",
+      true: "animate-in zoom-in-100 duration-500",
     },
     isExiting: {
-      true: "animate-out fill-mode-forwards duration-300",
+      true: "animate-out fill-mode-forwards zoom-out-100 duration-300",
     },
     side: {
       right:
@@ -116,7 +120,7 @@ export interface ModalEx1Props
 
 /**
  * A modal that slides in from an edge of the screen, suitable for a "Sheet" component.
- * Dervied from shadcn SheetContent.
+ * Derived from shadcn SheetContent.
  * @param side - The side of the screen from which the modal will enter.
  */
 export function ModalEx1({
