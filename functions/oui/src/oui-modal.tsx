@@ -86,9 +86,6 @@ export function ModalEx({
 }
 
 export const sheetModalStyles = tv({
-  // "bg-background fixed left-[50%] top-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
-  // "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
-  //   base: "inset-x-0 top-0 h-auto max-w-none translate-x-0 translate-y-0 sm:max-w-none",
   base: "bg-background fixed left-auto top-auto z-50 flex max-w-none translate-x-0 translate-y-0 flex-col gap-4 rounded-none shadow-lg transition ease-in-out sm:max-w-none",
   variants: {
     isEntering: {
@@ -111,31 +108,9 @@ export const sheetModalStyles = tv({
   },
 });
 
-export const sheetModalStyles1 = tv({
-  // base: "bg-background fixed z-50 flex flex-col gap-4 rounded-none p-6 shadow-lg transition ease-in-out",
-  base: "inset-x-0 top-0 h-auto max-w-none translate-x-0 translate-y-0 sm:max-w-none",
-  variants: {
-    isEntering: {
-      true: "",
-    },
-    isExiting: {
-      true: "",
-    },
-    side: {
-      right: "",
-      left: "",
-      top: "",
-      bottom: "",
-    },
-  },
-  defaultVariants: {
-    side: "right",
-  },
-});
-
 export interface ModalEx1Props
   extends Rac.ModalOverlayProps,
-    VariantProps<typeof sheetModalStyles> {
+    Pick<VariantProps<typeof sheetModalStyles>, "side"> {
   overlayClassName?: Rac.ModalOverlayProps["className"];
 }
 
