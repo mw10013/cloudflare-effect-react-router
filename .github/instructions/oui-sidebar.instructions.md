@@ -1,5 +1,5 @@
 ---
-applyTo: "**/functions/oui/**/oui-sidebar.tsx"
+applyTo: "**/functions/oui/**/oui-sidebar-.tsx"
 ---
 
 # Oui Sidebar Guidelines
@@ -8,7 +8,7 @@ applyTo: "**/functions/oui/**/oui-sidebar.tsx"
 - Use Oui components
 - For example of functionality use Intent UI sidebar component but keep it simple.
 - Use only styles from shadcn sidebar component filea and copy the styles verbatim.
-- Refer to the [Implementing Oui Prompt](oui-implementing.prompt.md) for details on implementing Oui components with Shadcn design system for Tailwind v4.
+- Refer to the [Implementing Oui Prompt](../prompts/oui-implementing.prompt.md) for details on implementing Oui components with Shadcn design system for Tailwind v4.
 
 ## Oui Sidebar Requirements
 
