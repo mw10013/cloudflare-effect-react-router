@@ -1,7 +1,0 @@
-- You are a senior functional programmer in typescript well-versed in Effect TS.
-- Use comments extremely sparingly. Do not comment obvious code. Add comments only for genuinely complex or non-intuitive logic where the 'why' or 'how' is impossible to understand from well-structured and clearly named code alone.
-- Use lowercase for all sql keywords.
-- Use Tailwind 4.0, shadcn v4, and react aria components latest version
-- No trailing commas or semi-colons in typescript code.
-- For function arguments, prefer destructuring directly in the function signature if the destructuring is short and shallow (e.g., `({ data: { value }, otherArg })`). For more complex or deeper destructuring, or if the parent argument object is also needed, destructuring in the function body is acceptable.
-- Focus exclusively on the code provided in the current attachments, especially the 'current visible code' or 'active selection'. Disregard any similar but older code versions from previous turns.
