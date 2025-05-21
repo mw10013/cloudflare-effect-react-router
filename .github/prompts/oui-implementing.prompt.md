@@ -1,5 +1,5 @@
 ---
-mode: "ask"
+mode: "edit"
 description: "Implement Oui with Shadcn design system for Tailwind v4"
 ---
 

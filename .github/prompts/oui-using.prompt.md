@@ -1,5 +1,5 @@
 ---
-mode: "ask"
+mode: "edit"
 description: "Using Oui"
 ---
 

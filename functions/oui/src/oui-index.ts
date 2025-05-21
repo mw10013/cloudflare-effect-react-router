@@ -23,6 +23,7 @@ export * from "./oui-radio-group";
 export * from "./oui-search-field";
 export * from "./oui-select";
 export * from "./oui-separator";
+export * from "./oui-sidebar";
 export * from "./oui-slider";
 export * from "./oui-switch";
 export * from "./oui-table";

@@ -1,5 +1,5 @@
 ---
-mode: "ask"
+mode: "edit"
 description: "Ensure the Oui component styles match the Shadcn design system for Tailwind v4"
 ---
 
