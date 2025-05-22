@@ -1,5 +1,3 @@
-import * as Rac from "react-aria-components";
-import { Outlet } from "react-router";
 import {
   Sidebar,
   SidebarContent,
@@ -11,7 +9,9 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
-} from "~/components/ui/sidebar";
+} from "@workspace/ui/components/sidebar";
+import * as Rac from "react-aria-components";
+import { Outlet } from "react-router";
 
 const items = [
   {

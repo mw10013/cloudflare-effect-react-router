@@ -10,7 +10,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
-} from "~/components/ui/sidebar";
+} from "@workspace/ui/components/sidebar";
 
 /*
 #fetch https://ui.shadcn.com/docs/components/sidebar

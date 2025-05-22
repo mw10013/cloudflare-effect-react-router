@@ -11,7 +11,8 @@ import {
   useHref,
   useNavigate,
 } from "react-router";
-import "./app.css";
+import "@workspace/ui/app.css";
+
 declare module "react-aria-components" {
   interface RouterConfig {
     routerOptions: NavigateOptions;
