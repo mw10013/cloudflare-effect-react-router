@@ -2,7 +2,14 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   // https://github.com/tailwindlabs/tailwindcss-intellisense?tab=readme-ov-file#tailwind-css-v4x-css-entrypoints
   "tailwindCSS.experimental.configFile": {
-    "./functions/o/app/app.css": ["./functions/o/app/**", "./functions/oui/src/**"],
-    "./functions/s/app/app.css": ["./functions/s/app/**", "./functions/oui/src/**"]
-  },
+    "./functions/i/app/app.css": ["./functions/i/app/**"],
+    "./functions/ui/src/styles/app.css": [
+      "./functions/o/app/**",
+      "./functions/oui/src/**",
+      "./functions/r/app/**",
+      "./functions/r1/app/**",
+      "./functions/ui/src/**"
+    ],
+    "./functions/s/app/app.css": ["./functions/s/app/**"]
+  }
 }
