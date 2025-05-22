@@ -36,25 +36,15 @@ const config = {
     },
     // https://github.com/tailwindlabs/prettier-plugin-tailwindcss/issues/281
     {
-      files: ["./functions/o/**"], // Files within project 'o'
+      files: ["./functions/i/**"],
       options: {
-        // For Tailwind v4, specify the stylesheet
+        tailwindStylesheet: "./functions/i/app/app.css",
+      },
+    },
+    {
+      files: ["./functions/o/**"],
+      options: {
         tailwindStylesheet: "./functions/o/app/app.css",
-      },
-    },
-    {
-      files: ["./functions/s/**"], // Files within project 's'
-      options: {
-        // For Tailwind v4, specify the stylesheet
-        tailwindStylesheet: "./functions/s/app/app.css",
-      },
-    },
-    {
-      files: ["./functions/p/**"], // Files within project 'p'
-      options: {
-        // For Tailwind v3, specify the config file
-        // The plugin might auto-detect this, but explicit is often better.
-        tailwindConfig: "./functions/p/tailwind.config.ts",
       },
     },
     {
@@ -63,6 +53,24 @@ const config = {
         // For Tailwind v4, specify a representative stylesheet
         // Using project 'o's stylesheet as context for oui's own source files
         tailwindStylesheet: "./functions/o/app/app.css",
+      },
+    },
+    {
+      files: ["./functions/r/**"],
+      options: {
+        tailwindStylesheet: "./functions/r/app/app.css",
+      },
+    },
+    {
+      files: ["./functions/r1/**"],
+      options: {
+        tailwindStylesheet: "./functions/r1/app/app.css",
+      },
+    },
+    {
+      files: ["./functions/s/**"],
+      options: {
+        tailwindStylesheet: "./functions/s/app/app.css",
       },
     },
     {
