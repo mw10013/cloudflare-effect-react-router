@@ -1,0 +1,23 @@
+{
+  "name": "@workspace/shadcn",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "clean": "pnpm clean:node",
+    "clean:node": "rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "typescript": "catalog:"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-aria-components": "catalog:",
+    "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:"
+  }
+}
