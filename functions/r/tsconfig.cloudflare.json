@@ -22,7 +22,7 @@
     "rootDirs": [".", "./.react-router/types"],
     "paths": {
       "~/*": ["./app/*"],
-      "@workspace/ui/*": ["../../functions/ui/src/*"]
+      "@workspace/ui/*": ["../../functions/ui/*"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true

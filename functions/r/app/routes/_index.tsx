@@ -1,3 +1,4 @@
+import { Button } from "@workspace/ui/components/button";
 import type { Route } from "./+types/_index";
 
 export function meta({}: Route.MetaArgs) {
@@ -9,5 +10,5 @@ export function loader({ context }: Route.LoaderArgs) {
 }
 
 export default function RouteComponent({ loaderData }: Route.ComponentProps) {
-  return <div className="p-6">{loaderData.message}</div>;
+  return <div className="p-6"><Button>button</Button>{loaderData.message}</div>;
 }
