@@ -17,7 +17,6 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-aria-components": "catalog:",
-    "tailwind-merge": "catalog:",
-    "tailwind-variants": "catalog:"
+    "tailwind-merge": "catalog:"
   }
 }
