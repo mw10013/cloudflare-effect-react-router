@@ -10,6 +10,7 @@ import {
   User,
 } from "lucide-react";
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -18,7 +19,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "~/components/ui/command";
+} from "@workspace/ui/components/command";
 
 export function CommandDemo() {
   const [open, setOpen] = React.useState(false);

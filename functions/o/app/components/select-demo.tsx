@@ -1,10 +1,4 @@
 import {
-  ChartBarIcon,
-  ChartLineIcon,
-  ChartPieIcon,
-  CircleDashed,
-} from "lucide-react";
-import {
   Select,
   SelectContent,
   SelectGroup,
@@ -12,7 +6,13 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "~/components/ui/select";
+} from "@workspace/ui/components/select";
+import {
+  ChartBarIcon,
+  ChartLineIcon,
+  ChartPieIcon,
+  CircleDashed,
+} from "lucide-react";
 
 export function SelectDemo() {
   return (

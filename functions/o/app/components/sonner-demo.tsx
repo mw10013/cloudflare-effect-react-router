@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Button } from "~/components/ui/button";
 import { toast } from "sonner";
+import { Button } from "@workspace/ui/components/button";
 
 const promiseCode = "`${data.name} toast has been added`";
 

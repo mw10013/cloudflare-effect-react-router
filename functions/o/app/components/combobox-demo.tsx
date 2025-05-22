@@ -1,34 +1,35 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar";
 import {
   CheckIcon,
   ChevronDownIcon,
   ChevronsUpDown,
   PlusCircleIcon,
-} from "lucide-react"
-
-import { cn } from "~/lib/utils"
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "~/components/ui/avatar"
-import { Button } from "~/components/ui/button"
+} from "lucide-react";
+import { Button } from "@workspace/ui/components/button";
 import {
   Command,
+  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "~/components/ui/command"
+  CommandShortcut,
+} from "@workspace/ui/components/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "~/components/ui/popover"
+} from "@workspace/ui/components/popover";
+import { cn } from "@workspace/ui/lib/utils";
 
 const frameworks = [
   {
@@ -51,9 +52,9 @@ const frameworks = [
     value: "astro",
     label: "Astro",
   },
-]
+];
 
-type Framework = (typeof frameworks)[number]
+type Framework = (typeof frameworks)[number];
 
 const users = [
   {
@@ -68,9 +69,9 @@ const users = [
     id: "3",
     username: "evilrabbit",
   },
-] as const
+] as const;
 
-type User = (typeof users)[number]
+type User = (typeof users)[number];
 
 const timezones = [
   {
@@ -106,9 +107,9 @@ const timezones = [
       { value: "Asia/Seoul", label: "(GMT+9) Seoul" },
     ],
   },
-] as const
+] as const;
 
-type Timezone = (typeof timezones)[number]
+type Timezone = (typeof timezones)[number];
 
 export function ComboboxDemo() {
   return (
@@ -121,12 +122,12 @@ export function ComboboxDemo() {
       />
       <ComboboxWithCheckbox frameworks={[...frameworks]} />
     </div>
-  )
+  );
 }
 
 function FrameworkCombobox({ frameworks }: { frameworks: Framework[] }) {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -154,15 +155,15 @@ function FrameworkCombobox({ frameworks }: { frameworks: Framework[] }) {
                   key={framework.value}
                   value={framework.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
-                    setOpen(false)
+                    setValue(currentValue === value ? "" : currentValue);
+                    setOpen(false);
                   }}
                 >
                   {framework.label}
                   <CheckIcon
                     className={cn(
                       "ml-auto",
-                      value === framework.value ? "opacity-100" : "opacity-0"
+                      value === framework.value ? "opacity-100" : "opacity-0",
                     )}
                   />
                 </CommandItem>
@@ -172,23 +173,23 @@ function FrameworkCombobox({ frameworks }: { frameworks: Framework[] }) {
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 
 function UserCombobox({
   users,
   selectedUserId,
 }: {
-  users: User[]
-  selectedUserId: string
+  users: User[];
+  selectedUserId: string;
 }) {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState(selectedUserId)
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState(selectedUserId);
 
   const selectedUser = React.useMemo(
     () => users.find((user) => user.id === value),
-    [value, users]
-  )
+    [value, users],
+  );
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -226,8 +227,8 @@ function UserCombobox({
                   key={user.id}
                   value={user.id}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
-                    setOpen(false)
+                    setValue(currentValue === value ? "" : currentValue);
+                    setOpen(false);
                   }}
                 >
                   <Avatar className="size-5">
@@ -240,7 +241,7 @@ function UserCombobox({
                   <CheckIcon
                     className={cn(
                       "ml-auto",
-                      value === user.id ? "opacity-100" : "opacity-0"
+                      value === user.id ? "opacity-100" : "opacity-0",
                     )}
                   />
                 </CommandItem>
@@ -257,31 +258,31 @@ function UserCombobox({
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 
 function TimezoneCombobox({
   timezones,
   selectedTimezone,
 }: {
-  timezones: Timezone[]
-  selectedTimezone: Timezone["timezones"][number]
+  timezones: Timezone[];
+  selectedTimezone: Timezone["timezones"][number];
 }) {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState(selectedTimezone.value)
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState(selectedTimezone.value);
 
   const selectedGroup = React.useMemo(
     () =>
       timezones.find((group) =>
-        group.timezones.find((tz) => tz.value === value)
+        group.timezones.find((tz) => tz.value === value),
       ),
-    [value, timezones]
-  )
+    [value, timezones],
+  );
 
   const selectedTimezoneLabel = React.useMemo(
     () => selectedGroup?.timezones.find((tz) => tz.value === value)?.label,
-    [value, selectedGroup]
-  )
+    [value, selectedGroup],
+  );
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -316,9 +317,9 @@ function TimezoneCombobox({
                     value={timezone.value}
                     onSelect={(currentValue) => {
                       setValue(
-                        currentValue as Timezone["timezones"][number]["value"]
-                      )
-                      setOpen(false)
+                        currentValue as Timezone["timezones"][number]["value"],
+                      );
+                      setOpen(false);
                     }}
                   >
                     {timezone.label}
@@ -341,14 +342,14 @@ function TimezoneCombobox({
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 
 function ComboboxWithCheckbox({ frameworks }: { frameworks: Framework[] }) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
   const [selectedFrameworks, setSelectedFrameworks] = React.useState<
     Framework[]
-  >([])
+  >([]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -379,16 +380,16 @@ function ComboboxWithCheckbox({ frameworks }: { frameworks: Framework[] }) {
                     setSelectedFrameworks(
                       selectedFrameworks.some((f) => f.value === currentValue)
                         ? selectedFrameworks.filter(
-                            (f) => f.value !== currentValue
+                            (f) => f.value !== currentValue,
                           )
-                        : [...selectedFrameworks, framework]
-                    )
+                        : [...selectedFrameworks, framework],
+                    );
                   }}
                 >
                   <div
-                    className="border-input data-[selected=true]:border-primary data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground pointer-events-none size-4 shrink-0 rounded-[4px] border transition-all select-none *:[svg]:opacity-0 data-[selected=true]:*:[svg]:opacity-100"
+                    className="border-input data-[selected=true]:border-primary data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground *:[svg]:opacity-0 data-[selected=true]:*:[svg]:opacity-100 pointer-events-none size-4 shrink-0 select-none rounded-[4px] border transition-all"
                     data-selected={selectedFrameworks.some(
-                      (f) => f.value === framework.value
+                      (f) => f.value === framework.value,
                     )}
                   >
                     <CheckIcon className="size-3.5 text-current" />
@@ -401,5 +402,5 @@ function ComboboxWithCheckbox({ frameworks }: { frameworks: Framework[] }) {
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }

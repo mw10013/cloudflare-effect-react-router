@@ -21,6 +21,7 @@
     "@workspace/oui": "workspace:*",
     "@workspace/shared": "workspace:*",
     "@workspace/ui": "workspace:*",
+    "date-fns": "^3.6.0",
     "effect": "catalog:",
     "isbot": "catalog:",
     "lucide-react": "catalog:",
@@ -29,7 +30,11 @@
     "react-dom": "catalog:",
     "react-router": "catalog:",
     "tailwind-merge": "catalog:",
-    "tailwind-variants": "catalog:"
+    "tailwind-variants": "catalog:",
+    "@hookform/resolvers": "^3.6.0",
+    "zod": "^3.23.8",
+    "react-hook-form": "^7.51.5",
+    "sonner": "^1.5.0"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "catalog:",

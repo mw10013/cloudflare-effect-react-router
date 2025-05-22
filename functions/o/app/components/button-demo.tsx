@@ -1,5 +1,5 @@
 import { ArrowRightIcon, Loader2Icon, SendIcon } from 'lucide-react'
-import { Button } from '~/components/ui/button'
+import { Button } from '@workspace/ui/components/button'
 
 export function ButtonDemo() {
   return (

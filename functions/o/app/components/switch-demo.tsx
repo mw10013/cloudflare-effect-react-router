@@ -1,5 +1,5 @@
-import { Label } from "~/components/ui/label";
-import { Switch } from "~/components/ui/switch";
+import { Label } from "@workspace/ui/components/label";
+import { Switch } from "@workspace/ui/components/switch";
 
 export function SwitchDemo() {
   return (

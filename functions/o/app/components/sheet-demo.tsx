@@ -1,6 +1,6 @@
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
-import { Label } from "~/components/ui/label";
+import { Button } from "@workspace/ui/components/button";
+import { Input } from "@workspace/ui/components/input";
+import { Label } from "@workspace/ui/components/label";
 import {
   Sheet,
   SheetClose,
@@ -10,7 +10,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "~/components/ui/sheet";
+} from "@workspace/ui/components/sheet";
 
 const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 

@@ -1,8 +1,8 @@
-import { Label } from "~/components/ui/label"
+import { Label } from "@workspace/ui/components/label"
 import {
   RadioGroup,
   RadioGroupItem,
-} from "~/components/ui/radio-group"
+} from "@workspace/ui/components/radio-group"
 
 const plans = [
   {

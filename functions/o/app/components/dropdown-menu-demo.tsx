@@ -1,21 +1,10 @@
-import * as React from 'react'
+import * as React from "react";
 import {
-  BadgeCheckIcon,
-  BellIcon,
-  ChevronsUpDownIcon,
-  CreditCardIcon,
-  LogOut,
-  LogOutIcon,
-  MoreHorizontalIcon,
-  PencilIcon,
-  Settings2Icon,
-  ShareIcon,
-  SparklesIcon,
-  TrashIcon,
-  UserIcon
-} from 'lucide-react'
-import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
-import { Button } from '~/components/ui/button'
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar";
+import { Button } from "@workspace/ui/components/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -31,8 +20,23 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuTrigger
-} from '~/components/ui/dropdown-menu'
+  DropdownMenuTrigger,
+} from "@workspace/ui/components/dropdown-menu";
+import {
+  BadgeCheckIcon,
+  BellIcon,
+  ChevronsUpDownIcon,
+  CreditCardIcon,
+  LogOut,
+  LogOutIcon,
+  MoreHorizontalIcon,
+  PencilIcon,
+  Settings2Icon,
+  ShareIcon,
+  SparklesIcon,
+  TrashIcon,
+  UserIcon,
+} from "lucide-react";
 
 export function DropdownMenuDemo() {
   return (
@@ -44,7 +48,7 @@ export function DropdownMenuDemo() {
       <DropdownMenuAvatarOnly />
       <DropdownMenuIconColor />
     </div>
-  )
+  );
 }
 
 function DropdownMenuSimple() {
@@ -103,13 +107,13 @@ function DropdownMenuSimple() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
 function DropdownMenuCheckboxes() {
-  const [showStatusBar, setShowStatusBar] = React.useState(true)
-  const [showActivityBar, setShowActivityBar] = React.useState(false)
-  const [showPanel, setShowPanel] = React.useState(false)
+  const [showStatusBar, setShowStatusBar] = React.useState(true);
+  const [showActivityBar, setShowActivityBar] = React.useState(false);
+  const [showPanel, setShowPanel] = React.useState(false);
 
   return (
     <DropdownMenu>
@@ -132,13 +136,23 @@ function DropdownMenuCheckboxes() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuLabel>Appearance</DropdownMenuLabel>
-          <DropdownMenuCheckboxItem checked={showStatusBar} onCheckedChange={setShowStatusBar}>
+          <DropdownMenuCheckboxItem
+            checked={showStatusBar}
+            onCheckedChange={setShowStatusBar}
+          >
             Status Bar
           </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem checked={showActivityBar} onCheckedChange={setShowActivityBar} disabled>
+          <DropdownMenuCheckboxItem
+            checked={showActivityBar}
+            onCheckedChange={setShowActivityBar}
+            disabled
+          >
             Activity Bar
           </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
+          <DropdownMenuCheckboxItem
+            checked={showPanel}
+            onCheckedChange={setShowPanel}
+          >
             Panel
           </DropdownMenuCheckboxItem>
         </DropdownMenuGroup>
@@ -150,11 +164,11 @@ function DropdownMenuCheckboxes() {
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
 function DropdownMenuRadioGroupDemo() {
-  const [position, setPosition] = React.useState('bottom')
+  const [position, setPosition] = React.useState("bottom");
 
   return (
     <DropdownMenu>
@@ -174,26 +188,34 @@ function DropdownMenuRadioGroupDemo() {
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
 function DropdownMenuWithAvatar() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="h-12 justify-start px-2 md:max-w-[200px]">
+        <Button
+          variant="outline"
+          className="h-12 justify-start px-2 md:max-w-[200px]"
+        >
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" alt="Shadcn" />
             <AvatarFallback className="rounded-lg">CN</AvatarFallback>
           </Avatar>
           <div className="grid flex-1 text-left text-sm leading-tight">
             <span className="truncate font-semibold">shadcn</span>
-            <span className="text-muted-foreground truncate text-xs">shadcn@example.com</span>
+            <span className="text-muted-foreground truncate text-xs">
+              shadcn@example.com
+            </span>
           </div>
           <ChevronsUpDownIcon className="text-muted-foreground ml-auto" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-(--radix-dropdown-menu-trigger-width) min-w-56" align="start">
+      <DropdownMenuContent
+        className="w-(--radix-dropdown-menu-trigger-width) min-w-56"
+        align="start"
+      >
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar>
@@ -202,7 +224,9 @@ function DropdownMenuWithAvatar() {
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-semibold">shadcn</span>
-              <span className="text-muted-foreground truncate text-xs">shadcn@example.com</span>
+              <span className="text-muted-foreground truncate text-xs">
+                shadcn@example.com
+              </span>
             </div>
           </div>
         </DropdownMenuLabel>
@@ -235,21 +259,27 @@ function DropdownMenuWithAvatar() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
 function DropdownMenuAvatarOnly() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="size-8 rounded-full border-none p-0">
+        <Button
+          variant="outline"
+          className="size-8 rounded-full border-none p-0"
+        >
           <Avatar>
             <AvatarImage src="https://github.com/leerob.png" alt="leerob" />
             <AvatarFallback className="rounded-lg">LR</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-(--radix-dropdown-menu-trigger-width) min-w-56" align="start">
+      <DropdownMenuContent
+        className="w-(--radix-dropdown-menu-trigger-width) min-w-56"
+        align="start"
+      >
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar>
@@ -258,7 +288,9 @@ function DropdownMenuAvatarOnly() {
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-semibold">leerob</span>
-              <span className="text-muted-foreground truncate text-xs">leerob@example.com</span>
+              <span className="text-muted-foreground truncate text-xs">
+                leerob@example.com
+              </span>
             </div>
           </div>
         </DropdownMenuLabel>
@@ -291,7 +323,7 @@ function DropdownMenuAvatarOnly() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
 function DropdownMenuIconColor() {
@@ -321,5 +353,5 @@ function DropdownMenuIconColor() {
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

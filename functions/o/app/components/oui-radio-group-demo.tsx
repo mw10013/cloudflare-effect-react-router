@@ -1,6 +1,6 @@
 import * as Oui from '@workspace/oui'
-import { Label } from '~/components/ui/label'
-import { RadioGroup, RadioGroupItem } from '~/components/ui/radio-group'
+import { Label } from '@workspace/ui/components/label'
+import { RadioGroup, RadioGroupItem } from '@workspace/ui/components/radio-group'
 
 const plans = [
   {

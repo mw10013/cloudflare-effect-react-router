@@ -1,5 +1,9 @@
 import * as Oui from "@workspace/oui";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar";
 
 export function OuiAutocompleteDemo() {
   return (

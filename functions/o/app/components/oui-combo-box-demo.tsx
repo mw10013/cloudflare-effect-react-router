@@ -1,14 +1,18 @@
 import * as React from "react";
 import * as Oui from "@workspace/oui";
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar";
+import { cn } from "@workspace/ui/lib/utils";
+import {
   CheckIcon,
   ChevronDownIcon,
   ChevronsUpDown,
   PlusCircleIcon,
 } from "lucide-react";
 import * as Rac from "react-aria-components";
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import { cn } from "~/lib/utils";
 
 const frameworks = [
   {

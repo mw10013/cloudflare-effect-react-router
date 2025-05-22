@@ -2,6 +2,11 @@ import type { Selection } from "react-aria-components";
 import * as React from "react";
 import * as Oui from "@workspace/oui";
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar";
+import {
   BadgeCheckIcon,
   BellIcon,
   ChevronsUpDownIcon,
@@ -17,7 +22,6 @@ import {
   UserIcon,
 } from "lucide-react";
 import * as Rac from "react-aria-components";
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 export function OuiMenuDemo() {
   return (

@@ -1,4 +1,4 @@
-import { Input } from "~/components/ui/input";
+import { Input } from "@workspace/ui/components/input";
 
 export function InputDemo() {
   return (

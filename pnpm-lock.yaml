@@ -286,6 +286,9 @@ importers:
 
   functions/o:
     dependencies:
+      '@hookform/resolvers':
+        specifier: ^3.6.0
+        version: 3.10.0(react-hook-form@7.55.0(react@19.1.0))
       '@workspace/oui':
         specifier: workspace:*
         version: link:../oui
@@ -295,6 +298,9 @@ importers:
       '@workspace/ui':
         specifier: workspace:*
         version: link:../ui
+      date-fns:
+        specifier: ^3.6.0
+        version: 3.6.0
       effect:
         specifier: 'catalog:'
         version: 3.14.18
@@ -313,15 +319,24 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 19.1.0(react@19.1.0)
+      react-hook-form:
+        specifier: ^7.51.5
+        version: 7.55.0(react@19.1.0)
       react-router:
         specifier: 'catalog:'
         version: 7.6.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      sonner:
+        specifier: ^1.5.0
+        version: 1.7.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       tailwind-merge:
         specifier: 'catalog:'
         version: 3.3.0
       tailwind-variants:
         specifier: 'catalog:'
         version: 1.0.0(tailwindcss@4.1.4)
+      zod:
+        specifier: ^3.23.8
+        version: 3.24.2
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: 'catalog:'
@@ -1597,6 +1612,11 @@ packages:
   '@hattip/walk@0.0.49':
     resolution: {integrity: sha512-AgJgKLooZyQnzMfoFg5Mo/aHM+HGBC9ExpXIjNqGimYTRgNbL/K7X5EM1kR2JY90BNKk9lo6Usq1T/nWFdT7TQ==}
     hasBin: true
+
+  '@hookform/resolvers@3.10.0':
+    resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
 
   '@hookform/resolvers@5.0.1':
     resolution: {integrity: sha512-u/+Jp83luQNx9AdyW2fIPGY6Y7NG68eN2ZW8FOJYL+M0i4s49+refdJdOp/A9n9HFQtQs3HIDHQvX3ZET2o7YA==}
@@ -4032,6 +4052,9 @@ packages:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
     engines: {node: '>= 12'}
 
+  date-fns@3.6.0:
+    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+
   date-fns@4.1.0:
     resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
@@ -5301,6 +5324,12 @@ packages:
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
+
+  sonner@1.7.4:
+    resolution: {integrity: sha512-DIS8z4PfJRbIyfVFDVnK9rO3eYDtse4Omcm6bt0oEr5/jtLgysmjuBl1frJ9E/EQZrFmKx2A8m/s5s9CRXIzhw==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
 
   sonner@2.0.3:
     resolution: {integrity: sha512-njQ4Hht92m0sMqqHVDL32V2Oun9W1+PHO9NDv9FHfJjT3JT22IG4Jpo3FPQy+mouRKCXFWO+r67v6MrHX2zeIA==}
@@ -6654,6 +6683,10 @@ snapshots:
       '@hattip/headers': 0.0.49
       cac: 6.7.14
       mime-types: 2.1.35
+
+  '@hookform/resolvers@3.10.0(react-hook-form@7.55.0(react@19.1.0))':
+    dependencies:
+      react-hook-form: 7.55.0(react@19.1.0)
 
   '@hookform/resolvers@5.0.1(react-hook-form@7.55.0(react@19.1.0))':
     dependencies:
@@ -9618,6 +9651,8 @@ snapshots:
 
   data-uri-to-buffer@4.0.1: {}
 
+  date-fns@3.6.0: {}
+
   date-fns@4.1.0: {}
 
   debug@4.4.0:
@@ -10905,6 +10940,11 @@ snapshots:
     optional: true
 
   sisteransi@1.0.5: {}
+
+  sonner@1.7.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   sonner@2.0.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
