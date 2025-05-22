@@ -1,5 +1,5 @@
 {
-  "name": "@workspace/shadcn",
+  "name": "@workspace/ui",
   "type": "module",
   "private": true,
   "scripts": {

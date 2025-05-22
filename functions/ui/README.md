@@ -1,4 +1,4 @@
-# Shadcn
+# ui
 
 - Shadcn in shared library
 
