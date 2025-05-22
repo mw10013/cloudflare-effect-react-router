@@ -15,7 +15,6 @@
   - Use files in functions/i/app/components/ui to understand the implementation of Intent UI and how it is built on React Aria Components.
 - functions/o: Demo application for oui.
 - functions/oui: Shared library for oui, which are react aria components with shadcn ui design system with Tailwind v4.
-- functions/r: Reference React Router v7 application using shadcn in ui shared package. No changes needed since reference project.
 - functions/r1: Reference React Router v7 application. No changes needed since reference project.
 - functions/s: Saas template application using cloudflare, effect ts, react router v7 in framework mode, oui, openauth js, and stripe.
 - functions/shared: Shared library with functions for Effect TS.
