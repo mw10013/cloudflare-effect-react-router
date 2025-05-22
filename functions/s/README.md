@@ -11,13 +11,13 @@
 
 ## Deploy
 
-- pnpm -F <PACKAGE_NAME> exec wrangler kv namespace create <WRANGLER-NAME>-kv-production
-- pnpm -F <PACKAGE_NAME> exec wrangler queues create <WRANGLER-NAME>-q-production
+- pnpm -F <PACKAGE_NAME> exec wrangler kv namespace create <WRANGLER_NAME>-kv-production
+- pnpm -F <PACKAGE_NAME> exec wrangler queues create <WRANGLER_NAME>-q-production
 - Update wrangler.jsonc production kv_namespaces and queues
 - pnpm -F <PACKAGE_NAME> d1:reset:PRODUCTION
 - pnpm -F <PACKAGE_NAME> deploy:PRODUCTION
 - pnpm -F <PACKAGE_NAME> exec wrangler secret put <SECRET> --env production
-- Workers & Pages Settings: <WRANGLER-NAME>-production
+- Workers & Pages Settings: <WRANGLER_NAME>-production
   - Git repository: connect to git repo
   - Build configuration
     - Build command: CLOUDFLARE_ENV=production pnpm -F <PACKAGE_NAME> build
@@ -113,7 +113,8 @@ To test Stripe payments, use the following test card details:
 - Need to provide type annotation for ReactRouter.middlewareEffect
 
 ```ts
-export const appMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlewareEffect(({ context }) => Effect.succeed(undefined))
+export const appMiddleware: Route.unstable_MiddlewareFunction =
+  ReactRouter.middlewareEffect(({ context }) => Effect.succeed(undefined));
 ```
 
 ## Vite

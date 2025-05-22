@@ -5,18 +5,18 @@ IntentUI sandbox
 ## Local Dev
 
 - pnpm i
-- pnpm -F <PACKGE-NAME> dev
+- pnpm -F <PACKAGE_NAME> dev
 
 ## Deploy
 
-- pnpm -F <PACKGE-NAME> deploy:PRODUCTION
-- Workers & Pages Settings: <WRANGLER-NAME>-production
+- pnpm -F <PACKAGE_NAME> deploy:PRODUCTION
+- Workers & Pages Settings: <WRANGLER_NAME>-production
   - Git repository: connect to git repo
   - Build configuration
-    - Build command: CLOUDFLARE_ENV=production pnpm -F <PACKGE-NAME> build
-    - Deploy command: pnpm -F <PACKGE-NAME> exec wrangler deploy
+    - Build command: CLOUDFLARE_ENV=production pnpm -F <PACKAGE_NAME> build
+    - Deploy command: pnpm -F <PACKAGE_NAME> exec wrangler deploy
   - Build watch paths
-    - Include paths: functions/<PACKGE-NAME>/\*
+    - Include paths: functions/<PACKAGE_NAME>/\*
 
 ## Intent UI
 
