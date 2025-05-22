@@ -1,5 +1,5 @@
-import { Button } from "@workspace/ui/components/button";
 import type { Route } from "./+types/_index";
+import { Button } from "@workspace/ui/components/button";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "r1" }, { name: "description", content: "Welcome to r1" }];
@@ -10,5 +10,9 @@ export function loader({ context }: Route.LoaderArgs) {
 }
 
 export default function RouteComponent({ loaderData }: Route.ComponentProps) {
-  return <div className="p-6"><Button>button</Button>{loaderData.message}</div>;
+  return (
+    <div className="p-6">
+      <Button>{loaderData.message}</Button>
+    </div>
+  );
 }
