@@ -37,7 +37,7 @@ export function TextFieldEx({
     <TextField {...props}>
       {(renderProps) => (
         <>
-          {label && <Label>{label}</Label>}
+          {label && typeof label === "string" ? <Label>{label}</Label> : label}
           {children ? (
             typeof children === "function" ? (
               children(renderProps)
@@ -71,7 +71,11 @@ export function TextFieldEx1({
       {(renderProps) => (
         <>
           <div className="grid grid-cols-3 items-center gap-4">
-            {label && <Label>{label}</Label>}
+            {label && typeof label === "string" ? (
+              <Label>{label}</Label>
+            ) : (
+              label
+            )}
             {children ? (
               typeof children === "function" ? (
                 children(renderProps)
