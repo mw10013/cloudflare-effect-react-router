@@ -1,6 +1,16 @@
-import * as Oui from '@workspace/oui'
+import * as Oui from "@workspace/oui";
+import { DemoContainer } from "~/components/demo-container";
+import { OuiLinkDemo } from "~/components/oui-link-demo";
 
 export default function RouteComponent() {
+  return (
+    <DemoContainer>
+      <OuiLinkDemo />
+    </DemoContainer>
+  );
+}
+
+export function RouteComponent1() {
   return (
     <div className="container flex flex-col items-center justify-center gap-4 p-6">
       <div className="[&_[data-slot=foo]]:bg-input [&_[data-slot=foo]]:text-foreground [&_[data-slot=bar]]:bg-destructive [&_[data-slot=bar]]:text-primary-foreground flex gap-2">
@@ -28,17 +38,17 @@ export default function RouteComponent() {
         This is the <Oui.Link href="/play">play</Oui.Link> link.
       </p>
       <p>
-        This is the underlined{' '}
+        This is the underlined{" "}
         <Oui.Link href="/play" className="underline">
           play
-        </Oui.Link>{' '}
+        </Oui.Link>{" "}
         link.
       </p>
       <p>
-        This is the disabled{' '}
+        This is the disabled{" "}
         <Oui.Link href="/play" isDisabled>
           play
-        </Oui.Link>{' '}
+        </Oui.Link>{" "}
         link.
       </p>
       <Oui.LinkButton href="/play">Play</Oui.LinkButton>
@@ -49,5 +59,5 @@ export default function RouteComponent() {
         Play
       </Oui.LinkButton>
     </div>
-  )
+  );
 }
