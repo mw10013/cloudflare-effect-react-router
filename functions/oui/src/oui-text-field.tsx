@@ -55,34 +55,40 @@ export function TextFieldEx({
   );
 }
 
-export interface TextFieldEx2Props extends Rac.TextFieldProps {
-  label?: React.ReactNode;
-  description?: React.ReactNode;
-  errorMessage?: string | ((validation: Rac.ValidationResult) => string);
-  placeholder?: string;
-}
-
 /**
  * A TextField component where the label and input are arranged side-by-side.
  */
-export function TextFieldEx2({
+export function TextFieldEx1({
   label,
   description,
   errorMessage,
   placeholder,
+  children,
   ...props
-}: TextFieldEx2Props) {
+}: TextFieldExProps) {
   return (
     <TextField {...props}>
-      <div className="grid grid-cols-3 items-center gap-4">
-        {label && <Label>{label}</Label>}
-        <Input
-          placeholder={placeholder}
-          className={label ? "col-span-2" : "col-span-3"}
-        />
-      </div>
-      {description && <Text slot="description">{description}</Text>}
-      <FieldError>{errorMessage}</FieldError>
+      {(renderProps) => (
+        <>
+          <div className="grid grid-cols-3 items-center gap-4">
+            {label && <Label>{label}</Label>}
+            {children ? (
+              typeof children === "function" ? (
+                children(renderProps)
+              ) : (
+                children
+              )
+            ) : (
+              <Input
+                placeholder={placeholder}
+                className={label ? "col-span-2" : "col-span-3"}
+              />
+            )}
+          </div>
+          {description && <Text slot="description">{description}</Text>}
+          <FieldError>{errorMessage}</FieldError>
+        </>
+      )}
     </TextField>
   );
 }

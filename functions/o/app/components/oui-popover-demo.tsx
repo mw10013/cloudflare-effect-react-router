@@ -15,19 +15,19 @@ export function OuiPopoverDemo() {
         </Oui.DialogDescription>
       </Oui.DialogHeader>
       <div className="grid gap-2">
-        <Oui.TextFieldEx2
+        <Oui.TextFieldEx1
           name="width"
           label="Width"
           defaultValue="100%"
           autoFocus
         />
-        <Oui.TextFieldEx2
+        <Oui.TextFieldEx1
           name="maxWidth"
           label="Max. width"
           defaultValue="300px"
         />
-        <Oui.TextFieldEx2 name="height" label="Height" defaultValue="25px" />
-        <Oui.TextFieldEx2
+        <Oui.TextFieldEx1 name="height" label="Height" defaultValue="25px" />
+        <Oui.TextFieldEx1
           name="maxHeight"
           label="Max. height"
           defaultValue="none"
