@@ -4,15 +4,29 @@ import { tv } from 'tailwind-variants'
 import { baseStyles } from './oui-base'
 import { buttonStyles } from './oui-button'
 
+/**
+ * Derived from shadcn CardDemo.
+ */
+// ml-auto inline-block text-sm underline-offset-4 hover:underline
+// underline underline-offset-4
 export const linkStyles = tv({
-  extend: baseStyles,
-  base: 'underline-offset-4',
+  base: 'text-sm underline-offset-4',
   variants: {
     isHovered: {
       true: 'underline'
     }
   }
 })
+
+// export const linkStyles = tv({
+//   extend: baseStyles,
+//   base: 'underline-offset-4',
+//   variants: {
+//     isHovered: {
+//       true: 'underline'
+//     }
+//   }
+// })
 
 export const Link = ({ className, ...props }: Rac.LinkProps) => (
   <Rac.Link
