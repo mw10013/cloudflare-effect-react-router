@@ -30,50 +30,27 @@ export function TextFieldEx({
   description,
   errorMessage,
   placeholder,
+  children,
   ...props
 }: TextFieldExProps) {
   return (
     <TextField {...props}>
-      {label && <Label>{label}</Label>}
-      <Input placeholder={placeholder} />
-      {description && <Text slot="description">{description}</Text>}
-      <FieldError>{errorMessage}</FieldError>
-    </TextField>
-  );
-}
-
-export interface TextFieldEx1Props
-  extends Omit<Rac.TextFieldProps, "children"> {
-  label?: React.ReactNode;
-  description?: React.ReactNode;
-  errorMessage?: string | ((validation: Rac.ValidationResult) => string);
-  children: React.ReactNode;
-}
-
-/**
- * A TextField component that allows for custom child input components.
- * Derived from shadn PopoverDemo
- *
- * @example
- * ```tsx
- * <Oui.TextFieldEx1 name="bio" label="Bio" description="You can @mention other users and organizations.">
- *   <Oui.TextArea className="resize-none" placeholder="Tell us a little bit about yourself" />
- * </Oui.TextFieldEx1>
- * ```
- */
-export function TextFieldEx1({
-  label,
-  description,
-  errorMessage,
-  children,
-  ...props
-}: TextFieldEx1Props) {
-  return (
-    <TextField {...props}>
-      {label && <Label>{label}</Label>}
-      {children}
-      {description && <Text slot="description">{description}</Text>}
-      <FieldError>{errorMessage}</FieldError>
+      {(renderProps) => (
+        <>
+          {label && <Label>{label}</Label>}
+          {children ? (
+            typeof children === "function" ? (
+              children(renderProps)
+            ) : (
+              children
+            )
+          ) : (
+            <Input placeholder={placeholder} />
+          )}
+          {description && <Text slot="description">{description}</Text>}
+          <FieldError>{errorMessage}</FieldError>
+        </>
+      )}
     </TextField>
   );
 }

@@ -1,37 +1,42 @@
-import * as Oui from '@workspace/oui'
-import * as Rac from 'react-aria-components'
+import * as Oui from "@workspace/oui";
+import * as Rac from "react-aria-components";
 
 const items = [
   {
-    id: 'recents',
-    label: 'Recents'
+    id: "recents",
+    label: "Recents",
   },
   {
-    id: 'home',
-    label: 'Home'
+    id: "home",
+    label: "Home",
   },
   {
-    id: 'applications',
-    label: 'Applications'
+    id: "applications",
+    label: "Applications",
   },
   {
-    id: 'desktop',
-    label: 'Desktop'
+    id: "desktop",
+    label: "Desktop",
   },
   {
-    id: 'downloads',
-    label: 'Downloads'
+    id: "downloads",
+    label: "Downloads",
   },
   {
-    id: 'documents',
-    label: 'Documents'
-  }
-] as const
+    id: "documents",
+    label: "Documents",
+  },
+] as const;
 
 export function OuiFormDemo() {
   return (
     <Rac.Form className="grid w-full max-w-sm gap-6">
-      <Oui.TextFieldEx name="username" placeholder="shadcn" label="Username" description="This is your public display name." />
+      <Oui.TextFieldEx
+        name="username"
+        placeholder="shadcn"
+        label="Username"
+        description="This is your public display name."
+      />
       <Oui.SelectEx
         placeholder="Select a verified email to display"
         label="Email"
@@ -41,10 +46,21 @@ export function OuiFormDemo() {
         <Oui.ListBoxItem>me@google.com</Oui.ListBoxItem>
         <Oui.ListBoxItem>m@support.com</Oui.ListBoxItem>
       </Oui.SelectEx>
-      <Oui.TextFieldEx1 name="bio" label="Bio" description="You can @mention other users and organizations.">
-        <Oui.TextArea className="resize-none" placeholder="Tell us a little bit about yourself" />
-      </Oui.TextFieldEx1>
-      <Oui.RadioGroupEx name="type" label="Notify me about..." className="flex flex-col gap-3">
+      <Oui.TextFieldEx
+        name="bio"
+        label="Bio"
+        description="You can @mention other users and organizations."
+      >
+        <Oui.TextArea
+          className="resize-none"
+          placeholder="Tell us a little bit about yourself"
+        />
+      </Oui.TextFieldEx>
+      <Oui.RadioGroupEx
+        name="type"
+        label="Notify me about..."
+        className="flex flex-col gap-3"
+      >
         <Oui.Radio value="all" className="font-normal">
           All new messages
         </Oui.Radio>
@@ -69,10 +85,14 @@ export function OuiFormDemo() {
         labelClassName="text-base"
         label="Sidebar"
         description="Select the items you want to display in the sidebar."
-        defaultValue={['recents', 'home']}
+        defaultValue={["recents", "home"]}
       >
         {items.map((item) => (
-          <Oui.Checkbox key={item.id} value={item.id} className="text-sm font-normal leading-tight">
+          <Oui.Checkbox
+            key={item.id}
+            value={item.id}
+            className="text-sm font-normal leading-tight"
+          >
             {item.label}
           </Oui.Checkbox>
         ))}
@@ -107,5 +127,5 @@ export function OuiFormDemo() {
       </div>
       <Oui.Button type="submit">Submit</Oui.Button>
     </Rac.Form>
-  )
+  );
 }
