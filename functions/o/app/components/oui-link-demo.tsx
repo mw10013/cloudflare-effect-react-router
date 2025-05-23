@@ -6,7 +6,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/src/components/card";
+} from "@workspace/ui/components/card";
 
 export function OuiLinkDemo() {
   return (
