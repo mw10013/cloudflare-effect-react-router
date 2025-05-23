@@ -1,8 +1,8 @@
-import type { VariantProps } from 'tailwind-variants'
-import * as Rac from 'react-aria-components'
-import { tv } from 'tailwind-variants'
-import { baseStyles } from './oui-base'
-import { buttonStyles } from './oui-button'
+import type { VariantProps } from "tailwind-variants";
+import * as Rac from "react-aria-components";
+import { tv } from "tailwind-variants";
+import { baseStyles } from "./oui-base";
+import { buttonStyles } from "./oui-button";
 
 /**
  * Derived from shadcn CardDemo.
@@ -10,13 +10,17 @@ import { buttonStyles } from './oui-button'
 // ml-auto inline-block text-sm underline-offset-4 hover:underline
 // underline underline-offset-4
 export const linkStyles = tv({
-  base: 'text-sm underline-offset-4',
+  extend: baseStyles,
+  base: "text-sm underline-offset-4",
   variants: {
     isHovered: {
-      true: 'underline'
-    }
-  }
-})
+      true: "underline",
+    },
+    isDisabled: {
+      true: "pointer-events-none opacity-50",
+    },
+  },
+});
 
 // export const linkStyles = tv({
 //   extend: baseStyles,
@@ -31,18 +35,29 @@ export const linkStyles = tv({
 export const Link = ({ className, ...props }: Rac.LinkProps) => (
   <Rac.Link
     {...props}
-    className={Rac.composeRenderProps(className, (className, renderProps) => linkStyles({ ...renderProps, className }))}
+    className={Rac.composeRenderProps(className, (className, renderProps) =>
+      linkStyles({ ...renderProps, className }),
+    )}
   />
-)
+);
 
-export interface LinkButtonProps extends Rac.LinkProps, VariantProps<typeof buttonStyles> {}
+export interface LinkButtonProps
+  extends Rac.LinkProps,
+    VariantProps<typeof buttonStyles> {}
 
-export const LinkButton = ({ className, variant, size, ...props }: LinkButtonProps) => (
+export const LinkButton = ({
+  className,
+  variant,
+  size,
+  ...props
+}: LinkButtonProps) => (
   <Rac.Link
     {...props}
-    className={Rac.composeRenderProps(className, (className, renderProps) => buttonStyles({ ...renderProps, variant, size, className }))}
+    className={Rac.composeRenderProps(className, (className, renderProps) =>
+      buttonStyles({ ...renderProps, variant, size, className }),
+    )}
   />
-)
+);
 
 /* shadcn MainNav
 <Link
@@ -60,59 +75,63 @@ export const LinkButton = ({ className, variant, size, ...props }: LinkButtonPro
 // TODO: linkExStyles: text-foreground/80 too subtle?
 export const linkExStyles = tv({
   extend: linkStyles,
-  base: 'text-foreground/80 transition-colors',
+  base: "text-foreground/80 transition-colors",
   variants: {
     isCurrent: {
-      true: 'text-foreground'
+      true: "text-foreground",
     },
     isHovered: {
-      true: 'text-foreground/80 no-underline'
-    }
-  }
-})
+      true: "text-foreground/80 no-underline",
+    },
+  },
+});
 
 export const LinkEx = ({ className, ...props }: Rac.LinkProps) => (
   <Rac.Link
     {...props}
-    className={Rac.composeRenderProps(className, (className, renderProps) => linkExStyles({ ...renderProps, className }))}
+    className={Rac.composeRenderProps(className, (className, renderProps) =>
+      linkExStyles({ ...renderProps, className }),
+    )}
   />
-)
+);
 
 // shadcn NavigationMenuLink: data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 [&_svg:not([class*='text-'])]:text-muted-foreground flex flex-col gap-1 rounded-sm p-2 text-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4
 export const navigationMenuLinkStyles = tv({
   base: `[&_svg:not([class*='text-'])]:text-muted-foreground flex flex-col gap-1 rounded-sm p-2 text-sm outline-none transition-all [&_svg:not([class*='size-'])]:size-4`,
   variants: {
     isCurrent: {
-      true: 'bg-accent/50 text-accent-foreground'
+      true: "bg-accent/50 text-accent-foreground",
     },
     isFocused: {
-      true: 'bg-accent text-accent-foreground'
+      true: "bg-accent text-accent-foreground",
     },
     isFocusVisible: {
-      true: 'ring-ring/50 outline-1 ring-[3px]'
+      true: "ring-ring/50 outline-1 ring-[3px]",
     },
     isHovered: {
-      true: 'bg-accent text-accent-foreground'
-    }
+      true: "bg-accent text-accent-foreground",
+    },
   },
   compoundVariants: [
     {
       isCurrent: true,
       isFocused: true,
-      className: 'bg-accent'
+      className: "bg-accent",
     },
     {
       isCurrent: true,
       isHovered: true,
-      className: 'bg-accent'
-    }
-  ]
-})
+      className: "bg-accent",
+    },
+  ],
+});
 
 export const NavigationMenuLink = ({ className, ...props }: Rac.LinkProps) => (
   <Rac.Link
     data-slot="navigation-menu-link"
-    className={Rac.composeRenderProps(className, (className, renderProps) => navigationMenuLinkStyles({ ...renderProps, className }))}
+    className={Rac.composeRenderProps(className, (className, renderProps) =>
+      navigationMenuLinkStyles({ ...renderProps, className }),
+    )}
     {...props}
   />
-)
+);
