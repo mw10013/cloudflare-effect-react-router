@@ -157,7 +157,7 @@ export default function RouteComponent() {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>
+      <main className="flex-grow">
         <SidebarTrigger />
         <Outlet />
       </main>
