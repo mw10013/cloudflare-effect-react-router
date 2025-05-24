@@ -6,7 +6,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@workspace/ui/components/pagination";
+} from "@workspace/ui/components/ui/pagination";
 
 export function PaginationDemo() {
   return (

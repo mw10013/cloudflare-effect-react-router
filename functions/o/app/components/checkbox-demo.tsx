@@ -1,7 +1,7 @@
 "use client"
 
-import { Checkbox } from "@workspace/ui/components/checkbox"
-import { Label } from "@workspace/ui/components/label"
+import { Checkbox } from "@workspace/ui/components/ui/checkbox"
+import { Label } from "@workspace/ui/components/ui/label"
 
 export function CheckboxDemo() {
   return (

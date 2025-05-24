@@ -11,7 +11,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
-} from "@workspace/ui/components/sidebar";
+} from "@workspace/ui/components/ui/sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -19,7 +19,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@workspace/ui/components/breadcrumb";
+} from "@workspace/ui/components/ui/breadcrumb";
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 
 /*

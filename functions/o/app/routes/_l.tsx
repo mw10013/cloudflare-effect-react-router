@@ -9,7 +9,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
-} from "@workspace/ui/components/sidebar";
+} from "@workspace/ui/components/ui/sidebar";
 import * as Rac from "react-aria-components";
 import { Outlet } from "react-router";
 

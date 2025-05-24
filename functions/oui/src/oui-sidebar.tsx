@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useSidebar } from "@workspace/ui/components/sidebar";
+import { useSidebar } from "@workspace/ui/components/ui/sidebar";
 import { PanelLeftIcon } from "lucide-react";
 import { composeTailwindRenderProps } from "./oui-base";
 import { Button } from "./oui-button";

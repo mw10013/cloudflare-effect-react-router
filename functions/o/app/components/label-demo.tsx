@@ -1,7 +1,7 @@
-import { Checkbox } from "@workspace/ui/components/checkbox";
-import { Input } from "@workspace/ui/components/input";
-import { Label } from "@workspace/ui/components/label";
-import { Textarea } from "@workspace/ui/components/textarea";
+import { Checkbox } from "@workspace/ui/components/ui/checkbox";
+import { Input } from "@workspace/ui/components/ui/input";
+import { Label } from "@workspace/ui/components/ui/label";
+import { Textarea } from "@workspace/ui/components/ui/textarea";
 
 export function LabelDemo() {
   return (

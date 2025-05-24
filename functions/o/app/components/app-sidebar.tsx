@@ -12,7 +12,7 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
   SidebarTrigger,
-} from "@workspace/ui/components/sidebar";
+} from "@workspace/ui/components/ui/sidebar";
 import { GalleryVerticalEnd } from "lucide-react";
 
 // This is sample data.

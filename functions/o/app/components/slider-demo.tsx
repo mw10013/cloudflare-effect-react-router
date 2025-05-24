@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Label } from "@workspace/ui/components/label";
-import { Slider } from "@workspace/ui/components/slider";
+import { Label } from "@workspace/ui/components/ui/label";
+import { Slider } from "@workspace/ui/components/ui/slider";
 
 export function SliderDemo() {
   return (

@@ -5,7 +5,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@workspace/ui/components/avatar";
+} from "@workspace/ui/components/ui/avatar";
 import {
   BadgeCheckIcon,
   BellIcon,

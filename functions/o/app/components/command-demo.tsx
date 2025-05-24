@@ -19,7 +19,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "@workspace/ui/components/command";
+} from "@workspace/ui/components/ui/command";
 
 export function CommandDemo() {
   const [open, setOpen] = React.useState(false);

@@ -5,14 +5,8 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@workspace/ui/components/avatar";
-import {
-  CheckIcon,
-  ChevronDownIcon,
-  ChevronsUpDown,
-  PlusCircleIcon,
-} from "lucide-react";
-import { Button } from "@workspace/ui/components/button";
+} from "@workspace/ui/components/ui/avatar";
+import { Button } from "@workspace/ui/components/ui/button";
 import {
   Command,
   CommandDialog,
@@ -23,13 +17,19 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "@workspace/ui/components/command";
+} from "@workspace/ui/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@workspace/ui/components/popover";
+} from "@workspace/ui/components/ui/popover";
 import { cn } from "@workspace/ui/lib/utils";
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronsUpDown,
+  PlusCircleIcon,
+} from "lucide-react";
 
 const frameworks = [
   {

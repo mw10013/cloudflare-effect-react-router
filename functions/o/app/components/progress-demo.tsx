@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Progress } from "@workspace/ui/components/progress";
+import { Progress } from "@workspace/ui/components/ui/progress";
 
 export function ProgressDemo() {
   const [progress, setProgress] = React.useState(13);
