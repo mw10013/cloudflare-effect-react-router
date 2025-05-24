@@ -1,6 +1,7 @@
 import type { Route } from "./+types/_index";
-import { Button } from "~/components/ui/button";
+import { Button, buttonStyles } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
+import { Link } from "~/components/ui/link";
 import { Table } from "~/components/ui/table";
 import { TextField } from "~/components/ui/text-field";
 
@@ -21,6 +22,10 @@ export function loader({ context }: Route.LoaderArgs) {
 export default function RouteComponent({ loaderData }: Route.ComponentProps) {
   return (
     <div className="mx-auto flex max-w-96 flex-col items-center gap-2 p-6">
+      <Link href="#">Link</Link>
+      <Link className={(renderProps) => buttonStyles({ ...renderProps })} href="#use-as-button">
+        Button Link
+      </Link>
       <IuiTableDemo />
       <Checkbox>Enable notifications</Checkbox>
       <TextField label="Name" />

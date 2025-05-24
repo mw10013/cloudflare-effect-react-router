@@ -7,8 +7,6 @@ import { buttonStyles } from "./oui-button";
 /**
  * Derived from shadcn CardDemo.
  */
-// ml-auto inline-block text-sm underline-offset-4 hover:underline
-// underline underline-offset-4
 export const linkStyles = tv({
   extend: baseStyles,
   base: "text-sm underline-offset-4",
@@ -20,13 +18,6 @@ export const linkStyles = tv({
       current: "data-[current]:underline",
       focus: "data-[focused]:underline",
     },
-
-    // isHovered: {
-    //   true: "underline",
-    // },
-    // isDisabled: {
-    //   true: "pointer-events-none opacity-50",
-    // },
   },
   defaultVariants: {
     underline: "none",
