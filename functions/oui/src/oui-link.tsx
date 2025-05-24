@@ -13,30 +13,33 @@ export const linkStyles = tv({
   extend: baseStyles,
   base: "text-sm underline-offset-4",
   variants: {
-    isHovered: {
-      true: "underline",
+    underline: {
+      none: "no-underline",
+      hover: "data-[hovered]:underline",
+      always: "underline",
+      current: "data-[current]:underline",
+      focus: "data-[focused]:underline",
     },
-    isDisabled: {
-      true: "pointer-events-none opacity-50",
-    },
+
+    // isHovered: {
+    //   true: "underline",
+    // },
+    // isDisabled: {
+    //   true: "pointer-events-none opacity-50",
+    // },
+  },
+  defaultVariants: {
+    underline: "none",
   },
 });
 
-// export const linkStyles = tv({
-//   extend: baseStyles,
-//   base: 'underline-offset-4',
-//   variants: {
-//     isHovered: {
-//       true: 'underline'
-//     }
-//   }
-// })
+interface LinkProps extends Rac.LinkProps, VariantProps<typeof linkStyles> {}
 
-export const Link = ({ className, ...props }: Rac.LinkProps) => (
+export const Link = ({ className, underline, ...props }: LinkProps) => (
   <Rac.Link
     {...props}
     className={Rac.composeRenderProps(className, (className, renderProps) =>
-      linkStyles({ ...renderProps, className }),
+      linkStyles({ ...renderProps, underline, className }),
     )}
   />
 );

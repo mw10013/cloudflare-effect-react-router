@@ -101,7 +101,7 @@ export function OuiLinkDemo() {
             </Oui.Button>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
-              <Oui.Link href="#" className="underline">
+              <Oui.Link href="#" underline="always">
                 Sign up
               </Oui.Link>
             </div>
@@ -109,12 +109,21 @@ export function OuiLinkDemo() {
         </Card>
       </div>
 
-      <Oui.Link href="/play">Play</Oui.Link>
-      <Oui.Link href="/play" className="underline">
-        Play
+      <Oui.Link href="#">Default Link</Oui.Link>
+      <Oui.Link href="#" underline="hover">
+        Hover Link
+      </Oui.Link>
+      <Oui.Link href="#" underline="always">
+        Always Link
+      </Oui.Link>
+      <Oui.Link href="#" underline="current">
+        Current Link
+      </Oui.Link>
+      <Oui.Link href="#" underline="focus">
+        Focus Link
       </Oui.Link>
       <Oui.Link href="/play" isDisabled>
-        Play
+        Disabled Link
       </Oui.Link>
       <Oui.LinkButton href="/play">Play</Oui.LinkButton>
       <Oui.LinkButton href="/play" variant="secondary" size="sm">
