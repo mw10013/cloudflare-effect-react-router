@@ -56,8 +56,8 @@ export function Modal({ className, ...props }: Rac.ModalOverlayProps) {
   return (
     <Rac.Modal
       data-slot="modal"
-      className={Rac.composeRenderProps(className, (cn, rp) =>
-        modalStyles({ ...rp, className: cn }),
+      className={Rac.composeRenderProps(className, (className, renderProps) =>
+        modalStyles({ ...renderProps, className }),
       )}
       {...props}
     />
