@@ -1,5 +1,13 @@
 import * as Oui from "@workspace/oui";
 import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@workspace/ui/components/ui/breadcrumb";
+import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
@@ -12,14 +20,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@workspace/ui/components/ui/sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@workspace/ui/components/ui/breadcrumb";
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 
 /*
@@ -59,6 +59,29 @@ function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
+          <SidebarGroupLabel>Oui vs Shadcn</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem key="oui">
+                <Oui.SidebarMenuButton>
+                  <a href="#">
+                    <Home />
+                    <span>Home</span>
+                  </a>
+                </Oui.SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem key="shadcn">
+                <SidebarMenuButton asChild>
+                  <a href="#">
+                    <Home />
+                    <span>Home</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -70,12 +93,23 @@ function AppSidebar() {
                       <span>{item.title}</span>
                     </a>
                   </Oui.SidebarMenuButton>
-                  {/* <SidebarMenuButton asChild>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
                     </a>
-                  </SidebarMenuButton> */}
+                  </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>

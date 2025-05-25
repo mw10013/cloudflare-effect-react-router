@@ -28,13 +28,16 @@ export const sidebarMenuButtonStyles = tv({
     "group-data-[collapsible=icon]:size-8!", // Applied if an ancestor with "group" class has data-collapsible="icon"
     "group-data-[collapsible=icon]:p-2!",
     // Child element styles
-    "[&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+    "[&>a>span:last-child]:truncate [&>a>svg]:size-4 [&>a>svg]:shrink-0",
   ],
   variants: {
     variant: {
-      default: "", // Base styles include common hover/focus/pressed states
-      outline:
-        "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] data-[hovered]:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
+      default: "", // Hover styles are in base; default variant doesn't need to re-specify them.
+      outline: [
+        "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))]",
+        "data-[hovered]:bg-sidebar-accent data-[hovered]:text-sidebar-accent-foreground",
+        "data-[hovered]:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
+      ],
     },
     size: {
       default: "h-8 text-sm",
