@@ -41,8 +41,20 @@ export const buttonStyles = tv({
   },
 });
 
-// export const buttonClassName = (props: VariantProps<typeof buttonStyles>) =>
-// (renderProps)
+type T = Parameters<
+          Extract<
+            React.ComponentProps<typeof Rac.Button>["className"],
+            (...args: any) => any
+          >
+        >[0]
+
+export const buttonClassName = (props: VariantProps<typeof buttonStyles>) =>
+(renderProps: Partial<Parameters<
+          Extract<
+            React.ComponentProps<typeof Rac.Button>["className"],
+            (...args: any) => any
+          >
+        >[0]>) => buttonStyles({...renderProps, ...props });
 
 export interface ButtonProps
   extends Rac.ButtonProps,

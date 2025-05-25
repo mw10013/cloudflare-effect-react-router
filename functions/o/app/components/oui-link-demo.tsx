@@ -125,26 +125,22 @@ export function OuiLinkDemo() {
       <Oui.Link href="/play" isDisabled>
         Disabled Link
       </Oui.Link>
+      <Oui.Link href="#" className={Oui.buttonClassName({})}>
+        Button Link
+      </Oui.Link>
       <Oui.Link
         href="#"
-        className={(renderProps) => Oui.buttonStyles({ ...renderProps })}
+        className={Oui.buttonClassName({ variant: "outline" })}
       >
         Button Link
       </Oui.Link>
       <Oui.Link
         href="#"
-        className={(renderProps) =>
-          Oui.buttonStyles({ ...renderProps, variant: "outline" })
-        }
+        className={Oui.buttonClassName({ variant: "destructive" })}
       >
         Button Link
       </Oui.Link>
-      <Oui.Link
-        href="#"
-        className={(renderProps) =>
-          Oui.buttonStyles({ ...renderProps, variant: "destructive" })
-        }
-      >
+      <Oui.Link isDisabled href="#" className={Oui.buttonClassName({})}>
         Button Link
       </Oui.Link>
     </div>
