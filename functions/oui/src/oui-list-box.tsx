@@ -56,9 +56,12 @@ export const ListBoxItem = <T extends object>({
       children,
       (
         children,
-        renderProps: Rac.ListBoxItemRenderProps & {
-          defaultChildren: React.ReactNode;
-        },
+        renderProps: Parameters<
+          Extract<
+            React.ComponentProps<typeof Rac.ListBoxItem>["children"],
+            (...args: any) => any
+          >
+        >[0],
       ) => (
         <>
           {renderProps.isSelected && (
