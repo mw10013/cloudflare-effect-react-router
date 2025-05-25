@@ -14,6 +14,8 @@ export const sidebarMenuButtonStyles = tv({
   base: [
     "peer/menu-button ring-sidebar-ring flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none",
     "transition-[width,height,padding]",
+    // Apply flex properties to direct 'a' child for proper icon-text layout
+    "[&>a]:flex [&>a]:w-full [&>a]:items-center [&>a]:gap-2",
     // RAC data attributes for states
     "data-[hovered]:bg-sidebar-accent data-[hovered]:text-sidebar-accent-foreground",
     "data-[focus-visible]:ring-2", // Assumes ring color is set by `ring-sidebar-ring`
