@@ -98,21 +98,22 @@ export interface SidebarListBoxItemProps<T extends object = object>
 /**
  * Derived from shadcn SidebarMenuButton and SidebarMenuItem
  */
-export const SidebarListBoxItem = <T extends object>(
-  props: SidebarListBoxItemProps<T>,
-) => {
+export const SidebarListBoxItem = <T extends object>({
+  className,
+  variant,
+  size,
+  ...props
+}: SidebarListBoxItemProps<T>) => {
   return (
     <Rac.ListBoxItem<T>
-      {...props} // Spreads all props, including children and RAC-specific ones.
-      className={Rac.composeRenderProps(
-        props.className,
-        (resolvedClassName, renderProps) =>
-          sidebarListBoxItemStyles({
-            ...renderProps,
-            variant: props.variant,
-            size: props.size,
-            className: resolvedClassName,
-          }),
+      {...props}
+      className={Rac.composeRenderProps(className, (className, renderProps) =>
+        sidebarListBoxItemStyles({
+          ...renderProps,
+          variant,
+          size,
+          className,
+        }),
       )}
     />
   );
