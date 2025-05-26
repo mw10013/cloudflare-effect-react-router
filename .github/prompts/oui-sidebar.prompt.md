@@ -1,5 +1,5 @@
 ---
-mode: "edit"
+mode: "agent"
 description: "Guidelines for simple Oui Sidebar component"
 ---
 
