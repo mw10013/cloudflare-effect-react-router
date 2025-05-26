@@ -61,7 +61,7 @@ function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>List Box</SidebarGroupLabel>
           <SidebarGroupContent>
-            <Oui.SidebarListBox items={items}>
+            <Oui.SidebarListBox aria-label="List Box" items={items}>
               {(item) => (
                 <Oui.SidebarListBoxItem
                   key={item.id}

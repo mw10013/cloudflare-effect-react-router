@@ -19,6 +19,7 @@ export function SidebarTrigger({
 
   return (
     <Button
+      aria-label="Toggle Sidebar"
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       variant="ghost"
@@ -31,7 +32,6 @@ export function SidebarTrigger({
       {...props}
     >
       <PanelLeftIcon />
-      <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );
 }

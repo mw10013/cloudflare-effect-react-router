@@ -1,130 +1,127 @@
+import * as Oui from "@workspace/oui";
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
 } from "@workspace/ui/components/ui/sidebar";
-import * as Rac from "react-aria-components";
 import { Outlet } from "react-router";
 
 const items = [
   {
-    title: "Accordion",
-    url: "/demo/accordion",
+    id: "Accordion",
+    href: "/demo/accordion",
   },
   {
-    title: "Autocomplete",
-    url: "/demo/autocomplete",
+    id: "Autocomplete",
+    href: "/demo/autocomplete",
   },
   {
-    title: "Button",
-    url: "/demo/button",
+    id: "Button",
+    href: "/demo/button",
   },
   {
-    title: "Checkbox",
-    url: "/demo/checkbox",
+    id: "Checkbox",
+    href: "/demo/checkbox",
   },
   {
-    title: "Combo Box",
-    url: "/demo/combo-box",
+    id: "Combo Box",
+    href: "/demo/combo-box",
   },
   {
-    title: "Dialog",
-    url: "/demo/dialog",
+    id: "Dialog",
+    href: "/demo/dialog",
   },
   {
-    title: "Form",
-    url: "/demo/form",
+    id: "Form",
+    href: "/demo/form",
   },
   {
-    title: "Input",
-    url: "/demo/input",
+    id: "Input",
+    href: "/demo/input",
   },
   {
-    title: "Label",
-    url: "/demo/label",
+    id: "Label",
+    href: "/demo/label",
   },
   {
-    title: "Link",
-    url: "/demo/link",
+    id: "Link",
+    href: "/demo/link",
   },
   {
-    title: "Menu",
-    url: "/demo/menu",
+    id: "Menu",
+    href: "/demo/menu",
   },
   {
-    title: "Modal",
-    url: "/demo/modal",
+    id: "Modal",
+    href: "/demo/modal",
   },
   {
-    title: "Number Field",
-    url: "/demo/number-field",
-  },
-  // {
-  //   title: "Pagination",
-  //   url: "/demo/pagination",
-  // },
-  {
-    title: "Popover",
-    url: "/demo/popover",
+    id: "Number Field",
+    href: "/demo/number-field",
   },
   // {
-  //   title: "Progress",
-  //   url: "/demo/progress",
+  //   id: "Pagination",
+  //   href: "/demo/pagination",
   // },
   {
-    title: "Radio Group",
-    url: "/demo/radio-group",
+    id: "Popover",
+    href: "/demo/popover",
+  },
+  // {
+  //   id: "Progress",
+  //   href: "/demo/progress",
+  // },
+  {
+    id: "Radio Group",
+    href: "/demo/radio-group",
   },
   {
-    title: "Search Field",
-    url: "/demo/search-field",
+    id: "Search Field",
+    href: "/demo/search-field",
   },
   {
-    title: "Select",
-    url: "/demo/select",
+    id: "Select",
+    href: "/demo/select",
   },
   {
-    title: "Separator",
-    url: "/demo/separator",
+    id: "Separator",
+    href: "/demo/separator",
   },
   {
-    title: "Sheet",
-    url: "/demo/sheet",
+    id: "Sheet",
+    href: "/demo/sheet",
   },
   {
-    title: "Sidebar",
-    url: "/demo/sidebar",
+    id: "Sidebar",
+    href: "/demo/sidebar",
   },
   {
-    title: "Slider",
-    url: "/demo/slider",
+    id: "Slider",
+    href: "/demo/slider",
   },
   {
-    title: "Switch",
-    url: "/demo/switch",
+    id: "Switch",
+    href: "/demo/switch",
   },
   {
-    title: "Table",
-    url: "/demo/table",
+    id: "Table",
+    href: "/demo/table",
   },
   {
-    title: "Text Field",
-    url: "/demo/text-field",
+    id: "Text Field",
+    href: "/demo/text-field",
   },
   {
-    title: "Toast",
-    url: "/demo/toast",
+    id: "Toast",
+    href: "/demo/toast",
   },
   {
-    title: "Sandbox",
-    url: "/sandbox",
+    id: "Sandbox",
+    href: "/sandbox",
   },
 ];
 
@@ -135,17 +132,17 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Components</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Rac.Link href={item.url}>
-                      <span>{item.title}</span>
-                    </Rac.Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
+            <Oui.SidebarListBox aria-label="Components" items={items}>
+              {(item) => (
+                <Oui.SidebarListBoxItem
+                  key={item.id}
+                  id={item.id}
+                  href={item.href}
+                >
+                  {item.id}
+                </Oui.SidebarListBoxItem>
+              )}
+            </Oui.SidebarListBox>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
@@ -158,7 +155,7 @@ export default function RouteComponent() {
     <SidebarProvider>
       <AppSidebar />
       <main className="flex-grow">
-        <SidebarTrigger />
+        <Oui.SidebarTrigger />
         <Outlet />
       </main>
     </SidebarProvider>
