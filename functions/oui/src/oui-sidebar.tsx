@@ -11,6 +11,8 @@ import { Button } from "./oui-button";
 */
 
 export function SidebarTrigger({
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
   className,
   onPress,
   ...props
@@ -19,7 +21,8 @@ export function SidebarTrigger({
 
   return (
     <Button
-      aria-label="Toggle Sidebar"
+      aria-label={!ariaLabel && !ariaLabelledBy ? "Toggle sidebar" : ariaLabel}
+      aria-labelledby={ariaLabelledBy}
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       variant="ghost"
