@@ -5,6 +5,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarInset,
   SidebarProvider,
 } from "@workspace/ui/components/ui/sidebar";
 import { Outlet } from "react-router";
@@ -149,10 +150,15 @@ export default function RouteComponent() {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="flex-grow">
-        <Oui.SidebarTrigger />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2 px-4">
+            <Oui.SidebarTrigger className="-ml-1" />
+            <Oui.Separator orientation="vertical" className="mr-2 h-4" />
+          </div>
+        </header>
         <Outlet />
-      </main>
+      </SidebarInset>
     </SidebarProvider>
   );
 }
