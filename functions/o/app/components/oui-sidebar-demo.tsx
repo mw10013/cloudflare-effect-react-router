@@ -28,28 +28,28 @@ import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 
 const items = [
   {
-    title: "Home",
-    url: "/",
+    id: "Home",
+    href: "/",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
+    id: "Inbox",
+    href: "#",
     icon: Inbox,
   },
   {
-    title: "Calendar",
-    url: "#",
+    id: "Calendar",
+    href: "#",
     icon: Calendar,
   },
   {
-    title: "Search",
-    url: "#",
+    id: "Search",
+    href: "#",
     icon: Search,
   },
   {
-    title: "Settings",
-    url: "#",
+    id: "Settings",
+    href: "#",
     icon: Settings,
   },
 ];
@@ -64,13 +64,13 @@ function AppSidebar() {
             <Oui.SidebarListBox items={items}>
               {(item) => (
                 <Oui.SidebarListBoxItem
-                  key={item.title}
-                  id={item.title}
-                  href={item.url}
-                  textValue={item.title}
+                  key={item.id}
+                  id={item.id}
+                  href={item.href}
+                  textValue={item.id}
                 >
                   <item.icon />
-                  <span>{item.title}</span>
+                  <span>{item.id}</span>
                 </Oui.SidebarListBoxItem>
               )}
             </Oui.SidebarListBox>
@@ -81,11 +81,11 @@ function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <a href={item.href}>
                       <item.icon />
-                      <span>{item.title}</span>
+                      <span>{item.id}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
