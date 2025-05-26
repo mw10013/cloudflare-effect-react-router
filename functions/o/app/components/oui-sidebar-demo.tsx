@@ -61,9 +61,21 @@ function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>List Box</SidebarGroupLabel>
           <SidebarGroupContent>
-            <Oui.ListBox className="flex w-full min-w-0 flex-col gap-1">
-              <Oui.SidebarListBoxItem href="/">Foo</Oui.SidebarListBoxItem>
-              <Oui.SidebarListBoxItem href="/">Bar</Oui.SidebarListBoxItem>
+            <Oui.ListBox
+              items={items}
+              className="flex w-full min-w-0 flex-col gap-1"
+            >
+              {(item) => (
+                <Oui.SidebarListBoxItem
+                  key={item.title}
+                  id={item.title}
+                  href={item.url}
+                  textValue={item.title}
+                >
+                  <item.icon />
+                  <span>{item.title}</span>
+                </Oui.SidebarListBoxItem>
+              )}
             </Oui.ListBox>
           </SidebarGroupContent>
         </SidebarGroup>
