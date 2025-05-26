@@ -43,18 +43,17 @@ export function SidebarTrigger({
  * Derived from shadcn SidebarMenu
  */
 export function SidebarListBox<T extends object>({
-  // Constrain T to object
   className,
   ...props
 }: Rac.ListBoxProps<T>) {
   return (
-    <Rac.ListBox<T> // Pass T to Rac.ListBox
+    <Rac.ListBox<T>
       className={composeTailwindRenderProps(
         className,
-        "flex w-full min-w-0 flex-col gap-1 p-0", // reset padding
+        "flex w-full min-w-0 flex-col gap-1",
       )}
       data-slot="sidebar-listbox"
-      {...props} // Spread props here as well for ListBox
+      {...props}
     />
   );
 }
