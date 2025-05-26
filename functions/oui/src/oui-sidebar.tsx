@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSidebar } from "@workspace/ui/components/ui/sidebar";
 import { PanelLeftIcon } from "lucide-react";
 import * as Rac from "react-aria-components";
-import { tv, VariantProps } from "tailwind-variants";
+import { tv, VariantProps } from "tailwind-variants"; // Ensure VariantProps is imported
 import { composeTailwindRenderProps } from "./oui-base";
 import { Button } from "./oui-button";
 
@@ -33,6 +33,26 @@ export function SidebarTrigger({
       <PanelLeftIcon />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
+  );
+}
+
+/**
+ * Derived from shadcn SidebarMenu
+ */
+export function SidebarListBox<T extends object>({
+  // Constrain T to object
+  className,
+  ...props
+}: Rac.ListBoxProps<T>) {
+  return (
+    <Rac.ListBox<T> // Pass T to Rac.ListBox
+      className={composeTailwindRenderProps(
+        className,
+        "flex w-full min-w-0 flex-col gap-1 p-0", // reset padding
+      )}
+      data-slot="sidebar-listbox"
+      {...props} // Spread props here as well for ListBox
+    />
   );
 }
 
@@ -71,14 +91,29 @@ export const sidebarListBoxItemStyles = tv({
   },
 });
 
-export const SidebarListBoxItem = <T extends object>({
-  className,
-  ...props
-}: Rac.ListBoxItemProps) => (
-  <Rac.ListBoxItem
-    {...props}
-    className={Rac.composeRenderProps(className, (className, renderProps) =>
-      sidebarListBoxItemStyles({ ...renderProps, className }),
-    )}
-  ></Rac.ListBoxItem>
-);
+export interface SidebarListBoxItemProps<T extends object = object>
+  extends Rac.ListBoxItemProps<T>,
+    VariantProps<typeof sidebarListBoxItemStyles> {}
+
+/**
+ * Derived from shadcn SidebarMenuButton and SidebarMenuItem
+ */
+export const SidebarListBoxItem = <T extends object>(
+  props: SidebarListBoxItemProps<T>,
+) => {
+  return (
+    <Rac.ListBoxItem<T>
+      {...props} // Spreads all props, including children and RAC-specific ones.
+      className={Rac.composeRenderProps(
+        props.className,
+        (resolvedClassName, renderProps) =>
+          sidebarListBoxItemStyles({
+            ...renderProps,
+            variant: props.variant,
+            size: props.size,
+            className: resolvedClassName,
+          }),
+      )}
+    />
+  );
+};

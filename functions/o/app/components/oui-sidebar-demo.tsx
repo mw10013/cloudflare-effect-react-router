@@ -29,7 +29,7 @@ import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/",
     icon: Home,
   },
   {
@@ -61,10 +61,7 @@ function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>List Box</SidebarGroupLabel>
           <SidebarGroupContent>
-            <Oui.ListBox
-              items={items}
-              className="flex w-full min-w-0 flex-col gap-1"
-            >
+            <Oui.SidebarListBox items={items}>
               {(item) => (
                 <Oui.SidebarListBoxItem
                   key={item.title}
@@ -76,7 +73,7 @@ function AppSidebar() {
                   <span>{item.title}</span>
                 </Oui.SidebarListBoxItem>
               )}
-            </Oui.ListBox>
+            </Oui.SidebarListBox>
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
