@@ -65,7 +65,6 @@ function AppSidebar() {
               {(item) => (
                 <Oui.SidebarListBoxItem
                   key={item.id}
-                  id={item.id}
                   href={item.href}
                   textValue={item.id}
                 >

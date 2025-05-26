@@ -6,7 +6,6 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarProvider,
-  SidebarTrigger,
 } from "@workspace/ui/components/ui/sidebar";
 import { Outlet } from "react-router";
 
@@ -134,11 +133,7 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <Oui.SidebarListBox aria-label="Components" items={items}>
               {(item) => (
-                <Oui.SidebarListBoxItem
-                  key={item.id}
-                  id={item.id}
-                  href={item.href}
-                >
+                <Oui.SidebarListBoxItem key={item.id} href={item.href}>
                   {item.id}
                 </Oui.SidebarListBoxItem>
               )}
