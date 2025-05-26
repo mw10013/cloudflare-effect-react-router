@@ -59,6 +59,15 @@ function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
+          <SidebarGroupLabel>List Box</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <Oui.ListBox className="flex w-full min-w-0 flex-col gap-1">
+              <Oui.SidebarListBoxItem href="/">Foo</Oui.SidebarListBoxItem>
+              <Oui.SidebarListBoxItem href="/">Bar</Oui.SidebarListBoxItem>
+            </Oui.ListBox>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
           <SidebarGroupLabel>Oui vs Shadcn</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>

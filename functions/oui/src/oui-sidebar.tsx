@@ -110,3 +110,18 @@ export function SidebarTrigger({
     </Button>
   );
 }
+
+export const sidebarListBoxItemStyles = tv({})
+
+export const SidebarListBoxItem = <T extends object>({
+  className,
+  ...props
+}: Rac.ListBoxItemProps) => (
+  <Rac.ListBoxItem
+    {...props}
+    className={Rac.composeRenderProps(className, (className, renderProps) =>
+      sidebarListBoxItemStyles({ ...renderProps, className }),
+    )}
+  >
+  </Rac.ListBoxItem>
+);
