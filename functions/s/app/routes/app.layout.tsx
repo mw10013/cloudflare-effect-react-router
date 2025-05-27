@@ -3,7 +3,7 @@ import type { Route } from './+types/app.layout'
 import { Effect } from 'effect'
 import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react'
 import * as Rac from 'react-aria-components'
-import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@workspace/ui/components/ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,20 +12,21 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '~/components/ui/dropdown-menu'
+} from '@workspace/ui/components/ui/dropdown-menu'
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
   useSidebar
-} from '~/components/ui/sidebar'
+} from '@workspace/ui/components/ui/sidebar'
 import * as ReactRouter from '~/lib/ReactRouter'
 import { Outlet } from 'react-router'
 

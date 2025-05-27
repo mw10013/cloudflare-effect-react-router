@@ -1,11 +1,11 @@
-import type { Route } from './+types/app.$accountId'
-import React from 'react'
-import * as Oui from '@workspace/oui'
-import { Effect, Schema } from 'effect'
-import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react'
-import * as Rac from 'react-aria-components'
-import { Outlet, redirect, useNavigate } from 'react-router'
-import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+import type { Route } from "./+types/app.$accountId";
+import React from "react";
+import * as Oui from "@workspace/oui";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/ui/avatar";
 import {
   Sidebar,
   SidebarContent,
@@ -18,51 +18,76 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
-  useSidebar
-} from '~/components/ui/sidebar'
-import { Account, AccountWithUser } from '~/lib/Domain'
-import { IdentityMgr } from '~/lib/IdentityMgr'
-import * as ReactRouter from '~/lib/ReactRouter'
+  useSidebar,
+} from "@workspace/ui/components/ui/sidebar";
+import { Effect, Schema } from "effect";
+import {
+  BadgeCheck,
+  Bell,
+  ChevronsUpDown,
+  CreditCard,
+  LogOut,
+  Sparkles,
+} from "lucide-react";
+import * as Rac from "react-aria-components";
+import { Outlet, redirect, useNavigate } from "react-router";
+import { Account, AccountWithUser } from "~/lib/Domain";
+import { IdentityMgr } from "~/lib/IdentityMgr";
+import * as ReactRouter from "~/lib/ReactRouter";
 
-const accountMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlewareEffect(({ params, context }) =>
-  Effect.gen(function* () {
-    const appLoadContext = context.get(ReactRouter.appLoadContext)
-    const AccountIdFromPath = Schema.compose(Schema.NumberFromString, Account.fields.accountId)
-    const accountId = yield* Schema.decodeUnknown(AccountIdFromPath)(params.accountId)
-    const account = yield* Effect.fromNullable(appLoadContext.session.get('sessionUser')).pipe(
-      Effect.flatMap((sessionUser) =>
-        IdentityMgr.getAccountForMember({
-          accountId,
-          userId: sessionUser.userId
-        })
-      ),
-      Effect.tapError((e) => Effect.log(`accountMiddleware accountId error:`, e)),
-      Effect.orElseSucceed(() => null)
-    )
-    if (!account) {
-      return yield* Effect.fail(redirect('/app'))
-    }
-    context.set(ReactRouter.appLoadContext, {
-      ...appLoadContext,
-      account
-    })
-  })
-)
+const accountMiddleware: Route.unstable_MiddlewareFunction =
+  ReactRouter.middlewareEffect(({ params, context }) =>
+    Effect.gen(function* () {
+      const appLoadContext = context.get(ReactRouter.appLoadContext);
+      const AccountIdFromPath = Schema.compose(
+        Schema.NumberFromString,
+        Account.fields.accountId,
+      );
+      const accountId = yield* Schema.decodeUnknown(AccountIdFromPath)(
+        params.accountId,
+      );
+      const account = yield* Effect.fromNullable(
+        appLoadContext.session.get("sessionUser"),
+      ).pipe(
+        Effect.flatMap((sessionUser) =>
+          IdentityMgr.getAccountForMember({
+            accountId,
+            userId: sessionUser.userId,
+          }),
+        ),
+        Effect.tapError((e) =>
+          Effect.log(`accountMiddleware accountId error:`, e),
+        ),
+        Effect.orElseSucceed(() => null),
+      );
+      if (!account) {
+        return yield* Effect.fail(redirect("/app"));
+      }
+      context.set(ReactRouter.appLoadContext, {
+        ...appLoadContext,
+        account,
+      });
+    }),
+  );
 
-export const unstable_middleware = [accountMiddleware]
+export const unstable_middleware = [accountMiddleware];
 
 export const loader = ReactRouter.routeEffect(({ context }) =>
   Effect.gen(function* () {
-    const appLoadContext = context.get(ReactRouter.appLoadContext)
-    const sessionUser = yield* Effect.fromNullable(appLoadContext.session.get('sessionUser'))
+    const appLoadContext = context.get(ReactRouter.appLoadContext);
+    const sessionUser = yield* Effect.fromNullable(
+      appLoadContext.session.get("sessionUser"),
+    );
     return {
       account: yield* Effect.fromNullable(appLoadContext.account),
-      accounts: yield* IdentityMgr.getAccounts(sessionUser)
-    }
-  })
-)
+      accounts: yield* IdentityMgr.getAccounts(sessionUser),
+    };
+  }),
+);
 
-export default function RouteComponent({ loaderData: { account, accounts } }: Route.ComponentProps) {
+export default function RouteComponent({
+  loaderData: { account, accounts },
+}: Route.ComponentProps) {
   return (
     <div className="">
       <SidebarProvider>
@@ -75,30 +100,36 @@ export default function RouteComponent({ loaderData: { account, accounts } }: Ro
         </main>
       </SidebarProvider>
     </div>
-  )
+  );
 }
 
-export function AppSidebar({ account, accounts }: { account: AccountWithUser; accounts: AccountWithUser[] }) {
+export function AppSidebar({
+  account,
+  accounts,
+}: {
+  account: AccountWithUser;
+  accounts: AccountWithUser[];
+}) {
   const navItems = [
     {
-      title: 'Account Home',
-      url: `/app/${account.accountId}`
+      title: "Account Home",
+      url: `/app/${account.accountId}`,
     },
     {
-      title: 'Members',
-      url: `/app/${account.accountId}/members`
+      title: "Members",
+      url: `/app/${account.accountId}/members`,
     },
     {
-      title: 'Billing',
-      url: `/app/${account.accountId}/billing`
-    }
-  ]
+      title: "Billing",
+      url: `/app/${account.accountId}/billing`,
+    },
+  ];
 
   const YourAppLogoIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 100 100" {...props}>
       <circle cx="50" cy="50" r="40" fill="currentColor" />
     </svg>
-  )
+  );
 
   return (
     <Sidebar>
@@ -107,7 +138,12 @@ export function AppSidebar({ account, accounts }: { account: AccountWithUser; ac
           <Rac.Link href="/" aria-label="Home">
             <YourAppLogoIcon className="text-primary size-7" />
           </Rac.Link>
-          {accounts.length > 0 && <AccountSwitcher accounts={accounts} currentAccountId={account.accountId} />}
+          {accounts.length > 0 && (
+            <AccountSwitcher
+              accounts={accounts}
+              currentAccountId={account.accountId}
+            />
+          )}
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -133,34 +169,36 @@ export function AppSidebar({ account, accounts }: { account: AccountWithUser; ac
             // NavUser now uses the user from the current account
             name: account.user.name ?? account.user.email,
             email: account.user.email,
-            avatar: '/avatars/shadcn.jpg'
+            avatar: "/avatars/shadcn.jpg",
           }}
         />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
 
 export function AccountSwitcher({
   accounts,
-  currentAccountId
+  currentAccountId,
 }: {
-  accounts: AccountWithUser[] // Updated prop type
-  currentAccountId: number
+  accounts: AccountWithUser[]; // Updated prop type
+  currentAccountId: number;
 }) {
-  const navigate = useNavigate()
-  const activeAccount = accounts.find((acc) => acc.accountId === currentAccountId)
+  const navigate = useNavigate();
+  const activeAccount = accounts.find(
+    (acc) => acc.accountId === currentAccountId,
+  );
 
   if (!activeAccount) {
     // This case should ideally be handled by the check in AppSidebar
     // or if accounts list is empty.
-    return null
+    return null;
   }
 
   const handleAccountSelection = (key: React.Key) => {
     // key will be accountId as a string
-    navigate(`/app/${key}`)
-  }
+    navigate(`/app/${key}`);
+  };
 
   return (
     <Oui.MenuEx
@@ -173,7 +211,9 @@ export function AccountSwitcher({
         >
           <div className="grid leading-tight">
             {/* Display user's email as the account name */}
-            <span className="truncate font-medium">{activeAccount.user.email}</span>
+            <span className="truncate font-medium">
+              {activeAccount.user.email}
+            </span>
             {/* Optionally display planName if needed and available */}
             {/* activeAccount.planName && <span className="text-muted-foreground truncate text-xs">{activeAccount.planName}</span> */}
           </div>
@@ -195,19 +235,19 @@ export function AccountSwitcher({
         ))}
       </Rac.MenuSection>
     </Oui.MenuEx>
-  )
+  );
 }
 
 export function NavUser({
-  user
+  user,
 }: {
   user: {
-    name: string
-    email: string
-    avatar: string
-  }
+    name: string;
+    email: string;
+    avatar: string;
+  };
 }) {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
 
   return (
     <SidebarMenu>
@@ -279,5 +319,5 @@ export function NavUser({
         </Oui.MenuEx>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }

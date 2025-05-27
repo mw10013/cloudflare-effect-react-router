@@ -13,7 +13,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarRail,
-} from "~/components/ui/sidebar"
+} from "@workspace/ui/components/ui/sidebar"
 
 // This is sample data.
 const data = {

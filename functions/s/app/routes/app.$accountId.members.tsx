@@ -3,7 +3,7 @@ import * as Oui from '@workspace/oui'
 import { SchemaEx } from '@workspace/shared'
 import { Effect, Schema } from 'effect'
 import * as Rac from 'react-aria-components'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '~/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@workspace/ui/components/ui/card'
 import { IdentityMgr } from '~/lib/IdentityMgr'
 import * as ReactRouter from '~/lib/ReactRouter'
 

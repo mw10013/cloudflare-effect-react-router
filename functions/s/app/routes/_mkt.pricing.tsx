@@ -2,8 +2,8 @@ import type { Route } from './+types/_mkt.pricing'
 import { SchemaEx } from '@workspace/shared'
 import { Effect, Schema } from 'effect'
 import { redirect } from 'react-router'
-import { Button } from '~/components/ui/button' // Import Button
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '~/components/ui/card' // Import Card components
+import { Button } from '@workspace/ui/components/ui/button'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@workspace/ui/components/ui/card' // Import Card components
 import * as ReactRouter from '~/lib/ReactRouter'
 import { Stripe } from '~/lib/Stripe'
 

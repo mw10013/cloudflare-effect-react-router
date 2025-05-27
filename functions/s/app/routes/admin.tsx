@@ -13,7 +13,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger
-} from '~/components/ui/sidebar'
+} from '@workspace/ui/components/ui/sidebar'
 import * as ReactRouter from '~/lib/ReactRouter'
 
 export const adminMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlewareEffect(({ context }) =>
