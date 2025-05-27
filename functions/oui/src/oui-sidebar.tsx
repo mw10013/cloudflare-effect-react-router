@@ -2,12 +2,15 @@ import * as React from "react";
 import { useSidebar } from "@workspace/ui/components/ui/sidebar";
 import { PanelLeftIcon } from "lucide-react";
 import * as Rac from "react-aria-components";
+import { twMerge } from "tailwind-merge";
 import { tv, VariantProps } from "tailwind-variants"; // Ensure VariantProps is imported
 import { composeTailwindRenderProps } from "./oui-base";
 import { Button } from "./oui-button";
 
 /*
 #fetch https://ui.shadcn.com/docs/components/sidebar
+#fetch https://react-spectrum.adobe.com/react-aria/ListBox.html
+#fetch https://react-spectrum.adobe.com/react-aria/examples/contact-list.html
 */
 
 export function SidebarTrigger({
@@ -55,6 +58,31 @@ export function SidebarListBox<T extends object>({
       data-slot="sidebar-listbox"
       {...props}
     />
+  );
+}
+
+export interface SidebarListBoxSectionProps<T extends object = object>
+  extends Rac.ListBoxSectionProps<T> {
+  title?: React.ReactNode;
+}
+
+/**
+ * Derived from shadcn SidebarGroup, SidebarGroupLabel, and SidebarGroupContent
+ */
+export function SidebarListBoxSection<T extends object>({
+  className,
+  title,
+  items,
+  children,
+  ...props
+}: SidebarListBoxSectionProps<T>) {
+  return (
+    <Rac.ListBoxSection<T> className={twMerge("", className)} {...props}>
+      <Rac.Header className="">{title}</Rac.Header>
+      <div className="">
+        <Rac.Collection items={items}>{children}</Rac.Collection>
+      </div>
+    </Rac.ListBoxSection>
   );
 }
 

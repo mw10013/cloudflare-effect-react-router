@@ -18,12 +18,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-  SidebarTrigger,
 } from "@workspace/ui/components/ui/sidebar";
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 
 /*
 #fetch https://ui.shadcn.com/docs/components/sidebar
+#fetch https://react-spectrum.adobe.com/react-aria/examples/contact-list.html
 */
 
 const items = [
