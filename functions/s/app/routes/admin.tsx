@@ -1,4 +1,4 @@
-import type { Route } from "./+types/app._index";
+import type { Route } from "./+types/admin";
 import * as Oui from "@workspace/oui";
 import {
   Sidebar,
@@ -7,7 +7,6 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarProvider,
-  SidebarTrigger,
 } from "@workspace/ui/components/ui/sidebar";
 import { Effect } from "effect";
 import { Outlet, redirect } from "react-router";
