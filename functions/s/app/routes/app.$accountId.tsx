@@ -13,9 +13,6 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
   useSidebar,
@@ -110,18 +107,18 @@ export function AppSidebar({
   account: AccountWithUser;
   accounts: AccountWithUser[];
 }) {
-  const navItems = [
+  const items = [
     {
-      title: "Account Home",
-      url: `/app/${account.accountId}`,
+      id: "Account Home",
+      href: `/app/${account.accountId}`,
     },
     {
-      title: "Members",
-      url: `/app/${account.accountId}/members`,
+      id: "Members",
+      href: `/app/${account.accountId}/members`,
     },
     {
-      title: "Billing",
-      url: `/app/${account.accountId}/billing`,
+      id: "Billing",
+      href: `/app/${account.accountId}/billing`,
     },
   ];
 
@@ -149,17 +146,13 @@ export function AppSidebar({
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {navItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Rac.Link href={item.url}>
-                      <span>{item.title}</span>
-                    </Rac.Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
+            <Oui.SidebarListBox aria-label="Account Navigation" items={items}>
+              {(item) => (
+                <Oui.SidebarListBoxItem key={item.id} href={item.href}>
+                  {item.id}
+                </Oui.SidebarListBoxItem>
+              )}
+            </Oui.SidebarListBox>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
@@ -250,74 +243,70 @@ export function NavUser({
   const { isMobile } = useSidebar();
 
   return (
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <Oui.MenuEx
-          className="min-w-56 rounded-lg"
-          triggerElement={
-            <Oui.Button
-              variant="ghost"
-              className="data-[hovered]:bg-sidebar-accent data-[hovered]:text-sidebar-accent-foreground data-[pressed]:bg-sidebar-accent data-[pressed]:text-sidebar-accent-foreground h-12 w-full justify-start overflow-hidden rounded-md p-2 text-left text-sm font-normal"
-            >
-              <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto size-4" />
-            </Oui.Button>
-          }
+    <Oui.MenuEx
+      className="min-w-56 rounded-lg"
+      triggerElement={
+        <Oui.Button
+          variant="ghost"
+          className="data-[hovered]:bg-sidebar-accent data-[hovered]:text-sidebar-accent-foreground data-[pressed]:bg-sidebar-accent data-[pressed]:text-sidebar-accent-foreground h-12 w-full justify-start overflow-hidden rounded-md p-2 text-left text-sm font-normal"
         >
-          <Rac.MenuSection>
-            <Rac.Header>
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
-                </div>
-              </div>
-            </Rac.Header>
-          </Rac.MenuSection>
-          <Oui.Separator variant="menu" />
-          <Rac.MenuSection>
-            <Oui.MenuItem id="upgradeToPro" textValue="Upgrade to Pro">
-              <Sparkles className="mr-2 size-4" />
-              Upgrade to Pro
-            </Oui.MenuItem>
-          </Rac.MenuSection>
-          <Oui.Separator variant="menu" />
-          <Rac.MenuSection>
-            <Oui.MenuItem id="account" textValue="Account">
-              <BadgeCheck className="mr-2 size-4" />
-              Account
-            </Oui.MenuItem>
-            <Oui.MenuItem id="billing" textValue="Billing">
-              <CreditCard className="mr-2 size-4" />
-              Billing
-            </Oui.MenuItem>
-            <Oui.MenuItem id="notifications" textValue="Notifications">
-              <Bell className="mr-2 size-4" />
-              Notifications
-            </Oui.MenuItem>
-          </Rac.MenuSection>
-          <Oui.Separator variant="menu" />
-          <Oui.MenuItem id="signOut" textValue="Sign Out">
-            <LogOut className="mr-2 size-4" />
-            <Rac.Form action="/signout" method="post" className="contents">
-              <Oui.Button type="submit" variant="ghost">
-                Sign Out
-              </Oui.Button>
-            </Rac.Form>
-          </Oui.MenuItem>
-        </Oui.MenuEx>
-      </SidebarMenuItem>
-    </SidebarMenu>
+          <Avatar className="h-8 w-8 rounded-lg">
+            <AvatarImage src={user.avatar} alt={user.name} />
+            <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+          </Avatar>
+          <div className="grid flex-1 text-left text-sm leading-tight">
+            <span className="truncate font-medium">{user.name}</span>
+            <span className="truncate text-xs">{user.email}</span>
+          </div>
+          <ChevronsUpDown className="ml-auto size-4" />
+        </Oui.Button>
+      }
+    >
+      <Rac.MenuSection>
+        <Rac.Header>
+          <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+            <Avatar className="h-8 w-8 rounded-lg">
+              <AvatarImage src={user.avatar} alt={user.name} />
+              <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+            </Avatar>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-medium">{user.name}</span>
+              <span className="truncate text-xs">{user.email}</span>
+            </div>
+          </div>
+        </Rac.Header>
+      </Rac.MenuSection>
+      <Oui.Separator variant="menu" />
+      <Rac.MenuSection>
+        <Oui.MenuItem id="upgradeToPro" textValue="Upgrade to Pro">
+          <Sparkles className="mr-2 size-4" />
+          Upgrade to Pro
+        </Oui.MenuItem>
+      </Rac.MenuSection>
+      <Oui.Separator variant="menu" />
+      <Rac.MenuSection>
+        <Oui.MenuItem id="account" textValue="Account">
+          <BadgeCheck className="mr-2 size-4" />
+          Account
+        </Oui.MenuItem>
+        <Oui.MenuItem id="billing" textValue="Billing">
+          <CreditCard className="mr-2 size-4" />
+          Billing
+        </Oui.MenuItem>
+        <Oui.MenuItem id="notifications" textValue="Notifications">
+          <Bell className="mr-2 size-4" />
+          Notifications
+        </Oui.MenuItem>
+      </Rac.MenuSection>
+      <Oui.Separator variant="menu" />
+      <Oui.MenuItem id="signOut" textValue="Sign Out">
+        <LogOut className="mr-2 size-4" />
+        <Rac.Form action="/signout" method="post" className="contents">
+          <Oui.Button type="submit" variant="ghost">
+            Sign Out
+          </Oui.Button>
+        </Rac.Form>
+      </Oui.MenuItem>
+    </Oui.MenuEx>
   );
 }
