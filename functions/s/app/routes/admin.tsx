@@ -1,61 +1,61 @@
-import type { Route } from './+types/app._index'
-import { Effect } from 'effect'
-import * as Rac from 'react-aria-components'
-import { Outlet, redirect } from 'react-router'
+import type { Route } from "./+types/app._index";
+import * as Oui from "@workspace/oui";
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
   SidebarProvider,
-  SidebarTrigger
-} from '@workspace/ui/components/ui/sidebar'
-import * as ReactRouter from '~/lib/ReactRouter'
+  SidebarTrigger,
+} from "@workspace/ui/components/ui/sidebar";
+import { Effect } from "effect";
+import { Outlet, redirect } from "react-router";
+import * as ReactRouter from "~/lib/ReactRouter";
 
-export const adminMiddleware: Route.unstable_MiddlewareFunction = ReactRouter.middlewareEffect(({ context }) =>
-  Effect.gen(function* () {
-    const sessionUser = context.get(ReactRouter.appLoadContext).session.get('sessionUser')
-    if (!sessionUser) {
-      return yield* Effect.fail(redirect('/authenticate'))
-    }
-    if (sessionUser.userType !== 'staffer') {
-      return yield* Effect.fail(new Response('Forbidden', { status: 403 }))
-    }
-  })
-)
+export const adminMiddleware: Route.unstable_MiddlewareFunction =
+  ReactRouter.middlewareEffect(({ context }) =>
+    Effect.gen(function* () {
+      const sessionUser = context
+        .get(ReactRouter.appLoadContext)
+        .session.get("sessionUser");
+      if (!sessionUser) {
+        return yield* Effect.fail(redirect("/authenticate"));
+      }
+      if (sessionUser.userType !== "staffer") {
+        return yield* Effect.fail(new Response("Forbidden", { status: 403 }));
+      }
+    }),
+  );
 
-export const unstable_middleware = [adminMiddleware]
+export const unstable_middleware = [adminMiddleware];
 
 const items = [
   {
-    title: 'SaaS',
-    url: '/'
+    id: "SaaS",
+    href: "/",
   },
   {
-    title: 'Admin',
-    url: '/admin'
+    id: "Admin",
+    href: "/admin",
   },
   {
-    title: 'Customers',
-    url: '/admin/customers'
+    id: "Customers",
+    href: "/admin/customers",
   },
   {
-    title: 'Stripe',
-    url: '/admin/stripe'
+    id: "Stripe",
+    href: "/admin/stripe",
   },
   {
-    title: 'Effect',
-    url: '/effect'
+    id: "Effect",
+    href: "/effect",
   },
   {
-    title: 'Sandbox',
-    url: '/sandbox'
-  }
-]
+    id: "Sandbox",
+    href: "/sandbox",
+  },
+];
 
 export function AppSidebar() {
   return (
@@ -64,35 +64,30 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Admin Panel</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Rac.Link href={item.url}>
-                      <span>{item.title}</span>
-                    </Rac.Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
+            <Oui.SidebarListBox aria-label="Admin Panel" items={items}>
+              {(item) => (
+                <Oui.SidebarListBoxItem key={item.id} href={item.href}>
+                  {item.id}
+                </Oui.SidebarListBoxItem>
+              )}
+            </Oui.SidebarListBox>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
 
 export default function RouteComponent() {
   return (
-    // <div className="flex min-h-svh flex-row justify-center gap-2 p-6">
     <div className="">
       <SidebarProvider>
         <AppSidebar />
         <main>
-          <SidebarTrigger />
+          <Oui.SidebarTrigger />
           <Outlet />
         </main>
       </SidebarProvider>
     </div>
-  )
+  );
 }
