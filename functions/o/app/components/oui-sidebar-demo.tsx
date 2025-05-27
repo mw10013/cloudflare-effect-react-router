@@ -58,6 +58,24 @@ function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
+        {/* <SidebarGroup>
+          <SidebarGroupContent>
+            <Oui.SidebarListBox aria-label="List Box">
+              <Oui.SidebarListBoxSection title="Main" items={items}>
+                {(item) => (
+                  <Oui.SidebarListBoxItem
+                    key={item.id}
+                    href={item.href}
+                    textValue={item.id}
+                  >
+                    <item.icon />
+                    <span>{item.id}</span>
+                  </Oui.SidebarListBoxItem>
+                )}
+              </Oui.SidebarListBoxSection>
+            </Oui.SidebarListBox>
+          </SidebarGroupContent>
+        </SidebarGroup> */}
         <SidebarGroup>
           <SidebarGroupLabel>List Box</SidebarGroupLabel>
           <SidebarGroupContent>

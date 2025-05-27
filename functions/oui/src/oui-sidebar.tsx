@@ -63,7 +63,7 @@ export function SidebarListBox<T extends object>({
 
 export interface SidebarListBoxSectionProps<T extends object = object>
   extends Rac.ListBoxSectionProps<T> {
-  title?: React.ReactNode;
+  title: React.ReactNode;
 }
 
 /**
@@ -77,9 +77,17 @@ export function SidebarListBoxSection<T extends object>({
   ...props
 }: SidebarListBoxSectionProps<T>) {
   return (
-    <Rac.ListBoxSection<T> className={twMerge("", className)} {...props}>
-      <Rac.Header className="">{title}</Rac.Header>
-      <div className="">
+    <Rac.ListBoxSection<T>
+      className={twMerge(
+        "relative flex w-full min-w-0 flex-col p-2",
+        className,
+      )}
+      {...props}
+    >
+      <Rac.Header className="text-sidebar-foreground/70 ring-sidebar-ring outline-hidden flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 [&>svg]:size-4 [&>svg]:shrink-0">
+        {title}
+      </Rac.Header>
+      <div className="w-full text-sm">
         <Rac.Collection items={items}>{children}</Rac.Collection>
       </div>
     </Rac.ListBoxSection>
